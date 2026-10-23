@@ -19,9 +19,9 @@ not an inspection journey or model-feasibility result. Gate 1 remains open.
 
 Only six direct web packages are needed. Vite handles TSX through its built-in
 transform; no React plugin is required for this setup page. We can add development
-conveniences when an actual feature needs them. No Python packages, browser-test
-downloads, provider SDKs, containers, CI services, or new package managers are needed
-for this increment.
+conveniences when an actual feature needs them. EN-02 now adds the separate
+contract-validation Python lock described below. Browser-test downloads, provider
+SDKs, containers, CI services, and new package managers are still unnecessary.
 
 A **lockfile**, `web/package-lock.json`, records exact dependency versions and
 download integrity hashes, including packages required by the six direct packages.
@@ -54,7 +54,7 @@ Official documentation and package metadata checked on 23 October 2026:
   `>=2.14.0`. This is a candidate combination, not an installed or tested ML lock.
 - [Pydantic 2.14.1](https://pypi.org/pypi/pydantic/2.14.1/json) and
   [pytest 9.1.1](https://pypi.org/pypi/pytest/9.1.1/json) declare Python `>=3.10`.
-  Add and lock them with the first contract implementation, not in advance.
+  They are now installed/locked with the first contract implementation.
 
 Metadata compatibility does not prove that the complete ML dependency tree resolves,
 imports, or fits this computer. That check belongs to the specialist feasibility
@@ -107,13 +107,41 @@ Open localhost with VS Code's **Browser: Open Integrated Browser** command
 This task verifies HTTP serving; visual rendering and interactive browser behavior
 remain unverified until that browser action is performed.
 
-There are no application behavior tests yet. Build/type checks verify the toolchain,
-not inspection correctness. Add pytest for contracts, Vitest for browser-side logic,
-and Playwright for the first meaningful connected journey when those tasks begin.
+There are now pytest behavior tests for the first manifest contract, with a
+separate VS Code task. Build/type checks still verify the web toolchain, not
+inspection correctness. Vitest and Playwright wait for meaningful browser-side
+logic and the first connected journey.
+
+## First Python contract increment
+
+Run `powershell -NoProfile -File scripts/pipeline.ps1 install` from the same
+project root to install the hashed Windows x64 / Python 3.13 lock. Run
+`powershell -NoProfile -File scripts/pipeline.ps1 test` to check manifest behavior;
+expect all tests to pass. This install is separate from web setup so an existing
+web-only environment does not acquire unused Python packages.
+
+Four direct pins are Pydantic 2.14.1, jsonschema 4.26.0, rfc3339-validator 0.1.4
+and pytest 9.1.1. All 18 resolved packages and selected wheel hashes appear in
+`pipeline/requirements-contracts.lock`. The small RFC3339 helper enables actual
+date-time validation; jsonschema otherwise treats unavailable format checks as
+annotations. The validator refuses to start without its date-time checker.
+Official interface sources checked on 23 October 2026:
+[Pydantic RootModel/validators](https://pydantic.dev/docs/validation/latest/concepts/models/),
+[jsonschema validation/format behavior](https://python-jsonschema.readthedocs.io/en/stable/validate/),
+and [jsonschema package metadata](https://pypi.org/pypi/jsonschema/4.26.0/json).
+
+The restricted tool environment can deny pytest temporary-directory cleanup even
+inside the project. The tests use ignored `.cache/pytest` and `.cache/tmp`; normal
+Windows file permissions were needed for verification. Do not disable the file
+tests to hide that restriction. The [pipeline guide](../pipeline/README.md) owns
+the validator commands, scope and fixture limitations.
 
 ## Next increment
 
-EN-02 starts artifact contracts and official dataset/licence discovery. Later EN-01
-work will lock the Python packages actually used by that task and the specialist
-experiment. Model configuration, checkpoints/licences, memory, provider eligibility,
-and authentic evidence remain separate Gate 1 work.
+The first EN-02 manifest contract and official dataset/licence discovery are
+implemented. Next acquire official category data and record hashes/membership,
+construct preparation splits, and verify actual image/mask alignment. Frontend
+contract agreement and other artifact contracts follow with their consumers.
+The specialist experiment still needs a separate compatible ML lock. Model
+configuration, checkpoints/licences, memory, provider eligibility and authentic
+evidence remain Gate 1 work.

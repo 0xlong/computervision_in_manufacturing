@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-inspection-pilot-lab:image-manifest:1",
+  "title": "ImageManifest",
+  "description": "First manifest contract. Identity transforms only; not a complete release bundle or proof of authentic provenance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "manifest_id", "evidence_status", "track_id", "dataset", "images"],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 1},
+    "manifest_id": {"$ref": "#/$defs/id"},
+    "evidence_status": {"enum": ["fixture", "authentic"]},
+    "track_id": {"enum": ["fasteners", "metal_surfaces"]},
+    "dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dataset_id", "category", "source_url", "acquired_at", "archive_sha256", "licence", "licence_url", "attribution", "modification_notice"],
+      "properties": {
+        "dataset_id": {"enum": ["mvtec_ad", "mvtec_ad2"]},
+        "category": {"enum": ["metal_nut", "sheet_metal"]},
+        "source_url": {"enum": ["https://www.mvtec.com/research-teaching/datasets/mvtec-ad", "https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2"]},
+        "acquired_at": {"type": "string", "format": "date-time", "pattern": "Z$(?![\\s\\S])"},
+        "archive_sha256": {"$ref": "#/$defs/sha256"},
+        "licence": {"const": "CC-BY-NC-SA-4.0"},
+        "licence_url": {"const": "https://creativecommons.org/licenses/by-nc-sa/4.0/"},
+        "attribution": {"type": "string", "minLength": 1, "maxLength": 2000},
+        "modification_notice": {"type": "string", "minLength": 1, "maxLength": 2000}
+      }
+    },
+    "images": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/image"}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"track_id": {"const": "fasteners"}}},
+      "then": {
+        "properties": {
+          "dataset": {"properties": {"dataset_id": {"const": "mvtec_ad"}, "category": {"const": "metal_nut"}, "source_url": {"const": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad"}}},
+          "images": {"items": {"properties": {"track_id": {"const": "fasteners"}, "official_split": {"enum": ["train", "test_public"]}}}}
+        }
+      },
+      "else": {
+        "properties": {
+          "dataset": {"properties": {"dataset_id": {"const": "mvtec_ad2"}, "category": {"const": "sheet_metal"}, "source_url": {"const": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2"}}},
+          "images": {"items": {"properties": {"track_id": {"const": "metal_surfaces"}}, "allOf": [{"if": {"properties": {"split": {"const": "calibration"}}}, "then": {"properties": {"official_split": {"const": "validation"}}}}]}}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,95}$(?![\\s\\S])"},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$(?![\\s\\S])"},
+    "path": {
+      "type": "string",
+      "maxLength": 240,
+      "pattern": "^[a-zA-Z0-9_-]+(?:/[a-zA-Z0-9_-]+)*(?:\\.[a-zA-Z0-9]+)?$(?![\\s\\S])",
+      "description": "Relative POSIX path; no URL, drive, hidden segment, traversal, backslash, query or percent encoding."
+    },
+    "dimensions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["width_px", "height_px"],
+      "properties": {"width_px": {"type": "integer", "minimum": 1}, "height_px": {"type": "integer", "minimum": 1}}
+    },
+    "asset": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256", "dimensions"],
+      "properties": {"path": {"$ref": "#/$defs/path"}, "sha256": {"$ref": "#/$defs/sha256"}, "dimensions": {"$ref": "#/$defs/dimensions"}}
+    },
+    "image": {
+      "type": "object", "additionalProperties": false,
+      "required": ["image_id", "track_id", "official_split", "split", "source_member", "source_sha256", "original_dimensions", "display", "label", "mask", "transform"],
+      "properties": {
+        "image_id": {"type": "string", "pattern": "^img-[0-9]{6}$(?![\\s\\S])", "description": "Neutral ID; source_member is evaluator-only metadata."},
+        "track_id": {"enum": ["fasteners", "metal_surfaces"]},
+        "official_split": {"enum": ["train", "validation", "test_public"]},
+        "split": {"enum": ["fitting", "calibration", "evaluation"]},
+        "source_member": {"$ref": "#/$defs/path"},
+        "source_sha256": {"$ref": "#/$defs/sha256"},
+        "original_dimensions": {"$ref": "#/$defs/dimensions"},
+        "display": {"$ref": "#/$defs/asset"},
+        "label": {"enum": ["normal", "anomalous"]},
+        "mask": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/asset"}]},
+        "transform": {
+          "const": {"operation": "identity", "orientation": "unchanged", "normalization": "none", "coordinate_mapping": "x_display=x_source; y_display=y_source"},
+          "description": "Original encoded image bytes, no resize/crop/padding/rotation. Model preprocessing is a separate future run contract."
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"split": {"const": "evaluation"}}},
+          "then": {"properties": {"official_split": {"const": "test_public"}}},
+          "else": {"properties": {"official_split": {"enum": ["train", "validation"]}, "label": {"const": "normal"}}}
+        },
+        {"if": {"properties": {"split": {"const": "fitting"}}}, "then": {"properties": {"official_split": {"const": "train"}}}},
+        {"if": {"properties": {"label": {"const": "normal"}}}, "then": {"properties": {"mask": {"type": "null"}}}}
+      ]
+    }
+  }
+}

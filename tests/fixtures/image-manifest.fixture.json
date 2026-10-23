@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "manifest_id": "fixture-metal-nut-v1",
+  "evidence_status": "fixture",
+  "track_id": "fasteners",
+  "dataset": {
+    "dataset_id": "mvtec_ad",
+    "category": "metal_nut",
+    "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad",
+    "acquired_at": "2026-10-23T00:00:00Z",
+    "archive_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "licence": "CC-BY-NC-SA-4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "attribution": "TEST FIXTURE ONLY. No MVTec data was acquired; no dataset images are included.",
+    "modification_notice": "Synthetic metadata with placeholder hashes/dimensions for validation tests; not evidence."
+  },
+  "images": [
+    {
+      "image_id": "img-000001",
+      "track_id": "fasteners",
+      "official_split": "train",
+      "split": "fitting",
+      "source_member": "metal_nut/train/good/001.png",
+      "source_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "original_dimensions": {
+        "width_px": 32,
+        "height_px": 24
+      },
+      "display": {
+        "path": "images/img-000001.png",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "dimensions": {
+          "width_px": 32,
+          "height_px": 24
+        }
+      },
+      "label": "normal",
+      "mask": null,
+      "transform": {
+        "operation": "identity",
+        "orientation": "unchanged",
+        "normalization": "none",
+        "coordinate_mapping": "x_display=x_source; y_display=y_source"
+      }
+    },
+    {
+      "image_id": "img-000002",
+      "track_id": "fasteners",
+      "official_split": "train",
+      "split": "calibration",
+      "source_member": "metal_nut/train/good/002.png",
+      "source_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "original_dimensions": {
+        "width_px": 32,
+        "height_px": 24
+      },
+      "display": {
+        "path": "images/img-000002.png",
+        "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+        "dimensions": {
+          "width_px": 32,
+          "height_px": 24
+        }
+      },
+      "label": "normal",
+      "mask": null,
+      "transform": {
+        "operation": "identity",
+        "orientation": "unchanged",
+        "normalization": "none",
+        "coordinate_mapping": "x_display=x_source; y_display=y_source"
+      }
+    },
+    {
+      "image_id": "img-000003",
+      "track_id": "fasteners",
+      "official_split": "test_public",
+      "split": "evaluation",
+      "source_member": "metal_nut/test/good/003.png",
+      "source_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "original_dimensions": {
+        "width_px": 32,
+        "height_px": 24
+      },
+      "display": {
+        "path": "images/img-000003.png",
+        "sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+        "dimensions": {
+          "width_px": 32,
+          "height_px": 24
+        }
+      },
+      "label": "normal",
+      "mask": null,
+      "transform": {
+        "operation": "identity",
+        "orientation": "unchanged",
+        "normalization": "none",
+        "coordinate_mapping": "x_display=x_source; y_display=y_source"
+      }
+    }
+  ]
+}

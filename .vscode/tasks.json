@@ -2,6 +2,14 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Pipeline: test contracts",
+      "type": "process",
+      "command": "powershell",
+      "args": ["-NoProfile", "-File", "scripts/pipeline.ps1", "test"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "problemMatcher": []
+    },
+    {
       "label": "Development: start web",
       "type": "process",
       "command": "powershell",
