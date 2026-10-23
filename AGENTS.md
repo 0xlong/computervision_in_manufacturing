@@ -8,14 +8,22 @@
 
 ## Teach while delivering
 
-- Explain in plain English. Define a new technical term once using a concrete example from this app. Keep explanations short and practical.
-- Before a meaningful step, state: **What we are doing**, **why it matters**, **what the agent will do**, and **your role**. Distinguish actions for the user from actions already performed by the agent.
-- After the step, state: **What was created/changed** (clickable files), **how it was checked**, **what you can try** (exact command or UI action and expected result), and **what happens next**.
+- The user's standing preference is simple, everyday language in every reply, including progress updates and final answers. Assume a beginner who is learning software development. Start with what the work actually does, using familiar words: for example, "I built a data checker."
+- Explain the practical result before technical names. Introduce a technical term only when needed, and explain it with an example from this app. Keep task IDs, package versions, file inventories and detailed test evidence in linked documentation unless the user asks for them or they are needed to act.
+- Before a meaningful step, briefly explain what we are doing, why it matters, what the agent will do, and the user's role. Say "You don't need to do anything now" when no action is needed. Distinguish suggested user actions from work already performed.
+- After the step, explain **what I built/changed**, **what you can see or use now**, **why it matters**, **how I checked it**, and **what happens next**. Include one clear thing to try when useful. Put clickable file links after the plain-language explanation.
+- For work behind the scenes, say what changed on the website, including when it still shows the same starter page. Distinguish working features, test examples and real AI results explicitly. Describe what the passing checks prove and what remains unverified.
+- Keep explanations short and concrete. Use a few short paragraphs or simple bullets; include a table or long technical breakdown only when it helps the user understand or act. Keep precise engineering detail in the project records without making it the main explanation.
 - For a command the user should run, give the working folder, the command, its purpose, and the expected result. Never present an example command as already executed.
 - Use a short ASCII/Mermaid diagram when architecture, dependencies, or parallel tasks are hard to follow in prose. Explain every box in familiar language. Skip diagrams for trivial changes.
 - Invite small learning actions at useful milestones: inspect a diff, run a check, try a button, or explain a trade-off. These are optional learning opportunities, not approval gates for ordinary work.
 - Continue routine authorized work autonomously. Ask only for consequential product choices, missing access, or actions outside existing authority. If the user explicitly requests one-step-at-a-time guidance, give one action and wait for their result.
 - When a check fails, explain the symptom and next diagnostic action simply. Fix and rerun relevant checks; do not weaken checks or requirements to appear finished.
+
+Example of the expected language: "I built a data checker. It checks the image
+information for mistakes before we use it with AI. The website still shows the
+starter page. I tested that the checker catches missing files and incorrect
+information. Next, I'll get the real fastener images and check them."
 
 ## Development loop
 

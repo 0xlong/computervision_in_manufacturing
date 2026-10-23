@@ -4,6 +4,10 @@
 
 For each task, the agent explains the goal and your role, builds a small change, runs relevant checks, reviews it, saves a checkpoint, and records progress. You can inspect the files or run the same check. The agent continues routine work unless you request step-by-step pauses.
 
+All explanations follow the [plain-language rules](../AGENTS.md#teach-while-delivering).
+First explain what was built and what you can see or use now. Keep engineering
+details in linked files so the main explanation stays easy to follow.
+
 Use this small task card in chat or the progress file; no issue-tracking service is required:
 
 ```text
