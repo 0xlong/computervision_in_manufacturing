@@ -192,4 +192,34 @@ To intentionally refresh it, download the direct pins and all dependencies with
 using the pinned interpreter and official PyPI. Record each wheel's Name/Version
 from `.dist-info/METADATA` and SHA-256; review changes and prove a fresh installation
 with `--require-hashes` before committing. Never regenerate the lock automatically
-during setup. Provider SDKs and ML dependencies wait for their feasibility tasks.
+during setup. Provider SDKs wait for their feasibility tasks.
+
+## Honest unpacked provenance and answer-free model inputs
+
+Image-manifest v1 remains supported without changes. V2 replaces the dataset's
+mandatory archive receipt with an explicit `acquisition` object. `kind` selects
+`archive` or `unpacked_directory`; an archive still requires URL/time/hash. The
+unpacked route allows unknown URL/time/archive hash as `null`, requires a separate
+content-membership hash, checking time, assurance and context, and never certifies
+official acquisition. Both versions use the same identity-asset relationship checks.
+
+From the project root, the current real-data commands are documented in
+[data preparation](../docs/DATA_PREPARATION.md#current-continuation). `python -m
+pipeline.prepare_inputs --help` describes the exporter, which refuses existing
+output or output within source data, checks current plan/audit agreement, and
+creates separate `evaluator/` and `model-inputs/` directories. A failed run can
+leave partial output; use only a completed package with its summary.
+
+`model-inputs/{fitting,calibration,evaluation}.json` follows
+[`model-inputs.v1.schema.json`](../schemas/model-inputs.v1.schema.json). Python
+also checks unique ID/path pairs, contained paths, bytes, decoded dimensions,
+single-frame RGB and absence of metadata. Inference receives only these records
+and clean image pixels. It must not open evaluator manifests, masks, source paths
+or notes. References must come from fitting inputs only. These development inputs
+do not authorize test tuning or claim a frozen benchmark.
+
+`python -m pipeline.compare_related --help` describes the automated follow-up.
+It reconstructs the saved shortlist, searches bounded rigid alignment and records
+native-size detail measurements and same-photo controls. It views no images,
+changes no membership, confirms no object identity and cannot freeze unresolved
+groups. See [actual findings](../docs/DATA_REVIEW.md#automated-follow-up-of-the-12-recorded-risks).

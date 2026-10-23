@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-inspection-pilot-lab:model-inputs:1",
+  "title": "Answer-free model inputs",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "evidence_status",
+    "images"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "type": "integer"
+    },
+    "evidence_status": {
+      "const": "development_only"
+    },
+    "images": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "image_id",
+          "path",
+          "sha256",
+          "dimensions"
+        ],
+        "properties": {
+          "image_id": {
+            "type": "string",
+            "pattern": "^img-[0-9]{6}$(?![\\s\\S])",
+            "description": "Neutral ID; source_member is evaluator-only metadata."
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^images/img-[0-9]{6}\\.png$(?![\\s\\S])"
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "dimensions": {
+            "$ref": "#/$defs/dimensions"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$(?![\\s\\S])"
+    },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "width_px",
+        "height_px"
+      ],
+      "properties": {
+        "width_px": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height_px": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  }
+}

@@ -23,6 +23,9 @@ Draft202012Validator.check_schema(MANIFEST_SCHEMA)
 if "date-time" not in FormatChecker.checkers:
     raise RuntimeError("Install the contract lock: date-time format validation is required")
 _VALIDATOR = Draft202012Validator(MANIFEST_SCHEMA, format_checker=FormatChecker())
+MANIFEST_SCHEMA_V2 = json.loads(SCHEMA_PATH.with_name("image-manifest.v2.schema.json").read_text(encoding="utf-8"))
+Draft202012Validator.check_schema(MANIFEST_SCHEMA_V2)
+_VALIDATOR_V2 = Draft202012Validator(MANIFEST_SCHEMA_V2, format_checker=FormatChecker())
 
 
 class AssetValidationError(ValueError):
@@ -53,7 +56,8 @@ def read_manifest(path: Path) -> ImageManifest:
 
 
 def _validate_shape(data: Any) -> None:
-    error = next(_VALIDATOR.iter_errors(data), None)
+    validator = _VALIDATOR_V2 if isinstance(data, dict) and data.get("schema_version") == 2 else _VALIDATOR
+    error = next(validator.iter_errors(data), None)
     if error is not None:
         # Do not echo untrusted artifact values, private paths or provider text.
         location = "/".join(str(part) for part in error.absolute_path) or "root"
