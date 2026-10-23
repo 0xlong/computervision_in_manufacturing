@@ -16,7 +16,21 @@ Category names above are the project selections. See the
 [local completeness check](DATA_COMPLETENESS.md) for measured file evidence and its
 source limitation. Private AD2 evaluation is outside this project.
 
-## Current handoff — official archive needed
+## Current handoff — new unpacked download checked
+
+The user supplied `data/downloads/metal_nut/` after the official download request.
+All 430 files are readable and match the pinned reference, including the attribution
+readme and licence. A draft 176/44/115 split is built. See
+[current preparation/acquisition evidence](DATA_PREPARATION.md).
+
+No original archive/direct URL/exact acquisition time was included. Those remain
+unknown; source context is user-supplied after the official request, not an
+independently observed download. The user confirmed the folder location; no archive
+was supplied. Draft preparation can continue without another move/download request.
+Before a frozen manifest, recover original metadata or version the contract to
+represent unpacked acquisition honestly.
+
+## Previous mirror handoff — historical
 
 The user supplied unpacked `metal_nut` files under `data/downloads/`. They pass
 local integrity/mask checks and match MVTec's published category summary. No separate

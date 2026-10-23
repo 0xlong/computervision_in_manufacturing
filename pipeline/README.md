@@ -132,6 +132,22 @@ then implement fixed preparation splits and the label-free inference boundary.
 Datasets, checkpoints, generated results, raw provider responses and credentials
 stay outside source control. No model/provider SDK is installed by this lock.
 
+## Propose preparation groups
+
+`pipeline.plan_preparation` checks the real unpacked category, rechecks photograph
+bytes, hashes decoded RGB pixels and makes a deterministic **development-only**
+preparation plan. The [schema](../schemas/preparation-plan.v1.schema.json) is its
+canonical field contract; Python checks identity, seeded membership, nonempty
+groups and duplicate separation. It sorts neutral training IDs, shuffles with
+seed 42 and holds out `ceil(n/5)` for calibration. Every official test image remains
+evaluation. Identical pixel content crossing preparation groups fails for review;
+test overlap is reported without deleting members. Related-image review remains
+pending. This does not produce the release image manifest or inference inputs.
+
+See [executed commands, results and limits](../docs/DATA_PREPARATION.md#executed-commands-and-checks).
+Existing outputs are never overwritten; use a new filename for a repeat run.
+No model is trained, no input image changes and no dependency is added.
+
 ## Dependency reproducibility
 
 [requirements-contracts.in](requirements-contracts.in) contains five direct pins:

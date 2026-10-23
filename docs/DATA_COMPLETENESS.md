@@ -4,6 +4,12 @@ The downloaded fastener folder **passes the local file and published-summary
 checks**. All pictures and defect outlines open correctly. Nothing was deleted,
 renamed, resized, fitted or sent to a model. The website still shows the starter page.
 
+**Current update:** a replacement download is in `data/downloads/metal_nut/`, with
+both notices. Its 430 files pass current checks and match the pinned reference.
+A 176/44/115 preparation draft is saved. See [current preparation](DATA_PREPARATION.md)
+for actual paths, fingerprints, source limits and next work. Sections below retain
+the earlier mirror investigation; old ignored input/report paths are no longer present.
+
 ## What was found
 
 Checked folder: `data/downloads/mvtec-ad-metal-nut/metal_nut/`.

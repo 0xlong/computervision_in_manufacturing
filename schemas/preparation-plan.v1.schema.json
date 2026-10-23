@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-inspection-pilot-lab:preparation-plan:1",
+  "title": "Development-only fastener preparation plan",
+  "description": "A checked split proposal, not a frozen release manifest or source-authenticity certificate.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "evidence_status", "track_id", "input_membership_sha256", "method", "images", "evaluation_overlap_ids", "limitations"],
+  "properties": {
+    "schema_version": {"const": 1, "type": "integer"},
+    "evidence_status": {"const": "development_only"},
+    "track_id": {"const": "fasteners"},
+    "input_membership_sha256": {"$ref": "#/$defs/hash"},
+    "method": {
+      "const": {
+        "seed": 42,
+        "calibration_fraction": 0.2,
+        "rounding": "ceil",
+        "selection": "Sort training neutral IDs, shuffle with Python random.Random(42), reserve the first ceil(n/5).",
+        "duplicate_check": "Decoded RGB pixel SHA-256; refuse fitting/calibration overlap.",
+        "related_image_review": "pending"
+      }
+    },
+    "images": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/image"}},
+    "evaluation_overlap_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+    "limitations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^img-[0-9]{6}$(?![\\s\\S])"},
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$(?![\\s\\S])"},
+    "image": {
+      "type": "object", "additionalProperties": false,
+      "required": ["image_id", "source_member", "source_sha256", "pixel_sha256", "official_split", "split"],
+      "properties": {
+        "image_id": {"$ref": "#/$defs/id"},
+        "source_member": {"type": "string", "pattern": "^(train/good|test/[a-z0-9_-]+)/[a-zA-Z0-9_-]+\\.png$(?![\\s\\S])"},
+        "source_sha256": {"$ref": "#/$defs/hash"},
+        "pixel_sha256": {"$ref": "#/$defs/hash"},
+        "official_split": {"enum": ["train", "test_public"]},
+        "split": {"enum": ["fitting", "calibration", "evaluation"]}
+      },
+      "allOf": [{
+        "if": {"properties": {"official_split": {"const": "test_public"}}},
+        "then": {"properties": {"split": {"const": "evaluation"}}},
+        "else": {"properties": {"split": {"enum": ["fitting", "calibration"]}}}
+      }]
+    }
+  }
+}
