@@ -2,6 +2,53 @@
 
 Updated: 23 October 2026. This file records project state, not promised implementation success.
 
+## Free API discovery and continuation — 24 October 2026
+
+One agent on `main`, as requested. Read AGENTS.md, README and the docs records;
+checked working changes against starting checkpoint `71d0fdf` (24 October,
+00:51 Europe/Warsaw). Earlier documentation/spec relocation edits are preserved.
+The user reconfirmed free API tiers only; this is the spending rule, not actual
+project entitlement or quota evidence.
+
+Since that checkpoint, the working copy contains the specification move to
+`docs/` and version 2.1 changes, the new user-story backlog, updated learner/task
+guidance, accumulated data/progress notes and the workspace check's new paths.
+These are largely earlier unsaved documentation changes. The existing modified
+script checks workspace files; it does not add an inspection feature.
+No application/pipeline model code, dependency or frontend changed in this task.
+
+Parent EN-03; supports US-02/03/06, Gate 1 and API-FREE-001/002.
+
+| Task | Dependencies / allowed files | Acceptance check | Status |
+| --- | --- | --- | --- |
+| Check published free API candidates | Official sources; API_FEASIBILITY.md, MODEL_SELECTION.md and this new progress section | Dated candidate image/structured-output/pricing/terms/quota evidence; no model call or secret access | Done; two published candidates, neither selected |
+| Verify actual project and applicable use | Approved nonsecret account evidence and terms/data suitability; same documentation files | Free execution and exact model quota evidenced; unresolved use restrictions recorded | Blocked on authenticated project tier/limits and applicable terms/data suitability |
+| Define response/run contracts with synthetic checks | Existing canonical-schema approach; scope schemas/pipeline/tests in the next task | Valid decisions and distinct failures, quota/entitlement refusal and sanitized records tested without network | Ready independent implementation task |
+| Plan and measure a short real trial | Verified access/use and input/response safeguards | Exact IDs/configuration and request/token/time limits fixed before execution; authentic outputs saved | Pending prerequisites |
+
+[API_FEASIBILITY.md](API_FEASIBILITY.md) records official model capabilities,
+published Standard free-tier pricing, project-specific quota rules, regional terms
+and exact missing evidence. The active-quota page redirected to sign-in; no
+authenticated provider interface was available through the tools used. No API key
+or credential file was accessed. Public pricing is not account-specific clearance.
+The website still shows the starter page; no authentic API output exists yet.
+
+Verification: workspace check passed (workspace readiness only), 37 local
+documentation links/anchors and code fences passed, and working diff whitespace
+passed. Fresh review by the same agent checked primary-source support, candidate
+versus measured claims, account/terms blockers and preservation of earlier edits.
+No app/model tests or browser checks were rerun for this documentation-only task.
+The focused checkpoint covers the new feasibility note, selection-plan update and
+only this new progress section; earlier mixed-file changes remain unsaved.
+Gate 1 and all application stories remain incomplete. No real images were visually opened,
+uploaded or scored. No billing, paid calls, publication or remote changes occurred.
+
+Next: implement the small response/run contract and offline safeguard checks while
+project evidence is pending; verify access/use before a bounded authentic trial.
+Later steps remain complete evaluation, the connected fastener journey, the
+surface track, and release checks. Earlier next-step notes are historical where
+they conflict with this section or the API-first direction below.
+
 ## Current direction: fast, efficient models — 24 October 2026
 
 The user changed the plan because local experiments take too long. Prefer API
