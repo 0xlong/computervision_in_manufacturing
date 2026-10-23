@@ -3,8 +3,8 @@
 The pipeline validates image manifests and checks downloaded fastener archives.
 A **manifest** is a list of images and their origins, splits, labels and display
 assets. Automatic downloading, models, evaluation reports and release bundles
-are not implemented yet. A supplied unpacked fastener folder has passed local file
-checks; its original download source is still needed.
+are not implemented yet. The supplied unpacked fastener folder and draft split pass local checks.
+Missing archive details remain explicitly unknown; no repeated download is needed.
 
 ## Try the validator
 
@@ -99,11 +99,11 @@ Repeated asset paths are rejected case-insensitively for Windows reproducibility
 
 ## Limits and next work
 
-This is partial `T-CONTRACT`/`T-DATA` coverage. The local inventory tool decodes
-generated test images, but we have not decoded official images,
-verified their measured pixel dimensions, acquired an official archive, established exact
-category membership, constructed seeded preparation splits, audited related images,
-or validated frontend agreement. The schema's `authentic` flag is a declaration,
+This is partial `T-CONTRACT`/`T-DATA` coverage. The tools decode both generated test images and the user-supplied
+fastener photographs. Current local counts, dimensions, draft splits and the scoped
+visual review are recorded in [data preparation](../docs/DATA_PREPARATION.md).
+Original archive acquisition, exhaustive related-object identification, model-resolution
+visibility and frontend agreement remain unverified. The schema's `authentic` flag is a declaration,
 not an authenticity certificate. Contract validation does not mark a run or bundle
 complete. Challenges, runs, predictions, reports, visitor state and export contracts
 will be added with their consumers. Resizing/maps need measured alignment checks
@@ -126,9 +126,9 @@ report and exits 1. Corrupt/missing images or mask pairing failures exit 1 witho
 a successful report. Links/junctions are rejected; private/configuration paths
 are excluded without reading contents and prevent a summary match.
 
-Next: use the [official acquisition/discovery record](../docs/DATA_SOURCES.md),
-acquire approved data into ignored `data/`, record archive/member hashes and counts,
-then implement fixed preparation splits and the label-free inference boundary.
+Current work uses the existing unpacked data and draft preparation plan; see
+[preparation](../docs/DATA_PREPARATION.md). Next: resolve related-image risks and
+represent unpacked acquisition honestly, then build the label-free inference boundary.
 Datasets, checkpoints, generated results, raw provider responses and credentials
 stay outside source control. No model/provider SDK is installed by this lock.
 
@@ -147,6 +147,30 @@ pending. This does not produce the release image manifest or inference inputs.
 See [executed commands, results and limits](../docs/DATA_PREPARATION.md#executed-commands-and-checks).
 Existing outputs are never overwritten; use a new filename for a repeat run.
 No model is trained, no input image changes and no dependency is added.
+
+## Review related pictures and defect outlines
+
+`pipeline.review_preparation` re-audits the existing category and requires the saved
+plan to match the current source membership and image pixels. It scans all picture
+pairs using small grayscale copies and writes a documented shortlist, source/mask
+fingerprints and side-by-side PNG sheets. No dependency, source image, preparation
+membership or provider input is changed. The JSON is an internal review aid, not a
+release contract or an automatic visual verdict.
+
+From the project-root VS Code terminal, this is a **repeat-run example**; choose a
+new output directory because previous reviews are preserved:
+
+```powershell
+.\.venv\Scripts\python.exe -m pipeline.review_preparation data/downloads/metal_nut --plan data/metal_nut.preparation-plan.v1.json --output-dir data/metal_nut.review.NEXT
+```
+
+Expected: 69 related-picture candidates and 93 masks for the unchanged real draft,
+followed by `Visual review is pending`. A human/agent must actually inspect the
+sheets and record decisions separately. Output within the source category, stale
+plans and existing review directories are refused. Failed writing can leave an
+incomplete directory; only a completed `review.json` identifies a generated set.
+The report records pending decisions even when a separate visual record exists.
+See [actual review findings and limitations](../docs/DATA_REVIEW.md).
 
 ## Dependency reproducibility
 

@@ -50,7 +50,8 @@ unchanged decoded RGB bytes. Different PNG encodings of an identical picture
 cannot silently cross groups: that fails for group-aware review. Evaluation
 overlap is reported while retaining test images. The real draft has **zero
 exact-pixel overlaps** between preparation groups or between preparation and test.
-Related/near-duplicate review remains pending.
+A first visual pass reviewed 69 similar-picture candidates; physical-object
+relationships remain unresolved. See [review findings](DATA_REVIEW.md).
 
 The [canonical schema](../schemas/preparation-plan.v1.schema.json) and Python
 relationship checks validate a development-only plan. It is not the release image
@@ -95,8 +96,13 @@ example was corrected while duplicate checks remained enforced.
 
 ## Before freezing a benchmark
 
-This is `development_only`. Visual annotation alignment, related-image review,
-small-defect visibility, model compatibility and source metadata remain work.
+This is `development_only`. All 93 real outlines received a visual alignment
+review, with no gross geometric mismatch seen and an annotation-extent caveat for
+scratch/008. Seven native-resolution details were checked. The 69 related-picture
+candidates include 12 unresolved fitting/calibration risks; membership stays a
+draft. See [review evidence and limitations](DATA_REVIEW.md). Model-resolution
+defect visibility, related-object identification, model compatibility and source
+metadata remain work.
 The user confirmed the folder is in `data/downloads`; no archive location was
 provided. Continue with an explicitly unpacked acquisition record, without another
 move/download request. Do not substitute content fingerprints for an archive hash
@@ -108,6 +114,21 @@ manifest, recover those details or version the contract to represent unknown or
 declared fields explicitly. Do not weaken v1 or invent values. The draft does not
 complete `DATA-SOURCE-001`, all of `DATA-SPLIT-003`, Gate 1 or any user story.
 
-Next: related-image and visual mask review, honest acquisition representation,
-then the validated image manifest and label-free model inputs. No paid/provider
-calls or publication is involved.
+Next: strengthen the 12 preparation-boundary candidate reviews, represent
+unpacked acquisition honestly, then produce the validated image manifest and
+label-free model inputs. No repeated download, paid/provider call or publication
+is needed for this work.
+
+
+## Picture review completed as a scoped first pass
+
+The [review record](DATA_REVIEW.md) contains the actual command, sheet locations,
+input/output fingerprints, all mask coverage and the remaining related-picture
+risks. The review tool scans all 55,945 pairs, creates 69 candidates and lays out
+all 93 outlines beside their originals. All 42 sheets and seven native-resolution
+details were inspected. No source image, preparation member or test image changed.
+
+Current checks: **149 pipeline tests passed** and the workspace check passed.
+These prove the tool's tested behavior and input consistency; they do not prove
+physical-object independence, exact annotation boundaries or model performance.
+The website is unchanged and there are no AI results yet.

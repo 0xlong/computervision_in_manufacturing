@@ -40,3 +40,60 @@ No workers, paid calls, public repository, remote deployment, app dependencies, 
 ## Handoff convention
 
 After each completed task, record its outcome, relevant checks/results, known limitations, and next action here. Keep this file short; Git records the detailed file history. A blocked check stays visible rather than being marked complete.
+
+## EN-02-T05b — related-picture and outline review (23 October 2026)
+
+I built a local picture-review tool and inspected 69 similar-picture candidates
+and all 93 defect outlines. No gross wrong-image, rotation or shifted-outline
+problem was seen. Seven full-size details were checked; scratch/008 has visible
+abrasion beyond parts of its annotation. The website still shows the starter page;
+no AI has been trained. Existing source pictures and the 176/44/115 draft remain
+unchanged. No repeated download is needed.
+
+Owner: one agent on `main`; no workers. Parent EN-02, supporting future US-06.
+Requirements: `DATA-SPLIT-003`, `DATA-TRANSFORM-001`, partial `T-DATA`.
+Dependencies: existing draft and unchanged local dataset.
+Allowed/changed files: `pipeline/review_preparation.py`, its tests,
+`pipeline/README.md`, `docs/DATA_REVIEW.md`, `docs/DATA_PREPARATION.md`, this file;
+ignored local outputs. No dependencies, source data or schemas were changed.
+
+| Small task | Completion check | Result |
+| --- | --- | --- |
+| Recheck inputs and generate related-picture candidates | Current files match saved plan; deterministic documented shortlist and local sheets | Verified: 430 files, 55,945 pairs, 69 candidates |
+| Inspect real image/outline pairs | All 93 pairs covered; original beside overlay; concerns recorded by ID | Verified scoped pass: 24 mask sheets and 7 native details |
+| Verify and record the review | Relevant tests; fresh single-agent diff/evidence review; focused checkpoint; limits explicit | 149 tests and workspace check passed; review record complete |
+
+The shortlist includes all 48 pairs with thumbnail mean absolute difference <= 6
+and the closest 12 across each split boundary (69 unique candidates). All 18 pair
+sheets were viewed. Similar poses do not establish physical-part/session identity;
+12 fitting/calibration candidates remain unresolved. No related groups were invented
+and no test member was removed. The draft must not be frozen as a completed
+related-image audit. Next: stronger native-detail/registration review of those 12,
+then honest unpacked-acquisition representation and label-free model inputs.
+Model-resolution RGB visibility still needs a measured feasibility check.
+
+Evidence: [review findings](DATA_REVIEW.md), [preparation state](DATA_PREPARATION.md).
+Ignored final output: `data/metal_nut.review.v3/`; generated report and separate
+per-pair/per-mask visual decisions have recorded hashes. Its 42 sheets are
+byte-identical to the actually viewed v2 set. Earlier failed v1 output is incomplete
+and is not evidence. Input membership and saved plan fingerprints are unchanged.
+Original archive URL/time/hash remain unknown; v1 release provenance was not weakened.
+Gate 1 and all stories remain incomplete.
+
+Checks: 149 pipeline cases passed (137 existing plus 12 review cases). Tests verify
+coordinate rendering, invalid masks, stable shortlist/output bytes, source integrity,
+complete mask coverage, stale-plan/image/mask rejection, containment/output preservation
+and pending-review claims. Real visual observations are separate from those generated
+fixtures. The restricted run first failed on known Windows test-folder permissions;
+normal local access resolved that. The first tool run/tests found normal images have
+`mask: null`; corrected the new tool to skip them. No test/requirement was weakened.
+Workspace and edited-document link/fence/whitespace checks passed. Web checks were
+not repeated because frontend/tooling files are unchanged; no browser journey was
+claimed. Fresh single-agent review checked scope, source preservation, evidence
+limits and the remaining preparation risks.
+
+Handoff: focused checkpoint on `main` contains the review code/tests, pipeline/data
+guides and this new progress section. Earlier user/agent edits, specification move,
+README/workflow/workspace-check changes and earlier progress text remain preserved
+in the working tree; only this new progress section is staged from that mixed file.
+No workers, provider calls, publication, paid service or remote changes occurred.
