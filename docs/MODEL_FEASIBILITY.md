@@ -1,5 +1,10 @@
 # Local model practice runs — 23 October 2026
 
+Current direction (24 October 2026): further local model experiments are
+deferred. Prioritize fast, efficient API models with verified free access;
+see [model-selection plan](MODEL_SELECTION.md). Earlier local preparation and
+measurement records below are preserved, not current assignments.
+
 Update, 24 October: the next resource-check step uses all 176 normal fitting
 pictures with enforced memory/time bounds. See [full-fitting resource findings](MODEL_RESOURCES.md)
 for current results and limits. The eight-picture measurements below remain the

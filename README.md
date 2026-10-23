@@ -2,7 +2,18 @@
 
 A public-data inspection game and model-comparison lab. We are building it with coding agents while learning practical software engineering.
 
-**Current state:** the specification and learning workspace exist. There is no runnable web application, trained model, or evaluated API integration yet. See [current progress](docs/PROGRESS.md).
+**Current direction:** use fast, efficient models, with API models preferred.
+Further local PaDiM/PatchCore experiments are deferred. We will first check free
+access and measure short API samples before choosing models. No API model has
+been selected or verified yet, and paid calls remain disabled.
+
+**What works now:** the starter website, checked fastener pictures and answer-free
+model inputs. Earlier local model runs remain saved as development evidence;
+they do not establish defect-detection quality. The website still shows the
+starter page. You don't need another download or move now.
+
+See [the next step](docs/PROGRESS.md), [the model-selection plan](docs/MODEL_SELECTION.md)
+and [the saved local experiment](docs/LARGER_RESOLUTION.md).
 
 ## Start here in VS Code
 

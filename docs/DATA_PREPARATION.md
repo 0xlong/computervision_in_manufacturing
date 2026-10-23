@@ -1,5 +1,10 @@
 # Fastener preparation draft — 23 October 2026
 
+Current direction (24 October 2026): further local model experiments are
+deferred. Prioritize fast, efficient API models with verified free access;
+see [model-selection plan](MODEL_SELECTION.md). Earlier local preparation and
+measurement records below are preserved, not current assignments.
+
 The new download in `data/downloads/metal_nut/` passes the file checks. A draft
 separates pictures for model practice, threshold setting and final testing.
 The website still shows the starter page. No model has been trained.

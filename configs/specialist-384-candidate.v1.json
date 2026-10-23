@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "purpose": "development_only_cpu_feasibility_not_final_evaluation",
+  "seed": 42,
+  "threads": 2,
+  "input_index_sha256": {
+    "fitting": "32e34327319987c986f14e7f59d06441f16c115e3a7738620f490b0cb3b793d2",
+    "calibration": "fe2732cc3b7f333941335b61b4a672af1694a48d56c06964d66634b9aed7cfad"
+  },
+  "fitting_sample_count": 8,
+  "calibration_sample_count": 1,
+  "input_size_px": 384,
+  "resize": "Pillow BILINEAR, full frame, square; no crop/padding/rotation",
+  "normalization_mean": [0.485, 0.456, 0.406],
+  "normalization_std": [0.229, 0.224, 0.225],
+  "backbone": "resnet18",
+  "checkpoint_url": "https://download.pytorch.org/models/resnet18-f37072fd.pth",
+  "checkpoint_sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec",
+  "padim": {
+    "layers": ["layer1", "layer2", "layer3"], "n_features": 100,
+    "score_reduction": "Maximum of the raw generated Mahalanobis anomaly map"
+  },
+  "patchcore": {
+    "layers": ["layer2", "layer3"], "coreset_sampling_ratio": 0.01, "num_neighbors": 9,
+    "score_reduction": "Maximum nearest-patch Euclidean distance, weighted with 9-neighbor support by anomalib compute_anomaly_score"
+  }
+}

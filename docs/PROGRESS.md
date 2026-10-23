@@ -2,6 +2,67 @@
 
 Updated: 23 October 2026. This file records project state, not promised implementation success.
 
+## Current direction: fast, efficient models — 24 October 2026
+
+The user changed the plan because local experiments take too long. Prefer API
+models and include only candidates that pass bounded time/resource and evidence
+checks. Further PaDiM/PatchCore work is deferred. Two local specialists are no
+longer mandatory. No exact API model or speed winner has been selected.
+
+Owner: one agent on `main`, as requested; no workers or worktrees. Parent EN-03,
+supporting US-02/03/06 and Gate 1. Earlier working-tree edits are preserved.
+The [specification](AI_Inspection_Pilot_Lab_SPEC.md) is revised to version 2.1;
+[model selection](MODEL_SELECTION.md) records the current plan and limitations.
+
+| Task | Dependencies / allowed files | Acceptance check | Status |
+| --- | --- | --- | --- |
+| Update model direction | User's explicit instruction; specification, backlog, learner/workflow/pipeline guides, model/preparation records and this section | Remove mandatory two-specialist fitting; retain zero-spend, authentic evidence and complete evaluation; API speed/access stay unverified; historical results retained | Done; documentation and saved-record checks below |
+| Verify free API feasibility | Current official sources and actual approved project entitlement; provider/model-selection docs only initially | Dated model/vision/terms/quota evidence or precise access blocker; no paid, unverified or visitor-triggered calls | Next ready task; no provider call started |
+| Plan a small API trial | Verified free access and label-free inputs; detailed allowed files set when ready | Exact IDs, time/request budget, stopping conditions and validation fixed before requests | Pending access evidence |
+
+The website still shows the starter page. API outputs will use real categorical
+decisions/observations, with no invented heatmap or adjustable API sensitivity.
+Comparison requires two qualifying runs; otherwise explicitly show its
+unavailability. Exact models/count and acceptable time budgets are feasibility
+outputs. Gemini remains the first route; OpenAI stays disabled without verified
+zero-cost entitlement. Additional providers, paid calls, billing, publishing and
+remote changes are not authorized by this direction change.
+
+Completed local attempt, retained as history: the separate 384px candidate changes
+only picture size. Two known source/resized pairs were viewed (four displayed
+examples); the spot stays clear and scratch detail remains softened. PaDiM used
+all 176 fitting images and one normal probe, finishing in 90.385 s supervised wall
+time at 2.924 GiB peak committed memory, about 78 MiB below the cap. PatchCore
+was automatically stopped at 600.013 s while fitting; no completed fit or probe
+output exists for that attempt. Its peak committed memory was 2.456 GiB; this is
+a timeout, not proof of memory exhaustion. No retry or further local experiment
+was started. See [preserved findings](LARGER_RESOLUTION.md).
+
+No final-test inference, calibration threshold, split change or final resolution
+approval occurred. Original 256px evidence and provisional 176/44/115 membership
+remain preserved. Preparation/source/licence risks remain open. The planned
+broader independent source/map audit and test rerun were not executed after the
+user redirected work to docs. No pipeline code, dependency or frontend changed.
+
+Verification: checked the final saved profiles, worker snapshots, pinned candidate
+and output fingerprints; checked documentation links, requirement references,
+code fences, current-direction consistency and whitespace. These checks do not
+establish API access/speed, model quality or a passing release gate. Earlier test
+results remain historical. All stories and Gate 1 remain incomplete.
+
+Fresh single-agent review checked the revised requirements, API-only capability
+claims, unchanged spending/privacy/evaluation boundaries, timeout reporting and
+historical-next-step labels. A focused checkpoint saves the new selection plan,
+local findings/configuration, clean guide edits and only the new scoped notes
+from mixed files. The earlier specification relocation, story file and other
+mixed documentation changes remain in the working copy; this is not a clean
+release snapshot.
+
+Next: verify current Gemini free access and model suitability, then record a short
+trial plan before any API request. Do not resume local resolution/fitting work or
+run a full benchmark as the next step. Earlier next-action sections below are
+historical and superseded where they conflict with this decision.
+
 ## Full-fitting resource check — 24 October 2026
 
 Owner: one agent on `main`, as requested; no delegation or worktrees. Parent

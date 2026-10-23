@@ -1,5 +1,13 @@
 # Full-normal-fitting resource checks — 24 October 2026
 
+Current direction: further local experiments are deferred. Prefer fast, efficient
+API models after verified free access and bounded checks. See
+[model-selection plan](MODEL_SELECTION.md); older next steps below are historical.
+
+Follow-up: a separate [384px feasibility check](LARGER_RESOLUTION.md) examines
+the recorded fine-detail risk under the same bounds. The 256px measurements below
+remain unchanged historical evidence; they do not approve a final picture size.
+
 Both planned models successfully fitted all 176 permitted normal fitting
 pictures on this computer. Each produced a real score and heatmap for the same
 separate normal picture. Both stayed inside the memory and time bounds. This

@@ -1,5 +1,11 @@
 # Working with agents: the practical guide
 
+Current direction (24 October 2026): use one agent for fast, efficient model
+selection, starting with API free-access verification and a short bounded trial
+plan. Further local PaDiM/PatchCore experiments are deferred. The earlier local
+preparation sequence below is historical where it conflicts with this update.
+See [model-selection plan](MODEL_SELECTION.md).
+
 ## One task at a time
 
 For each task, the agent explains the goal and your role, builds a small change, runs relevant checks, reviews it, saves a checkpoint, and records progress. You can inspect the files or run the same check. The agent continues routine work unless you request step-by-step pauses.

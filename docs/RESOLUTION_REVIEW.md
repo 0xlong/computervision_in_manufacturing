@@ -1,5 +1,13 @@
 # What resizing does to defect detail — 24 October 2026
 
+Current direction: further local experiments are deferred. Prefer fast, efficient
+API models after verified free access and bounded checks. See
+[model-selection plan](MODEL_SELECTION.md); older next steps below are historical.
+
+Follow-up: see the [separate 384px check](LARGER_RESOLUTION.md) for the next
+bounded sample and resource attempts. The original 256px observations below are
+preserved; their pending-work statements describe the earlier step.
+
 I built a repeatable picture-size check. It measures all 93 reference outlines
 and prepares at most two original/resized comparisons per run. In the two examples
 viewed, a small dark spot stays clear at 256 pixels, while fine scratch detail

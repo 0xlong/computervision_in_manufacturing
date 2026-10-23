@@ -1,5 +1,9 @@
 # Offline evidence pipeline — contracts and local inventory
 
+Current direction (24 October 2026): local PaDiM/PatchCore experiments are deferred.
+Keep these tools and saved outputs as historical work; the next task is
+[API-first efficient-model selection](../docs/MODEL_SELECTION.md).
+
 The pipeline validates image manifests and checks downloaded fastener archives.
 A **manifest** is a list of images and their origins, splits, labels and display
 assets. Automatic downloading, models, evaluation reports and release bundles

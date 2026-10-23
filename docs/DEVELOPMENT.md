@@ -1,5 +1,10 @@
 # Minimal development setup — EN-01
 
+Current direction (24 October 2026): further local model experiments are
+deferred. Prioritize fast, efficient API models with verified free access;
+see [model-selection plan](MODEL_SELECTION.md). Earlier local preparation and
+measurement records below are preserved, not current assignments.
+
 Verified on 23 October 2026, Windows x64. This is a runnable development page,
 not an inspection journey or model-feasibility result. Gate 1 remains open.
 
