@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Learning: check environment",
+      "type": "process",
+      "command": "python",
+      "args": ["scripts/check_environment.py"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "problemMatcher": [],
+      "presentation": {"reveal": "always", "panel": "dedicated", "clear": true}
+    },
+    {
+      "label": "Learning: show Git status",
+      "type": "process",
+      "command": "git",
+      "args": ["status", "--short", "--branch"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "problemMatcher": [],
+      "presentation": {"reveal": "always", "panel": "dedicated", "clear": true}
+    }
+  ]
+}

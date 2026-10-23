@@ -1,0 +1,44 @@
+# Credentials and local-only configuration (never read or commit secrets)
+.env
+.env.*
+!.env.example
+*credentials*
+*token*
+*secret*
+*.pem
+*.key
+.aws/
+done/
+
+# Parallel checkouts if an in-project location is explicitly used
+.worktrees/
+
+# Dependencies, caches, generated evidence, and models
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+build/
+coverage/
+test-results/
+playwright-report/
+data/
+artifacts/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.log
+
+# Local editor/OS state; shared tasks and recommendations stay tracked
+.vscode/*
+!.vscode/tasks.json
+!.vscode/extensions.json
+*.code-workspace
+.DS_Store
+Thumbs.db
