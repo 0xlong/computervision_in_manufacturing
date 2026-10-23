@@ -16,15 +16,24 @@ Category names above are the project selections. See the
 [local completeness check](DATA_COMPLETENESS.md) for measured file evidence and its
 source limitation. Private AD2 evaluation is outside this project.
 
-## Current handoff — source link needed
+## Current handoff — official archive needed
 
 The user supplied unpacked `metal_nut` files under `data/downloads/`. They pass
 local integrity/mask checks and match MVTec's published category summary. No separate
-Git metadata or source URL was found there. The remaining user action is to identify
-the public repository/download URL. Do not repeat the form step below until that
-source has been clarified. An unofficial mirror must not be silently accepted as
-official acquisition. The [completeness record](DATA_COMPLETENESS.md) has counts,
-fingerprints, the repeatable command and precise limits.
+Git metadata was found there. The user then identified
+[MSherbinii's Hugging Face copy](https://huggingface.co/datasets/MSherbinii/mvtec-ad-metal-nut).
+All 428 image/mask bytes match its pinned revision; its attribution readme was
+missing locally and the licence differs only in line endings. Separate mirror
+notice copies and source-check JSON are retained under ignored `data/`.
+
+The mirror's card says MIT, conflicting with its own notices and MVTec's published
+CC BY-NC-SA 4.0 terms. Keep the original dataset terms. The mirror is not official
+acquisition under specification `DATA-SOURCE-001`. The remaining user action is
+the official form/download step below: save the unchanged official category
+archive in **`data/downloads/official/`** (created). Do not remove the existing copy.
+The agent will compare exact membership/bytes and record official provenance.
+The [completeness record](DATA_COMPLETENESS.md#source-identified--third-party-mirror)
+has the pinned revision, comparison method and notice differences.
 
 ## Licence and publication record
 
@@ -62,7 +71,7 @@ been inspected in this increment.
    verified interactive rendering in VS Code's integrated browser.
 3. On the resulting page, download **metal_nut** if a separate category archive is
    offered. Save the original archive, without unpacking or renaming it, in
-   `data/downloads/` inside this project. This ignored folder has been created.
+   `data/downloads/official/` inside this project. This ignored folder has been created.
    Keep any accompanying licence/readme notices. If only a full archive is offered,
    share its public download link so the agent can check its size before acquisition.
 4. Tell the agent the local archive path, public download URL, and approximate

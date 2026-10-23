@@ -31,6 +31,45 @@ defect groups and side length 700 for Metal Nut. The local counts/dimensions mat
 that summary. This comparison does **not** compare every local file against an
 official per-file checksum list.
 
+## Source identified — third-party mirror
+
+The user identified [MSherbinii/mvtec-ad-metal-nut on Hugging Face](https://huggingface.co/datasets/MSherbinii/mvtec-ad-metal-nut).
+On 23 October 2026 the saved local audit was compared with repository revision
+`8db7371c35a94709cbb3e69ac69f80d2716e2f8a`. **All 428 photograph/mask SHA-256s and
+sizes match** its large-file metadata. No image download was needed for this check.
+The revision is the one compared now, not an asserted original download commit.
+
+The mirror has 430 category files, while the supplied folder has 429:
+
+- `readme.txt` is missing locally. It supplies MVTec attribution, the dataset's
+  noncommercial licence and the original paper citation. An 881-byte copy from
+  the pinned mirror revision is preserved separately under ignored
+  `data/source-notices/huggingface-8db7371c35a94709cbb3e69ac69f80d2716e2f8a/`.
+  It was not inserted into or substituted for the original download.
+- `license.txt` differs in bytes only because the local copy uses CRLF line
+  endings and the mirror uses LF. Normalizing those line endings produces equal
+  bytes. The mirror's 20,845-byte notice is preserved alongside its readme.
+- The mirror's dataset card says **MIT**, while its included notices and the
+  [official MVTec page](https://www.mvtec.com/research-teaching/datasets/mvtec-ad)
+  identify **CC BY-NC-SA 4.0**. The card metadata is not used to relicense images.
+  Its unrelated model-performance claim is not this project's evidence.
+
+Read-only comparison used the public API category tree:
+`https://huggingface.co/api/datasets/MSherbinii/mvtec-ad-metal-nut/tree/8db7371c35a94709cbb3e69ac69f80d2716e2f8a?recursive=true&limit=1000`.
+The response had no continuation page. All 428 PNGs had matching LFS SHA-256/size
+metadata. The non-LFS licence first failed exact Git-blob/size comparison; fetching
+its small pinned notice established the line-ending-only difference. The first
+comparison's missing/mismatched notices remain visible in
+`data/metal_nut.source-check.v1.json`; the explanation and separately retained
+notice hashes are in `data/metal_nut.source-check.v2.json`. The original audit is
+unchanged. No personal details, images or credentials were sent to the service.
+
+This establishes agreement with a third-party repository, **not** official
+acquisition. `DATA-SOURCE-001` still requires data from an official source. Next,
+the user completes [MVTec's own download step](DATA_SOURCES.md#your-download-step--mvtec-ad)
+and saves its unchanged archive in `data/downloads/official/`. The agent can then
+compare it without discarding the supplied files.
+
 ## What remains unknown
 
 The supplied folder contains unpacked images, not a separate Git checkout: no
@@ -38,12 +77,11 @@ The supplied folder contains unpacked images, not a separate Git checkout: no
 resolve to the parent application repository; its checkpoint is not dataset
 provenance. No repository URL or dataset commit can be recovered from that layout.
 
-The download URL, acquisition time and original archive/hash remain unknown.
-These are `null` in the local audit, whose evidence status is
-`local_source_unverified`. The user has been asked for the public repository or
-download link. If it is a third-party mirror, the project still requires official
-acquisition or comparison with an authorized official copy before accepting it as
-benchmark evidence. No unofficial source was silently accepted.
+The source URL is now recorded in the separate source check above. Acquisition
+time and original archive/hash remain unknown. These were `null` in the original
+local audit, whose `local_source_unverified` status is preserved as a historical
+record. Official acquisition or comparison with an authorized official copy is
+still needed before accepting the mirror as benchmark evidence.
 
 The included `license.txt` identifies Attribution-NonCommercial-ShareAlike 4.0
 International. Its 21,283 bytes have SHA-256
@@ -86,6 +124,6 @@ report preservation, corrupt/missing assets, excluded paths, links and duplicate
 reporting. No extra dependency was needed. Dataset checking is separate from those
 synthetic tests; routine tests do not require or download the real dataset.
 
-Next: establish the source, retain acquisition evidence, then build the fixed
-preparation split and validated real-image manifest. The data requirement remains
-partly incomplete until provenance is resolved.
+Next: acquire/compare the official archive, retain its acquisition evidence, then
+build the fixed preparation split and validated real-image manifest. The data
+requirement remains partly incomplete until official provenance is resolved.
