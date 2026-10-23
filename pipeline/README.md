@@ -223,3 +223,18 @@ It reconstructs the saved shortlist, searches bounded rigid alignment and record
 native-size detail measurements and same-photo controls. It views no images,
 changes no membership, confirms no object identity and cannot freeze unresolved
 groups. See [actual findings](../docs/DATA_REVIEW.md#automated-follow-up-of-the-12-recorded-risks).
+
+## Local CPU model feasibility
+
+Use the separate `.venv-models` environment through `scripts/models.ps1 install`
+or `check`; this does not alter the data-checker environment. The pinned Windows
+x64 / Python 3.13 lock uses binary packages except source-only FrEIA, built with
+the pinned setuptools tool. `check` verifies dependency consistency and imports,
+not fitting or inference.
+
+`python -m pipeline.smoke_specialist --help` describes the actual sample runner.
+It requires a local hash-pinned official checkpoint, the approved answer-free
+fitting/calibration indexes and a new output directory. It never reads evaluation
+inputs or evaluator metadata, never downloads weights and never calls a provider.
+Started/failed runs remain recorded and are not successful evidence. See
+[the executed commands, real results and remaining limits](../docs/MODEL_FEASIBILITY.md).

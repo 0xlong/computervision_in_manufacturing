@@ -1,0 +1,5 @@
+# Separate CPU feasibility environment; resolve against the official PyPI index.
+anomalib[cpu]==2.7.0
+torch==2.14.1
+torchvision==0.29.1
+jsonschema==4.26.0
