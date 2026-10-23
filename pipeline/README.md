@@ -3,7 +3,8 @@
 The pipeline validates image manifests and checks downloaded fastener archives.
 A **manifest** is a list of images and their origins, splits, labels and display
 assets. Automatic downloading, models, evaluation reports and release bundles
-are not implemented yet. Official data access needs the user's download step.
+are not implemented yet. A supplied unpacked fastener folder has passed local file
+checks; its original download source is still needed.
 
 ## Try the validator
 
@@ -107,6 +108,23 @@ not an authenticity certificate. Contract validation does not mark a run or bund
 complete. Challenges, runs, predictions, reports, visitor state and export contracts
 will be added with their consumers. Resizing/maps need measured alignment checks
 before a new transform is accepted.
+
+## Check an unpacked fastener directory
+
+Use `pipeline.audit_mvtec_ad_directory` when pictures are already unpacked. It
+reuses the PNG, path and mask checks above, hashes every category file, reports
+exact-byte image duplicates, and compares counts/dimensions with the official
+paper's Table 1. It records unknown URL/time/archive fields as `null` and labels
+the source unverified; it does not invent archive provenance from a folder name
+or the parent application's Git history.
+
+The [local completeness record](../docs/DATA_COMPLETENESS.md#reproduce-the-check)
+contains the actual executed command and result. For repeat checks choose a new
+output filename. Exit 0 means local integrity and published-summary checks passed;
+it does not certify official file identity. A summary mismatch writes a diagnostic
+report and exits 1. Corrupt/missing images or mask pairing failures exit 1 without
+a successful report. Links/junctions are rejected; private/configuration paths
+are excluded without reading contents and prevent a summary match.
 
 Next: use the [official acquisition/discovery record](../docs/DATA_SOURCES.md),
 acquire approved data into ignored `data/`, record archive/member hashes and counts,

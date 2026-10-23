@@ -1,18 +1,30 @@
 # Official data discovery and acquisition
 
-Checked 23 October 2026 (Europe/Warsaw). This records published source information,
-not downloaded archives, exact category counts, legal clearance or model evidence.
+Checked 23 October 2026 (Europe/Warsaw). This records published source information
+and a local fastener-folder check. Original download provenance remains unverified;
+this is not legal clearance or model evidence.
 The [specification](AI_Inspection_Pilot_Lab_SPEC.md) owns category selection.
 
 | Track | Planned data | Published information checked | Still to establish locally |
 | --- | --- | --- | --- |
-| `fasteners` | MVTec AD, `metal_nut` | Official page describes defect-free training and normal/anomalous test images with pixel annotations | Official archive/access route, selected category counts, hashes, train-to-calibration membership |
+| `fasteners` | MVTec AD, `metal_nut` | Official page/paper; local folder has 220 train, 115 test and 93 masks, matching published counts/dimensions | Download source/time/original archive hash, per-file official comparison, train-to-calibration membership |
 | `metal_surfaces` | MVTec AD2, `sheet_metal`, public annotated test portion | Official page describes normal training/validation and separate public/private test portions | Official archive/access route, category layout/counts/hashes, public membership and annotation correspondence |
 
 Sources: [MVTec AD](https://www.mvtec.com/research-teaching/datasets/mvtec-ad),
 [MVTec AD2](https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2).
-Category names above are the project selections; their acquired archive contents
-have not been verified. Private AD2 evaluation is outside this project.
+Category names above are the project selections. See the
+[local completeness check](DATA_COMPLETENESS.md) for measured file evidence and its
+source limitation. Private AD2 evaluation is outside this project.
+
+## Current handoff — source link needed
+
+The user supplied unpacked `metal_nut` files under `data/downloads/`. They pass
+local integrity/mask checks and match MVTec's published category summary. No separate
+Git metadata or source URL was found there. The remaining user action is to identify
+the public repository/download URL. Do not repeat the form step below until that
+source has been clarified. An unofficial mirror must not be silently accepted as
+official acquisition. The [completeness record](DATA_COMPLETENESS.md) has counts,
+fingerprints, the repeatable command and precise limits.
 
 ## Licence and publication record
 
@@ -105,6 +117,8 @@ Once the official archive is available:
 5. Build the identity-transform manifest, run contract and asset checks, and review
    real small defects visually before selecting any resize/model configuration.
 
-No exact counts, archive hashes, measured dimensions, real mask alignment,
-distribution suitability or authentic sample outputs are claimed in this increment.
-The schema-backed test fixture remains clearly separate from acquired evidence.
+The initial discovery did not establish exact counts or dimensions. The later
+[local folder audit](DATA_COMPLETENESS.md) establishes local counts, hashes and
+decoded dimensions; original archive/source, visual alignment, distribution
+suitability and authentic model outputs remain unverified. Schema-backed fixtures
+remain clearly separate from the supplied image files.
