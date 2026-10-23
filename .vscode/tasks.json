@@ -2,6 +2,22 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Development: start web",
+      "type": "process",
+      "command": "powershell",
+      "args": ["-NoProfile", "-File", "scripts/web.ps1", "dev"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "problemMatcher": []
+    },
+    {
+      "label": "Development: build web",
+      "type": "process",
+      "command": "powershell",
+      "args": ["-NoProfile", "-File", "scripts/web.ps1", "build"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "problemMatcher": []
+    },
+    {
       "label": "Learning: check environment",
       "type": "process",
       "command": "python",
