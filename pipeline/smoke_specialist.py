@@ -82,9 +82,9 @@ def run(model_name: str, inputs: Path, checkpoint: Path, config: dict, out: Path
         "started_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "platform": platform.platform(), "python": platform.python_version(),
         "input_index_sha256": input_hashes,
-        "limitations": ["Only a small normal-preparation sample; not a benchmark, calibrated policy or model-quality result.",
+        "limitations": ["Normal-preparation execution only; not a benchmark, calibrated policy or model-quality result.",
             "Provisional preparation membership and object/session identity remain unresolved.",
-            "256px defect visibility, full-fitting memory/runtime and final evaluation remain unverified.",
+            "Input resolution is provisional; final calibration and evaluation remain unverified.",
             "Maps are raw model outputs at resized input coordinates, not reference masks or probabilities."]}
     def save():
         (out/"result.json").write_text(json.dumps(report, sort_keys=True, indent=2, allow_nan=False)+"\n", encoding="utf-8")
@@ -141,7 +141,11 @@ def run(model_name: str, inputs: Path, checkpoint: Path, config: dict, out: Path
         fit = sorted(fitting["images"], key=lambda i:i["image_id"])[:config["fitting_sample_count"]]
         sample = sorted(calibration["images"], key=lambda i:i["image_id"])[:config["calibration_sample_count"]]
         report["fitting_ids"] = [i["image_id"] for i in fit]
+        report["calibration_probe_ids"] = [i["image_id"] for i in sample]
+        report["available_fitting_count"] = len(fitting["images"])
+        report["all_fitting_inputs_used"] = len(fit) == len(fitting["images"])
         report["stage"] = "fitting"
+        save()
         fit_start = perf_counter()
         model.train()
         with torch.no_grad():
@@ -156,6 +160,7 @@ def run(model_name: str, inputs: Path, checkpoint: Path, config: dict, out: Path
             report["memory_bank_shape"] = list(model.memory_bank.shape)
         model.eval()
         report["stage"] = "inference"
+        save()
         outputs = []
         with torch.no_grad():
             for item in sample:

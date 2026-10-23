@@ -238,3 +238,12 @@ fitting/calibration indexes and a new output directory. It never reads evaluatio
 inputs or evaluator metadata, never downloads weights and never calls a provider.
 Started/failed runs remain recorded and are not successful evidence. See
 [the executed commands, real results and remaining limits](../docs/MODEL_FEASIBILITY.md).
+
+For a bounded full-normal-fitting check, use `python -m pipeline.profile_specialist
+--help` in `.venv-models`. It derives a configuration using every approved fitting
+ID and one normal calibration probe. Windows caps committed process memory at
+up to 3 GiB and worker wall time at up to 600 seconds; the supervisor checks free
+RAM before launching and refuses execution without an attached resource limit.
+Outputs require a new directory below ignored `artifacts/`. No evaluation index,
+labels or masks are read. A successful probe measures resources, not defect
+quality or final resolution suitability. See [resource findings and exact commands](../docs/MODEL_RESOURCES.md).

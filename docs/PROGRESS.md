@@ -2,6 +2,64 @@
 
 Updated: 23 October 2026. This file records project state, not promised implementation success.
 
+## Full-fitting resource check — 24 October 2026
+
+Owner: one agent on `main`, as requested; no delegation or worktrees. Parent
+EN-03, supporting US-06 and Gate 1 resource feasibility. Earlier working edits
+are preserved. This is a development resource probe, never final evaluation.
+
+| Task | Dependencies / allowed files | Acceptance check | Status |
+| --- | --- | --- | --- |
+| Bound full-normal-fitting runs | Existing locked CPU environment, pinned checkpoint and provisional answer-free inputs; `pipeline/profile_specialist.py`, `pipeline/smoke_specialist.py`, focused tests and model/pipeline/progress/learner docs | OS memory cap and timeout tested with generated processes; all 176 fitting IDs used; only one normal calibration probe; limits, time, memory, hashes and failures retained; no evaluation input or changed membership | Verified resource probes; final resolution remains open |
+
+Plan: run models sequentially at the unchanged 256px development candidate,
+two CPU threads, at most 3 GiB committed process memory and 600 seconds each.
+Require free physical RAM of the cap plus 1 GiB before launch. Refuse execution
+if the Windows limit cannot be attached to the actual interpreter. Started,
+failed and timed-out evidence stays distinct from success; choose new output
+directories. No dependencies, provider calls, downloads, visual image review,
+threshold selection, benchmark freeze or website changes are needed.
+
+Initial safeguard checks: 22 focused tests passed, including real Windows memory
+allocation denial, timeout cleanup of the actual interpreter, missing-limit
+refusal, all-fitting membership and incomplete-result handling. The restricted
+run hit the known project temporary-folder permission issue; unchanged tests
+passed with normal local permissions. Measured 6.21 GiB available physical RAM
+before the first model run.
+
+Both real probes succeeded sequentially at 256px. PaDiM fitted all 176 normal
+pictures in 43.127 s (1.463 GiB peak physical working set; 1.826 GiB committed).
+PatchCore fitted them in 187.379 s (1.303 GiB working set; 1.585 GiB committed;
+1802×384 coreset bank). Each scored only normal calibration `img-000118` and
+saved its own finite float32 1×1×256×256 map. No final-test image was scored,
+threshold set, split changed or resolution approved. Other routine checks
+overlapped portions of these feasibility samples; no controlled speed comparison
+or model-quality claim is supported. Zero real images/maps were visually opened.
+
+Final verification: **215 pipeline tests passed**, including 21 new resource
+cases and real Windows checks for memory denial, timeout, abrupt-supervisor-exit
+cleanup and missing-job refusal. Workspace check passed. Independently rechecked
+all fitting/calibration assets, exact membership/settings, checkpoint/features,
+map hashes/shape/finite values/mapping, report fingerprints and bounds, without
+repeating inference. Fresh review by the same agent checked requirements,
+actual-interpreter limits, leakage boundaries, preservation and evidence claims.
+No frontend changed; website remains the starter page and browser checks were
+not repeated. Commands, exact measurements, hashes and limits:
+[MODEL_RESOURCES.md](MODEL_RESOURCES.md).
+
+Handoff: focused checkpoint contains
+the runner, scoped smoke-report changes, new tests, model/pipeline guides and
+only this new progress section. Earlier mixed documentation/spec/workspace edits
+remain preserved and excluded. Generated artifacts/data stay ignored; no provider
+request, paid call, remote change or publication occurred.
+
+Next ready work: assess a larger picture-size candidate with bounded resources
+to address the recorded fine-scratch detail loss before selecting final
+resolution. Explicitly settle related-object/split risk before freezing;
+do not repeat the completed 256px full-fitting check without new cause. Gate 1
+and all user stories remain incomplete. Earlier continuation sections below
+retain their historical next-step statements.
+
 ## Current milestone: learning workspace
 
 - [x] Write the application development specification.

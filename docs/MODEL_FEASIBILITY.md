@@ -1,5 +1,11 @@
 # Local model practice runs — 23 October 2026
 
+Update, 24 October: the next resource-check step uses all 176 normal fitting
+pictures with enforced memory/time bounds. See [full-fitting resource findings](MODEL_RESOURCES.md)
+for current results and limits. The eight-picture measurements below remain the
+unchanged historical sample evidence; their pending-work statements describe
+the state on 23 October.
+
 Both planned models ran successfully on this computer using its CPU. Each learned
 from eight normal fitting pictures and produced an actual score and heatmap for
 one separate normal calibration picture. This proves a small setup can execute;
