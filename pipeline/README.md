@@ -1,8 +1,9 @@
-# Offline evidence pipeline — first contract increment
+# Offline evidence pipeline — contracts and local inventory
 
-The pipeline currently validates image manifests. A **manifest** is a list of
-images and their origins, splits, labels and display assets. Models, acquisition,
-evaluation reports and release bundles are not implemented yet.
+The pipeline validates image manifests and checks downloaded fastener archives.
+A **manifest** is a list of images and their origins, splits, labels and display
+assets. Automatic downloading, models, evaluation reports and release bundles
+are not implemented yet. Official data access needs the user's download step.
 
 ## Try the validator
 
@@ -12,7 +13,7 @@ For a fresh checkout run `powershell -NoProfile -File scripts/setup.ps1` first.
 
 | Command | Purpose | Expected result |
 | --- | --- | --- |
-| `powershell -NoProfile -File scripts/pipeline.ps1 install` | Install the hashed Windows x64 / Python 3.13 contract lock in `.venv` | Successful install of 18 locked packages; no global changes |
+| `powershell -NoProfile -File scripts/pipeline.ps1 install` | Install the hashed Windows x64 / Python 3.13 contract/inventory lock in `.venv` | Successful install of 19 locked packages; no global changes |
 | `powershell -NoProfile -File scripts/pipeline.ps1 test` | Run manifest behavior tests, without network/model calls | All tests pass; exit 0 |
 | `.\.venv\Scripts\python.exe -m pipeline.validate_manifest tests/fixtures/image-manifest.fixture.json` | Check the committed synthetic metadata example | `PASS manifest contract`, explicitly labelled `fixture`, with asset/evidence limitations |
 
@@ -29,6 +30,43 @@ its fingerprint. Hash agreement alone does not prove who created a file.
 The CLI exits 1 for invalid data and reports the failing field or asset check.
 It does not print raw invalid values or private local paths. It reports known
 exact-byte test contamination without removing any test member.
+
+## Inventory a downloaded fastener archive
+
+First follow [the personal download step](../docs/DATA_SOURCES.md#your-download-step--mvtec-ad).
+Do not send personal details to the agent. The agent will run the inventory after
+the local archive, public source URL and download time are available.
+
+The following is a **template, not a command already executed on official data**.
+In the project-root VS Code PowerShell terminal, replace all placeholders with
+the real local archive, public HTTPS download URL and actual UTC acquisition time:
+
+```powershell
+.\.venv\Scripts\python.exe -m pipeline.inventory_mvtec_ad data/downloads/ACTUAL-ARCHIVE.tar.xz --source-url "https://PUBLIC-DOWNLOAD-HOST/ACTUAL-ARCHIVE.tar.xz" --acquired-at "YYYY-MM-DDTHH:MM:SSZ" --output data/metal_nut.inventory.json
+```
+
+Purpose: read the selected category without unpacking anything and save a new local
+inventory report. Expected result: `PASS local inventory (acquired)` with measured
+counts, followed by its evidence limits. Failure exits 1 with no successful report;
+an existing output is never overwritten. Choose a new filename for a repeat run.
+For generated test archives use `--evidence-status fixture`. Do not label those
+examples as acquired data.
+
+Reports retain archive/member fingerprints, supplied source/time, published licence,
+decoded PNG sizes/modes and corresponding defect masks. No resize/orientation change
+is applied. Matching dimensions do not certify visual alignment. Unrecognized image
+layout, missing/orphan/empty/nonbinary masks, corrupt PNGs, links, unsafe paths and
+case collisions fail. Initial limits: 100,000 members, 50 GiB total declared unpacked
+bytes, 64 MiB per selected file and 25 million pixels per image. Limits may be
+revised only after checking an actual official archive; they are not data measurements.
+
+The checker scans all archive headers, decodes only `metal_nut`, and records other
+selected/root-level files without executing their contents. They remain in the
+original archive for licence review. It supports root-level `metal_nut/` and
+category-only layouts; it does not guess unfamiliar enclosing folder names. Paths
+and labels in this report are evaluator metadata, never provider inputs. No source
+authenticity, complete official membership, preparation splits, duplicate audit,
+release readiness or AI accuracy is established by this command alone.
 
 ## One contract, two kinds of checks
 
@@ -60,8 +98,9 @@ Repeated asset paths are rejected case-insensitively for Windows reproducibility
 
 ## Limits and next work
 
-This is partial `T-CONTRACT`/`T-DATA` coverage. We have not decoded actual images,
-verified measured pixel dimensions, acquired an official archive, established exact
+This is partial `T-CONTRACT`/`T-DATA` coverage. The local inventory tool decodes
+generated test images, but we have not decoded official images,
+verified their measured pixel dimensions, acquired an official archive, established exact
 category membership, constructed seeded preparation splits, audited related images,
 or validated frontend agreement. The schema's `authentic` flag is a declaration,
 not an authenticity certificate. Contract validation does not mark a run or bundle
@@ -77,11 +116,18 @@ stay outside source control. No model/provider SDK is installed by this lock.
 
 ## Dependency reproducibility
 
-[requirements-contracts.in](requirements-contracts.in) contains four direct pins:
-Pydantic, jsonschema, its RFC3339 date-time helper, and pytest. The
+[requirements-contracts.in](requirements-contracts.in) contains five direct pins:
+Pydantic, jsonschema, its RFC3339 date-time helper, pytest, and Pillow. The
 [lock](requirements-contracts.lock) includes every resolved dependency and the
 SHA-256 of its selected wheel. This lock targets Windows x64 / CPython 3.13 only;
-it must not be presented as a Linux or ML lock.
+it must not be presented as a Linux or ML lock. Pillow 13.0.0 is the sole added
+package for image decoding; official PyPI metadata declares Python >=3.11, a
+CPython 3.13 Windows x64 wheel, no mandatory dependencies, and MIT-CMU licensing.
+Sources checked 23 October 2026: [Pillow metadata](https://pypi.org/pypi/Pillow/13.0.0/json),
+[Pillow image verification/loading](https://pillow.readthedocs.io/en/stable/reference/Image.html),
+[Python streaming TAR reader](https://docs.python.org/3.13/library/tarfile.html).
+The inventory checks integrity immediately after opening, then reopens and calls
+`load()` for pixel decoding; EXIF inspection must happen after integrity checking.
 
 To intentionally refresh it, download the direct pins and all dependencies with
 `pip download --only-binary=:all:` into a new task-specific project cache directory,

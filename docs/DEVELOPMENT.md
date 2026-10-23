@@ -138,8 +138,15 @@ the validator commands, scope and fixture limitations.
 
 ## Next increment
 
-The first EN-02 manifest contract and official dataset/licence discovery are
-implemented. Next acquire official category data and record hashes/membership,
+The first EN-02 manifest contract, official dataset/licence discovery and local
+archive-inventory checker are implemented. The current contract/inventory lock adds
+Pillow 13.0.0 as a fifth direct pin (19 packages total) to fully decode PNG images.
+Its CPython 3.13 Windows x64 wheel is SHA-256 pinned; no ML stack is installed.
+See [inventory commands and official dependency sources](../pipeline/README.md#inventory-a-downloaded-fastener-archive).
+The archive checker has been tested using generated test data, not official images.
+
+Next the user completes [MVTec's personal download step](DATA_SOURCES.md#your-download-step--mvtec-ad).
+Then acquire official category data and record hashes/membership,
 construct preparation splits, and verify actual image/mask alignment. Frontend
 contract agreement and other artifact contracts follow with their consumers.
 The specialist experiment still needs a separate compatible ML lock. Model

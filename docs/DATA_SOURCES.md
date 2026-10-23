@@ -1,4 +1,4 @@
-# Official data discovery — EN-02-T01
+# Official data discovery and acquisition
 
 Checked 23 October 2026 (Europe/Warsaw). This records published source information,
 not downloaded archives, exact category counts, legal clearance or model evidence.
@@ -29,16 +29,67 @@ credit MVTec and the appropriate dataset publication, identify transformed asset
 and retain the dataset licence separately from any source-code licence. Do not
 claim GIS validation, affiliation or endorsement. No publication occurred here.
 
-## Acquisition handoff
+## Your download step — MVTec AD
 
-The retrieved official pages show a **Fill in the form** download section. This
-increment did not inspect/submit that form, supply personal details, contact MVTec,
-verify a direct archive URL or download data. The acquisition task must inspect the
-official route first. If it requires the user's contact details or an external
-message, prepare the exact step and request that missing input/authorization then.
-Do not substitute an unofficial mirror just to avoid that step.
+The blank AD download form was inspected on 23 October 2026. It requires **First
+Name, Last Name, Email**, and acknowledgment of noncommercial use. **Position/Function**
+and the **MVTec Campus Newsletter** checkbox are optional. No personal values were
+entered, form submitted, newsletter selected, or dataset downloaded by the agent.
+The form button says **SUBMIT AND CONTINUE TO DOWNLOAD PAGE**. The destination after
+submission and exact archive choices have not been inspected. AD2's form has not
+been inspected in this increment.
 
-Once official access is available:
+1. In VS Code, run **Browser: Open Integrated Browser**
+   (`workbench.action.browser.open`) and open the
+   [official AD download section](https://www.mvtec.com/research-teaching/datasets/mvtec-ad#c3391).
+2. Complete the required fields yourself with accurate details. Read the linked
+   privacy/licence information and acknowledge noncommercial use if applicable.
+   Leave the newsletter unchecked unless you want it. Submit the form yourself.
+   If the form is missing, the official page advises disabling its ad blocker;
+   browser consent settings may also affect embedded forms. The agent has not
+   verified interactive rendering in VS Code's integrated browser.
+3. On the resulting page, download **metal_nut** if a separate category archive is
+   offered. Save the original archive, without unpacking or renaming it, in
+   `data/downloads/` inside this project. This ignored folder has been created.
+   Keep any accompanying licence/readme notices. If only a full archive is offered,
+   share its public download link so the agent can check its size before acquisition.
+4. Tell the agent the local archive path, public download URL, and approximate
+   download time/timezone. Do not send personal details, form responses, credentials,
+   or a private/signed access link. If access is private, download it yourself and
+   report the local path; provenance must then record that access limitation rather
+   than invent a public URL. The current inventory CLI accepts public HTTPS URLs
+   only and will need a scoped change for that case.
+
+The embedded form is supplied by `software.mvtec.com`, linked in the official page
+HTML (form ID `c92559d1-5797-4de8-aa04-48d75107de76`, account `43208`). Read-only HTML
+and the blank form were retrieved using the normal MVTec page Origin/Referer.
+No personal data or submission request was sent. No unofficial mirror was used.
+
+## Local archive checker — ready, official archive still pending
+
+`pipeline.inventory_mvtec_ad` can inspect local TAR, TAR.GZ and TAR.XZ archives
+without extracting them. It supports `metal_nut/` at the root or a category-only
+`train/test/ground_truth` layout; unfamiliar layouts fail for review. It records
+archive byte size/SHA-256, supplied URL/acquisition time, exact selected image/mask
+membership, decoded PNG dimensions/modes, per-file hashes, and hashes of other
+selected/root-level files, keeping their bytes unchanged in the archive.
+
+The checker verifies PNG integrity and fully decodes pixels, requires nonempty
+binary masks for anomalies, matches masks by defect folder/filename, rejects
+missing/orphan masks and unequal dimensions, and checks unsafe paths, links,
+case-colliding members and resource limits. It preserves every recognized test
+member. Other categories are scanned for path/type safety but not decoded.
+It never submits a form, makes a network request, extracts files or overwrites an
+existing report. The [pipeline guide](../pipeline/README.md#inventory-a-downloaded-fastener-archive)
+owns exact command syntax and limits.
+
+Verification uses generated tiny PNGs/TARs labelled `fixture`. No exact official
+counts, real dimensions, archive hash or authentic AI results are claimed.
+`acquired` means the operator supplied a downloaded archive, not verified origin.
+URL/time and official completeness require review; equal decoded dimensions alone
+do not prove visual mask alignment. This inventory is not the release manifest.
+
+Once the official archive is available:
 
 1. Record the download URL, UTC acquisition time, exact archive filename, byte size,
    SHA-256 and included licence notices. Keep source archives under ignored `data/`.
