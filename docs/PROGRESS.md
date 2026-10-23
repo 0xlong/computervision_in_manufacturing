@@ -97,3 +97,13 @@ guides and this new progress section. Earlier user/agent edits, specification mo
 README/workflow/workspace-check changes and earlier progress text remain preserved
 in the working tree; only this new progress section is staged from that mixed file.
 No workers, provider calls, publication, paid service or remote changes occurred.
+
+## Image-viewing preference — 23 October 2026
+
+The user requested a firm limit after excessive image viewing. The standing rule
+in AGENTS.md now requires automated checks first, normally 1–3 visual examples and
+a maximum of 5 per task, including examples within contact sheets. Larger visual
+reviews require an explicit user request. General picture-checking instructions
+do not authorize exhaustive viewing. Record the actual sample and uncertainty.
+This documentation change does not change the website, data or application code.
+Checked the exact added text and whitespace; application tests are unnecessary.

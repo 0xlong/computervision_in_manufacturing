@@ -25,6 +25,12 @@ information for mistakes before we use it with AI. The website still shows the
 starter page. I tested that the checker catches missing files and incorrect
 information. Next, I'll get the real fastener images and check them."
 
+## Image viewing and token use
+
+- Use automated checks for dataset-wide validation. View only a few examples to understand the data or investigate a specific problem: normally 1–3, with a maximum of 5 examples per task. Every example in a contact sheet counts toward that limit; splitting views across tool calls does not reset it.
+- A general request to check pictures or outlines does not authorize exhaustive viewing. Review a larger visual sample only when the user explicitly requests it.
+- Reuse existing findings and stop viewing once the specific question is answered. Record the sample size and remaining uncertainty; never describe a small visual sample as a full visual review.
+
 ## Development loop
 
 1. Inspect the actual state and select one small, useful task from `docs/PROGRESS.md`.
