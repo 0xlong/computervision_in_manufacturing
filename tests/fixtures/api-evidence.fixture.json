@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "evidence_status": "fixture",
+  "run": {
+    "run_id": "synthetic-run-not-real-ai",
+    "track_id": "fasteners",
+    "provider": "gemini",
+    "model_id": "synthetic-model-not-an-endpoint",
+    "created_at": "2026-10-24T10:00:00Z",
+    "state": "complete",
+    "hashes": {
+      "manifest": "91d87fb4fbef70fbf2f02b1f006779c36b71727edac3b28f8b5eec18c336e1f4",
+      "split": "938587c2d53652bf574ae4ccc9c83f760ec37c2e1056eeeff62fe3068d7097a5",
+      "inputs": "d30c03247a4b635eaf06414274ac07236f6b4d0f6b337e2e6033bfcd9c7b593d",
+      "configuration": "d551cafdbf73189c644a999b60fca447549faaac807ea5a83b300f5f5adc24d9",
+      "preparation": "cc0c5720012a34a6dd554d6dfd572a7f06961f6173cf9fcf7085dfdca9c729bd",
+      "references": "586817341decdeebfc5a605a5fe4d3650985ff7609f14c0b22806be1a9e4db25",
+      "prompt": "181a56363df70c4e4e8aa4bccfd15cda7e108428baf05a6ef2e7fd811ed179be",
+      "response_schema": "21e80eb4ccb381071b47dc6f3f58aa5c6f0be05c511d4fb1403d7f6ce30f96fa"
+    },
+    "inputs": [
+      {
+        "image_id": "img-000001",
+        "sha256": "c63bf6cc9a38491180d35f226d22abe8a06ed9e7e721cc7492d4ce8b99f8b50a"
+      },
+      {
+        "image_id": "img-000002",
+        "sha256": "ed8bba90719b85a3d4906a2d98c34f7abee0cb99dac862a5282e5b49175096af"
+      },
+      {
+        "image_id": "img-000003",
+        "sha256": "114b777ce7ecea3c69d373712c72fc634b445b7ebce4e2f323b338313054aa90"
+      },
+      {
+        "image_id": "img-000004",
+        "sha256": "f075d838a19051ad78c5fb8c6d8a267f5bfefc602a80019a757eb727bbd55be1"
+      },
+      {
+        "image_id": "img-000005",
+        "sha256": "ba0e9683f7443a7246f81c38955b2f0f6e338aef59ea0e4d59f5039d68dac628"
+      },
+      {
+        "image_id": "img-000006",
+        "sha256": "3fa4a3fbc22dbe9a681557793bdc218996f5e8d2787d52a5b518b965be2a4ba1"
+      }
+    ],
+    "capabilities": {
+      "categorical_decision": true,
+      "heatmap": false,
+      "adjustable_sensitivity": false,
+      "calibrated_probability": false
+    },
+    "policy": "fixed_categorical_review_uncertain_and_failures",
+    "request_timeout_seconds": 60,
+    "max_attempts": 3
+  },
+  "predictions": [
+    {
+      "run_id": "synthetic-run-not-real-ai",
+      "image_id": "img-000001",
+      "request_sha256": "002a9b5d7c87a7b762bffc8869b371272d9e8f451b0183cbaf0ce11cb124cb5b",
+      "execution_state": "terminal",
+      "status": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "started_at": "2026-10-24T10:00:00Z",
+          "finished_at": "2026-10-24T10:00:01Z",
+          "latency_ms": 1000,
+          "reported_model_version": "synthetic-version",
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 5
+          },
+          "retry_not_before": null,
+          "status": "success",
+          "reason": "none",
+          "response": {
+            "decision": "looks_acceptable",
+            "observation": "TEST ONLY: invented visible appearance; not a model result."
+          },
+          "response_sha256": "7f2976af507e05ad5330b7e9d434be0b6b22938b97a1efce52b65b2c54cf6432"
+        }
+      ]
+    },
+    {
+      "run_id": "synthetic-run-not-real-ai",
+      "image_id": "img-000002",
+      "request_sha256": "6f6658eb384f59a390c9779ad5e2b9f73c8c42204c8ae35f1e7ac197c45e4f96",
+      "execution_state": "terminal",
+      "status": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "started_at": "2026-10-24T10:01:00Z",
+          "finished_at": "2026-10-24T10:01:01Z",
+          "latency_ms": 1000,
+          "reported_model_version": "synthetic-version",
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 5
+          },
+          "retry_not_before": null,
+          "status": "success",
+          "reason": "none",
+          "response": {
+            "decision": "needs_review",
+            "observation": "TEST ONLY: invented visible appearance; not a model result."
+          },
+          "response_sha256": "dad3c3f2fea5624d30d2e41bc066fe397ba1a28ea5a65471aaff8766d852d22a"
+        }
+      ]
+    },
+    {
+      "run_id": "synthetic-run-not-real-ai",
+      "image_id": "img-000003",
+      "request_sha256": "cabe19dde2514320048609a9406423069aafa7de1cf92d100895433d145c0a9f",
+      "execution_state": "terminal",
+      "status": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "started_at": "2026-10-24T10:02:00Z",
+          "finished_at": "2026-10-24T10:02:01Z",
+          "latency_ms": 1000,
+          "reported_model_version": "synthetic-version",
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 5
+          },
+          "retry_not_before": null,
+          "status": "success",
+          "reason": "none",
+          "response": {
+            "decision": "uncertain",
+            "observation": "TEST ONLY: invented visible appearance; not a model result."
+          },
+          "response_sha256": "16b822ebec39982eedfa8cf9baaeacf9a3c0417e634a7fe313483d8a3ddbc098"
+        }
+      ]
+    },
+    {
+      "run_id": "synthetic-run-not-real-ai",
+      "image_id": "img-000004",
+      "request_sha256": "a7d2ec270faa97a839b62875df0ed06fd13c30b63add4c95095929f6af8ed523",
+      "execution_state": "terminal",
+      "status": "refusal",
+      "attempts": [
+        {
+          "number": 1,
+          "started_at": "2026-10-24T10:03:00Z",
+          "finished_at": "2026-10-24T10:03:01Z",
+          "latency_ms": 1000,
+          "reported_model_version": null,
+          "usage": null,
+          "retry_not_before": null,
+          "status": "refusal",
+          "reason": "refusal",
+          "response": null,
+          "response_sha256": "a4a9a139dfc3cb344ba20ce16cf99b4f57c71d1ed6f3424ce6db6d019f673a82"
+        }
+      ]
+    },
+    {
+      "run_id": "synthetic-run-not-real-ai",
+      "image_id": "img-000005",
+      "request_sha256": "051fc113009564c8542a212b47574fbe2e08ad1e3a9c64b26a8f109f67871b36",
+      "execution_state": "terminal",
+      "status": "invalid_response",
+      "attempts": [
+        {
+          "number": 1,
+          "started_at": "2026-10-24T10:04:00Z",
+          "finished_at": "2026-10-24T10:04:01Z",
+          "latency_ms": 1000,
+          "reported_model_version": null,
+          "usage": null,
+          "retry_not_before": null,
+          "status": "invalid_response",
+          "reason": "schema",
+          "response": null,
+          "response_sha256": "d6ceed954d6616baa0381daa933b599df882f399aeec71dccdb41fa17ca8bff4"
+        }
+      ]
+    },
+    {
+      "run_id": "synthetic-run-not-real-ai",
+      "image_id": "img-000006",
+      "request_sha256": "97f22b86660b682cb58d0b65acb36b7f876eeeed0e4cfa4da75a3bf1759a7f25",
+      "execution_state": "terminal",
+      "status": "timeout",
+      "attempts": [
+        {
+          "number": 1,
+          "started_at": "2026-10-24T10:05:00Z",
+          "finished_at": "2026-10-24T10:05:01Z",
+          "latency_ms": 1000,
+          "reported_model_version": null,
+          "usage": null,
+          "retry_not_before": null,
+          "status": "timeout",
+          "reason": "timeout",
+          "response": null,
+          "response_sha256": null
+        }
+      ]
+    }
+  ]
+}

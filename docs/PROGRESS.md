@@ -1,6 +1,69 @@
 # Progress and next action
 
-Updated: 23 October 2026. This file records project state, not promised implementation success.
+Updated: 24 October 2026. This file records project state, not promised implementation success.
+
+## Saved API answer contract — 24 October 2026
+
+Owner: one agent on `main`; parent EN-03, supports US-02/03/06 and Gate 1.
+Earlier uncommitted documentation/specification changes are preserved.
+
+| Task | Dependency / allowed files | Completion check | Status |
+| --- | --- | --- | --- |
+| Define saved API answers and run identity | Canonical JSON Schema approach and existing contract environment; new API schema, pipeline validator/safeguard module, generated fixture/tests, pipeline guide, this section | Three decisions, distinct failures, consistent run/image/hash identities, strict JSON, bounded attempts, sanitized output and missing entitlement/quota refusal tested offline | Done for offline contract scope |
+| Recommend free candidates before API setup | User follow-up; official Google model/catalog/pricing/quota/terms pages; API_FEASIBILITY.md, MODEL_SELECTION.md, this section | Concrete trial recommendation, supported free/capability claims, unmeasured quality and actual access/use limits explicit | Done; recommend 3.8 Flash first and 3.5 Flash-Lite comparison |
+| Verify project access/use | Nonsecret authenticated evidence and applicable terms/data suitability; API feasibility/selection/progress notes | Actual Free tier/model quotas and recorded use conclusion before requests | Blocked on project evidence and applicable-use conclusion; no requests |
+
+Scope: no network/provider adapter or live request, no new dependencies, no image
+viewing, final evaluation, frontend or remote changes. The contract and pure
+safeguard checks are a foundation, not proof of a working request runner,
+account entitlement, real AI quality or frontend agreement.
+
+Built `schemas/api-evidence.v1.schema.json`, schema-backed `pipeline/api_contracts.py`
+and an explicitly synthetic six-image record fixture. Every declared image has an
+execution record. The three valid decisions remain distinct from refusals,
+invalid responses, timeouts, provider failures and unknown outcomes. Pending and
+quota-paused work prevents completion. Run/image/configuration/schema fingerprints,
+attempt order, retry bounds/guidance, serial chronology and stop conditions are
+checked. The allowlisted result helper hashes raw responses, keeps valid outputs
+and redacts supplied secrets/common credential/path markers. Preflight refuses
+missing/stale/incorrect access claims and budgets reaching verified quotas.
+
+Verification: **93 focused contract tests passed; all 308 pipeline tests passed**.
+The restricted first run encountered the known pytest temporary-folder permission
+problem; unchanged tests passed with normal local file access. Fixture CLI passed,
+workspace checks passed (setup only), 26 scoped local documentation links/anchors
+and code fences passed, and diff whitespace passed. Fresh single-agent review
+checked specification sections 7/8, identities, evidence limits, failure routing,
+sanitization and candidate-versus-measured claims; it added serial stop/overlap
+and unsanitized-observation rejection before the final checks. No frontend/browser
+check was needed because the website remains the starter page. Zero real images
+were viewed or uploaded; no inference, new dependency, paid/remote change occurred.
+
+The user's follow-up asked for model advice before providing access. Rechecked
+official Google sources: recommend `gemini-3.8-flash` as the first trial candidate
+and `gemini-3.5-flash-lite` for speed comparison, subject to actual free quotas and
+use clearance. Both have published Standard free input/output and image/structured
+output support. This is a trial recommendation, not a defect-quality finding or
+final selection. [Comparison and sources](API_FEASIBILITY.md#trial-recommendation-after-the-users-follow-up).
+
+Limits: no provider-envelope classification, enforced runtime timeout/throttle,
+durable request journal/restart recovery, complete evaluation, bundle or frontend
+contract consumer exists yet. JSON validity cannot authenticate user-supplied
+access claims, manifest/configuration hashes or outputs. Sanitization is not a
+general secret detector or approval to publish. T-API/T-CONTRACT and Gate 1 remain
+incomplete. Exact commands, fields and limitations: [pipeline guide](../pipeline/README.md#check-saved-ai-answers-using-made-up-examples).
+
+Handoff: focused checkpoint includes only the API schema/module/fixture/tests,
+pipeline-guide addition, recommendation edits and this new progress section.
+Earlier mixed documentation/spec/workspace edits remain preserved and excluded.
+
+Next: verify nonsecret project/model tier/quotas and applicable terms/data use;
+configure credentials privately in an approved offline environment, never in chat.
+Then build the durable serial adapter and fix a bounded preparation-only trial
+plan (IDs, references, prompt, preprocessing, quality checks, request/token/output/
+time limits and stop rules) before any call. Final-test inference and website
+connection follow qualifying authentic samples and the remaining freeze decisions.
+The earlier next-step notes below are historical where they conflict with this section.
 
 ## Free API discovery and continuation — 24 October 2026
 

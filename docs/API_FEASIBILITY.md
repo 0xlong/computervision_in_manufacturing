@@ -9,7 +9,65 @@ One agent on `main`; parent EN-03, supporting US-02/03/06 and Gate 1.
 Requirements: API-FREE-001/002, API-INPUT-001, API-OUTPUT-001 and SEC-SECRET-001.
 This is discovery evidence, not a completed provider adapter or release gate.
 
+## Trial recommendation after the user's follow-up
+
+Rechecked 24 October 2026. The user asked the agent to choose suitable free-tier
+models before providing API access. This changes the recommendation, not the
+permission to spend or the missing project/terms evidence. Research stayed with
+one agent in line with the project's current single-agent direction.
+
+**Recommend `gemini-3.8-flash` for the first bounded trial**, with
+`gemini-3.5-flash-lite` as the speed-oriented comparison if both have usable
+project quotas. This is an engineering choice for experimentation, not a measured
+inspection winner or final model freeze. Small defects make output usefulness
+worth checking before optimizing response time. We have no authentic inspection
+results, measured latencies or demonstrated minimum quality for either model.
+
+| Model | Verified published facts | Recommendation |
+| --- | --- | --- |
+| `gemini-3.8-flash` | Stable; image input and structured output; Google describes it as its most intelligent Flash model | First trial candidate; stronger general capability is a reason to test, not evidence of better defect detection |
+| `gemini-3.5-flash-lite` | Stable; image input and structured output; positioned for low latency/high throughput | Second trial candidate for the speed/usefulness trade-off |
+| `gemini-3.6-flash` | Standard free input/output; catalog positions it as the previous Flash generation | Do not expand the initial trial with a previous-generation alternative |
+| `gemini-3.1-flash-lite` | Stable; image input/structured output and Standard free input/output | Reserve candidate only if project availability justifies revising the plan; no automatic substitution |
+
+Sources: [3.8 Flash model page](https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash),
+[3.5 Flash-Lite model page](https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash-lite),
+[3.1 Flash-Lite model page](https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-lite),
+[current model catalog](https://ai.google.dev/gemini-api/docs/models).
+
+The [pricing page](https://ai.google.dev/gemini-api/docs/pricing) lists free input
+and output for Standard execution of all four. Choose Standard only in the trial;
+free availability of another consumption option must not be inferred. Gemini 4
+Argon has no Free tier; exclude it. The catalog restricts older 2.5 models to
+previously active users and recommends newer models for new projects. Do not
+choose a legacy model based on remembered free-quota tables. Neither public
+pricing nor a key proves this project's eligibility or remaining allowance.
+
+The [quota guide](https://ai.google.dev/gemini-api/docs/rate-limits) confirms
+project/model-specific limits. The [active-limits page](https://aistudio.google.com/rate-limit)
+must show nonzero RPM, input TPM, daily requests and current allowance for the
+chosen model. No project-specific numbers are available yet. No login, key
+reading, account change or request was attempted during this comparison.
+
+The [current terms](https://ai.google.dev/gemini-api/terms) retain the EEA/UK/Swiss
+API Client restriction recorded below. The offline generation/static website use
+question and dataset/provider-use suitability remain unresolved. This model
+recommendation does not clear those prerequisites. Do not enable billing or send
+images to work around them. Configure a key privately only in the later approved
+offline environment; never paste it in chat or put it in browser code.
+
+Next: verify nonsecret project access and applicable use, then fix a small trial's
+neutral preparation IDs, prompt/references/preprocessing, schema/configuration
+hashes, usefulness checks, request/token/output/time budgets and stopping rules.
+Include retries in the total allowance. Use no final-test images for selection.
+Only authentic samples can establish whether either candidate is useful enough
+to proceed to complete evaluation. The saved-answer checker is now available
+with synthetic examples; it does not implement provider execution/resume.
+
 ## Published candidate evidence
+
+The original two-candidate discovery below is retained for context; the later
+recommendation above supersedes its trial priority.
 
 Official pages were read on 24 October 2026 (Europe/Warsaw). These are candidate
 endpoint IDs, not selected models or immutable weight versions.

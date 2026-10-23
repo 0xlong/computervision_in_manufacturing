@@ -23,8 +23,13 @@ owns the revised requirements.
 - Keep old local outputs and failed attempts as historical evidence. Their tools
   remain available, but do not run more experiments without a justified new task.
 
-Published candidates are now documented in [free API feasibility](API_FEASIBILITY.md):
-`gemini-3.5-flash-lite` and `gemini-3.1-flash-lite`. Neither is selected or tested.
+The user's follow-up asked for a concrete recommendation before providing API
+access. The updated [free API comparison](API_FEASIBILITY.md#trial-recommendation-after-the-users-follow-up)
+recommends `gemini-3.8-flash` for the first bounded trial and
+`gemini-3.5-flash-lite` for the speed-oriented comparison. Google lists Standard
+free input/output for both and documents image input/structured output. This
+supersedes the earlier 3.5/3.1 Lite trial priority. No model is tested or finally
+selected; a general capability description does not establish inspection quality.
 Final model IDs/count, acceptable time budgets, project free access,
 quotas and actual response times remain unverified. No specific API is claimed
 to be the fastest. API round-trip time, one-time local fitting time and saved-page

@@ -10,6 +10,59 @@ assets. Automatic downloading, models, evaluation reports and release bundles
 are not implemented yet. The supplied unpacked fastener folder and draft split pass local checks.
 Missing archive details remain explicitly unknown; no repeated download is needed.
 
+## Check saved AI answers using made-up examples
+
+The API answer checker now validates saved decisions and request history. This
+works offline; a provider adapter, durable request journal and real AI results
+are still pending. The website still shows the starter page.
+
+From the project-root VS Code PowerShell terminal, run:
+
+```powershell
+.\.venv\Scripts\python.exe -m pipeline.api_contracts tests/fixtures/api-evidence.fixture.json
+```
+
+Purpose: check six invented records (three decisions, refusal, malformed answer,
+timeout). Expect `PASS API evidence contract (fixture): 6 image records` and a
+statement that authenticity, access, image bytes, frontend agreement and quality
+remain unverified. No key, image upload or provider call is involved.
+
+The authoritative [API evidence schema](../schemas/api-evidence.v1.schema.json)
+defines the response object, development run, attempts, predictions and nonsecret
+access-evidence shape. Python's `ApiEvidence` delegates field checking to that
+schema, adding identity, chronology, retry and completion checks. See the
+[behavior tests](../tests/pipeline/test_api_contracts.py).
+
+- `looks_acceptable`, `needs_review` and `uncertain` are successful categorical
+  answers; uncertainty routes to review. No heatmap, probability or adjustable
+  sensitivity is claimed.
+- Prediction statuses follow specification section 8.2. Quota pauses and pending
+  images are separate execution states and prevent completion. Unknown outcomes
+  require reconciliation, not automatic retry. Authentication/entitlement stops
+  the run; only transient transport/5xx/timeouts and quota recovery permit retry,
+  within three total attempts and recorded backoff/retry guidance.
+- Every declared image has a record, including pending work. Request fingerprints
+  bind run/model, hashes and image bytes. Changed configuration cannot reuse an
+  old prediction. Successful saved records are available for a future runner to
+  reuse; persistence/resume and crash recovery are not implemented by validation.
+- Attempts retain timestamps, measured latency, nullable usage and reported model
+  version (unknown stays null), status/reason, raw-response SHA-256 and validated
+  response only on success. No raw exceptions, HTTP headers or raw error text are
+  retained. `sanitized_result` redacts known supplied secrets and common private
+  path/credential markers in observations. Arbitrary secret detection and public
+  release review remain separate work; untrusted observation text still needs safe
+  rendering. A hash is not a copy of a response or proof of authenticity.
+- `check_access` refuses absent/stale/false evidence, other providers/models and
+  budgets reaching quota limits. Its returned serial settings leave headroom.
+  These are pure offline checks of caller-supplied claims, not account verification
+  or a running throttle. A future adapter must enforce time/request/token budgets,
+  concurrency, actual usage, zero spend and durable writes before advancing.
+
+The schema is development-only; it is not the final release bundle contract.
+An eventual provider integration must classify real provider envelopes/refusals
+and supply actual metadata. The frontend does not consume these records yet.
+No full T-API/T-CONTRACT or release gate is claimed from these offline checks.
+
 ## Try the validator
 
 Run these commands in a VS Code PowerShell terminal, working folder
