@@ -1,0 +1,423 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "evidence_status",
+    "run_id",
+    "track_id",
+    "model_id",
+    "reported_model_versions",
+    "policy",
+    "manifest_sha256",
+    "inputs_sha256",
+    "evidence_sha256",
+    "membership_sha256",
+    "expected",
+    "attempted",
+    "succeeded",
+    "failed",
+    "coverage",
+    "failure_breakdown",
+    "technical_reviews",
+    "successful_output",
+    "full_set_routing",
+    "images",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "evidence_status": {
+      "enum": [
+        "fixture",
+        "development_only"
+      ]
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,99}$"
+    },
+    "track_id": {
+      "const": "fasteners"
+    },
+    "model_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,99}$"
+    },
+    "reported_model_versions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9._-]{0,99}$"
+      },
+      "uniqueItems": true
+    },
+    "policy": {
+      "const": "fixed_categorical_review_uncertain_and_failures"
+    },
+    "manifest_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "inputs_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "evidence_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "membership_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "expected": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "attempted": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "succeeded": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "failed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "coverage": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "failure_breakdown": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "refusal": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeout": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "transport": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "server_5xx": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "other_provider": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "technical_reviews": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "normal",
+        "anomalous"
+      ],
+      "properties": {
+        "normal": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "anomalous": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "successful_output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tp",
+        "fn",
+        "fp",
+        "tn",
+        "anomalous",
+        "normal",
+        "review_count",
+        "recall",
+        "false_positive_rate",
+        "precision",
+        "recall_wilson_95",
+        "false_positive_rate_wilson_95"
+      ],
+      "properties": {
+        "tp": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fn": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fp": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tn": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "anomalous": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "normal": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "review_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "recall": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "false_positive_rate": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "precision": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "recall_wilson_95": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          ]
+        },
+        "false_positive_rate_wilson_95": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          ]
+        }
+      }
+    },
+    "full_set_routing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tp",
+        "fn",
+        "fp",
+        "tn",
+        "anomalous",
+        "normal",
+        "review_count",
+        "recall",
+        "false_positive_rate",
+        "precision",
+        "recall_wilson_95",
+        "false_positive_rate_wilson_95"
+      ],
+      "properties": {
+        "tp": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fn": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fp": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tn": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "anomalous": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "normal": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "review_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "recall": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "false_positive_rate": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "precision": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "recall_wilson_95": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          ]
+        },
+        "false_positive_rate_wilson_95": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          ]
+        }
+      }
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "image_id",
+          "label",
+          "status",
+          "decision",
+          "review",
+          "technical_review"
+        ],
+        "properties": {
+          "image_id": {
+            "type": "string",
+            "pattern": "^img-[0-9]{6}$"
+          },
+          "label": {
+            "enum": [
+              "normal",
+              "anomalous"
+            ]
+          },
+          "status": {
+            "enum": [
+              "success",
+              "refusal",
+              "invalid_response",
+              "timeout",
+              "provider_error"
+            ]
+          },
+          "decision": {
+            "enum": [
+              "looks_acceptable",
+              "needs_review",
+              "uncertain",
+              null
+            ]
+          },
+          "review": {
+            "type": "boolean"
+          },
+          "technical_review": {
+            "type": "boolean"
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "minItems": 1
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-inspection-pilot-lab:evaluation-report:1"
+}

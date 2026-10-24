@@ -1,0 +1,473 @@
+{
+  "bundle_id": "fasteners-eafba454a4512405",
+  "challenge": {
+    "image_ids": [
+      "img-000002",
+      "img-000001",
+      "img-000004",
+      "img-000003",
+      "img-000005"
+    ],
+    "rationale": "Five teaching examples selected after complete evaluation: two normal and three anomalous images from distinct defect groups; prefer a genuine missed anomaly or normal review when available. Curated examples do not change benchmark membership or establish superiority.",
+    "version": "fastener-challenge-v1"
+  },
+  "dataset": {
+    "attribution": "TEST FIXTURE ONLY. No MVTec data was acquired; no dataset images are included.",
+    "category": "metal_nut",
+    "dataset_id": "mvtec_ad",
+    "licence": "CC-BY-NC-SA-4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "modification_notice": "Synthetic metadata with placeholder hashes/dimensions for validation tests; not evidence.",
+    "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad"
+  },
+  "evidence_status": "fixture",
+  "execution": "fixture",
+  "images": [
+    {
+      "display": {
+        "dimensions": {
+          "height_px": 24,
+          "width_px": 32
+        },
+        "path": "images/img-000002.png",
+        "sha256": "fe5554c1a6abffd9060d8836b08f1a8bb52cd1d358f695cc63eb578dd7f92d25"
+      },
+      "image_id": "img-000002",
+      "label": "normal",
+      "mask": null
+    },
+    {
+      "display": {
+        "dimensions": {
+          "height_px": 24,
+          "width_px": 32
+        },
+        "path": "images/img-000001.png",
+        "sha256": "c6eaece3e5c0bc8c77cc5feeeda67489b3e533ab99dfdf1ad30be609978fa5f5"
+      },
+      "image_id": "img-000001",
+      "label": "anomalous",
+      "mask": {
+        "dimensions": {
+          "height_px": 24,
+          "width_px": 32
+        },
+        "path": "masks/img-000001.png",
+        "sha256": "7403071a56891479f70c186a5e556287329b84f9e2b8950d620cc44151a8dbd8"
+      }
+    },
+    {
+      "display": {
+        "dimensions": {
+          "height_px": 24,
+          "width_px": 32
+        },
+        "path": "images/img-000004.png",
+        "sha256": "97551c0a002ebaecced76c57460a01c163c7f5caf3db734ebe2ed90cb9776781"
+      },
+      "image_id": "img-000004",
+      "label": "normal",
+      "mask": null
+    },
+    {
+      "display": {
+        "dimensions": {
+          "height_px": 24,
+          "width_px": 32
+        },
+        "path": "images/img-000003.png",
+        "sha256": "5c6535d96d8dba16f9a9463a92da4a0e436fc410c1f34f7391c4728accd53ad8"
+      },
+      "image_id": "img-000003",
+      "label": "anomalous",
+      "mask": {
+        "dimensions": {
+          "height_px": 24,
+          "width_px": 32
+        },
+        "path": "masks/img-000003.png",
+        "sha256": "7403071a56891479f70c186a5e556287329b84f9e2b8950d620cc44151a8dbd8"
+      }
+    },
+    {
+      "display": {
+        "dimensions": {
+          "height_px": 24,
+          "width_px": 32
+        },
+        "path": "images/img-000005.png",
+        "sha256": "1f2e21b8bf3b3fffb4ab05de3af0a7e4b81885b6ce33c54a9bb6f796112a5fcb"
+      },
+      "image_id": "img-000005",
+      "label": "anomalous",
+      "mask": {
+        "dimensions": {
+          "height_px": 24,
+          "width_px": 32
+        },
+        "path": "masks/img-000005.png",
+        "sha256": "7403071a56891479f70c186a5e556287329b84f9e2b8950d620cc44151a8dbd8"
+      }
+    }
+  ],
+  "limitations": [
+    "Local noncommercial development evidence; not cleared for publication.",
+    "Public MVTec fasteners are GIS manufacturing proxies, not validated factory criteria or affiliation.",
+    "General-purpose models may have encountered this public benchmark during training.",
+    "Unpacked acquisition has missing URL/time/archive receipt; physical-object/session independence is unverified.",
+    "API decisions have no authentic heatmap, calibrated probability or adjustable sensitivity.",
+    "Human review is required; this does not establish production readiness."
+  ],
+  "local_only": true,
+  "manifest_sha256": "a8859c3a0419950fd02b66203cf48474d412c95d8bbe2a6c68b56a779e17f17f",
+  "notices": [
+    {
+      "path": "notices/license.txt",
+      "sha256": "ff42306a305b5e0650ced46cd0c05c1ca67694cd404cebedb3e88751d9908ced"
+    },
+    {
+      "path": "notices/readme.txt",
+      "sha256": "426f9fb5c589859442291273d7c24cecee69e54e9df9abe69f5cee03ef3e3322"
+    }
+  ],
+  "runs": [
+    {
+      "evidence": {
+        "evidence_status": "fixture",
+        "predictions": [
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T10:00:01Z",
+                "latency_ms": 1000,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "synthetic-version",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "TEST ONLY: invented visible appearance; not a model result."
+                },
+                "response_sha256": "7f2976af507e05ad5330b7e9d434be0b6b22938b97a1efce52b65b2c54cf6432",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T10:00:00Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 10,
+                  "output_tokens": 5
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000001",
+            "request_sha256": "1ddaec3cd650afd8f466599971ec00fdd3de1f4cd3e263daf280888812c2004c",
+            "run_id": "synthetic-run-not-real-ai",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T10:01:01Z",
+                "latency_ms": 1000,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "synthetic-version",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "TEST ONLY: invented visible appearance; not a model result."
+                },
+                "response_sha256": "dad3c3f2fea5624d30d2e41bc066fe397ba1a28ea5a65471aaff8766d852d22a",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T10:01:00Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 10,
+                  "output_tokens": 5
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000002",
+            "request_sha256": "ba43a0b45472a2671e68a52c36fe0e6e8af8bd392d645128ca297bf0e4678e70",
+            "run_id": "synthetic-run-not-real-ai",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T10:02:01Z",
+                "latency_ms": 1000,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "synthetic-version",
+                "response": {
+                  "decision": "uncertain",
+                  "observation": "TEST ONLY: invented visible appearance; not a model result."
+                },
+                "response_sha256": "16b822ebec39982eedfa8cf9baaeacf9a3c0417e634a7fe313483d8a3ddbc098",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T10:02:00Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 10,
+                  "output_tokens": 5
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000003",
+            "request_sha256": "d6f2c4e55dd6804741b3f6c424c3329b6dba668b80f1ff53f859d6025b78e893",
+            "run_id": "synthetic-run-not-real-ai",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T10:03:01Z",
+                "latency_ms": 1000,
+                "number": 1,
+                "reason": "refusal",
+                "reported_model_version": null,
+                "response": null,
+                "response_sha256": "a4a9a139dfc3cb344ba20ce16cf99b4f57c71d1ed6f3424ce6db6d019f673a82",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T10:03:00Z",
+                "status": "refusal",
+                "usage": null
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000004",
+            "request_sha256": "83ee39f30256888f0344f43cff872bb61f96ac3fa0912f8ff98e3482d1eff122",
+            "run_id": "synthetic-run-not-real-ai",
+            "status": "refusal"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T10:04:01Z",
+                "latency_ms": 1000,
+                "number": 1,
+                "reason": "schema",
+                "reported_model_version": null,
+                "response": null,
+                "response_sha256": "d6ceed954d6616baa0381daa933b599df882f399aeec71dccdb41fa17ca8bff4",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T10:04:00Z",
+                "status": "invalid_response",
+                "usage": null
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000005",
+            "request_sha256": "4e7738ccce611da178c020cd85cc964d6a9a7199f1df615b6b51c06c5aba7183",
+            "run_id": "synthetic-run-not-real-ai",
+            "status": "invalid_response"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T10:05:01Z",
+                "latency_ms": 1000,
+                "number": 1,
+                "reason": "timeout",
+                "reported_model_version": null,
+                "response": null,
+                "response_sha256": null,
+                "retry_not_before": null,
+                "started_at": "2026-10-24T10:05:00Z",
+                "status": "timeout",
+                "usage": null
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000006",
+            "request_sha256": "6eef50713a7d73b8046e54ea402fb9d8773b529b9e6720eb9e4618464ce6d36e",
+            "run_id": "synthetic-run-not-real-ai",
+            "status": "timeout"
+          }
+        ],
+        "run": {
+          "capabilities": {
+            "adjustable_sensitivity": false,
+            "calibrated_probability": false,
+            "categorical_decision": true,
+            "heatmap": false
+          },
+          "created_at": "2026-10-24T10:00:00Z",
+          "hashes": {
+            "configuration": "d551cafdbf73189c644a999b60fca447549faaac807ea5a83b300f5f5adc24d9",
+            "inputs": "7d0855222b20ff30e65d7cf1ba51adc40c51ca435816a3aa2222722e452c7b85",
+            "manifest": "a8859c3a0419950fd02b66203cf48474d412c95d8bbe2a6c68b56a779e17f17f",
+            "preparation": "cc0c5720012a34a6dd554d6dfd572a7f06961f6173cf9fcf7085dfdca9c729bd",
+            "prompt": "181a56363df70c4e4e8aa4bccfd15cda7e108428baf05a6ef2e7fd811ed179be",
+            "references": "586817341decdeebfc5a605a5fe4d3650985ff7609f14c0b22806be1a9e4db25",
+            "response_schema": "21e80eb4ccb381071b47dc6f3f58aa5c6f0be05c511d4fb1403d7f6ce30f96fa",
+            "split": "938587c2d53652bf574ae4ccc9c83f760ec37c2e1056eeeff62fe3068d7097a5"
+          },
+          "inputs": [
+            {
+              "image_id": "img-000001",
+              "sha256": "c6eaece3e5c0bc8c77cc5feeeda67489b3e533ab99dfdf1ad30be609978fa5f5"
+            },
+            {
+              "image_id": "img-000002",
+              "sha256": "fe5554c1a6abffd9060d8836b08f1a8bb52cd1d358f695cc63eb578dd7f92d25"
+            },
+            {
+              "image_id": "img-000003",
+              "sha256": "5c6535d96d8dba16f9a9463a92da4a0e436fc410c1f34f7391c4728accd53ad8"
+            },
+            {
+              "image_id": "img-000004",
+              "sha256": "97551c0a002ebaecced76c57460a01c163c7f5caf3db734ebe2ed90cb9776781"
+            },
+            {
+              "image_id": "img-000005",
+              "sha256": "1f2e21b8bf3b3fffb4ab05de3af0a7e4b81885b6ce33c54a9bb6f796112a5fcb"
+            },
+            {
+              "image_id": "img-000006",
+              "sha256": "bafcfc58a2e69509584833f4dfe38f0d0cd42387f97ede6bb02d5ba3724b031d"
+            }
+          ],
+          "max_attempts": 3,
+          "model_id": "synthetic-model-not-an-endpoint",
+          "policy": "fixed_categorical_review_uncertain_and_failures",
+          "provider": "gemini",
+          "request_timeout_seconds": 60,
+          "run_id": "synthetic-run-not-real-ai",
+          "state": "complete",
+          "track_id": "fasteners"
+        },
+        "schema_version": 1
+      },
+      "report": {
+        "attempted": 6,
+        "coverage": 0.5,
+        "evidence_sha256": "c193f5f1da60c4531a17c0a11d1a7faf136ecf4eb67171c8c4c123734851847b",
+        "evidence_status": "fixture",
+        "expected": 6,
+        "failed": 3,
+        "failure_breakdown": {
+          "refusal": 1,
+          "schema": 1,
+          "timeout": 1
+        },
+        "full_set_routing": {
+          "anomalous": 3,
+          "false_positive_rate": 1.0,
+          "false_positive_rate_wilson_95": [
+            0.4385029682449546,
+            1.0
+          ],
+          "fn": 1,
+          "fp": 3,
+          "normal": 3,
+          "precision": 0.4,
+          "recall": 0.6666666666666666,
+          "recall_wilson_95": [
+            0.2076596008020477,
+            0.9385080552796037
+          ],
+          "review_count": 5,
+          "tn": 0,
+          "tp": 2
+        },
+        "images": [
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000001",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000002",
+            "label": "normal",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "uncertain",
+            "image_id": "img-000003",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": null,
+            "image_id": "img-000004",
+            "label": "normal",
+            "review": true,
+            "status": "refusal",
+            "technical_review": true
+          },
+          {
+            "decision": null,
+            "image_id": "img-000005",
+            "label": "anomalous",
+            "review": true,
+            "status": "invalid_response",
+            "technical_review": true
+          },
+          {
+            "decision": null,
+            "image_id": "img-000006",
+            "label": "normal",
+            "review": true,
+            "status": "timeout",
+            "technical_review": true
+          }
+        ],
+        "inputs_sha256": "7d0855222b20ff30e65d7cf1ba51adc40c51ca435816a3aa2222722e452c7b85",
+        "limitations": [
+          "Fixed categorical policy: uncertain and technical failures route to human review.",
+          "Wilson intervals describe sample uncertainty, not dataset shift or public-benchmark contamination.",
+          "Public fastener images are GIS proxies, not factory validation.",
+          "Development evidence is not publication clearance or an authenticity certificate."
+        ],
+        "manifest_sha256": "a8859c3a0419950fd02b66203cf48474d412c95d8bbe2a6c68b56a779e17f17f",
+        "membership_sha256": "8ae772e9276c5b317f9a3fdec404b40755a1e295b8507ac62f706107cb6daf47",
+        "model_id": "synthetic-model-not-an-endpoint",
+        "policy": "fixed_categorical_review_uncertain_and_failures",
+        "reported_model_versions": [
+          "synthetic-version"
+        ],
+        "run_id": "synthetic-run-not-real-ai",
+        "schema_version": 1,
+        "succeeded": 3,
+        "successful_output": {
+          "anomalous": 2,
+          "false_positive_rate": 1.0,
+          "false_positive_rate_wilson_95": [
+            0.20654931437723745,
+            1.0
+          ],
+          "fn": 1,
+          "fp": 1,
+          "normal": 1,
+          "precision": 0.5,
+          "recall": 0.5,
+          "recall_wilson_95": [
+            0.09453120573423074,
+            0.9054687942657693
+          ],
+          "review_count": 2,
+          "tn": 0,
+          "tp": 1
+        },
+        "technical_reviews": {
+          "anomalous": 1,
+          "normal": 2
+        },
+        "track_id": "fasteners"
+      }
+    }
+  ],
+  "schema_version": 1,
+  "track_id": "fasteners"
+}

@@ -13,7 +13,7 @@ Owner: one coordinator on `main`; no parallel workers.
 | EN-03 evaluation counter | Existing manifest/API contracts; new evaluator and generated tests, evaluation guide, this section | Complete evaluation membership, hashes/pixel identity, success versus failure routing, class denominators and Wilson intervals checked without provider calls | Done; 14 new tests and 413 combined pipeline tests pass |
 | Resolve provider image use | Current official terms/licence and actual applicable account region; scoped local-use review/progress only | Dated conclusion or exact remaining blocker; never fabricate access clearance | Scoped local noncommercial experiment reviewed; publication not cleared |
 | Freeze and execute complete fastener evaluation | Qualifying normal-only trial; new bounded runner/tests/guide and this section | Complete 115-member index, frozen prompt/reference, serial batches/resume/quota safeguards and genuine saved outputs | Runner verified; authentic execution next |
-| Build visitor journey | Validated evidence boundary; web source/tests, shared schema, scoped packaging tools | Five answers, gated reveal, persistence/reset, full-set lab, scenario and deterministic export | Next independent task |
+| Build visitor journey | Validated evidence boundary; web source/tests, shared schema, scoped packaging tools | Five answers, gated reveal, persistence/reset, full-set lab, scenario and deterministic export | Implemented; 27 unit checks, seven fixture browser journeys/scans and build pass; authentic connection pending full evaluation |
 | Verify local completion | Integrated authentic bundle, browser access | Automated checks, review, responsive/keyboard browser evidence and focused checkpoints | Pending |
 
 The Gemini Free-tier confirmation and named-key authorization recorded below
@@ -60,6 +60,44 @@ Independent web logic now has 15 passing unit checks and a passing TypeScript
 check for workload boundaries, invalid input, answer/reveal locking and saved-state
 recovery. Schema/browser check tools are pinned locally; complete UI/bundle work
 continues next. The website still shows its starter page at this checkpoint.
+
+Visitor-experience milestone: implemented start/direct-lab, five answers with
+zoom and gated reference/model reveal, fixed revealed answers, navigation and
+raw challenge counts, run selection, full-set success/routing evidence, editable
+scenario, decision/rationale, safe deterministic Markdown download and browser-only
+restore/confirmed resets. Unsupported API maps/sensitivity and one-run comparison
+are explained. The optional surface track is explicitly outside this fastener goal.
+Missing/corrupt evidence has a recovery page; the app never serves fixture fallback.
+
+Added canonical public-bundle/report/state schemas, Python/Pydantic and browser
+validation, complete-set metric reconstruction and checked asset packaging with
+original dataset notices. The compact shared fixture and eight tiny generated PNGs
+are labelled test-only; the default page has no installed authentic bundle yet.
+Checks: all 434 offline pipeline cases (74.20 s), 27 web units, TypeScript/static
+build (126.72 KiB compressed JS+CSS, below 500 KiB) and seven Chromium fixture
+journeys passed, including no external visitor requests, download content,
+keyboard, errors/storage/reset and automated accessibility/layout at 360/768/1440.
+An integration check caught enriched metrics being rejected by the scenario
+calculator; fixed its four-count input handling. Browser checks caught error text
+changing a field's accessible name; fixed the stable label. No checks weakened.
+Fresh single-agent review additionally preserved other progress during invalid
+assumptions, included reported versions in export, kept fixture-derived reports
+labelled fixture and required the original licence/readme. Final genuine browser
+journey and screenshot/performance review remain next; fixtures do not pass Gate 2.
+
+VS Code Computer Use initialization/retry/reset/retry returned native-pipe
+unavailable, so integrated-browser UI is unverified. Automated Chromium verification
+is distinct; do not claim VS Code inspection. Local URL/command and user trial:
+[fastener guide](FASTENER_LOCAL.md). No publication, paid call or remote change.
+
+Production-build fixture browser rerun: all seven journeys/scans pass (35.6 s).
+The first production rerun pressed Tab before evidence was ready; fixed the test
+to await the actual skip link before verifying keyboard order. Canonical visitor
+state/Pydantic agreement brings focused public-contract tests to 13 passing cases;
+the earlier combined count remains 434 until the next full run. Latest genuine
+batch reports **115/115 terminal, complete**. Next: regenerate actual metrics,
+package the five-image authentic local bundle, then verify the production journey
+and review a bounded screenshot sample. No further inference is needed for metrics.
 
 ## Gemini runner and user-confirmed free limits — latest continuation
 

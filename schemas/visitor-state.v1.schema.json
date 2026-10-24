@@ -1,0 +1,132 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "bundle_id",
+    "track_id",
+    "screen",
+    "selectedImage",
+    "selectedRun",
+    "comparisonRun",
+    "answers",
+    "revealed",
+    "scenario",
+    "decision",
+    "rationale"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "bundle_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,99}$(?![\\s\\S])"
+    },
+    "track_id": {
+      "const": "fasteners"
+    },
+    "screen": {
+      "enum": [
+        "start",
+        "inspect",
+        "lab"
+      ]
+    },
+    "selectedImage": {
+      "type": "string",
+      "pattern": "^img-[0-9]{6}$(?![\\s\\S])"
+    },
+    "selectedRun": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,99}$(?![\\s\\S])"
+    },
+    "comparisonRun": {
+      "anyOf": [
+        {
+          "const": ""
+        },
+        {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]{0,99}$(?![\\s\\S])"
+        }
+      ]
+    },
+    "answers": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^img-[0-9]{6}$(?![\\s\\S])"
+      },
+      "additionalProperties": {
+        "enum": [
+          "looks_acceptable",
+          "needs_review"
+        ]
+      }
+    },
+    "revealed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^img-[0-9]{6}$(?![\\s\\S])"
+      },
+      "uniqueItems": true,
+      "maxItems": 5
+    },
+    "scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "volume",
+        "prevalence",
+        "minutes",
+        "capacity",
+        "reviewCost",
+        "missedCost"
+      ],
+      "properties": {
+        "volume": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "prevalence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "minutes": {
+          "type": "number",
+          "minimum": 0
+        },
+        "capacity": {
+          "type": "number",
+          "minimum": 0
+        },
+        "reviewCost": {
+          "type": "number",
+          "minimum": 0
+        },
+        "missedCost": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "decision": {
+      "enum": [
+        "",
+        "Pilot with human review",
+        "Collect more evidence",
+        "Revise the approach"
+      ]
+    },
+    "rationale": {
+      "type": "string",
+      "maxLength": 2000
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-inspection-pilot-lab:visitor-state:1"
+}
