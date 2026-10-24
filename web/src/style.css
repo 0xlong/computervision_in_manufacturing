@@ -74,6 +74,18 @@ main:has(.watch:not([hidden])) { max-width: 800px; }
 .playback-results { margin-top: 32px; }
 .playback-results > h2 { font-size: 1.2rem; }
 .playback-results h3 { font-size: .95rem; letter-spacing: 0; margin: 12px 0 0; }
+.model-comparison { margin: 32px 0; }
+main:has(.model-comparison) { max-width: 1200px; }
+.model-comparison > h2 { font-size: 1.25rem; }
+.comparison-table-window { overflow-x: auto; max-width: 100%; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+.comparison-table-window table { width: 100%; min-width: 950px; border-collapse: collapse; text-align: left; font-size: .8rem; }
+.comparison-table-window caption { text-align: left; padding: 14px; font-weight: 650; color: var(--green); }
+.comparison-table-window th, .comparison-table-window td { padding: 14px; border-top: 1px solid var(--line); vertical-align: top; }
+.comparison-table-window thead { background: #e3ece8; }
+.comparison-table-window tbody th { min-width: 185px; }
+.comparison-table-window tbody th button { overflow-wrap: anywhere; text-align: left; padding: 8px; }
+.comparison-table-window .small { display: block; font-weight: 400; margin-top: 8px; }
+.comparison-guide { margin-top: 0; border-top: 0; }
 @media (min-width: 1000px) {
   main:has(.watch:not([hidden])) { max-width: 1100px; }
   .playback-evidence { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 28px; align-items: center; }

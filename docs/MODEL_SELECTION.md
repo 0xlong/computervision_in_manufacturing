@@ -1,5 +1,17 @@
 # Model selection — 24 October 2026
 
+## Current priority: compare several free API models
+
+The user's latest request is a genuine model-comparison evaluation table. Prepare
+several eligible candidates on the same existing 115-image fastener test set and
+reuse the saved Lite baseline. The [comparison plan](MODEL_COMPARISON.md) records
+the shortlist, required evidence, account-information gap and staged implementation.
+Additional provider discovery is within the new request; uploads still require
+verified free access and reviewed content-use terms. The earlier single-model
+completion below is historical, not completion of this new comparison request.
+
+## Earlier completed fastener selection
+
 Final local fastener outcome: select Gemini 3.5 Flash-Lite after its two successful
 normal-only trial responses; exclude 3.8 Flash after a probe exhausted its timeout
 attempts. Complete Lite evaluation and the local visitor journey are verified in

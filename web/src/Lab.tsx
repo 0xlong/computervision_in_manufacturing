@@ -5,6 +5,7 @@ import { buildBrief, prerequisites } from './brief';
 import { pilotDecisions } from './types';
 import type { Bundle, Metrics, PilotDecision } from './types';
 import type { VisitorState } from './state';
+import { ModelComparison } from './ModelComparison';
 
 function MetricsView({ name, metrics }: { name: string; metrics: Metrics }) {
   return <section className="metric-card"><h3>{name}</h3><dl>
@@ -43,11 +44,11 @@ export function Lab({ bundle, state, update }: { bundle: Bundle; state: VisitorS
       <section><strong>{report.successful_output.fp}</strong><h2>Good parts flagged</h2><p>of {report.successful_output.normal} normal parts assessed</p></section>
     </div>
     <p>{report.full_set_routing.review_count} of {report.expected} parts sent for checking{report.failed ? `, including ${report.failed} unavailable AI assessments` : ''}.</p>
+    <ModelComparison bundle={bundle} selectedRun={state.selectedRun} onSelect={id => update({ selectedRun: id, comparisonRun: '' })} />
     <details className="detailed-results"><summary>Detailed results</summary>
     <label className="model-select">Saved model <select value={state.selectedRun} onChange={e => update({ selectedRun: e.target.value, comparisonRun: '' })}>
       {bundle.runs.map(r => <option value={r.evidence.run.run_id} key={r.evidence.run.run_id}>{r.evidence.run.model_id}</option>)}
     </select></label>
-    {bundle.runs.length < 2 && <p className="notice">Model comparison is unavailable: only one model qualified and completed this evaluation.</p>}
     <p><strong>{report.succeeded} successful assessments / {report.expected} expected images</strong> ({formatNumber((report.coverage ?? 0) * 100)}% coverage).
       {' '}{report.attempted} attempted; {report.failed} technical failures.</p>
     <div className="metric-grid"><MetricsView name="Successful AI assessments" metrics={report.successful_output} />

@@ -2,6 +2,67 @@
 
 Updated: 24 October 2026. This file records project state, not promised implementation success.
 
+## Model comparison — display ready; additional evaluations pending (24 October 2026)
+
+The user now wants several free API models compared on the inspection task, with a
+clear evaluation table. This is the current priority. Owner: one coordinator on
+`main`, no workers; parent US-03/02/06/09, FR-COMPARE-001/002, T-EVIDENCE/T-ACCESS.
+Baseline: `62a08ff`. The new request is not complete until additional genuine full
+runs exist. Existing uncommitted documentation/setup work is preserved.
+
+| Task | Allowed files | Dependencies / observable completion check | Status |
+| --- | --- | --- | --- |
+| Compare existing saved results | ModelComparison/Lab/styles and checks, local guide/verification, model-selection/comparison notes, this section | Existing validated bundle; real denominators/timing, multiple labelled fixture rows, selected model preserves judgments, responsive/keyboard/browser checks | Done locally |
+| Prepare additional eligible models | Versioned comparison config/runner/package validation and tests; scope in MODEL_COMPARISON.md | Selected candidate IDs, documented model capability and free access; preserve old config/evidence identities, identical test membership and bounded preparation qualification | Pending; existing evaluation/packaging are Lite-specific |
+| Obtain authentic full evaluations | Bounded offline runner and ignored new run records | Current model quotas/remaining allowance and qualifying frozen configuration; all 115 IDs end in success or terminal failure, no rerun of old successes | Awaiting preparation and current account information |
+| Integrate model comparison | New immutable evidence bundle, table/visitor/playback model integration and checks | At least two genuine complete runs; honest coverage/errors, same-image comparison, model-specific playback counters, no changed reference labels | Pending new evaluations |
+
+What changed: Results now has a comparison table with one row per complete saved
+run. It shows defects missed, good parts flagged, AI answers, no answer, unsure,
+median request time and parts sent for checking. Selecting a model drives existing
+details/workday/brief selections without changing judgments/reveals/picture identity.
+The sole genuine row is Flash-Lite: 12/93 missed, 5/22 normal flagged, 115/115 answers,
+zero unavailable/unsure, median 4.96 s across 116 timed attempts and 86/115 checks.
+No fabricated second result or universal-best claim appears. Detailed uncertainty,
+failure routing, timing coverage and denominator explanations remain available.
+
+Official model/pricing sources were checked. Shortlist: reuse existing 3.5 Flash-Lite;
+consider 3.6 Flash; retain 3.8 Flash's unsuccessful normal-fitting trial honestly.
+Image capability and published free pricing do not prove actual quota. Existing
+Free-tier confirmation stands; requested only current 3.8/3.6 RPM, input TPM, RPD
+and remaining daily usage via AI Studio. With the recorded 3.8 20-RPD allowance,
+115 first attempts require at least six daily windows before trial/retry overhead.
+No new provider generation/image upload was made. Additional providers need their
+own verified access and reviewed content-use terms before any uploads.
+
+Checks: **31 web unit tests**, TypeScript/production build and **21 production
+Chromium checks pass**. Genuine baseline values/timing, single-model disclosure,
+labelled two-model fixture selection, missing timing, uncertainty and technical
+failures pass. Prior answers/reveals/image remain unchanged when selecting models.
+360/768/1440 px table scans: zero automated WCAG-tagged violations and no page
+overflow; keyboard mobile scrolling/Enter selection and desktop column fit pass.
+All original inspection/playback/export/reset/privacy checks pass. No external
+visitor requests or page errors in the real table check. Pipeline/schema/config,
+fixtures, dependency manifests and saved public evidence are unchanged, so pipeline
+checks were not rerun. Documentation links/fences and staged whitespace pass.
+
+Fresh single-agent review checked the diff, all-attempt median, missing timings,
+class denominators, failure/uncertainty honesty and actual completion status.
+Viewed desktop/phone table crops: **zero source photographs**. Actual browser:
+Chromium 156.0.8078.4 on Windows. VS Code integrated-browser UI remains unverified;
+use http://127.0.0.1:5174/ with Browser: Open Integrated Browser
+(`workbench.action.browser.open`), then Results → Compare models.
+No provider calls, paid access, publication, dependency or remote changes occurred.
+Only this new section is staged from the mixed progress file; earlier edits remain.
+
+[Comparison plan / sources / next work](MODEL_COMPARISON.md),
+[verification](FASTENER_VERIFICATION.md#model-comparison-display--first-milestone),
+[local guide](FASTENER_LOCAL.md). Ignored records/screenshots:
+`artifacts/model-comparison/`. Checkpoint: Add saved-model comparison table and record evaluation plan.
+Next: obtain the requested model quota/remaining-usage information, then prepare
+and qualify additional configurations before serial complete-set evaluation.
+The table is working software; the second-model evaluation is not yet evidence.
+
 ## Watch AI Inspect — five-picture playback (24 October 2026)
 
 Status: **Done locally; stop after this scope.** Owner: one coordinator on `main`,

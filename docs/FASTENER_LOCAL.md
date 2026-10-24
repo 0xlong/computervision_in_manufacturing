@@ -34,6 +34,15 @@ a decision and the download. **Where the results come from** holds source record
 To start over, open **About this demo & reset progress** and confirm a reset.
 No visitor action sends a prompt, answer or rationale to Gemini.
 
+**Compare models** shows one row per completed saved model evaluation on the same
+test pictures. Select a model's row to use its detailed results and workday/brief
+calculations. The table shows missed defects, good parts flagged, answer coverage,
+unavailable/unsure answers, median recorded request time and total checks. On small
+screens scroll the table sideways; Tab to its border and use arrow keys when using
+a keyboard. Open **How to read the table** for counting/timing explanations.
+Currently only Flash-Lite has genuine complete-set results; additional model
+evaluation is pending. Multi-row test examples do not add a second real model.
+
 ## Watch the five saved results
 
 Choose **Watch AI Inspect** on the opening or beside **Try it yourself**. It starts
