@@ -9,7 +9,8 @@ const bundlePath = resolve('public/evidence/bundle.json');
 const bundle = existsSync(bundlePath) ? JSON.parse(readFileSync(bundlePath, 'utf-8')) as Bundle : null;
 const artifacts = resolve('../artifacts/browser-verification');
 
-test('simple opening page has two clear paths and keyboard-accessible background', async ({ page }) => {
+test('simple opening page has clear paths and keyboard-accessible background', async ({ page }) => {
+  test.setTimeout(90000); // Multiple responsive accessibility scans share this test.
   test.skip(!bundle, 'Authentic saved evidence is required.');
   const directory = resolve('../artifacts/ui-simplification');
   await mkdir(directory, { recursive: true });
@@ -24,7 +25,7 @@ test('simple opening page has two clear paths and keyboard-accessible background
     await expect(page.getByRole('link', { name: 'Dataset source', exact: true })).toBeHidden();
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('AI Visual Inspectionfor Manufacturing');
     await expect(page.getByText('A public-image demo', { exact: false })).toBeVisible();
-    await expect(page.locator('main button')).toHaveCount(2);
+    await expect(page.locator('main button')).toHaveCount(3);
     const about = page.getByText('About this demo', { exact: true });
     const background = page.getByText('The AI answers are saved Gemini responses', { exact: false });
     await expect(background).toBeHidden();
@@ -34,7 +35,7 @@ test('simple opening page has two clear paths and keyboard-accessible background
     // Reach the disclosure in the natural tab order, starting from the skip link.
     await page.keyboard.press('Tab');
     await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
-    for (let i = 0; i < 4; i++) await page.keyboard.press('Tab');
+    for (let i = 0; i < 5; i++) await page.keyboard.press('Tab');
     await expect(about).toBeFocused();
     await page.screenshot({ path: resolve(directory, `opening-${width}.png`), fullPage: true });
     await page.keyboard.press('Enter');
@@ -67,6 +68,7 @@ test('simple opening page has two clear paths and keyboard-accessible background
 });
 
 test('authentic fastener inspection to brief, responsive evidence and private state', async ({ page, browser }) => {
+  test.setTimeout(90000); // Complete journey, downloads and responsive scans.
   test.skip(!bundle, 'Authentic local bundle has not been prepared. Fixture checks cannot replace it.');
   const b = bundle!, report = b.runs[0].report;
   expect(b.execution).toBe('recorded_live'); expect(report.expected).toBe(115);

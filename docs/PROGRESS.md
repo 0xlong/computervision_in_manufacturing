@@ -663,3 +663,28 @@ reviews require an explicit user request. General picture-checking instructions
 do not authorize exhaustive viewing. Record the actual sample and uncertainty.
 This documentation change does not change the website, data or application code.
 Checked the exact added text and whitespace; application tests are unnecessary.
+
+## Watch AI Inspect — five-picture playback (24 October 2026)
+
+Owner: one coordinator on `main`; no workers. Parent US-02/06/09 and the explicit
+five-picture playback request; FR-REVEAL, T-EVIDENCE, T-ACCESS, SEC-PRIVACY-001.
+Baseline `a42abc8`. Existing uncommitted documentation/setup changes are preserved;
+only this new progress section is staged from the mixed file.
+
+| Milestone | Allowed files | Dependencies and completion check | Status |
+| --- | --- | --- | --- |
+| 1: staged playback | web playback/shared assessment/App/styles, focused checks, this section | Existing five packaged images and authentic run; start paused, picture → AI → reference, pause freezes, stop at five, independent judgments | Done: 28 unit checks, build and focused production Chromium playback check pass |
+| 2: controls and recovery | playback/Picture/App/styles and checks, this section | M1; navigation pauses, speed, restart, loading/retry, mode/tab pause | Next |
+| 3: counts and accessibility | playback/checks, local verification guide/record, this section | M2; unique reveals, separate uncertainty/failures, keyboard/reduced motion, responsive/browser verification and diff review | Pending |
+
+Reuses the genuine saved Gemini run; shared comparison cards were extracted without
+changing visitor judgment/state logic or saved evidence. The initial viewing time
+is three seconds per picture (one second at each stage), excluding picture loading.
+No provider requests, evidence edits, dependency, paid access, publication or remote
+change. First restricted test launches hit Windows spawn EPERM; normal local process
+access allowed the unchanged unit checks to pass. The new production Chromium check passes for staged reveal/pause and untouched visitor
+answers. Nine browser checks passed; two existing multi-scan tests exceeded their
+30-second overall limit. Those tests now allow 90 seconds with all assertions and
+performance limits unchanged; full rerun is pending. Fresh single-agent diff review
+checked unchanged extracted cards, hidden-until-stage values and separate state.
+Full completion remains pending.
