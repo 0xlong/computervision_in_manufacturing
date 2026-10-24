@@ -11,7 +11,8 @@ Owner: one coordinator on `main`; no parallel workers.
 | Task | Dependencies / allowed files | Observable completion check | Status |
 | --- | --- | --- | --- |
 | EN-03 evaluation counter | Existing manifest/API contracts; new evaluator and generated tests, evaluation guide, this section | Complete evaluation membership, hashes/pixel identity, success versus failure routing, class denominators and Wilson intervals checked without provider calls | Done; 14 new tests and 413 combined pipeline tests pass |
-| Resolve provider image use | Current official terms/licence and actual applicable account region; API findings/progress only | Dated conclusion or exact remaining blocker; never fabricate access clearance | User confirmed Switzerland/UK; regional terms checked; scoped local-use record next |
+| Resolve provider image use | Current official terms/licence and actual applicable account region; scoped local-use review/progress only | Dated conclusion or exact remaining blocker; never fabricate access clearance | Scoped local noncommercial experiment reviewed; publication not cleared |
+| Freeze and execute complete fastener evaluation | Qualifying normal-only trial; new bounded runner/tests/guide and this section | Complete 115-member index, frozen prompt/reference, serial batches/resume/quota safeguards and genuine saved outputs | Runner verified; authentic execution next |
 | Build visitor journey | Validated evidence boundary; web source/tests, shared schema, scoped packaging tools | Five answers, gated reveal, persistence/reset, full-set lab, scenario and deterministic export | Next independent task |
 | Verify local completion | Integrated authentic bundle, browser access | Automated checks, review, responsive/keyboard browser evidence and focused checkpoints | Pending |
 
@@ -29,6 +30,36 @@ rates, unknown-submission refusal, determinism and preservation of output files.
 Zero dataset images visually opened, zero provider calls, no dependency/frontend
 change. Website remains the starter page. Source/API fixture labels are preserved;
 the evaluator does not grant authenticity or publication clearance.
+
+Second milestone: two authentic normal-only trials completed. Flash-Lite returned
+2/2 valid structured answers in 6.048/5.144 s with 2,277 input tokens each. Flash
+returned 1/2 success (31.100 s); the other probe timed out after three attempts
+(56.406/56.388/57.028 s). Select Lite only; no fabricated comparison. This is
+normal-response usefulness, not defect-quality evidence. Exact versions, hashes,
+attempts and responses remain in ignored trial evidence. No source pictures were
+visually opened. [Selection, bounds and commands](GEMINI_EVALUATION.md).
+
+Built the full-set supervisor with 12-submission batches, 10-second start spacing,
+60-second child deadline, 345 total-attempt cap and immutable request/configuration
+fingerprints. Nine generated safeguard cases and all 422 offline pipeline tests
+passed (62.04 s). Fresh single-agent review additionally corrected lower-RPM
+spacing, full saved-run identity comparison, image byte/dimension limits and the
+batch time reservation. Test fixture response classification was corrected without
+weakening production validation. Named-key runtime access stays in the existing
+transport; no credential output/copy, new backend dependency or paid call.
+
+The [scoped local-use review](GEMINI_LOCAL_USE.md) records the user's Switzerland/UK
+answer, regional data-use terms and interpretation for private noncommercial
+offline execution. It does not clear publication/live API clients or reconstruct
+source receipts. Nonsecret access records bind user confirmations and this review;
+four-hour validity is an internal freshness deadline, not provider expiry. The
+screenshot is not an independent remaining-quota audit. Other applications remain
+outside coordination. Both Lite trial submissions will be deducted for evaluation.
+
+Independent web logic now has 15 passing unit checks and a passing TypeScript
+check for workload boundaries, invalid input, answer/reveal locking and saved-state
+recovery. Schema/browser check tools are pinned locally; complete UI/bundle work
+continues next. The website still shows its starter page at this checkpoint.
 
 ## Gemini runner and user-confirmed free limits — latest continuation
 
