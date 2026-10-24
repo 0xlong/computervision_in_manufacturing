@@ -25,4 +25,3 @@ export function AssessmentDetails({ saved, imageId, fixture }: { saved: SavedRun
     <p className="small">{saved.evidence.run.model_id}. {fixture ? 'Invented test response.' : 'Authentic saved response.'} {attempt.latency_ms === null ? '' : `Recorded request time: ${(attempt.latency_ms / 1000).toFixed(2)} s.`}</p>
   </details>;
 }
-

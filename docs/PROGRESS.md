@@ -674,7 +674,7 @@ only this new progress section is staged from the mixed file.
 | Milestone | Allowed files | Dependencies and completion check | Status |
 | --- | --- | --- | --- |
 | 1: staged playback | web playback/shared assessment/App/styles, focused checks, this section | Existing five packaged images and authentic run; start paused, picture → AI → reference, pause freezes, stop at five, independent judgments | Done: 28 unit checks, build and focused production Chromium playback check pass |
-| 2: controls and recovery | playback/Picture/App/styles and checks, this section | M1; navigation pauses, speed, restart, loading/retry, mode/tab pause | Next |
+| 2: controls and recovery | playback/Picture/App/styles and checks, this section | M1; navigation pauses, speed, restart, loading/retry, mode/tab pause | Done: four focused production Chromium checks, build and 28 unit checks pass |
 | 3: counts and accessibility | playback/checks, local verification guide/record, this section | M2; unique reveals, separate uncertainty/failures, keyboard/reduced motion, responsive/browser verification and diff review | Pending |
 
 Reuses the genuine saved Gemini run; shared comparison cards were extracted without
@@ -688,3 +688,21 @@ answers. Nine browser checks passed; two existing multi-scan tests exceeded thei
 performance limits unchanged; full rerun is pending. Fresh single-agent diff review
 checked unchanged extracted cards, hidden-until-stage values and separate state.
 Full completion remains pending.
+
+Milestone 2: Previous/Next and Restart pause; normal/fast/slow select viewing time
+without restarting the current stage. Mode changes preserve the paused stage and
+remaining time. A visibilitychange pauses on hidden tabs and never resumes on
+return. Loading waits for hash/dimension/decode validation; failed pictures pause,
+disable Play and offer Retry. Retry remains paused. The existing challenge uses the
+same integrity checks and keeps its behavior. Focused checks cover fractional-stage
+remaining time, active speed changes, prior visitor judgments byte-for-byte, simulated
+hidden/visible events, delayed image responses and missing-image recovery.
+
+Tests initially exposed an overlong accessible select label; replaced the wrapping
+label with an explicit label association. Corrected the test harness to pause its
+clock between actions, await each React stage, and assert the genuine first saved
+answer (needs_review). Official Playwright Clock documentation was consulted through
+Context7; no app dependency was added. Removed the extraction's extra EOF blank line;
+current whitespace check passes. Fresh single-agent review checked timer cleanup,
+load guards, explicit recovery and unchanged challenge logic. Complete regression,
+visual checks and counters remain for milestone 3. Checkpoint 1: `c65e709`.

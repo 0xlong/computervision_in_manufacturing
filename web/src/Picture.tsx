@@ -11,19 +11,19 @@ async function assetUrl(asset: Asset, signal: AbortSignal) {
   return URL.createObjectURL(new Blob([bytes], { type: 'image/png' }));
 }
 
-export function Picture({ image, revealed, onReady }: { image: ChallengeImage; revealed: boolean; onReady: (ready: boolean) => void }) {
+export function Picture({ image, revealed, onReady, onFailure }: { image: ChallengeImage; revealed: boolean; onReady: (ready: boolean) => void; onFailure?: (failed: boolean) => void }) {
   const [url, setUrl] = useState(''), [maskUrl, setMaskUrl] = useState('');
   const [error, setError] = useState(''), [maskError, setMaskError] = useState('');
   const [zoom, setZoom] = useState(1), [outline, setOutline] = useState(false), [retry, setRetry] = useState(0);
   useEffect(() => {
     const controller = new AbortController(); let objectUrl = '';
-    setError(''); setUrl(''); onReady(false);
+    setError(''); setUrl(''); onReady(false); onFailure?.(false);
     assetUrl(image.display, controller.signal).then(value => {
       if (controller.signal.aborted) { URL.revokeObjectURL(value); return; }
       objectUrl = value; setUrl(value);
-    }).catch(() => { if (!controller.signal.aborted) setError('This picture is missing or changed. Retry before answering.'); });
+    }).catch(() => { if (!controller.signal.aborted) { setError('This picture is missing or changed. Retry this picture.'); onFailure?.(true); } });
     return () => { controller.abort(); if (objectUrl) URL.revokeObjectURL(objectUrl); };
-  }, [image, retry, onReady]);
+  }, [image, retry, onReady, onFailure]);
   useEffect(() => {
     if (!revealed || !outline || !image.mask) return;
     const controller = new AbortController(); let objectUrl = '';
@@ -47,9 +47,9 @@ export function Picture({ image, revealed, onReady }: { image: ChallengeImage; r
         {url ? <div className="image-canvas" style={{ width: `${zoom * 100}%` }}>
           <img src={url} alt="Metal nut for your visual inspection" onLoad={e => {
             if (e.currentTarget.naturalWidth !== image.display.dimensions.width_px || e.currentTarget.naturalHeight !== image.display.dimensions.height_px) {
-              setError('Image dimensions disagree with the evidence.'); onReady(false);
+              setError('Image dimensions disagree with the evidence. Retry this picture.'); onReady(false); onFailure?.(true);
             } else onReady(true);
-          }} onError={() => { setError('The picture could not be decoded. Retry before answering.'); onReady(false); }} />
+          }} onError={() => { setError('The picture could not be decoded. Retry this picture.'); onReady(false); onFailure?.(true); }} />
           {revealed && outline && maskUrl && <div className="reference-mask" role="img" style={{ maskImage: `url("${maskUrl}")`, WebkitMaskImage: `url("${maskUrl}")` }} aria-label="Dataset reference region" />}
         </div> : <p role="status">Loading photograph…</p>}
       </div>}
