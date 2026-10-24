@@ -19,7 +19,10 @@ test('simple opening page has two clear paths and keyboard-accessible background
   for (const width of [360, 768, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
     await page.goto('/');
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Can you spot');
+    await expect(page).toHaveTitle('AI Visual Inspection for Manufacturing');
+    await expect(page.locator('footer')).toHaveCount(0);
+    await expect(page.getByRole('link', { name: 'Dataset source', exact: true })).toBeHidden();
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('AI Visual Inspectionfor Manufacturing');
     await expect(page.getByText('A public-image demo', { exact: false })).toBeVisible();
     await expect(page.locator('main button')).toHaveCount(2);
     const about = page.getByText('About this demo', { exact: true });
@@ -36,6 +39,8 @@ test('simple opening page has two clear paths and keyboard-accessible background
     await page.screenshot({ path: resolve(directory, `opening-${width}.png`), fullPage: true });
     await page.keyboard.press('Enter');
     await expect(background).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Dataset source', exact: true })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'CC-BY-NC-SA-4.0', exact: true })).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     const expanded = (await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations;
     expect(expanded).toEqual([]);
@@ -49,8 +54,8 @@ test('simple opening page has two clear paths and keyboard-accessible background
   await page.keyboard.press('Enter');
   await expect(page.locator('#main')).toBeFocused();
   await expect(page.getByText('115 assessed · 0 unavailable', { exact: true })).toBeVisible();
-  await page.getByRole('link', { name: 'Inspection / Pilot Lab' }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Can you spot');
+  await page.getByRole('link', { name: 'Manufacturing / AI Inspection' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('AI Visual Inspectionfor Manufacturing');
   await page.getByRole('button', { name: 'Try it' }).focus();
   await page.keyboard.press('Enter');
   await expect(page.locator('#main')).toBeFocused();

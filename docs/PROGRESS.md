@@ -2,6 +2,45 @@
 
 Updated: 24 October 2026. This file records project state, not promised implementation success.
 
+## Clear manufacturing title and no footer (24 October 2026)
+
+Owner: one coordinator on `main`; no workers. Parent US-01/09, FR-START-001,
+T-ACCESS and DATA-LICENCE-001. Dependency: working saved-results journey.
+Allowed: App, index HTML, styles, existing authentic browser checks, verification
+record and this section. Preserve all earlier uncommitted work.
+Task: make manufacturing/computer vision immediately visible, remove the footer,
+keep attribution/source/licence inside About this demo. Preserve the short
+picture/choice/reveal flow. Playback is still a proposal, outside this small edit.
+Completion: build and relevant browser checks; visible title/no footer, accessible
+credits, both entry paths, responsive scans and bounded screenshot review; commit.
+Status: Done locally. The heading, loading screen and browser tab now say
+AI Visual Inspection for Manufacturing; header says Manufacturing / AI Inspection.
+One short subtitle names computer vision and quality control. Removed the footer
+and its CSS; moved unchanged attribution/licence/source links into shared About
+this demo. Both entry paths and the picture/choice/reveal flow are unchanged.
+
+Checks: TypeScript/production build and all 10 production Chromium checks pass.
+Existing opening check verifies browser/visible titles, absent footer, credits
+hidden until About is opened, then accessible source/licence links. Natural keyboard
+order, closed/expanded scans and layouts at 360/768/1440 px pass with no automated
+accessibility violations or horizontal overflow. Full genuine and fixture journeys,
+state/reset/export, failures and privacy checks pass. Latest startup:
+2011.87 ms; scenario p95: 37.40 ms; JS+CSS gzip:
+125,233 bytes. Pure calculation/pipeline tests were not rerun for text/layout edits.
+Fresh single-agent diff review checked short copy, attribution preservation and
+scope. Viewed only desktop/phone landing screenshots: zero dataset examples.
+See [verification](FASTENER_VERIFICATION.md#manufacturing-title-and-footer-removal).
+VS Code UI remains unverified after the previously recorded helper failure;
+actual checks use Chromium. Use http://127.0.0.1:5174/ with Browser: Open Integrated
+Browser (`workbench.action.browser.open`); click the header brand for the opening.
+
+Focused checkpoint: Clarify manufacturing title and remove footer. Preserve all
+earlier uncommitted work; only this progress section is staged. No new inference,
+dependency, billing, publishing or remote modification. Next product proposal is
+saved-result automatic playback with pause/speed controls; it is not implemented
+or authorized as part of this title/footer edit. No job-offer matching or recruiter
+user study is claimed.
+
 ## Visitor simplicity — picture, choice, reveal (24 October 2026)
 
 Owner: single coordinator on `main`; no workers. Parent US-01/02/03/04/05/08/09.

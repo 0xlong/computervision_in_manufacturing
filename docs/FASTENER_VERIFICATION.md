@@ -246,3 +246,35 @@ the Inspection brand for the opening if an earlier screen is restored. The
 
 No new Gemini/provider requests, paid access, publication, dependency or remote
 changes. Next iteration should use visitor feedback on this shorter flow.
+
+## Manufacturing title and footer removal
+
+Verified 24 October 2026. Visible title, loading title and browser tab now identify
+**AI Visual Inspection for Manufacturing**. Header: Manufacturing / AI Inspection.
+Subtitle: Computer vision for quality control. Try five parts. No footer remains;
+unchanged dataset attribution, source and licence links are inside the shared
+About this demo disclosure. This supersedes earlier title/footer screenshots.
+Saved evidence, inspection flow, calculations and export content are unchanged.
+
+TypeScript/production build and all **10 production Chromium checks pass**. The
+existing opening check verifies both titles, absent footer and keyboard-accessible
+credits after opening About. At 360/768/1440 px, closed/expanded opening scans have
+zero automated WCAG-tagged violations and no horizontal overflow. Complete genuine
+and fixture journeys, reset/storage, error handling, export and privacy still pass.
+Latest local startup: **2011.87 ms**; scenario p95: **37.40 ms**;
+compressed JS+CSS: **125,233 bytes**. Earlier unit/pipeline results were not rerun
+for this text/layout-only change. Browser records were regenerated.
+
+Fresh single-agent review checked diff/scope, copy and preserved attribution.
+Viewed [desktop](../artifacts/ui-simplification/opening-1440.png) and
+[phone](../artifacts/ui-simplification/opening-360.png) screenshots; **zero dataset
+examples** visually inspected. [Opening checks](../artifacts/ui-simplification/opening-checks.json)
+record keyboard/scan results. This is not a recruiter study or accessibility
+certification. No job offer was inspected or exact job-fit claim made.
+
+VS Code integrated-browser UI remains unverified following the earlier helper
+failure; actual verification uses Chromium 156.0.8078.4. Open
+http://127.0.0.1:5174/ with **Browser: Open Integrated Browser**
+(`workbench.action.browser.open`) and click the header brand for the opening.
+No new inference, dependency, paid access, publication or remote change. The
+proposed saved-result playback mode remains a future, unimplemented idea.

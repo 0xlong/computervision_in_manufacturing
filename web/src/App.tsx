@@ -53,13 +53,13 @@ function Experience({ bundle }: { bundle: Bundle }) {
   function reset() { setState(freshState(bundle)); setResetEpoch(n => n + 1); setConfirmReset(''); setNotice('Fastener progress has been reset.'); }
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
-    <header className="site-header"><a href="#main" className="brand" onClick={() => goScreen('start')}><span aria-hidden="true" className="brand-mark">◈</span><span>Inspection<span className="brand-light"> / Pilot Lab</span></span></a>
+    <header className="site-header"><a href="#main" className="brand" onClick={() => goScreen('start')}><span aria-hidden="true" className="brand-mark">◈</span><span>Manufacturing<span className="brand-light"> / AI Inspection</span></span></a>
       {state.screen !== 'start' && <nav aria-label="Main navigation"><button aria-current={state.screen === 'inspect' ? 'page' : undefined} onClick={() => goScreen('inspect')}>Try it</button><button aria-current={state.screen === 'lab' ? 'page' : undefined} onClick={() => goScreen('lab')}>Results</button></nav>}</header>
     <main id="main" tabIndex={-1}>
       <div className="context-bar"><span>Public-data demo</span></div>
       {bundle.execution === 'fixture' && <p className="development-notice">TEST EXAMPLES ONLY — invented model answers; not real AI evidence.</p>}
       {notice && <p className="notice" role="status">{notice}</p>}
-      {state.screen === 'start' && <section className="hero"><h1>Can you spot<br /><em>the faulty part?</em></h1><p className="hero-copy">Check five pictures. Make your call. Reveal what AI thinks.</p>
+      {state.screen === 'start' && <section className="hero"><h1>AI Visual Inspection<br /><em>for Manufacturing</em></h1><p className="hero-copy">Computer vision for quality control. Try five parts.</p>
         <div className="hero-actions"><button className="primary" onClick={() => goScreen('inspect')}>Try it →</button><button className="text-button" onClick={() => goScreen('lab')}>See the results →</button></div>
         <p className="prototype-note">A public-image demo, not factory validation.</p></section>}
       {state.screen === 'inspect' && <>
@@ -85,10 +85,10 @@ function Experience({ bundle }: { bundle: Bundle }) {
         <p>{bundle.execution === 'fixture' ? 'This test preview uses invented AI answers.' : `The AI answers are saved Gemini responses from all ${selected.report.expected} test images. Your visit makes no AI requests.`} Your answers stay in this browser.</p>
         <p>Five selected teaching pictures, not a representative factory sample. Dataset: {bundle.dataset.dataset_id} / {bundle.dataset.category}. The optional metal-surface track is unavailable.</p>
         <p>Local development preview, not factory validation. Dataset source records have limitations; this preview is not cleared for publication. No manufacturer affiliation is implied.</p>
+        <p>{bundle.dataset.attribution} <a href={bundle.dataset.licence_url}>{bundle.dataset.licence}</a>. <a href={bundle.dataset.source_url}>Dataset source</a>.</p>
         {state.screen !== 'start' && <div className="reset-controls"><button onClick={() => setConfirmReset('current')}>Reset current track</button><button onClick={() => setConfirmReset('all')}>Reset all progress</button>{confirmReset && <div className="reset-confirmation" role="group" aria-label="Confirm progress reset"><p>Reset {confirmReset === 'all' ? 'all inspection progress' : 'fastener progress'}? Answers, assumptions and reasoning will be cleared from this app.</p><button onClick={reset}>Confirm reset</button><button onClick={() => setConfirmReset('')}>Keep progress</button></div>}</div>}
       </details>
     </main>
-    <footer><p>{bundle.dataset.attribution} <a href={bundle.dataset.licence_url}>{bundle.dataset.licence}</a>. <a href={bundle.dataset.source_url}>Dataset source</a>.</p></footer>
   </>;
 }
 
@@ -100,5 +100,5 @@ export function App() {
     return () => controller.abort();
   }, [retry]);
   if (bundle) return <Experience key={bundle.bundle_id} bundle={bundle} />;
-  return <main className="loading-page"><p className="eyebrow">Public-data prototype</p><h1>AI Inspection Pilot Lab</h1>{error ? <div role="alert"><p>{error}</p><button onClick={() => setRetry(n => n + 1)}>Retry evidence</button></div> : <p role="status">Checking saved inspection evidence…</p>}</main>;
+  return <main className="loading-page"><p className="eyebrow">Public-data demo</p><h1>AI Visual Inspection for Manufacturing</h1>{error ? <div role="alert"><p>{error}</p><button onClick={() => setRetry(n => n + 1)}>Retry evidence</button></div> : <p role="status">Loading…</p>}</main>;
 }
