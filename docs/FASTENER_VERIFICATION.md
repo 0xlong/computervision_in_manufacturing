@@ -320,3 +320,114 @@ HTTP 200. Open it using **Browser: Open Integrated Browser**
 (`workbench.action.browser.open`), answer a picture, then reveal.
 Saved results and 115-image evaluation remain unchanged. No new provider requests,
 paid access, dependencies, publication or remote changes. Playback remains a proposal.
+
+## Watch AI Inspect — five-picture playback
+
+Verified 24 October 2026. This supersedes the earlier statements that playback is
+only a proposal. The existing **Try it yourself** journey and the new **Watch AI
+Inspect** mode have separate state. Playback is labelled **Saved AI results** and
+uses only the five already packaged pictures and the one qualifying Gemini run.
+Saved observations, labels, membership, configuration and model results are unchanged.
+
+Playback starts paused. Each loaded picture has three equal viewing stages: picture,
+AI assessment, dataset reference. Normal viewing time totals three seconds; fast
+and slow total 1.5 and six seconds. This is viewing time, not measured AI latency.
+Play/Pause retains the current stage and unfinished fraction. Changing speed keeps
+that fraction. Previous/Next pause and start the selected picture at its first stage.
+Restart clears playback counts and returns to picture one, paused. Mode switches
+and hidden tabs pause; returning never resumes automatically. Playback stops after
+the fifth reference's viewing time. Missing/changed/undecodable pictures have Retry;
+the timer waits for successful integrity, dimensions and decode checks.
+
+The equally prominent AI/reference cards reuse the same decision wording, explicit
+status text and symbols alongside color. There is no Your answer in playback.
+Wide screens place picture and cards together; smaller screens stack them. Keyboard
+help is a disclosure. Space, arrow keys, Home and Escape work from the playback
+area; native button/select and zoomed-picture keyboard behavior remain available.
+There are no reveal animations, moving timers or automatic scrolling, including
+under reduced motion. Playback lives in memory; refresh returns to the ordinary
+stored visitor screen, and a newly opened playback starts paused at picture one.
+
+### Counts and evidence integrity
+
+Each picture counts once when its reference is revealed. Seen-picture membership
+survives backward navigation, pause and speed changes; Restart clears it. Genuine
+five-picture totals: **2 defects flagged, 1 defect missed, 2 good parts flagged**;
+five references shown, zero unsure and zero unavailable. These are curated playback
+counts, separately labelled from the unchanged complete **115-image** benchmark.
+Successful `uncertain` responses and technical failures appear separately and never
+inflate the three categorical counts. Both require human checking; these playback
+counts do not replace the full benchmark's routing metrics.
+
+`git diff a42abc8 -- web/public/evidence tests/fixtures schemas web/package.json
+web/package-lock.json` is empty. Bundle SHA-256 remains
+`d880f82e321b36847ddd84a6607f74dcd994e1280b574e44e003ca7d0d5f39b5`.
+No new provider request, model/configuration, confidence score, sensitivity control,
+dependency, paid access, publication or remote modification was introduced.
+Further models/configurations require separate genuine evaluation. Playback remains
+bounded to these five pictures.
+
+### Local checks and bounded visual review
+
+- **30 web unit checks**, TypeScript/production build and **19 production Chromium
+  browser checks pass**, including nine new playback checks. Offline pipeline
+  code/data did not change; its earlier 437 passing checks were not rerun.
+- Genuine browser playback checks every saved answer/reference and verbatim
+  observation, stage order, count timing, final totals, backward replay without
+  double-counting, stop-at-end and Restart. Pauses and active speed changes are
+  checked at partial-stage boundaries with a deterministic paused test clock.
+- Mode switching preserves visitor storage byte-for-byte, including a preexisting
+  unrevealed answer. Unanswered challenge evidence stays gated. Hidden/visible
+  tab events are exercised through synthetic `document.hidden` and
+  `visibilitychange`; this is not a native VS Code tab-switch observation.
+- Delayed image responses start no viewing timer. Missing-image recovery pauses,
+  disables Play, retries successfully and stays paused. Separate labelled fixtures
+  check unsure, refusal and invalid-response cards/counts; fixtures are not AI evidence.
+- At **360/768/1440 px**, keyboard and reduced-motion checks pass, both cards have
+  equal dimensions, no page-level horizontal overflow occurs, and automated
+  WCAG-tagged scans report **zero violations**. On desktop, both cards are asserted
+  beside the photograph and inside the first 1000 px of viewport height. No active
+  animations are present. This is not a screen-reader trial or WCAG certification.
+- Existing authentic/fixture challenge, fixed answers, storage/reset, export,
+  configuration download, errors, responsive scans and privacy checks pass.
+  Playback and the complete authentic journey have no page errors, external visitor
+  requests or non-GET visitor requests. Visitor decisions are never submitted.
+- Latest recorded local startup under 10 Mbps / 100 ms RTT: **1928.69 ms**, one
+  photograph requested. Scenario updates: **35.00 ms p95** across 100 edits.
+  Compressed production JS+CSS: **127,762 bytes**, below 500 KiB. These are local
+  Chromium measurements, not provider-speed or remote-host measurements.
+
+Fresh single-agent review covered requirements, timer cleanup, unique counts,
+separate judgments, uncertainty/failure honesty, preserved evidence and the diff.
+Viewed desktop/phone playback screenshots before and after the layout correction:
+**one distinct source photograph, `img-000071`**, throughout. Automated screenshots
+elsewhere are not additional manually inspected examples. No dataset-wide visual
+review or visitor study was performed. Review moved verbose keyboard help into a
+disclosure, shortened speed labels and placed picture/cards together on wide
+screens; corrected the header's active-page marker while watching.
+
+Initial restricted test launches failed with Windows spawn EPERM; identical checks
+ran with normal local process access. Two existing multi-scan browser tests hit
+their 30-second overall timeout, so their overall limits are now 90 seconds while
+all assertions and performance targets remain unchanged. Test development also
+caught a long accessible select label and an advancing test clock; the label and
+test setup were corrected, with real saved answers left untouched.
+
+Records: [playback](../artifacts/watch-ai/playback.json),
+[phone keyboard/accessibility](../artifacts/watch-ai/accessibility-360.json),
+[tablet](../artifacts/watch-ai/accessibility-768.json),
+[desktop](../artifacts/watch-ai/accessibility-1440.json).
+Screenshots: [desktop](../artifacts/watch-ai/playback-1440.png),
+[phone](../artifacts/watch-ai/playback-360.png),
+[tablet](../artifacts/watch-ai/playback-768.png).
+Outputs remain ignored local verification artifacts, regenerated by the browser suite.
+Browser: Chromium **156.0.8078.4** on Windows.
+
+VS Code native UI control is unavailable in this session; integrated-browser UI
+remains unverified after the previously recorded helper failure. Actual verification
+uses Chromium. The local server returned HTTP 200 at http://127.0.0.1:5174/.
+In VS Code use **Browser: Open Integrated Browser** (`workbench.action.browser.open`),
+then choose Watch AI Inspect and Play. The [local guide](FASTENER_LOCAL.md#watch-the-five-saved-results)
+records all controls. Existing provenance/licensing, contamination and factory-use
+limits remain. This completes the requested local playback scope, not publication,
+the surface track or the entire two-track release.

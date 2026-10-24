@@ -34,6 +34,34 @@ a decision and the download. **Where the results come from** holds source record
 To start over, open **About this demo & reset progress** and confirm a reset.
 No visitor action sends a prompt, answer or rationale to Gemini.
 
+## Watch the five saved results
+
+Choose **Watch AI Inspect** on the opening or beside **Try it yourself**. It starts
+paused. Press **Play** to see each picture, then its saved AI assessment, then the
+dataset reference. The two cards use the same decision wording. No visitor answer
+is shown or changed in this mode.
+
+**Previous** and **Next** move to a picture and pause. **Restart** clears only the
+playback counts and returns to picture one, paused. **Viewing time** chooses fast
+(1.5 seconds), normal (3 seconds) or slow (6 seconds) per picture, divided equally
+between the three stages. Picture loading adds time; this is not AI processing
+speed. Pause freezes the stage and its remaining time. Switching modes or leaving
+the browser tab pauses; returning does not automatically resume. The fifth picture
+stays visible at the end. A missing or changed picture offers **Retry picture**.
+
+The three counts cover only references revealed in this five-picture playback.
+Revisiting a picture does not count it twice. Unsure and unavailable answers need
+human checking and are listed separately from categorical decisions. Complete
+115-image benchmark results remain in **Results**. Only the existing qualifying
+saved model is used; no confidence, sensitivity or second-model result is invented.
+
+Tab to the playback area to use **Space** for play/pause, **Left/Right arrows** for
+pictures, **Home** for Restart and **Esc** for Pause. Buttons work with Tab and
+Enter; arrow keys within a zoomed picture still scroll the picture. Reveals have
+no animation or automatic scrolling, including with reduced motion enabled.
+Playback stays in memory during mode switches and restarts paused after a page
+refresh. Your challenge answers keep their existing browser storage behavior.
+
 ## Evidence preparation
 
 The [trial](GEMINI_TRIAL.md), [local-use review](GEMINI_LOCAL_USE.md) and

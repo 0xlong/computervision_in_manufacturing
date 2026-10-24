@@ -2,6 +2,72 @@
 
 Updated: 24 October 2026. This file records project state, not promised implementation success.
 
+## Watch AI Inspect — five-picture playback (24 October 2026)
+
+Status: **Done locally; stop after this scope.** Owner: one coordinator on `main`,
+no workers. Parent US-02/06/09 plus the explicit playback request; FR-REVEAL,
+T-EVIDENCE, T-ACCESS and SEC-PRIVACY-001. Baseline UI checkpoint: `a42abc8`.
+
+The website now offers Try it yourself and Watch AI Inspect. Watching replays the
+five existing pictures and genuine saved AI answers, with equally prominent AI /
+dataset cards and no visitor-answer card. It starts paused, retains stages and
+remaining time across pauses/speed changes, waits for pictures, recovers from errors,
+pauses on mode/hidden-tab changes, and stops after picture five. Restart clears only
+playback state/counts. Visitor judgments, reveal gates and stored progress are unchanged.
+The manufacturing title/colors and absent footer are preserved.
+
+| Milestone | Allowed files | Dependencies and observable completion check | Result |
+| --- | --- | --- | --- |
+| 1: staged playback | App/shared assessment/playback/styles and focused checks | Existing five packaged pictures and saved run; picture → AI → reference, Play/Pause, independent judgments, stop at end | Done; checkpoint `c65e709` |
+| 2: controls and recovery | Picture/playback and focused checks | M1; Previous/Next/Restart pause, adjustable viewing time, loading/Retry, mode/tab freeze | Done; checkpoint `0d0a33a` |
+| 3: counts and accessibility | App/playback/styles/checks, local guide/verification, this section | M2; count unique revealed references, separate unsure/failures, keyboard/reduced motion, responsive browser checks, fresh diff review and commit | Done; final checkpoint: Verify playback counts controls and accessibility |
+
+Normal viewing is three seconds per picture, one second per stage; fast is 1.5
+seconds and slow six. Loading adds time. The mode says Saved AI results and
+explicitly distinguishes viewing time from AI processing speed. Five-picture totals:
+**2 defects flagged / 1 defect missed / 2 good parts flagged**, five references
+shown, zero unsure/unavailable. Revisits never double-count. Unknown answers are
+separate from categorical counts and need human checking. These curated counts
+remain separate from the complete 115-image benchmark. Only one qualifying model;
+new models/configurations need separate genuine evaluation and remain future work.
+
+Verification: **30 web unit checks**, TypeScript/production build and **19 production
+Chromium checks pass**. All nine new playback checks pass, alongside every existing
+journey check. Cases cover fractional-stage pause/resume, active speed changes,
+loading/Retry, genuine five-picture values/observations, end/Restart, repeat visits,
+separate uncertain/refusal/invalid fixtures and unchanged visitor storage. At
+360/768/1440 px: no horizontal overflow, equal comparison-card dimensions, zero
+automated WCAG-tagged violations; keyboard and reduced-motion checks pass. No
+external/non-GET visitor requests or page errors. Startup: 1928.69 ms under the
+recorded 10 Mbps / 100 ms RTT profile, one photograph; scenario p95 35.00 ms;
+compressed JS+CSS 127,762 bytes. Offline pipeline files/data did not change; the
+historical 437-test pipeline result was not rerun.
+
+Fresh single-agent review checked requirements, timer cleanup, evidence integrity,
+counts, state separation and the diff. Visual review covered desktop/phone before
+and after compacting controls/help and placing cards beside the picture on wide
+screens: **one distinct source photograph (`img-000071`)**. The header no longer
+marks Try it active during playback. Windows spawn EPERM required normal local
+process access. Two existing multi-scan tests needed a 90-second overall timeout;
+assertions and performance thresholds were preserved. The accessible speed label
+and deterministic test clock were corrected during verification.
+
+[Full verification and limits](FASTENER_VERIFICATION.md#watch-ai-inspect--five-picture-playback)
+and [how to try it](FASTENER_LOCAL.md#watch-the-five-saved-results) record controls,
+screenshots and ignored browser outputs. Browser: Chromium 156.0.8078.4 on Windows.
+Tab-visibility verification uses synthetic hidden/visible events. Native VS Code UI
+control is unavailable; integrated-browser UI remains unverified. Local server
+returned HTTP 200 at http://127.0.0.1:5174/; open with Browser: Open Integrated Browser
+(`workbench.action.browser.open`), then Watch AI Inspect → Play.
+
+Saved evidence, labels, benchmark membership, fixtures, schemas and dependency
+manifests are unchanged against `a42abc8`. No provider requests, paid access,
+publication or remote changes. Source/licensing, factory-use, screen-reader,
+cross-browser, second-track and remote-host limits remain. Earlier uncommitted work,
+including the specification move and documentation/setup edits, is preserved and
+excluded from these commits. Only this new section is staged from the mixed progress
+file. Next: user can try the saved playback; no further implementation in this goal.
+
 ## Clear answer comparison (24 October 2026)
 
 Owner: one coordinator on `main`; no workers. Parent US-02/09; FR-REVEAL-001–003,
@@ -663,46 +729,3 @@ reviews require an explicit user request. General picture-checking instructions
 do not authorize exhaustive viewing. Record the actual sample and uncertainty.
 This documentation change does not change the website, data or application code.
 Checked the exact added text and whitespace; application tests are unnecessary.
-
-## Watch AI Inspect — five-picture playback (24 October 2026)
-
-Owner: one coordinator on `main`; no workers. Parent US-02/06/09 and the explicit
-five-picture playback request; FR-REVEAL, T-EVIDENCE, T-ACCESS, SEC-PRIVACY-001.
-Baseline `a42abc8`. Existing uncommitted documentation/setup changes are preserved;
-only this new progress section is staged from the mixed file.
-
-| Milestone | Allowed files | Dependencies and completion check | Status |
-| --- | --- | --- | --- |
-| 1: staged playback | web playback/shared assessment/App/styles, focused checks, this section | Existing five packaged images and authentic run; start paused, picture → AI → reference, pause freezes, stop at five, independent judgments | Done: 28 unit checks, build and focused production Chromium playback check pass |
-| 2: controls and recovery | playback/Picture/App/styles and checks, this section | M1; navigation pauses, speed, restart, loading/retry, mode/tab pause | Done: four focused production Chromium checks, build and 28 unit checks pass |
-| 3: counts and accessibility | playback/checks, local verification guide/record, this section | M2; unique reveals, separate uncertainty/failures, keyboard/reduced motion, responsive/browser verification and diff review | Pending |
-
-Reuses the genuine saved Gemini run; shared comparison cards were extracted without
-changing visitor judgment/state logic or saved evidence. The initial viewing time
-is three seconds per picture (one second at each stage), excluding picture loading.
-No provider requests, evidence edits, dependency, paid access, publication or remote
-change. First restricted test launches hit Windows spawn EPERM; normal local process
-access allowed the unchanged unit checks to pass. The new production Chromium check passes for staged reveal/pause and untouched visitor
-answers. Nine browser checks passed; two existing multi-scan tests exceeded their
-30-second overall limit. Those tests now allow 90 seconds with all assertions and
-performance limits unchanged; full rerun is pending. Fresh single-agent diff review
-checked unchanged extracted cards, hidden-until-stage values and separate state.
-Full completion remains pending.
-
-Milestone 2: Previous/Next and Restart pause; normal/fast/slow select viewing time
-without restarting the current stage. Mode changes preserve the paused stage and
-remaining time. A visibilitychange pauses on hidden tabs and never resumes on
-return. Loading waits for hash/dimension/decode validation; failed pictures pause,
-disable Play and offer Retry. Retry remains paused. The existing challenge uses the
-same integrity checks and keeps its behavior. Focused checks cover fractional-stage
-remaining time, active speed changes, prior visitor judgments byte-for-byte, simulated
-hidden/visible events, delayed image responses and missing-image recovery.
-
-Tests initially exposed an overlong accessible select label; replaced the wrapping
-label with an explicit label association. Corrected the test harness to pause its
-clock between actions, await each React stage, and assert the genuine first saved
-answer (needs_review). Official Playwright Clock documentation was consulted through
-Context7; no app dependency was added. Removed the extraction's extra EOF blank line;
-current whitespace check passes. Fresh single-agent review checked timer cleanup,
-load guards, explicit recovery and unchanged challenge logic. Complete regression,
-visual checks and counters remain for milestone 3. Checkpoint 1: `c65e709`.

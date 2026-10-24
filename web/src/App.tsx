@@ -46,7 +46,7 @@ function Experience({ bundle }: { bundle: Bundle }) {
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
     <header className="site-header"><a href="#main" className="brand" onClick={() => goScreen('start')}><span aria-hidden="true" className="brand-mark">◈</span><span>Manufacturing<span className="brand-light"> / AI Inspection</span></span></a>
-      {(state.screen !== 'start' || watch) && <nav aria-label="Main navigation"><button aria-current={state.screen === 'inspect' ? 'page' : undefined} onClick={() => goScreen('inspect')}>Try it</button><button aria-current={state.screen === 'lab' ? 'page' : undefined} onClick={() => goScreen('lab')}>Results</button></nav>}</header>
+      {(state.screen !== 'start' || watch) && <nav aria-label="Main navigation"><button aria-current={!watch && state.screen === 'inspect' ? 'page' : undefined} onClick={() => goScreen('inspect')}>Try it</button><button aria-current={!watch && state.screen === 'lab' ? 'page' : undefined} onClick={() => goScreen('lab')}>Results</button></nav>}</header>
     <main id="main" tabIndex={-1}>
       <div className="context-bar"><span>Public-data demo</span></div>
       {bundle.execution === 'fixture' && <p className="development-notice">TEST EXAMPLES ONLY — invented model answers; not real AI evidence.</p>}
