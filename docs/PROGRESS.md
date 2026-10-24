@@ -2,6 +2,34 @@
 
 Updated: 24 October 2026. This file records project state, not promised implementation success.
 
+## Fastener completion goal — active work
+
+Scope: complete the fastener journey locally, authentic Gemini evidence only,
+free access only, no publication. Earlier working-tree edits are preserved.
+Owner: one coordinator on `main`; no parallel workers.
+
+| Task | Dependencies / allowed files | Observable completion check | Status |
+| --- | --- | --- | --- |
+| EN-03 evaluation counter | Existing manifest/API contracts; new evaluator and generated tests, evaluation guide, this section | Complete evaluation membership, hashes/pixel identity, success versus failure routing, class denominators and Wilson intervals checked without provider calls | Done; 14 new tests and 413 combined pipeline tests pass |
+| Resolve provider image use | Current official terms/licence and actual applicable account region; API findings/progress only | Dated conclusion or exact remaining blocker; never fabricate access clearance | User confirmed Switzerland/UK; regional terms checked; scoped local-use record next |
+| Build visitor journey | Validated evidence boundary; web source/tests, shared schema, scoped packaging tools | Five answers, gated reveal, persistence/reset, full-set lab, scenario and deterministic export | Next independent task |
+| Verify local completion | Integrated authentic bundle, browser access | Automated checks, review, responsive/keyboard browser evidence and focused checkpoints | Pending |
+
+The Gemini Free-tier confirmation and named-key authorization recorded below
+remain accepted. No new request for those confirmations is needed. Gate 2 is not
+complete while real model results and browser verification are missing.
+
+Evaluator milestone: built `pipeline/evaluate_api.py`; [usage and limits](EVALUATION.md).
+14 focused checks and all 413 offline pipeline checks passed (35.47 s). Initial
+fixture asset-path collision was corrected; no validation rule was weakened.
+The restricted pytest run encountered the known temporary-folder permission
+problem; normal local file access passed. Fresh single-agent review checked
+complete membership, byte/pixel bindings, uncertainty/failure routing, undefined
+rates, unknown-submission refusal, determinism and preservation of output files.
+Zero dataset images visually opened, zero provider calls, no dependency/frontend
+change. Website remains the starter page. Source/API fixture labels are preserved;
+the evaluator does not grant authenticity or publication clearance.
+
 ## Gemini runner and user-confirmed free limits — latest continuation
 
 The user explicitly confirmed the screenshot's Gemini limits are free and asked
