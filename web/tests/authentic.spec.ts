@@ -9,6 +9,58 @@ const bundlePath = resolve('public/evidence/bundle.json');
 const bundle = existsSync(bundlePath) ? JSON.parse(readFileSync(bundlePath, 'utf-8')) as Bundle : null;
 const artifacts = resolve('../artifacts/browser-verification');
 
+test('simple opening page has two clear paths and keyboard-accessible background', async ({ page }) => {
+  test.skip(!bundle, 'Authentic saved evidence is required.');
+  const directory = resolve('../artifacts/ui-simplification');
+  await mkdir(directory, { recursive: true });
+  const scans: { width: number; closed: number; expanded: number }[] = [];
+  const imageRequests: string[] = [];
+  page.on('request', r => { if (r.url().includes('/evidence/images/')) imageRequests.push(r.url()); });
+  for (const width of [360, 768, 1440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto('/');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Can AI help spot');
+    await expect(page.getByText('A learning demo using public images', { exact: false })).toBeVisible();
+    await expect(page.locator('main button')).toHaveCount(2);
+    const about = page.getByText('About this demo', { exact: true });
+    const background = page.getByText('The AI answers are saved Gemini responses', { exact: false });
+    await expect(background).toBeHidden();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    const closed = (await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations;
+    expect(closed).toEqual([]);
+    // Reach the disclosure in the natural tab order, starting from the skip link.
+    await page.keyboard.press('Tab');
+    await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
+    for (let i = 0; i < 4; i++) await page.keyboard.press('Tab');
+    await expect(about).toBeFocused();
+    await page.screenshot({ path: resolve(directory, `opening-${width}.png`), fullPage: true });
+    await page.keyboard.press('Enter');
+    await expect(background).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    const expanded = (await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations;
+    expect(expanded).toEqual([]);
+    scans.push({ width, closed: closed.length, expanded: expanded.length });
+    if (width === 1440) await page.screenshot({ path: resolve(directory, 'opening-about-expanded.png'), fullPage: true });
+    await page.keyboard.press('Space');
+    await expect(background).toBeHidden();
+  }
+  expect(imageRequests).toEqual([]);
+  await page.getByRole('button', { name: 'See the results' }).focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#main')).toBeFocused();
+  await expect(page.getByText('115 successful assessments / 115 expected images', { exact: true })).toBeVisible();
+  await page.getByRole('link', { name: 'Inspection / Pilot Lab' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Can AI help spot');
+  await page.getByRole('button', { name: 'Start the inspection' }).focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#main')).toBeFocused();
+  await expect(page.getByRole('button', { name: 'Looks acceptable', exact: true })).toBeEnabled();
+  await writeFile(resolve(directory, 'opening-checks.json'), JSON.stringify({
+    bundle_id: bundle!.bundle_id, accessibility: scans, entry_paths: ['challenge', 'results'],
+    keyboard_disclosure: true, content_focus: true, opening_image_requests: 0,
+  }, null, 2));
+});
+
 test('authentic fastener inspection to brief, responsive evidence and private state', async ({ page, browser }) => {
   test.skip(!bundle, 'Authentic local bundle has not been prepared. Fixture checks cannot replace it.');
   const b = bundle!, report = b.runs[0].report;

@@ -2,6 +2,57 @@
 
 Updated: 24 October 2026. This file records project state, not promised implementation success.
 
+## Visitor simplicity — first improvement (24 October 2026)
+
+Owner: one coordinator on `main`; no workers. Existing uncommitted work is
+preserved. Parent US-01 / US-09; FR-START-001, T-JOURNEY and T-ACCESS.
+
+Task: simplify the first-time visitor's opening page into one column, with a
+plain-language purpose, one primary start action, a direct results action and
+keyboard-accessible optional background. Keep public-data/prototype and factory
+limitations visible; preserve authentic/fixture distinctions and all saved results.
+Dependencies: completed local fastener journey and existing 115-image bundle.
+Allowed files: `web/src/App.tsx`, `web/src/style.css`, browser checks,
+`docs/FASTENER_VERIFICATION.md` and this new progress section only.
+Completion: production browser checks show both entry paths work, optional details
+open with keyboard, focus moves into content, layout fits 360/768/1440 px and
+accessibility scans pass. Review the actual screenshots and commit focused files.
+Status: Done locally. Replaced the two-column introduction and route card with a
+single column, plain-language purpose and two entry buttons. Duplicate home
+navigation/reset controls are absent; background is under native About this demo
+disclosure. Reset controls remain available inside the challenge and results.
+Public-data/prototype and factory-performance limits stay visible; fixture warning
+stays prominent. No result, dataset, bundle, dependency or storage contract changed.
+
+Checks: 27 web unit checks, TypeScript/production build and all 10 production
+Chromium checks pass. The new authentic opening-page check covers both entry
+paths, natural keyboard tab order, Enter/Space disclosure operation, content focus,
+and closed/expanded accessibility scans at 360/768/1440 px (zero violations and
+no horizontal overflow). The opening page fetches zero dataset pictures.
+Existing reveal, export, refresh, reset, error and privacy checks still pass.
+First usable challenge: 2079.77 ms at 10 Mbps/100 ms RTT; scenario p95: 40.10 ms.
+Restricted child-process EPERM prevented initial startup; unchanged checks passed
+with normal local process access. No checks or requirements were weakened.
+
+Fresh single-agent diff review checked the start requirement, both real entry
+paths, truthful saved/fixture evidence, unchanged results and reversible navigation.
+Viewed three actual screenshots: 1440 px opening, 360 px opening and expanded
+background. Zero dataset examples were visually inspected in this task; this is
+layout review, not a dataset review or recruiter user study. Existing real-image
+journey checks ran automatically. See [verification](FASTENER_VERIFICATION.md#visitor-simplicity--first-iteration).
+
+VS Code Computer Use initialization succeeded but both app-list calls failed:
+native pipe unavailable, OS error 2. Integrated-browser UI remains unverified;
+actual Chromium is recorded. The running dev server returned HTTP 200 at
+http://127.0.0.1:5174/. Use Browser: Open Integrated Browser
+(`workbench.action.browser.open`) in VS Code to try it.
+
+Focused checkpoint: Simplify the visitor opening page. Only this new progress
+section is staged, leaving all earlier uncommitted progress/spec/workspace edits
+untouched. No Gemini call, paid access, publication or remote modification.
+Next separate milestone: simplify the results page into a short plain-language
+summary with detailed statistics and assumptions available on demand.
+
 ## Fastener completion goal — completed locally
 
 Completed 24 October 2026. The user's local fastener definition of done is met:

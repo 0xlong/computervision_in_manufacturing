@@ -65,7 +65,7 @@ test('five answers, gated reveal, zoom, locked answers, refresh, export and rese
 
 test('invalid assumptions suspend projections and export; untrusted rationale stays text', async ({ page }) => {
   await fixtures(page); await page.goto('/');
-  await page.getByRole('button', { name: 'Go straight to the lab' }).click();
+  await page.getByRole('button', { name: 'See the results' }).click();
   await page.getByLabel('Pilot with human review', { exact: true }).check();
   await expect(page.getByRole('button', { name: 'Download pilot brief (.md)' })).toBeEnabled();
   await page.getByLabel('Components per day', { exact: true }).fill('-1');

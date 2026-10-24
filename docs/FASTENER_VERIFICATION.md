@@ -127,3 +127,55 @@ assets. The optional surface track, publication clearance, full accessibility
 audit, cross-browser coverage and authorized VPS/load/deployment checks remain
 outside this local fastener milestone. Do not describe the whole two-track release
 or factory readiness as complete.
+
+## Visitor simplicity — first iteration
+
+Verified 24 October 2026 after the original local-completion milestone. This
+continuation supersedes the earlier opening-page layout and latest browser timing
+measurements above; the saved evaluation and its 115 results are unchanged.
+
+The opening now uses one column: a short purpose, Start the inspection and See
+the results. Native About this demo details hold background and source limits.
+Duplicate navigation and reset actions are absent on the opening; reset remains
+available within the challenge/results. The public-data label, learning-demo
+limit, fixture warning where applicable, dataset attribution and licence remain.
+The results/challenge screens have not been redesigned in this iteration.
+
+- **27 web unit checks**, TypeScript/production build and **10 production Chromium
+  checks pass**. Pipeline code/data did not change; the earlier 437 pipeline pass
+  is historical evidence and was not rerun for this UI-only step.
+- The new genuine-bundle check verifies both entry paths, natural keyboard order,
+  disclosure Enter/Space operation, and focus on content after navigation.
+- Closed and expanded opening at **360/768/1440 px**: no horizontal overflow;
+  automated WCAG-tagged scans report **zero violations**. Existing real-image,
+  fixture, persistence/reset, export and privacy browser checks still pass.
+- Opening fetches **zero photographs**. First usable challenge under the existing
+  10 Mbps / 100 ms RTT profile: **2079.77 ms**;
+  one photograph requested. Scenario edits: **40.10 ms p95**.
+  Compressed built JS+CSS: **125,097 bytes**. These are local measurements.
+- Initial restricted checks could not launch child processes (spawn EPERM).
+  Identical checks passed with normal local process access.
+- Fresh single-agent review covered requirements, diff, evidence honesty and
+  unchanged saved results. Viewed desktop, phone and expanded-background
+  screenshots. **Zero dataset examples visually inspected** in this task.
+  This is a bounded layout review, not a user study or full accessibility audit.
+
+New records: [opening checks](../artifacts/ui-simplification/opening-checks.json),
+[desktop](../artifacts/ui-simplification/opening-1440.png),
+[phone](../artifacts/ui-simplification/opening-360.png),
+[tablet](../artifacts/ui-simplification/opening-768.png),
+[expanded background](../artifacts/ui-simplification/opening-about-expanded.png).
+Records/screenshots remain ignored local outputs. Existing browser-verification
+journey/startup records were regenerated; the two-picture manual-review count in
+that older journey record belongs to the original completion review above.
+
+VS Code's helper initialized, but two app-list attempts reported native pipe
+unavailable (OS error 2). Integrated-browser UI remains unverified. Actual checks
+ran in Chromium 156.0.8078.4. The existing dev server returned HTTP 200 at
+http://127.0.0.1:5174/. Open it using **Browser: Open Integrated Browser**
+(`workbench.action.browser.open`). Returning visitors can click the Inspection
+brand to see the new opening without clearing their progress.
+
+No Gemini/provider requests, paid access, publication or remote changes occurred.
+Next: simplify the results page so visitors see the key trade-off before detailed
+metrics and scenario inputs. Recruiter/hiring-manager usability remains unmeasured.
