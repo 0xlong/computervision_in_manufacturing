@@ -9,18 +9,28 @@ import { Lab } from './Lab';
 
 const answerLabel = (answer: string) => answer === 'looks_acceptable' ? 'Looks fine' : answer === 'needs_review' ? 'Needs checking' : 'Unsure — needs checking';
 
-function Assessment({ saved, imageId, reference, fixture }: { saved: SavedRun; imageId: string; reference: 'normal' | 'anomalous'; fixture: boolean }) {
+function AnswerCard({ title, value, detail, tone }: { title: string; value: string; detail: string; tone: 'match' | 'mismatch' | 'neutral' | 'reference' }) {
+  return <section className={`comparison-card ${tone}`} aria-label={title}><h2>{title}</h2><strong className="comparison-value">{value}</strong>
+    <p className="comparison-status"><span aria-hidden="true">{tone === 'match' ? '✓' : tone === 'mismatch' ? '!' : tone === 'reference' ? '◆' : '?'}</span>{detail}</p></section>;
+}
+
+function Assessment({ saved, imageId, reference }: { saved: SavedRun; imageId: string; reference: 'normal' | 'anomalous' }) {
   const prediction = saved.evidence.predictions.find(p => p.image_id === imageId)!;
   const attempt = prediction.attempts.at(-1)!;
   const response = prediction.status === 'success' ? attempt.response : null;
-  const takeaway = !response ? '' : response.decision === 'uncertain' ? 'AI was unsure and asked for checking.' : reference === 'anomalous'
-    ? response.decision === 'needs_review' ? 'AI flagged this defect.' : 'AI missed this defect.'
-    : response.decision === 'needs_review' ? 'AI flagged a part labelled normal.' : 'AI and the dataset label agree.';
-  return <section className="assessment"><h3>AI assessment</h3>
-    {response ? <><strong>{answerLabel(response.decision)}</strong><p className="assessment-takeaway">{takeaway}</p><p>{response.observation}</p></> :
-      <><strong>AI could not assess this — needs checking</strong><p>Recorded outcome: {prediction.status}; reason: {attempt.reason}.</p></>}
-    <details><summary>Assessment details</summary><p>{saved.evidence.run.model_id}. {fixture ? 'Invented test response.' : 'Authentic saved response.'} {attempt.latency_ms === null ? '' : `Recorded request time: ${(attempt.latency_ms / 1000).toFixed(2)} s.`}</p></details>
-  </section>;
+  const matches = response && ((response.decision === 'needs_review') === (reference === 'anomalous'));
+  const tone = !response || response.decision === 'uncertain' ? 'neutral' : matches ? 'match' : 'mismatch';
+  const detail = !response ? 'Human check needed' : response.decision === 'uncertain' ? 'Sent for checking' : matches ? 'Matches reference' : reference === 'anomalous' ? 'Missed defect' : 'False alarm';
+  return <AnswerCard title="AI assessment" value={!response ? 'No answer' : response.decision === 'uncertain' ? 'Unsure' : answerLabel(response.decision)} detail={detail} tone={tone} />;
+}
+
+function AssessmentDetails({ saved, imageId, fixture }: { saved: SavedRun; imageId: string; fixture: boolean }) {
+  const prediction = saved.evidence.predictions.find(p => p.image_id === imageId)!;
+  const attempt = prediction.attempts.at(-1)!;
+  return <details className="assessment"><summary>{prediction.status === 'success' ? 'Why AI said this' : 'Why no AI answer?'}</summary>
+    <p className="observation">{prediction.status === 'success' && attempt.response ? attempt.response.observation : `Recorded outcome: ${prediction.status}; reason: ${attempt.reason}.`}</p>
+    <p className="small">{saved.evidence.run.model_id}. {fixture ? 'Invented test response.' : 'Authentic saved response.'} {attempt.latency_ms === null ? '' : `Recorded request time: ${(attempt.latency_ms / 1000).toFixed(2)} s.`}</p>
+  </details>;
 }
 
 function Experience({ bundle }: { bundle: Bundle }) {
@@ -46,6 +56,10 @@ function Experience({ bundle }: { bundle: Bundle }) {
   const answered = state.answers[image.image_id], revealed = state.revealed.includes(image.image_id);
   useEffect(() => { if (revealed && state.screen === 'inspect') revealRef.current?.focus(); }, [revealed, image.image_id, state.screen]);
   const selected = bundle.runs.find(r => r.evidence.run.run_id === state.selectedRun)!;
+  const prediction = selected.evidence.predictions.find(p => p.image_id === image.image_id)!;
+  const aiAnswer = prediction.status === 'success' ? prediction.attempts.at(-1)!.response?.decision : null;
+  const agreement = !aiAnswer ? 'AI assessment unavailable' : aiAnswer === 'uncertain' ? 'AI is unsure — human check needed'
+    : aiAnswer !== answered ? 'You and AI disagree' : ((answered === 'needs_review') === (image.label === 'anomalous')) ? 'You and AI agree' : 'You and AI agree · reference differs';
   const count = Object.keys(state.answers).length;
   const correct = bundle.images.filter(i => state.answers[i.image_id] && ((state.answers[i.image_id] === 'needs_review') === (i.label === 'anomalous'))).length;
   const goImage = (id: string) => { if (id === state.selectedImage) return; setPictureReady(false); update({ selectedImage: id }); document.getElementById('inspection-title')?.focus(); window.scrollTo(0, 0); };
@@ -70,10 +84,14 @@ function Experience({ bundle }: { bundle: Bundle }) {
             {!revealed && <div className="answer-buttons">{(['looks_acceptable', 'needs_review'] as Answer[]).map(answer => <button key={answer} aria-pressed={answered === answer} disabled={!pictureReady} onClick={() => setState(s => answerImage(s, image.image_id, answer))}>{answerLabel(answer)}</button>)}</div>}
             {!revealed && <button className="primary reveal-button" disabled={!answered || !pictureReady} onClick={() => setState(s => revealImage(s, image.image_id))}>Reveal AI assessment</button>}
             {!revealed && <p className="small answer-hint">{answered ? 'Ready? Reveal the AI answer.' : 'Choose your answer first.'}</p>}
-            {revealed && <div className="reveal" ref={revealRef} tabIndex={-1} aria-label="Revealed assessment"><div className="answer-comparison"><section><h3>Your answer</h3><strong>{answerLabel(answered)}</strong></section><section><h3>Dataset reference</h3><strong>{image.label === 'normal' ? 'No defect labelled' : 'Defect labelled'}</strong></section></div>
-              <Assessment saved={selected} imageId={image.image_id} reference={image.label} fixture={bundle.execution === 'fixture'} />
+            {revealed && <div className="reveal" ref={revealRef} tabIndex={-1} aria-label="Revealed assessment"><p className="comparison-summary">{agreement}</p><div className="answer-comparison" role="group" aria-label="Answer comparison">
+              <AnswerCard title="Your answer" value={answerLabel(answered)} detail={((answered === 'needs_review') === (image.label === 'anomalous')) ? 'Matches reference' : 'Differs from reference'} tone={((answered === 'needs_review') === (image.label === 'anomalous')) ? 'match' : 'mismatch'} />
+              <Assessment saved={selected} imageId={image.image_id} reference={image.label} />
+              <AnswerCard title="Dataset reference" value={image.label === 'normal' ? 'Looks fine' : 'Needs checking'} detail={image.label === 'normal' ? 'No defect labelled' : 'Defect labelled'} tone="reference" />
+              </div>
+              <AssessmentDetails saved={selected} imageId={image.image_id} fixture={bundle.execution === 'fixture'} />
               <details><summary>More about these answers</summary><p>Your answer {((answered === 'needs_review') === (image.label === 'anomalous')) ? 'matches' : 'differs from'} the dataset reference. It stays fixed until you reset your progress. Dataset labels are learning references, not factory approval.</p>
-                {bundle.runs.length > 1 ? <><label>Saved model <select value={state.selectedRun} onChange={e => update({ selectedRun: e.target.value, comparisonRun: '' })}>{bundle.runs.map(r => <option key={r.evidence.run.run_id} value={r.evidence.run.run_id}>{r.evidence.run.model_id}</option>)}</select></label><label>Compare with <select value={state.comparisonRun} onChange={e => update({ comparisonRun: e.target.value })}><option value="">No comparison</option>{bundle.runs.filter(r => r.evidence.run.run_id !== state.selectedRun).map(r => <option key={r.evidence.run.run_id} value={r.evidence.run.run_id}>{r.evidence.run.model_id}</option>)}</select></label>{state.comparisonRun && <Assessment saved={bundle.runs.find(r => r.evidence.run.run_id === state.comparisonRun)!} imageId={image.image_id} reference={image.label} fixture={bundle.execution === 'fixture'} />}</> : <p>Model comparison is unavailable: one qualifying run.</p>}
+                {bundle.runs.length > 1 ? <><label>Saved model <select value={state.selectedRun} onChange={e => update({ selectedRun: e.target.value, comparisonRun: '' })}>{bundle.runs.map(r => <option key={r.evidence.run.run_id} value={r.evidence.run.run_id}>{r.evidence.run.model_id}</option>)}</select></label><label>Compare with <select value={state.comparisonRun} onChange={e => update({ comparisonRun: e.target.value })}><option value="">No comparison</option>{bundle.runs.filter(r => r.evidence.run.run_id !== state.selectedRun).map(r => <option key={r.evidence.run.run_id} value={r.evidence.run.run_id}>{r.evidence.run.model_id}</option>)}</select></label>{state.comparisonRun && <><Assessment saved={bundle.runs.find(r => r.evidence.run.run_id === state.comparisonRun)!} imageId={image.image_id} reference={image.label} /><AssessmentDetails saved={bundle.runs.find(r => r.evidence.run.run_id === state.comparisonRun)!} imageId={image.image_id} fixture={bundle.execution === 'fixture'} /></>}</> : <p>Model comparison is unavailable: one qualifying run.</p>}
                 <p>AI heatmaps and adjustable sensitivity are unavailable. These are saved answers; your visit makes no AI requests.</p></details>
             </div>}
           </div></div>

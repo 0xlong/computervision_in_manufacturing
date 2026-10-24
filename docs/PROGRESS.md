@@ -2,6 +2,54 @@
 
 Updated: 24 October 2026. This file records project state, not promised implementation success.
 
+## Clear answer comparison (24 October 2026)
+
+Owner: one coordinator on `main`; no workers. Parent US-02/09; FR-REVEAL-001–003,
+FR-INSPECT-002/004 and T-ACCESS. Depends on genuine saved answers and fixed
+visitor judgments. Allowed: App/styles, browser checks, verification and this section.
+Task: equally sized Your answer / AI assessment / Dataset reference cards with
+consistent decision wording, clear agreement/mismatch text, icons and contrast;
+compact aligned rows on mobile. Keep unsure/failure outcomes distinct and source
+labels explicit. Keep observations available without crowding the comparison.
+Completion: saved and fixture agreement/error cases, gating/persistence, responsive
+keyboard/accessibility checks, bounded screenshots, diff review and focused commit.
+Status: Done locally. Three equal desktop cards now compare Your answer, AI
+assessment and Dataset reference using the same Looks fine / Needs checking
+wording, large answers and visible status text/icons. Green means matching the
+reference, amber a mismatch; neither color replaces the written status. Mobile
+uses aligned compact rows. An agreement heading distinguishes matching answers
+from matching the reference, including when visitor and AI agree but are wrong.
+Uncertain and unavailable AI outputs stay neutral, not matches or misses.
+Dataset labels remain explicitly labelled, not presented as factory disposition.
+Saved observations/identity/time are unchanged under Why AI said this (or failure
+details). Reveal gating, fixed judgments, stored progress and exports are unchanged.
+
+Checks: TypeScript/production build and all 10 production Chromium checks pass.
+Genuine cases assert real misses, false alarms and correct agreement; generated
+fixture cases assert disagreement, both answers wrong, uncertainty and unavailable
+responses. Opened explanations match the verbatim saved observations. At
+360/768/1440 px the genuine comparison has no horizontal overflow or automated
+WCAG-tagged violations. Desktop/tablet card top edges, widths and heights match;
+existing keyboard focus, reveal, refresh/reset, error/export/privacy checks pass.
+Latest startup: 1945.66 ms; scenario p95: 34.90 ms;
+gzip JS+CSS: 125,678 bytes. No pipeline/calculation files changed or tests rerun.
+
+Fresh single-agent diff review covered categorical/unknown outcomes, colour plus
+text/icon cues, explicit dataset labels, evidence honesty and unchanged state.
+Viewed desktop/phone comparison crops; zero source photographs visually inspected.
+Screenshot review caught an old reference margin shrinking the third card; removed
+that unused style, added geometry assertions and reran all browser checks.
+[Verification](FASTENER_VERIFICATION.md#clear-answer-comparison) records screenshots.
+VS Code UI remains unverified after the earlier helper failure; actual checks use
+Chromium. Existing http://127.0.0.1:5174/ returned HTTP 200. Open with Browser:
+Open Integrated Browser (`workbench.action.browser.open`).
+
+Focused checkpoint: Make visitor AI and reference answers easy to compare. Preserve
+all earlier uncommitted work; stage only this new progress section. No provider
+request, paid access, dependency, publication or remote change. Next: visitor
+feedback on the comparison; playback remains a proposal. No screen-reader trial,
+recruiter study or complete accessibility certification is claimed.
+
 ## Clear manufacturing title and no footer (24 October 2026)
 
 Owner: one coordinator on `main`; no workers. Parent US-01/09, FR-START-001,

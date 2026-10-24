@@ -278,3 +278,45 @@ http://127.0.0.1:5174/ with **Browser: Open Integrated Browser**
 (`workbench.action.browser.open`) and click the header brand for the opening.
 No new inference, dependency, paid access, publication or remote change. The
 proposed saved-result playback mode remains a future, unimplemented idea.
+
+## Clear answer comparison
+
+Verified 24 October 2026. Reveal now groups **Your answer / AI assessment /
+Dataset reference** into three equal desktop cards and compact aligned mobile
+rows. Decision wording is consistent (Looks fine / Needs checking). Text and
+symbols expose reference matches, misses and false alarms alongside contrast
+and colour. A headline states whether visitor and AI agree, explicitly warning
+when both agree but differ from the reference. Unsure and unavailable assessments
+are neutral and require human checking; neither becomes a successful prediction.
+Dataset labels remain explicit; these are learning references, not factory approval.
+Verbatim saved observations/model/timing remain under Why AI said this. No new
+prediction, state contract, scenario calculation or export change was introduced.
+
+TypeScript/production build and all **10 production Chromium checks pass**. Genuine
+cases assert three card identities/values, real miss, false alarm and correct
+agreement. Fixture cases cover disagreement, both answers wrong, uncertainty,
+refusal and invalid output. Explanation disclosure opens to the exact saved text.
+At **360/768/1440 px**, real revealed comparisons have no horizontal overflow and
+**zero automated WCAG-tagged violations**; desktop/tablet geometry checks assert
+equal top positions, widths and heights. Existing gating/locked judgment, focus,
+zoom, state/reset, error handling, export/configuration downloads and privacy pass.
+Latest local startup: **1945.66 ms**; scenario p95: **34.90 ms**;
+compressed JS+CSS: **125,678 bytes**. Offline pipeline/pure calculation checks were
+not rerun: those files did not change. Browser records were regenerated.
+
+Fresh single-agent review checked diff, honest outcomes, labels, accessible status
+cues and preserved evidence/state. Visually reviewed [desktop comparison](../artifacts/ui-comparison/comparison-1440.png)
+and [phone comparison](../artifacts/ui-comparison/comparison-360.png); re-viewed
+corrected desktop. [Tablet comparison](../artifacts/ui-comparison/comparison-768.png)
+is also recorded. **Zero source photographs visually opened**; crops contain
+answer UI only. An obsolete reference margin initially made one card shorter;
+screenshot review caught it, the style was removed and geometry assertions plus
+the full browser suite reran successfully. No accessibility certification,
+screen-reader trial or nontechnical visitor study is claimed.
+
+VS Code integrated-browser UI remains unverified after the earlier helper failure;
+actual checks use Chromium 156.0.8078.4. Existing http://127.0.0.1:5174/ returned
+HTTP 200. Open it using **Browser: Open Integrated Browser**
+(`workbench.action.browser.open`), answer a picture, then reveal.
+Saved results and 115-image evaluation remain unchanged. No new provider requests,
+paid access, dependencies, publication or remote changes. Playback remains a proposal.

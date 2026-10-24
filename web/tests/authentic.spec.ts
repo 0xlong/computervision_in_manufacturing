@@ -89,8 +89,42 @@ test('authentic fastener inspection to brief, responsive evidence and private st
     await expect(page.getByLabel('Revealed assessment', { exact: true })).toBeFocused();
     await expect(page.getByText('AI assessment', { exact: true })).toBeVisible();
     const response = b.runs[0].evidence.predictions.find(p => p.image_id === b.challenge.image_ids[n])!.attempts.at(-1)!.response!;
-    await expect(page.locator('.assessment > p').last()).toHaveText(response.observation);
-    if (n === 1) await expect(page.getByText('AI missed this defect.', { exact: true })).toBeVisible();
+    await expect(page.getByRole('group', { name: 'Answer comparison' }).getByRole('region')).toHaveCount(3);
+    const yourCard = page.getByRole('region', { name: 'Your answer', exact: true });
+    const aiCard = page.getByRole('region', { name: 'AI assessment', exact: true });
+    const referenceCard = page.getByRole('region', { name: 'Dataset reference', exact: true });
+    await expect(yourCard.locator('.comparison-value')).toHaveText(n % 2 ? 'Needs checking' : 'Looks fine');
+    await expect(referenceCard.locator('.comparison-value')).toHaveText(b.images.find(i => i.image_id === b.challenge.image_ids[n])!.label === 'normal' ? 'Looks fine' : 'Needs checking');
+    await expect(aiCard.locator('.comparison-value')).toHaveText(response.decision === 'looks_acceptable' ? 'Looks fine' : response.decision === 'needs_review' ? 'Needs checking' : 'Unsure');
+    await page.getByText('Why AI said this', { exact: true }).click();
+    await expect(page.locator('.assessment .observation')).toHaveText(response.observation);
+    await expect(page.locator('.assessment .observation')).toBeVisible();
+    await page.getByText('Why AI said this', { exact: true }).click();
+    if (n === 1) {
+      await expect(aiCard).toContainText('Missed defect');
+      await expect(page.getByText('You and AI disagree', { exact: true })).toBeVisible();
+      await mkdir(resolve('../artifacts/ui-comparison'), { recursive: true });
+      for (const width of [360, 768, 1440]) {
+        await page.setViewportSize({ width, height: 1000 });
+        expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+        if (width >= 768) {
+          const boxes = await Promise.all([yourCard, aiCard, referenceCard].map(card => card.boundingBox()));
+          for (const box of boxes) {
+            expect(box!.y).toBeCloseTo(boxes[0]!.y, 0);
+            expect(box!.height).toBeCloseTo(boxes[0]!.height, 0);
+            expect(box!.width).toBeCloseTo(boxes[0]!.width, 0);
+          }
+        }
+        expect((await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
+        await page.locator('.reveal').screenshot({ path: resolve(`../artifacts/ui-comparison/comparison-${width}.png`) });
+      }
+    }
+    if (n === 0) await expect(aiCard).toContainText('False alarm');
+    if (n === 3) {
+      await expect(page.getByText('You and AI agree', { exact: true })).toBeVisible();
+      await expect(yourCard).toContainText('Matches reference');
+      await expect(aiCard).toContainText('Matches reference');
+    }
     if (n === 1) {
       await page.getByRole('button', { name: 'Show reference outline' }).click();
       await expect(page.locator('.reference-mask')).toBeVisible();

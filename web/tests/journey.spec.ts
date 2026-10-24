@@ -30,13 +30,38 @@ test('five answers, gated reveal, zoom, locked answers, refresh, export and rese
   await page.getByRole('button', { name: 'Zoom in', exact: true }).click();
   await expect(page.getByText('125%', { exact: true })).toBeVisible();
   for (let n = 0; n < 5; n++) {
-    const answer = page.getByRole('button', { name: n % 2 ? 'Needs checking' : 'Looks fine', exact: true });
+    const answer = page.getByRole('button', { name: n === 1 ? 'Looks fine' : n % 2 ? 'Needs checking' : 'Looks fine', exact: true });
     await expect(answer).toBeEnabled(); await answer.click();
     await page.getByRole('button', { name: 'Reveal AI assessment' }).click();
     await expect(page.getByText('Dataset reference', { exact: true })).toBeVisible();
     await expect(page.locator('.answer-buttons')).toHaveCount(0);
     await expect(page.getByLabel('Revealed assessment', { exact: true })).toBeFocused();
     await expect(page.getByText('AI assessment', { exact: true })).toBeVisible();
+    const yourCard = page.getByRole('region', { name: 'Your answer', exact: true });
+    const aiCard = page.getByRole('region', { name: 'AI assessment', exact: true });
+    if (n === 0) {
+      await expect(page.getByText('You and AI disagree', { exact: true })).toBeVisible();
+      await expect(aiCard).toContainText('False alarm');
+    }
+    if (n === 1) {
+      await expect(page.getByText('You and AI agree · reference differs', { exact: true })).toBeVisible();
+      await expect(yourCard).toContainText('Differs from reference');
+      await expect(aiCard).toContainText('Missed defect');
+    }
+    if (n === 2 || n === 4) {
+      await expect(aiCard.locator('.comparison-value')).toHaveText('No answer');
+      await expect(aiCard).toContainText('Human check needed');
+      await expect(aiCard).toHaveClass(/neutral/);
+      await expect(page.getByText('AI assessment unavailable', { exact: true })).toBeVisible();
+      await page.getByText('Why no AI answer?', { exact: true }).click();
+      await expect(page.locator('.observation')).toContainText(n === 2 ? 'refusal' : 'invalid_response');
+    }
+    if (n === 3) {
+      await expect(aiCard.locator('.comparison-value')).toHaveText('Unsure');
+      await expect(aiCard).toContainText('Sent for checking');
+      await expect(aiCard).toHaveClass(/neutral/);
+      await expect(page.getByText('AI is unsure — human check needed', { exact: true })).toBeVisible();
+    }
     if (n < 4) await page.getByRole('button', { name: 'Next →', exact: true }).click();
   }
   await expect(page.getByRole('heading', { name: 'Your five-picture summary' })).toBeVisible();
@@ -119,6 +144,7 @@ for (const width of [360, 768, 1440]) test(`keyboard, accessibility and layout a
   await page.getByRole('button', { name: 'Looks fine', exact: true }).focus(); await page.keyboard.press('Enter');
   await page.getByRole('button', { name: 'Reveal AI assessment' }).focus(); await page.keyboard.press('Enter');
   await expect(page.getByText('Dataset reference', { exact: true })).toBeVisible();
+  expect((await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
   await page.getByRole('button', { name: 'Results', exact: true }).click();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   expect((await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
