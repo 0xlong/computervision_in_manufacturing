@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "purpose": "normal_preparation_trial_not_defect_evaluation",
+  "model_ids": ["gemini-3.8-flash", "gemini-3.5-flash-lite"],
+  "reference_count": 1,
+  "probe_count": 2,
+  "max_requests_per_model": 6,
+  "reserved_input_tokens_per_request": 16000,
+  "max_output_tokens": 2048,
+  "max_runtime_seconds": 600,
+  "minimum_interval_seconds": 65,
+  "thinking_level": "low",
+  "prompt": "Inspect the candidate metal nut image against the acceptable reference image. Decide looks_acceptable, needs_review, or uncertain based only on visible appearance. Use uncertain when detail is insufficient. Give one concise observation about visible evidence. Do not infer root cause, severity, defect probability, or factory acceptance. The reference is a normal public-dataset example; it is not a validated factory standard. Return only the requested JSON object."
+}

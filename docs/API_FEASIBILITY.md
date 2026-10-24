@@ -1,5 +1,22 @@
 # Free API feasibility — 24 October 2026
 
+## User confirmation and request runner — latest update
+
+The user has now supplied the AI Studio limits screenshot and explicitly confirmed
+that the Gemini limits are free. Do not ask them to reconfirm Free tier. The
+recorded allowances are 5 RPM / 250,000 input TPM / 20 RPD for 3.8 Flash and
+15 RPM / 250,000 input TPM / 500 RPD for 3.5 Flash-Lite. Usage was zero at capture.
+This is user-provided account evidence, not an independent login; current remaining
+allowance and validity still need to be recorded when executing. The user chose
+Gemini only for the next work. The screenshot does not resolve the separate
+terms/dataset-use question below.
+
+A bounded serial runner and two real-data **offline plans** now exist. Preparation
+does not read the key or send requests. Live generation still requires the saved
+access/use evidence contract. See [trial instructions and limits](GEMINI_TRIAL.md).
+Older statements below that project quotas are wholly unavailable describe the
+earlier discovery stage; no generation or defect-quality result exists yet.
+
 Published Gemini documentation supports a short list of image-capable candidates.
 Actual project entitlement, quotas, response speed and inspection usefulness are
 **not verified**. No model request or image upload was made. The website still

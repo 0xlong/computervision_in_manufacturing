@@ -2,6 +2,68 @@
 
 Updated: 24 October 2026. This file records project state, not promised implementation success.
 
+## Gemini runner and user-confirmed free limits — latest continuation
+
+The user explicitly confirmed the screenshot's Gemini limits are free and asked
+to build. Accept that account confirmation; do not ask again. Stay with Gemini.
+Recorded 3.8 Flash: 5 RPM / 250,000 input TPM / 20 RPD; 3.5 Flash-Lite:
+15 RPM / 250,000 input TPM / 500 RPD. Screenshot showed zero usage at capture.
+This is user-supplied evidence, not a fresh authenticated account audit. No key
+contents were read/displayed during this task. Earlier edits remain preserved.
+
+Owner: single coordinator on `main`; parent EN-03, supports US-02/03/06 and
+API-INPUT/OUTPUT/RUN/QUOTA/RETRY/AUDIT. Shared saved-answer schema stays unchanged.
+
+| Task | Dependencies and allowed files | Observable check | Status |
+| --- | --- | --- | --- |
+| Build serial Gemini transport and durable runner | Existing API contract, clean fitting inputs, current official REST docs; new runner/transport, bounded config/schema and generated tests | Fixed host/header POST, process deadline, bounded retries, quota pause, access stop, pre-submit journal, restart reuse and unknown-outcome refusal | Done; 64 new offline tests pass within the full suite |
+| Prepare a small first trial | Existing normal-only package and hash checks; new trial guide, scoped API/model notes and this progress section | Same reference/two probes across models; exact request/prompt/image identities, budgets; no evaluation reads or network | Both real-data offline plans prepared; zero successes/attempts |
+| Verify combined pipeline and review | Existing full offline suite, workspace/docs/diff checks | Existing preparation/contracts stay valid; scope/evidence claims reviewed | Done; 399 offline tests, workspace checks, 49 local documentation links/anchors/fences and whitespace checks passed |
+| Execute authentic trial | Free account confirmation accepted; current allowance and separate terms/data-use evidence before sending | Saved authentic structured answers, versions, timings, usage/failures within frozen bounds | Pending use prerequisite; not executed |
+
+Built `pipeline/run_gemini_trial.py` and `pipeline/gemini_transport.py`,
+`configs/gemini-trial.v1.json`, `schemas/gemini-trial.v1.schema.json` and generated
+integration/transport tests. No dependency, source picture, data split, frontend,
+remote infrastructure or billing change. Zero real images were visually opened.
+The website remains the starter page. No genuine AI assessment has been produced.
+
+The runner selects one reference and two probes from hash-checked normal fitting
+data only. No evaluator/test index is read. A single child owns a request; a hard
+60-second process timeout includes response reads. Requests start at least 65 s
+apart; a live-provider OS lock prevents concurrent instances. At most six requests
+per model including retries, with 16,000 planned input tokens/request and 2,048
+output-token cap. Unknown submissions are flushed before sending; successful
+records are reused; quota pauses and auth stops persist. Failed/unknown attempts
+remain visible. See [complete bounds, commands and limitations](GEMINI_TRIAL.md).
+
+Verification: 64 new offline tests and all 399 pipeline tests pass, including a real generated child
+killed at the deadline, exclusive OS locking, fake HTTP/structured outputs, disk
+failure before submission, crash/restart refusal, retry/backoff, quota recovery,
+stale access, changed pixels, request-code fingerprints and default offline CLI. The first restricted run hit
+the known pytest temporary-folder permission failure; unchanged tests passed with
+normal local file access. Fresh review corrected retry guidance on terminal HTTP
+errors and unknown block-reason classification before the passing focused suite.
+Final review also bound request-construction/transport source fingerprints to run
+identity, followed by the final full 399-test pass (31.69 s). Timing is explicitly
+deadline-capped, not represented as complete end-to-end pipeline latency.
+Both candidate offline commands passed using the actual normal-input package;
+no key access, generation or upload occurred.
+Superseded offline-only snapshots created before the source-fingerprint addition
+remain preserved with no attempts; current plans include implementation hashes.
+
+Checkpoint scope includes the previously pending metadata checker and its tests,
+unchanged, because the new transport reuses that fixed-host/key-loader module.
+Other earlier mixed documentation/specification/workspace edits remain excluded.
+This checkout is not a clean release snapshot; existing spec relocation remains
+pending and the website has not been browser-tested in this backend-only task.
+
+Next: investigate the remaining licensed-data/
+provider-use condition independently, without asking for Free tier again. Do not
+manufacture `terms_and_data_use_verified` or a live access record. Once recorded,
+run the fixed trial, then qualify/freeze inputs/models, evaluate complete test
+membership and connect the five-picture challenge. All app stories/Gate 1 remain
+incomplete. Older next-action sections below are historical where they conflict.
+
 ## Saved API answer contract — 24 October 2026
 
 Owner: one agent on `main`; parent EN-03, supports US-02/03/06 and Gate 1.

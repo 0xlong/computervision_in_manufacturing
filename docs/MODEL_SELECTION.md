@@ -30,8 +30,10 @@ recommends `gemini-3.8-flash` for the first bounded trial and
 free input/output for both and documents image input/structured output. This
 supersedes the earlier 3.5/3.1 Lite trial priority. No model is tested or finally
 selected; a general capability description does not establish inspection quality.
-Final model IDs/count, acceptable time budgets, project free access,
-quotas and actual response times remain unverified. No specific API is claimed
+Final model IDs/count and actual response times remain unverified. The user has
+confirmed free Gemini access and supplied model quotas; do not ask again. A
+[bounded preparation trial](GEMINI_TRIAL.md) now fixes initial sample/configuration
+and request/time budgets; it has been prepared offline, not executed. No API is claimed
 to be the fastest. API round-trip time, one-time local fitting time and saved-page
 loading time are different measurements; the local timeout does not prove API
 superiority. No numerical speed target is invented from this request.
@@ -49,9 +51,9 @@ Use one agent. Avoid another long local-model experiment as a prerequisite for
 API discovery. Any access question should identify the exact missing evidence;
 do not ask the user to paste credentials into chat.
 
-The public-source discovery step is complete; account verification is pending.
-The active-quota page requires sign-in, and actual project tier/limits are not
-available here. Regional terms and dataset/provider-use suitability also need a
+The public-source discovery step is complete, and user-provided free-tier/quota
+confirmation is recorded in the trial guide. Regional terms and dataset/provider-use
+suitability still need a
 recorded conclusion for the offline-generation/static-site arrangement. See the
 [dated findings and next tasks](API_FEASIBILITY.md). Keep all provider calls
 disabled until the applicable prerequisites are verified.

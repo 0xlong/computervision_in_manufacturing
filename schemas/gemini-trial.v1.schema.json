@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-inspection-pilot-lab:gemini-trial:1",
+  "title": "Bounded normal-preparation Gemini trial",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "purpose", "model_ids", "reference_count", "probe_count", "max_requests_per_model", "reserved_input_tokens_per_request", "max_output_tokens", "max_runtime_seconds", "minimum_interval_seconds", "thinking_level", "prompt"],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 1},
+    "purpose": {"const": "normal_preparation_trial_not_defect_evaluation"},
+    "model_ids": {"const": ["gemini-3.8-flash", "gemini-3.5-flash-lite"]},
+    "reference_count": {"type": "integer", "const": 1},
+    "probe_count": {"type": "integer", "const": 2},
+    "max_requests_per_model": {"type": "integer", "const": 6},
+    "reserved_input_tokens_per_request": {"type": "integer", "const": 16000},
+    "max_output_tokens": {"type": "integer", "const": 2048},
+    "max_runtime_seconds": {"type": "integer", "const": 600},
+    "minimum_interval_seconds": {"type": "integer", "const": 65},
+    "thinking_level": {"const": "low"},
+    "prompt": {"type": "string", "minLength": 1, "maxLength": 1000}
+  }
+}
