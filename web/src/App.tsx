@@ -7,15 +7,19 @@ import { scenarioErrors } from './engine';
 import { Picture } from './Picture';
 import { Lab } from './Lab';
 
-const answerLabel = (answer: string) => answer === 'looks_acceptable' ? 'Looks acceptable' : answer === 'needs_review' ? 'Needs further inspection' : 'Uncertain — route to review';
+const answerLabel = (answer: string) => answer === 'looks_acceptable' ? 'Looks fine' : answer === 'needs_review' ? 'Needs checking' : 'Unsure — needs checking';
 
-function Assessment({ saved, imageId, fixture }: { saved: SavedRun; imageId: string; fixture: boolean }) {
+function Assessment({ saved, imageId, reference, fixture }: { saved: SavedRun; imageId: string; reference: 'normal' | 'anomalous'; fixture: boolean }) {
   const prediction = saved.evidence.predictions.find(p => p.image_id === imageId)!;
   const attempt = prediction.attempts.at(-1)!;
-  return <section className="assessment"><p className="eyebrow">Saved model assessment</p><h3>{saved.evidence.run.model_id}</h3>
-    {prediction.status === 'success' && attempt.response ? <><strong>{answerLabel(attempt.response.decision)}</strong><p>{attempt.response.observation}</p></> :
-      <><strong>Assessment unavailable — human review required</strong><p>Recorded outcome: {prediction.status}; reason: {attempt.reason}.</p></>}
-    <p className="small">{fixture ? 'Invented test response.' : 'Authentic saved response.'} No request was made by your visit. {attempt.latency_ms === null ? '' : `Recorded request time: ${(attempt.latency_ms / 1000).toFixed(2)} s.`}</p>
+  const response = prediction.status === 'success' ? attempt.response : null;
+  const takeaway = !response ? '' : response.decision === 'uncertain' ? 'AI was unsure and asked for checking.' : reference === 'anomalous'
+    ? response.decision === 'needs_review' ? 'AI flagged this defect.' : 'AI missed this defect.'
+    : response.decision === 'needs_review' ? 'AI flagged a part labelled normal.' : 'AI and the dataset label agree.';
+  return <section className="assessment"><h3>AI assessment</h3>
+    {response ? <><strong>{answerLabel(response.decision)}</strong><p className="assessment-takeaway">{takeaway}</p><p>{response.observation}</p></> :
+      <><strong>AI could not assess this — needs checking</strong><p>Recorded outcome: {prediction.status}; reason: {attempt.reason}.</p></>}
+    <details><summary>Assessment details</summary><p>{saved.evidence.run.model_id}. {fixture ? 'Invented test response.' : 'Authentic saved response.'} {attempt.latency_ms === null ? '' : `Recorded request time: ${(attempt.latency_ms / 1000).toFixed(2)} s.`}</p></details>
   </section>;
 }
 
@@ -27,6 +31,7 @@ function Experience({ bundle }: { bundle: Bundle }) {
   const [state, setState] = useState(loaded.state), [notice, setNotice] = useState(loaded.notice);
   const [persistent, setPersistent] = useState(loaded.persistent), [confirmReset, setConfirmReset] = useState('');
   const [pictureReady, setPictureReady] = useState(false), [resetEpoch, setResetEpoch] = useState(0);
+  const revealRef = useRef<HTMLDivElement>(null);
   const lastValidScenario = useRef({ ...loaded.state.scenario });
   const readyCallback = useCallback((ready: boolean) => setPictureReady(ready), []);
   const update = (patch: Partial<VisitorState>) => setState(s => ({ ...s, ...patch }));
@@ -39,52 +44,51 @@ function Experience({ bundle }: { bundle: Bundle }) {
   const index = bundle.challenge.image_ids.indexOf(state.selectedImage);
   const image = bundle.images.find(i => i.image_id === state.selectedImage)!;
   const answered = state.answers[image.image_id], revealed = state.revealed.includes(image.image_id);
+  useEffect(() => { if (revealed && state.screen === 'inspect') revealRef.current?.focus(); }, [revealed, image.image_id, state.screen]);
   const selected = bundle.runs.find(r => r.evidence.run.run_id === state.selectedRun)!;
   const count = Object.keys(state.answers).length;
   const correct = bundle.images.filter(i => state.answers[i.image_id] && ((state.answers[i.image_id] === 'needs_review') === (i.label === 'anomalous'))).length;
-  const goImage = (id: string) => { if (id === state.selectedImage) return; setPictureReady(false); update({ selectedImage: id }); };
+  const goImage = (id: string) => { if (id === state.selectedImage) return; setPictureReady(false); update({ selectedImage: id }); document.getElementById('inspection-title')?.focus(); window.scrollTo(0, 0); };
   const goScreen = (screen: VisitorState['screen']) => { update({ screen }); document.getElementById('main')?.focus(); window.scrollTo(0, 0); };
   function reset() { setState(freshState(bundle)); setResetEpoch(n => n + 1); setConfirmReset(''); setNotice('Fastener progress has been reset.'); }
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
     <header className="site-header"><a href="#main" className="brand" onClick={() => goScreen('start')}><span aria-hidden="true" className="brand-mark">◈</span><span>Inspection<span className="brand-light"> / Pilot Lab</span></span></a>
-      {state.screen !== 'start' && <nav aria-label="Main navigation"><button aria-current={state.screen === 'inspect' ? 'page' : undefined} onClick={() => goScreen('inspect')}>Challenge</button><button aria-current={state.screen === 'lab' ? 'page' : undefined} onClick={() => goScreen('lab')}>Evidence &amp; pilot</button></nav>}</header>
+      {state.screen !== 'start' && <nav aria-label="Main navigation"><button aria-current={state.screen === 'inspect' ? 'page' : undefined} onClick={() => goScreen('inspect')}>Try it</button><button aria-current={state.screen === 'lab' ? 'page' : undefined} onClick={() => goScreen('lab')}>Results</button></nav>}</header>
     <main id="main" tabIndex={-1}>
-      <div className="context-bar"><span><span className="live-dot" aria-hidden="true" />Public-data prototype · Fasteners</span>{state.screen !== 'start' && <span>Saved evidence · Local progress</span>}</div>
-      {(state.screen !== 'start' || bundle.execution === 'fixture') && <p className="development-notice">{bundle.execution === 'fixture' ? 'TEST EXAMPLES ONLY — invented model answers; not real AI evidence.' : 'Local development preview · Authentic Gemini responses; dataset provenance limitations remain. Not cleared for publication.'}</p>}
+      <div className="context-bar"><span>Public-data demo</span></div>
+      {bundle.execution === 'fixture' && <p className="development-notice">TEST EXAMPLES ONLY — invented model answers; not real AI evidence.</p>}
       {notice && <p className="notice" role="status">{notice}</p>}
-      {state.screen === 'start' && <section className="hero"><p className="eyebrow">Try AI quality inspection</p><h1>Can AI help spot<br /><em>faulty parts?</em></h1><p className="hero-copy">Check five pictures of metal nuts, then compare your answers with AI. See where it helps and where a person still needs to check.</p>
-        <div className="hero-actions"><button className="primary" onClick={() => goScreen('inspect')}>Start the inspection ↗</button><button className="text-button" onClick={() => goScreen('lab')}>See the results →</button></div><p className="small">No setup needed. Your answers stay in this browser.</p>
-        <p className="prototype-note">A learning demo using public images, not proof of factory performance.</p>
-        <details className="about-demo"><summary>About this demo</summary>
-          <p>Try five selected examples, compare your answers, then explore review workload and download a pilot brief.</p>
-          <p>{bundle.execution === 'fixture' ? 'This test preview uses invented AI answers.' : `The AI answers are saved Gemini responses from all ${selected.report.expected} test images. Your visit makes no AI requests.`} The five challenge pictures are teaching examples, not a representative factory sample.</p>
-          <p>Local development preview. Dataset source records have limitations; this preview is not cleared for publication. Public fastener images stand in for manufacturing tasks. No manufacturer affiliation or factory approval is implied.</p>
-          <p>Dataset: {bundle.dataset.dataset_id} / {bundle.dataset.category}. The optional metal-surface track is not available in this preview.</p>
-        </details></section>}
+      {state.screen === 'start' && <section className="hero"><h1>Can you spot<br /><em>the faulty part?</em></h1><p className="hero-copy">Check five pictures. Make your call. Reveal what AI thinks.</p>
+        <div className="hero-actions"><button className="primary" onClick={() => goScreen('inspect')}>Try it →</button><button className="text-button" onClick={() => goScreen('lab')}>See the results →</button></div>
+        <p className="prototype-note">A public-image demo, not factory validation.</p></section>}
       {state.screen === 'inspect' && <>
-        <section className="section-heading"><p className="eyebrow">01 / Make your own call</p><h1>Look first. Reveal second.</h1><p>Is the part visually acceptable, or would you ask a person to look more closely?</p></section>
+        <section className="section-heading"><h1 id="inspection-title" tabIndex={-1}>Does this part need checking?</h1></section>
         <div className="challenge-progress"><strong>Image {index + 1} of 5</strong><span>{count} of 5 answered</span><progress max={5} value={count} aria-label="Challenge answers completed" /></div>
         <div className="inspection-layout"><Picture key={`${image.image_id}-${resetEpoch}`} image={image} revealed={revealed} onReady={readyCallback} />
-          <div className="judgment-panel"><p className="eyebrow">Your judgment</p><h2>What do you see?</h2><p>Use the zoom controls to inspect the surface and shape. There is no time limit.</p>
-            <div className="answer-buttons">{(['looks_acceptable', 'needs_review'] as Answer[]).map(answer => <button key={answer} aria-pressed={answered === answer} disabled={revealed || !pictureReady} onClick={() => setState(s => answerImage(s, image.image_id, answer))}>{answerLabel(answer)}</button>)}</div>
-            {answered && <p className="answer-status">Your answer: <strong>{answerLabel(answered)}</strong></p>}
-            {!revealed && <button className="primary reveal-button" disabled={!answered || !pictureReady} onClick={() => setState(s => revealImage(s, image.image_id))}>Reveal evidence</button>}
-            <p className="small">{revealed ? 'Your revealed answer is fixed until you reset this track.' : 'You can change your answer before reveal. AI answers and reference labels stay hidden until then.'}</p>
-            {revealed && <div className="reveal" aria-live="polite"><section className="reference"><p className="eyebrow">Dataset reference</p><strong>{image.label === 'normal' ? 'Normal example' : 'Anomalous example'}</strong><p>{((answered === 'needs_review') === (image.label === 'anomalous')) ? 'Your answer matches the reference.' : 'Your answer differs from the reference.'} The public annotation is a learning reference, not a factory disposition.</p></section>
-              <label>Saved model <select value={state.selectedRun} onChange={e => update({ selectedRun: e.target.value, comparisonRun: '' })}>{bundle.runs.map(r => <option key={r.evidence.run.run_id} value={r.evidence.run.run_id}>{r.evidence.run.model_id}</option>)}</select></label>
-              <Assessment saved={selected} imageId={image.image_id} fixture={bundle.execution === 'fixture'} />
-              {bundle.runs.length > 1 ? <><label>Compare with <select value={state.comparisonRun} onChange={e => update({ comparisonRun: e.target.value })}><option value="">No comparison</option>{bundle.runs.filter(r => r.evidence.run.run_id !== state.selectedRun).map(r => <option key={r.evidence.run.run_id} value={r.evidence.run.run_id}>{r.evidence.run.model_id}</option>)}</select></label>{state.comparisonRun && <Assessment saved={bundle.runs.find(r => r.evidence.run.run_id === state.comparisonRun)!} imageId={image.image_id} fixture={bundle.execution === 'fixture'} />}</> : <p className="small">Model comparison is unavailable: one qualifying run. API heatmaps and adjustable sensitivity are unavailable.</p>}
+          <div className="judgment-panel">
+            {!revealed && <div className="answer-buttons">{(['looks_acceptable', 'needs_review'] as Answer[]).map(answer => <button key={answer} aria-pressed={answered === answer} disabled={!pictureReady} onClick={() => setState(s => answerImage(s, image.image_id, answer))}>{answerLabel(answer)}</button>)}</div>}
+            {!revealed && <button className="primary reveal-button" disabled={!answered || !pictureReady} onClick={() => setState(s => revealImage(s, image.image_id))}>Reveal AI assessment</button>}
+            {!revealed && <p className="small answer-hint">{answered ? 'Ready? Reveal the AI answer.' : 'Choose your answer first.'}</p>}
+            {revealed && <div className="reveal" ref={revealRef} tabIndex={-1} aria-label="Revealed assessment"><div className="answer-comparison"><section><h3>Your answer</h3><strong>{answerLabel(answered)}</strong></section><section><h3>Dataset reference</h3><strong>{image.label === 'normal' ? 'No defect labelled' : 'Defect labelled'}</strong></section></div>
+              <Assessment saved={selected} imageId={image.image_id} reference={image.label} fixture={bundle.execution === 'fixture'} />
+              <details><summary>More about these answers</summary><p>Your answer {((answered === 'needs_review') === (image.label === 'anomalous')) ? 'matches' : 'differs from'} the dataset reference. It stays fixed until you reset your progress. Dataset labels are learning references, not factory approval.</p>
+                {bundle.runs.length > 1 ? <><label>Saved model <select value={state.selectedRun} onChange={e => update({ selectedRun: e.target.value, comparisonRun: '' })}>{bundle.runs.map(r => <option key={r.evidence.run.run_id} value={r.evidence.run.run_id}>{r.evidence.run.model_id}</option>)}</select></label><label>Compare with <select value={state.comparisonRun} onChange={e => update({ comparisonRun: e.target.value })}><option value="">No comparison</option>{bundle.runs.filter(r => r.evidence.run.run_id !== state.selectedRun).map(r => <option key={r.evidence.run.run_id} value={r.evidence.run.run_id}>{r.evidence.run.model_id}</option>)}</select></label>{state.comparisonRun && <Assessment saved={bundle.runs.find(r => r.evidence.run.run_id === state.comparisonRun)!} imageId={image.image_id} reference={image.label} fixture={bundle.execution === 'fixture'} />}</> : <p>Model comparison is unavailable: one qualifying run.</p>}
+                <p>AI heatmaps and adjustable sensitivity are unavailable. These are saved answers; your visit makes no AI requests.</p></details>
             </div>}
           </div></div>
-        <nav className="image-navigation" aria-label="Challenge image navigation"><button disabled={index === 0} onClick={() => goImage(bundle.challenge.image_ids[index - 1])}>← Previous</button><div className="image-dots">{bundle.challenge.image_ids.map((id, n) => <button key={id} aria-label={`Go to image ${n + 1}${state.answers[id] ? ', answered' : ''}`} aria-current={id === state.selectedImage ? 'step' : undefined} onClick={() => goImage(id)}>{n + 1}{state.answers[id] && <span aria-hidden="true"> ✓</span>}</button>)}</div>{index < 4 ? <button onClick={() => goImage(bundle.challenge.image_ids[index + 1])}>Next →</button> : <button onClick={() => goScreen('lab')}>Explore the lab →</button>}</nav>
-        {count === 5 && <section className="challenge-summary" role="status"><h2>Your five-picture summary</h2><p>{correct} correct and {5 - correct} incorrect against the dataset reference.</p><p>Five curated examples do not establish human or model superiority.</p><button className="primary" onClick={() => goScreen('lab')}>Explore full-set evidence &amp; build a pilot brief →</button></section>}
+        <nav className="image-navigation" aria-label="Challenge image navigation"><button disabled={index === 0} onClick={() => goImage(bundle.challenge.image_ids[index - 1])}>← Previous</button><div className="image-dots">{bundle.challenge.image_ids.map((id, n) => <button key={id} aria-label={`Go to image ${n + 1}${state.answers[id] ? ', answered' : ''}`} aria-current={id === state.selectedImage ? 'step' : undefined} onClick={() => goImage(id)}>{n + 1}{state.answers[id] && <span aria-hidden="true"> ✓</span>}</button>)}</div>{index < 4 ? <button onClick={() => goImage(bundle.challenge.image_ids[index + 1])}>Next →</button> : <button onClick={() => goScreen('lab')}>See all results →</button>}</nav>
+        {count === 5 && <section className="challenge-summary" role="status"><h2>Your five-picture summary</h2><p>{correct} correct · {5 - correct} incorrect against the dataset labels.</p><p className="small">Five selected examples aren’t a performance test.</p><button className="primary" onClick={() => goScreen('lab')}>See the full AI results →</button></section>}
       </>}
       {state.screen === 'lab' && <Lab key={resetEpoch} bundle={bundle} state={state} update={update} />}
-      {state.screen !== 'start' && <><section className="track-note"><strong>Fasteners / metal_nut</strong><span>The optional metal-surface track is not part of this local fastener milestone.</span></section>
-      <div className="reset-controls"><button onClick={() => setConfirmReset('current')}>Reset current track</button><button onClick={() => setConfirmReset('all')}>Reset all progress</button>{confirmReset && <div className="reset-confirmation" role="group" aria-label="Confirm progress reset"><p>Reset {confirmReset === 'all' ? 'all inspection progress' : 'fastener progress'}? Answers, assumptions and reasoning will be cleared from this app.</p><button onClick={reset}>Confirm reset</button><button onClick={() => setConfirmReset('')}>Keep progress</button></div>}</div></>}
+      <details className="about-demo"><summary>About this demo{state.screen !== 'start' ? ' & reset progress' : ''}</summary>
+        <p>{bundle.execution === 'fixture' ? 'This test preview uses invented AI answers.' : `The AI answers are saved Gemini responses from all ${selected.report.expected} test images. Your visit makes no AI requests.`} Your answers stay in this browser.</p>
+        <p>Five selected teaching pictures, not a representative factory sample. Dataset: {bundle.dataset.dataset_id} / {bundle.dataset.category}. The optional metal-surface track is unavailable.</p>
+        <p>Local development preview, not factory validation. Dataset source records have limitations; this preview is not cleared for publication. No manufacturer affiliation is implied.</p>
+        {state.screen !== 'start' && <div className="reset-controls"><button onClick={() => setConfirmReset('current')}>Reset current track</button><button onClick={() => setConfirmReset('all')}>Reset all progress</button>{confirmReset && <div className="reset-confirmation" role="group" aria-label="Confirm progress reset"><p>Reset {confirmReset === 'all' ? 'all inspection progress' : 'fastener progress'}? Answers, assumptions and reasoning will be cleared from this app.</p><button onClick={reset}>Confirm reset</button><button onClick={() => setConfirmReset('')}>Keep progress</button></div>}</div>}
+      </details>
     </main>
-    <footer><p>{bundle.dataset.attribution} <a href={bundle.dataset.licence_url}>{bundle.dataset.licence}</a>. <a href={bundle.dataset.source_url}>Dataset source</a>.</p><p>Prototype, not production approval. No visitor-triggered AI calls. {persistent ? 'Progress is saved in this browser.' : 'Progress is in memory for this visit.'}</p></footer>
+    <footer><p>{bundle.dataset.attribution} <a href={bundle.dataset.licence_url}>{bundle.dataset.licence}</a>. <a href={bundle.dataset.source_url}>Dataset source</a>.</p></footer>
   </>;
 }
 

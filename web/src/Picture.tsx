@@ -36,7 +36,7 @@ export function Picture({ image, revealed, onReady }: { image: ChallengeImage; r
   }, [image, outline, revealed, retry]);
   return <div className="picture-panel">
     <div className="image-toolbar" aria-label="Image controls">
-      <span>Original photograph</span>
+      <span>Zoom</span>
       <button onClick={() => setZoom(z => Math.max(1, z - .25))} disabled={zoom <= 1} aria-label="Zoom out">−</button>
       <output aria-live="polite">{Math.round(zoom * 100)}%</output>
       <button onClick={() => setZoom(z => Math.min(2.5, z + .25))} disabled={zoom >= 2.5} aria-label="Zoom in">+</button>
@@ -55,8 +55,8 @@ export function Picture({ image, revealed, onReady }: { image: ChallengeImage; r
       </div>}
     {revealed && <div className="outline-controls">{image.mask ? <>
       <button aria-pressed={outline} onClick={() => setOutline(v => !v)}>{outline ? 'Hide reference outline' : 'Show reference outline'}</button>
-      <p>The tinted region is the dataset annotation. It is not an AI heatmap.</p>
-    </> : <p>Dataset reference: normal; no defect outline is supplied.</p>}</div>}
+      <p>Dataset outline, not AI output.</p>
+    </> : null}</div>}
     {maskError && <p role="alert">{maskError} <button onClick={() => setRetry(n => n + 1)}>Retry outline</button></p>}
   </div>;
 }

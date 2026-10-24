@@ -2,6 +2,66 @@
 
 Updated: 24 October 2026. This file records project state, not promised implementation success.
 
+## Visitor simplicity — picture, choice, reveal (24 October 2026)
+
+Owner: single coordinator on `main`; no workers. Parent US-01/02/03/04/05/08/09.
+Dependencies: saved 115-image evaluation, existing browser state/calculations and
+completed first opening-page iteration. Preserve all earlier uncommitted work.
+Allowed: App/Lab/Picture/styles, browser checks, local guide, verification record and this section.
+Task: make the challenge a single-column picture/choice/reveal flow; shorten
+visitor-facing labels as explicitly requested; keep judgement-before-reveal and
+locked revealed answers. Show three plain-language saved-result counts, with
+statistics, scenario/export and source/reset controls in accessible disclosures.
+Completion: genuine and fixture browser journeys, both entry paths, keyboard,
+closed/expanded responsive accessibility checks, truthful failure/denominator
+handling, unchanged deterministic export; bounded screenshot review; focused commit.
+Status: Done locally. The default path is picture -> Looks fine / Needs checking
+-> Reveal AI assessment. The shorter wording is the user's explicit refinement
+of the specification's longer button labels; answer semantics are unchanged.
+One column, no repeated side-panel instructions; revealed choices become fixed
+text, with Your answer, Dataset reference and AI assessment clearly separated.
+Saved observations stay verbatim; short takeaways distinguish misses, flags,
+normal agreement, uncertainty and unavailable assessments. Focus moves to reveal;
+Next restores the new picture/title rather than leaving visitors down the page.
+
+Results lead with genuine counts: 81/93 defective flagged, 12/93 missed,
+5/22 normal flagged; 115 assessed, zero unavailable, 86/115 total checks.
+Details retain class denominators, failures, policy and both metric sets. Native
+closed disclosures hold statistics, workday/export, source records and reset.
+Removed duplicate notices, single-option challenge selector and unavailable-track
+banner from the main path. Fixture warnings/attribution remain; source limitations,
+capability limits and reset confirmations remain accessible. No result or contract
+changed. The local guide now uses the actual labels and disclosure locations.
+
+Verification: 27 web unit checks, TypeScript/production build and all 10 production
+Chromium checks pass. Genuine five-picture reveal checks compare the visible saved
+observation to the bundle and verify the real miss on image 2. Both entry paths,
+Next focus/scroll, answer preservation, deterministic brief/configuration downloads,
+refresh/reset, invalid inputs, broken assets/storage and visitor privacy pass.
+At 360/768/1440 px, closed and expanded results have no horizontal overflow and
+zero WCAG-tagged scan violations. Fixture checks preserve unavailable-response
+counts separately from successful detections (3 assessed / 3 unavailable).
+Startup: 1965.19 ms at 10 Mbps/100 ms RTT; scenario p95:
+38.20 ms; compressed JS+CSS: 125,307 bytes. No pipeline change;
+the earlier 437 pipeline pass was not rerun for this UI task.
+
+Fresh single-agent review checked requirements, diff, genuine/fixture truth,
+denominators, uncertainty/failures, disclosures, focus and state preservation.
+Visually reviewed desktop challenge/reveal plus desktop/phone result screenshots;
+re-viewed the corrected takeaway. Two distinct real dataset examples inspected,
+not a full dataset review. [Verification](FASTENER_VERIFICATION.md#picture-choice-reveal)
+records screenshots and limits. Actual browser is Chromium; VS Code integrated
+browser remains unverified following the earlier native-helper failure. Existing
+http://127.0.0.1:5174/ returned HTTP 200; use Browser: Open Integrated Browser
+(`workbench.action.browser.open`). Click the brand to return to the opening.
+
+Focused checkpoint: Simplify picture choice reveal and saved results. Preserve
+all earlier uncommitted edits; stage only this progress section. No provider call,
+paid access, publication, remote change or new dependency. Next: have the visitor
+try the shorter flow and use their feedback to choose the next small improvement.
+No recruiter user study, screen-reader trial or full accessibility certification
+is claimed.
+
 ## Visitor simplicity — first improvement (24 October 2026)
 
 Owner: one coordinator on `main`; no workers. Existing uncommitted work is

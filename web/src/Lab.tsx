@@ -34,8 +34,16 @@ export function Lab({ bundle, state, update }: { bundle: Bundle; state: VisitorS
     } catch { setExportError('The brief needs valid evidence, assumptions and a selected decision.'); }
   }
   return <>
-    <section className="section-heading"><p className="eyebrow">02 / Explore the evidence</p><h2>What would this mean for a shift?</h2>
-      <p>Start with the complete public test set, then try your own workload assumptions.</p></section>
+    <section className="section-heading"><h1>What did AI find?</h1>
+      <p>Saved AI results on {report.expected} public test pictures. Not factory validation.</p></section>
+    <p className="result-coverage">{report.succeeded} assessed · {report.failed} unavailable</p>
+    <div className="result-highlights" aria-label="Successful AI assessment results">
+      <section><strong>{report.successful_output.tp}</strong><h2>Defective parts flagged</h2><p>of {report.successful_output.anomalous} defective parts assessed</p></section>
+      <section><strong>{report.successful_output.fn}</strong><h2>Defective parts missed</h2><p>of {report.successful_output.anomalous} defective parts assessed</p></section>
+      <section><strong>{report.successful_output.fp}</strong><h2>Good parts flagged</h2><p>of {report.successful_output.normal} normal parts assessed</p></section>
+    </div>
+    <p>{report.full_set_routing.review_count} of {report.expected} parts sent for checking{report.failed ? `, including ${report.failed} unavailable AI assessments` : ''}.</p>
+    <details className="detailed-results"><summary>Detailed results</summary>
     <label className="model-select">Saved model <select value={state.selectedRun} onChange={e => update({ selectedRun: e.target.value, comparisonRun: '' })}>
       {bundle.runs.map(r => <option value={r.evidence.run.run_id} key={r.evidence.run.run_id}>{r.evidence.run.model_id}</option>)}
     </select></label>
@@ -48,7 +56,9 @@ export function Lab({ bundle, state, update }: { bundle: Bundle; state: VisitorS
       {' '}Failure reasons: {Object.entries(report.failure_breakdown).map(([k, n]) => `${k}: ${n}`).join('; ') || 'none'}.
       Routing sends needs_review, uncertain and technical failures to a person. It is not successful model prediction on failed requests.</p>
     <p className="notice">Fixed API policy. Adjustable sensitivity, calibrated defect probabilities and AI heatmaps are unavailable. Controls make no model requests.</p>
-    <section className="scenario"><div><p className="eyebrow">03 / Try a scenario</p><h2>Your assumptions, visible consequences</h2>
+    </details>
+    <details className="workday-tools"><summary>Explore a workday &amp; download a brief{Object.keys(errors).length > 0 ? ' — check your inputs' : ''}</summary>
+    <section className="scenario"><div><h2>What would a workday look like?</h2>
       <p>Defaults are illustrative, in EUR. These are not site measurements or measured savings.</p></div>
       <div className="scenario-layout"><fieldset><legend>Daily workload assumptions</legend>
         {(Object.keys(defaultScenario) as (keyof Scenario)[]).map(key => <label key={key} htmlFor={`scenario-${key}`}>
@@ -70,7 +80,7 @@ export function Lab({ bundle, state, update }: { bundle: Bundle; state: VisitorS
       </div></div>
       <p className="small">Uses complete-set routing rates, including technical failures. Assumes every flag is reviewed, people resolve flags correctly, and each missed defect incurs the average cost entered. Display values are rounded; calculations retain precision.</p>
     </section>
-    <section className="decision"><p className="eyebrow">04 / Make the next step concrete</p><h2>What would you do next?</h2>
+    <section className="decision"><h2>What would you do next?</h2>
       <fieldset><legend>Your pilot decision</legend>{pilotDecisions.map(decision => <label className="radio-option" key={decision}>
         <input type="radio" name="pilot-decision" value={decision} checked={state.decision === decision} onChange={() => update({ decision: decision as PilotDecision })} />{decision}
       </label>)}</fieldset>
@@ -80,7 +90,8 @@ export function Lab({ bundle, state, update }: { bundle: Bundle; state: VisitorS
       {exportError && <p role="alert">{exportError}</p>}
       <details><summary>What a real pilot still needs</summary><ul>{prerequisites.map(p => <li key={p}>{p}</li>)}</ul></details>
     </section>
-    <details className="provenance"><summary>Inspect provenance, selection and limitations</summary>
+    </details>
+    <details className="provenance"><summary>Where the results come from</summary>
       <p>Dataset: {bundle.dataset.dataset_id} / {bundle.dataset.category}. {bundle.dataset.modification_notice}</p>
       <p>Run: <code>{evidence.run.run_id}</code>; provider: {evidence.run.provider}; model: {evidence.run.model_id}; created {evidence.run.created_at}.</p>
       <p>Reported versions: {[...new Set(evidence.predictions.flatMap(p => p.attempts.map(a => a.reported_model_version).filter(Boolean)))].join(', ')}. Provider aliases can change.</p>

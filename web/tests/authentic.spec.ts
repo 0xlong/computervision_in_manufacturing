@@ -19,8 +19,8 @@ test('simple opening page has two clear paths and keyboard-accessible background
   for (const width of [360, 768, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
     await page.goto('/');
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Can AI help spot');
-    await expect(page.getByText('A learning demo using public images', { exact: false })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Can you spot');
+    await expect(page.getByText('A public-image demo', { exact: false })).toBeVisible();
     await expect(page.locator('main button')).toHaveCount(2);
     const about = page.getByText('About this demo', { exact: true });
     const background = page.getByText('The AI answers are saved Gemini responses', { exact: false });
@@ -48,13 +48,13 @@ test('simple opening page has two clear paths and keyboard-accessible background
   await page.getByRole('button', { name: 'See the results' }).focus();
   await page.keyboard.press('Enter');
   await expect(page.locator('#main')).toBeFocused();
-  await expect(page.getByText('115 successful assessments / 115 expected images', { exact: true })).toBeVisible();
+  await expect(page.getByText('115 assessed · 0 unavailable', { exact: true })).toBeVisible();
   await page.getByRole('link', { name: 'Inspection / Pilot Lab' }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Can AI help spot');
-  await page.getByRole('button', { name: 'Start the inspection' }).focus();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Can you spot');
+  await page.getByRole('button', { name: 'Try it' }).focus();
   await page.keyboard.press('Enter');
   await expect(page.locator('#main')).toBeFocused();
-  await expect(page.getByRole('button', { name: 'Looks acceptable', exact: true })).toBeEnabled();
+  await expect(page.getByRole('button', { name: 'Looks fine', exact: true })).toBeEnabled();
   await writeFile(resolve(directory, 'opening-checks.json'), JSON.stringify({
     bundle_id: bundle!.bundle_id, accessibility: scans, entry_paths: ['challenge', 'results'],
     keyboard_disclosure: true, content_focus: true, opening_image_requests: 0,
@@ -71,35 +71,58 @@ test('authentic fastener inspection to brief, responsive evidence and private st
   page.on('pageerror', e => errors.push(e.message));
   page.on('request', r => { methods.push(r.method()); if (!r.url().startsWith('http://127.0.0.1:4175') && !r.url().startsWith('blob:')) external.push(r.url()); });
   await page.goto('/');
-  await expect(page.getByRole('button', { name: 'Start the inspection' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Try it' })).toBeVisible();
   await page.screenshot({ path: resolve(artifacts, 'landing-1440.png'), fullPage: true });
-  await page.getByRole('button', { name: 'Start the inspection' }).click();
+  await page.getByRole('button', { name: 'Try it' }).click();
   for (let n = 0; n < 5; n++) {
-    const answer = page.getByRole('button', { name: n % 2 ? 'Needs further inspection' : 'Looks acceptable', exact: true });
+    const answer = page.getByRole('button', { name: n % 2 ? 'Needs checking' : 'Looks fine', exact: true });
     await expect(answer).toBeEnabled();
     await expect(page.getByText('Dataset reference', { exact: true })).toHaveCount(0);
     if (n === 0) await page.screenshot({ path: resolve(artifacts, 'inspect-original-1440.png'), fullPage: true });
-    await answer.click(); await page.getByRole('button', { name: 'Reveal evidence' }).click();
-    await expect(answer).toBeDisabled();
-    await expect(page.getByText('Saved model assessment', { exact: true })).toBeVisible();
+    await answer.click(); await page.getByRole('button', { name: 'Reveal AI assessment' }).click();
+    await expect(page.locator('.answer-buttons')).toHaveCount(0);
+    await expect(page.getByLabel('Revealed assessment', { exact: true })).toBeFocused();
+    await expect(page.getByText('AI assessment', { exact: true })).toBeVisible();
+    const response = b.runs[0].evidence.predictions.find(p => p.image_id === b.challenge.image_ids[n])!.attempts.at(-1)!.response!;
+    await expect(page.locator('.assessment > p').last()).toHaveText(response.observation);
+    if (n === 1) await expect(page.getByText('AI missed this defect.', { exact: true })).toBeVisible();
     if (n === 1) {
       await page.getByRole('button', { name: 'Show reference outline' }).click();
       await expect(page.locator('.reference-mask')).toBeVisible();
       expect((await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
       await page.screenshot({ path: resolve(artifacts, 'reveal-outline-1440.png'), fullPage: true });
     }
-    if (n < 4) await page.getByRole('button', { name: 'Next →', exact: true }).click();
+    if (n < 4) {
+      await page.getByRole('button', { name: 'Next →', exact: true }).click();
+      await expect(page.getByRole('heading', { name: 'Does this part need checking?' })).toBeFocused();
+      expect(await page.evaluate(() => window.scrollY)).toBe(0);
+    }
   }
   await expect(page.getByRole('heading', { name: 'Your five-picture summary' })).toBeVisible();
   await page.reload(); await expect(page.getByText('5 of 5 answered', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Go to image 1, answered' }).click();
-  await expect(page.getByRole('button', { name: 'Looks acceptable', exact: true })).toBeDisabled();
-  await page.getByRole('button', { name: 'Evidence & pilot', exact: true }).click();
-  await expect(page.getByText(`${report.succeeded} successful assessments / 115 expected images`, { exact: true })).toBeVisible();
+  await expect(page.locator('.answer-buttons')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Results', exact: true }).click();
+  await expect(page.getByText(`${report.succeeded} assessed · ${report.failed} unavailable`, { exact: true })).toBeVisible();
+  const highlights = page.locator('.result-highlights section');
+  await expect(highlights.nth(0).locator('strong')).toHaveText('81');
+  await expect(highlights.nth(1).locator('strong')).toHaveText('12');
+  await expect(highlights.nth(2).locator('strong')).toHaveText('5');
+  await expect(page.getByText('86 of 115 parts sent for checking.', { exact: true })).toBeVisible();
+  await expect(page.getByLabel('Components per day', { exact: true })).toBeHidden();
+  await expect(page.getByRole('heading', { name: 'Successful AI assessments', exact: true })).toBeHidden();
+  await mkdir(resolve('../artifacts/ui-iteration-two'), { recursive: true });
+  for (const width of [360, 768, 1440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    expect((await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
+    await page.screenshot({ path: resolve(`../artifacts/ui-iteration-two/results-${width}.png`), fullPage: true });
+  }
+  await page.getByText('Explore a workday & download a brief', { exact: true }).click();
   await page.getByLabel('Available review minutes per day').fill('0');
   await page.getByLabel('Collect more evidence', { exact: true }).check();
   await page.getByLabel('Your reasoning', { exact: false }).fill('Local verification: representative site evidence and review capacity still need agreement.');
-  await page.getByText('Inspect provenance, selection and limitations', { exact: true }).click();
+  await page.getByText('Where the results come from', { exact: true }).click();
   const configurationDownload = page.waitForEvent('download');
   await page.getByRole('link', { name: 'Download frozen instructions, normal reference and image settings', exact: false }).click();
   const configuration = JSON.parse(await readFile((await (await configurationDownload).path())!, 'utf-8'));
@@ -113,7 +136,10 @@ test('authentic fastener inspection to brief, responsive evidence and private st
   expect(contents[0]).toBe(contents[1]); expect(contents[0]).toContain(b.runs[0].evidence.run.run_id);
   expect(contents[0]).toContain(`successful: ${report.succeeded}; failed: ${report.failed}`);
   await writeFile(resolve(artifacts, 'verified-pilot-brief.md'), contents[0]);
-  await page.reload(); await expect(page.getByLabel('Collect more evidence', { exact: true })).toBeChecked();
+  await page.reload();
+  await page.getByText('Explore a workday & download a brief', { exact: true }).click();
+  await page.getByText('Detailed results', { exact: true }).click();
+  await expect(page.getByLabel('Collect more evidence', { exact: true })).toBeChecked();
   const accessibility: { width: number; violations: number }[] = [];
   for (const width of [360, 768, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
@@ -135,13 +161,14 @@ test('authentic fastener inspection to brief, responsive evidence and private st
   });
   const p95 = [...updates].sort((a, b) => a - b)[94]; expect(p95).toBeLessThan(100);
   await page.evaluate(() => localStorage.setItem('unrelated-verification-key', 'keep'));
+  await page.getByText('About this demo & reset progress', { exact: true }).click();
   await page.getByRole('button', { name: 'Reset all progress' }).click(); await page.getByRole('button', { name: 'Confirm reset' }).click();
   expect(await page.evaluate(() => localStorage.getItem('unrelated-verification-key'))).toBe('keep');
   expect(external).toEqual([]); expect(methods.every(m => m === 'GET')).toBe(true); expect(errors).toEqual([]);
   await writeFile(resolve(artifacts, 'journey.json'), JSON.stringify({ bundle_id: b.bundle_id, browser: browser.version(),
     viewport_checks: accessibility, scenario_changes: 100, scenario_update_p95_ms: p95, external_requests: external,
-    page_errors: errors, deterministic_download: true, frozen_configuration_download: true, viewed_dataset_examples_for_manual_review: 2,
-    note: 'Automated Chromium verification; VS Code native browser helper unavailable. Screenshots require separate human/agent visual inspection.' }, null, 2));
+    page_errors: errors, deterministic_download: true, frozen_configuration_download: true, distinct_dataset_examples_in_screenshots: 2,
+    note: 'Automated Chromium verification; VS Code integrated browser not verified. Screenshot subjects are not a manual-review count; separate visual review is recorded in the verification document.' }, null, 2));
 });
 
 test('authentic first challenge under 10 Mbps / 100 ms RTT', async ({ page, context, browser }) => {
@@ -150,8 +177,8 @@ test('authentic first challenge under 10 Mbps / 100 ms RTT', async ({ page, cont
   await session.send('Network.enable');
   await session.send('Network.emulateNetworkConditions', { offline: false, downloadThroughput: 1_250_000, uploadThroughput: 1_250_000, latency: 100 });
   const images: string[] = []; page.on('request', r => { if (r.url().includes('/evidence/images/')) images.push(r.url()); });
-  const started = performance.now(); await page.goto('/'); await page.getByRole('button', { name: 'Start the inspection' }).click();
-  await expect(page.getByRole('button', { name: 'Looks acceptable', exact: true })).toBeEnabled();
+  const started = performance.now(); await page.goto('/'); await page.getByRole('button', { name: 'Try it' }).click();
+  await expect(page.getByRole('button', { name: 'Looks fine', exact: true })).toBeEnabled();
   const milliseconds = performance.now() - started;
   expect(images).toHaveLength(1); expect(milliseconds).toBeLessThan(3000);
   await mkdir(artifacts, { recursive: true });

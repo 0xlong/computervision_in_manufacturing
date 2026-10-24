@@ -179,3 +179,70 @@ brand to see the new opening without clearing their progress.
 No Gemini/provider requests, paid access, publication or remote changes occurred.
 Next: simplify the results page so visitors see the key trade-off before detailed
 metrics and scenario inputs. Recruiter/hiring-manager usability remains unmeasured.
+
+## Picture choice reveal
+
+Verified 24 October 2026. This second simplicity iteration supersedes earlier
+visitor-facing labels/layout and browser measurements; the genuine 115-image
+bundle, all source bytes, contracts and evaluation results remain unchanged.
+
+The default challenge is one column: picture, Looks fine / Needs checking, Reveal
+AI assessment. No AI answer/reference is shown before reveal. After reveal, the
+original choice becomes fixed text and the visitor sees Your answer, Dataset
+reference and AI assessment. Saved model observations are verbatim. Short factual
+takeaways expose real flags/misses; uncertainty and failed assessments stay distinct.
+Keyboard focus follows reveal; Next returns focus/scroll to the new picture title.
+
+The results opening contains three counts: 81/93 defective parts flagged, 12/93
+missed, 5/22 normal parts flagged, plus 115 assessed / zero unavailable and 86/115
+sent for checking. Detailed results, workday/export, Where the results come from,
+and About this demo & reset progress are native disclosures. Full statistics,
+class denominators, source/capability limits, original notices, scenario assumptions,
+reset confirmation and deterministic export remain available. The brief/calculations
+and storage format are unchanged. The user's shorter labels supersede the original
+button wording, preserving its meaning. Fixture warnings remain visible.
+
+- **27 web unit checks**, TypeScript/production build and all **10 production
+  Chromium checks pass**. Existing offline pipeline checks were not rerun; this
+  task changes no pipeline/schema/data files.
+- Genuine and fixture five-answer journeys, gated reveal, fixed restored answers,
+  zoom/outline, both entry paths, reveal/Next keyboard focus, deterministic repeated
+  brief downloads, frozen configuration download and resets pass. The real miss on
+  image 2 is asserted. Visible saved observations match the genuine bundle.
+- New plain-language summary assertions cover real counts and a fixture with three
+  successful / three unavailable responses, preserving the distinction between
+  successful AI detection and failure-driven human review.
+- At **360/768/1440 px**, opening and closed/expanded results have no horizontal
+  overflow and **zero automated WCAG-tagged scan violations**. Existing challenge,
+  real-outline and error/state checks still pass. No page errors or external/non-GET
+  visitor requests were observed in the complete authentic journey.
+- Local startup under 10 Mbps / 100 ms RTT: **1965.19 ms**, one
+  photograph. 100 scenario edits: **38.20 ms p95**. Compressed JS+CSS:
+  **125,307 bytes**. Opening fetches no photographs. These are local measurements.
+
+Fresh single-agent review covered the requirement/diff, honest denominators,
+uncertainty/failure handling, unmodified observations, state/export and disclosures.
+Visually reviewed desktop original, desktop outline/reveal, desktop results and
+phone results; re-viewed the final reveal takeaway. **Two distinct real examples**
+(`img-000071`, `img-000050`) inspected. No full-dataset visual review, nontechnical
+visitor study, screen-reader trial or full accessibility certification is claimed.
+
+Current screenshots: [challenge](../artifacts/browser-verification/inspect-original-1440.png),
+[reveal](../artifacts/browser-verification/reveal-outline-1440.png),
+[desktop results](../artifacts/ui-iteration-two/results-1440.png),
+[phone results](../artifacts/ui-iteration-two/results-360.png),
+[tablet results](../artifacts/ui-iteration-two/results-768.png).
+The [journey record](../artifacts/browser-verification/journey.json) and
+[startup record](../artifacts/browser-verification/startup.json) are regenerated
+ignored outputs. The journey now records screenshot subjects rather than
+hard-coding a manual-review count; this document owns the visual sample record.
+
+Actual checks use Chromium 156.0.8078.4. VS Code integrated-browser UI remains
+unverified following the earlier native-pipe failure; no new native UI inspection
+is claimed. Existing http://127.0.0.1:5174/ returned HTTP 200. Open it in VS Code
+with **Browser: Open Integrated Browser** (`workbench.action.browser.open`). Click
+the Inspection brand for the opening if an earlier screen is restored. The
+[local guide](FASTENER_LOCAL.md) has the current steps.
+
+No new Gemini/provider requests, paid access, publication, dependency or remote
+changes. Next iteration should use visitor feedback on this shorter flow.

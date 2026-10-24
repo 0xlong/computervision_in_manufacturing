@@ -24,10 +24,15 @@ In VS Code use **Browser: Open Integrated Browser**
 (`workbench.action.browser.open`) and enter that URL. Stop with Ctrl+C in the
 server terminal. The automated browser suite uses its own port 4175.
 
-Try answering the first image, revealing it, moving forward and going back.
-Your revealed answer should remain fixed. Then open **Evidence & pilot**, change
-review capacity, choose a decision and download the brief. No visitor action
-sends a prompt, answer or rationale to Gemini.
+Click **Try it**, choose **Looks fine** or **Needs checking**, then **Reveal AI
+assessment**. Move forward and back: your revealed answer stays fixed. **Next**
+returns to the new picture so you can make another call.
+
+Open **Results** for three plain-language counts. **Detailed results** holds the
+full statistics; **Explore a workday & download a brief** opens workload assumptions,
+a decision and the download. **Where the results come from** holds source records.
+To start over, open **About this demo & reset progress** and confirm a reset.
+No visitor action sends a prompt, answer or rationale to Gemini.
 
 ## Evidence preparation
 
