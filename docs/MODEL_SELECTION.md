@@ -1,5 +1,11 @@
 # Model selection — 24 October 2026
 
+Final local fastener outcome: select Gemini 3.5 Flash-Lite after its two successful
+normal-only trial responses; exclude 3.8 Flash after a probe exhausted its timeout
+attempts. Complete Lite evaluation and the local visitor journey are verified in
+[FASTENER_VERIFICATION.md](FASTENER_VERIFICATION.md). Earlier planning/discovery
+notes below are retained as history, not current pending work.
+
 Use fast, efficient models, with API models preferred. The user changed this
 direction after the local experiments took too long. Further PaDiM/PatchCore
 fitting and resolution experiments are deferred. Two local specialists are no

@@ -1,5 +1,14 @@
 # Free API feasibility — 24 October 2026
 
+## Completed local fastener outcome
+
+The user's Swiss/UK regional answer and the scoped local-use review allowed the
+authorized private noncommercial trials. Lite qualified and completed all 115
+fastener test images; the local visitor journey and browser checks now work.
+See [current verification](FASTENER_VERIFICATION.md) and the
+[scoped terms/use conclusion](GEMINI_LOCAL_USE.md). Earlier discovery/blocker notes
+below are historical; publication and billing changes remain unauthorized.
+
 ## User confirmation and request runner — latest update
 
 The user has now supplied the AI Studio limits screenshot and explicitly confirmed

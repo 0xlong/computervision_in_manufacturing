@@ -7,7 +7,7 @@ a pilot decision and a deterministic Markdown download. Progress stays in the
 browser. Reset-current/reset-all ask first and replace only this app's state.
 
 Current verification and authentic-evaluation completion are in
-[PROGRESS.md](PROGRESS.md#fastener-completion-goal--active-work). A fixture browser
+[PROGRESS.md](PROGRESS.md#fastener-completion-goal--completed-locally). A fixture browser
 pass checks software behavior, not AI quality. The default app has no synthetic
 fallback: missing evidence shows a recovery message.
 
@@ -44,7 +44,9 @@ From the project root, after that complete run exists:
 
 This is the packaging command, not another inference run. It checks manifest and
 image bytes, complete membership and all metrics before copying five teaching
-images, three masks, the original notices and saved structured results. Choose
+images, three masks, original notices, saved structured results and frozen
+instructions/reference/settings. Bundle v2 indexes that configuration download;
+the earlier v1 contract is preserved. Choose
 an unused output folder for a different bundle; the command preserves existing
 output. Source/model/configuration changes create new identities. The local bundle
 retains development status and source limitations; recorded_live describes the

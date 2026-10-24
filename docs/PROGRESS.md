@@ -2,102 +2,72 @@
 
 Updated: 24 October 2026. This file records project state, not promised implementation success.
 
-## Fastener completion goal — active work
+## Fastener completion goal — completed locally
 
-Scope: complete the fastener journey locally, authentic Gemini evidence only,
-free access only, no publication. Earlier working-tree edits are preserved.
-Owner: one coordinator on `main`; no parallel workers.
+Completed 24 October 2026. The user's local fastener definition of done is met:
+the complete visitor journey uses authentic saved Gemini evidence, relevant checks
+pass, and production-browser verification is recorded. Nothing was published.
+This current section supersedes older starter-page/next-action notes below.
 
-| Task | Dependencies / allowed files | Observable completion check | Status |
-| --- | --- | --- | --- |
-| EN-03 evaluation counter | Existing manifest/API contracts; new evaluator and generated tests, evaluation guide, this section | Complete evaluation membership, hashes/pixel identity, success versus failure routing, class denominators and Wilson intervals checked without provider calls | Done; 14 new tests and 413 combined pipeline tests pass |
-| Resolve provider image use | Current official terms/licence and actual applicable account region; scoped local-use review/progress only | Dated conclusion or exact remaining blocker; never fabricate access clearance | Scoped local noncommercial experiment reviewed; publication not cleared |
-| Freeze and execute complete fastener evaluation | Qualifying normal-only trial; new bounded runner/tests/guide and this section | Complete 115-member index, frozen prompt/reference, serial batches/resume/quota safeguards and genuine saved outputs | Runner verified; authentic execution next |
-| Build visitor journey | Validated evidence boundary; web source/tests, shared schema, scoped packaging tools | Five answers, gated reveal, persistence/reset, full-set lab, scenario and deterministic export | Implemented; 27 unit checks, seven fixture browser journeys/scans and build pass; authentic connection pending full evaluation |
-| Verify local completion | Integrated authentic bundle, browser access | Automated checks, review, responsive/keyboard browser evidence and focused checkpoints | Pending |
+Owner: one coordinator on `main`; no workers. Earlier unrelated working-tree edits,
+including the specification move and documentation/workspace changes, are preserved.
 
-The Gemini Free-tier confirmation and named-key authorization recorded below
-remain accepted. No new request for those confirmations is needed. Gate 2 is not
-complete while real model results and browser verification are missing.
+| Milestone | Requirement / scope | Outcome and checkpoint |
+| --- | --- | --- |
+| Count complete-set evidence | EN-03; policy, coverage, failures and uncertainty; evaluator/tests/guide | Done; `a2e738c`; 14 new cases, 413 combined cases at that stage |
+| Qualify and freeze free Gemini execution | EN-03/API safeguards; runner, generated tests, use/selection records | Done; `917f867`; two authentic normal trials, nine new runner checks; Lite selected, Flash excluded |
+| Build visitor journey | US-01–06/08/09 fastener scope; shared schemas, web UI, calculations, storage/export, fixtures and tests | Done; `b53c1d0`; five answers, gated reveal/zoom, fixed answers, evidence lab, scenario, decision/brief and confirmed resets |
+| Complete genuine test membership and package | DATA-TEST/FREEZE, T-EVIDENCE/CONTRACT/LICENCE; public fastener assets/configuration and offline checks | Done; 115/115 successful; 116 submissions including one recovered server 5xx; v2 bundle with original notices and downloadable frozen instructions/reference/settings |
+| Verify local completion | T-JOURNEY/POLICY/SCENARIO/EXPORT/ACCESS/PERF/SECURITY; final tests, bounded visual review and records | Done; 437 offline pipeline, 27 web unit and 9 production Chromium checks; static build and workspace/doc checks |
 
-Evaluator milestone: built `pipeline/evaluate_api.py`; [usage and limits](EVALUATION.md).
-14 focused checks and all 413 offline pipeline checks passed (35.47 s). Initial
-fixture asset-path collision was corrected; no validation rule was weakened.
-The restricted pytest run encountered the known temporary-folder permission
-problem; normal local file access passed. Fresh single-agent review checked
-complete membership, byte/pixel bindings, uncertainty/failure routing, undefined
-rates, unknown-submission refusal, determinism and preservation of output files.
-Zero dataset images visually opened, zero provider calls, no dependency/frontend
-change. Website remains the starter page. Source/API fixture labels are preserved;
-the evaluator does not grant authenticity or publication clearance.
+Current bundle: `fasteners-f0b61a212fefce56`; run `eval-flash-lite-46e242a298f20b6f`.
+Policy results: **12 missed / 93 anomalous**, **5 reviewed / 22 normal**;
+86 total reviews, 115 successful outputs, zero terminal failures. All attempts,
+reported aliases, usage, hashes and structured observations are retained. These
+are public benchmark results, not factory validation. The five teaching examples
+were curated after complete evaluation; no benchmark member or prompt was changed.
+Only one model qualified; comparison, API heatmaps and sensitivity are explicitly
+unavailable. No model result is fabricated or supplied by a fixture fallback.
 
-Second milestone: two authentic normal-only trials completed. Flash-Lite returned
-2/2 valid structured answers in 6.048/5.144 s with 2,277 input tokens each. Flash
-returned 1/2 success (31.100 s); the other probe timed out after three attempts
-(56.406/56.388/57.028 s). Select Lite only; no fabricated comparison. This is
-normal-response usefulness, not defect-quality evidence. Exact versions, hashes,
-attempts and responses remain in ignored trial evidence. No source pictures were
-visually opened. [Selection, bounds and commands](GEMINI_EVALUATION.md).
+Latest verification: all **437 pipeline tests pass** (140.18 s), **27 web units
+pass**, and **nine production browser checks pass** (1.1 min). The authentic
+journey includes deterministic repeated brief downloads, frozen configuration
+download, refresh, reset and no external/non-GET visitor requests. Automated
+accessibility/layout checks at 360/768/1440 px report zero violations. First usable
+challenge: **1984.78 ms** at 10 Mbps / 100 ms RTT;
+100 scenario edits: **40.00 ms p95**. Startup fetched
+one photograph. Build size and machine/browser details are in the verification
+record. A Windows test-file replace lock passed on an unchanged isolated rerun
+and a subsequent complete suite; no persistence rule/check was weakened.
 
-Built the full-set supervisor with 12-submission batches, 10-second start spacing,
-60-second child deadline, 345 total-attempt cap and immutable request/configuration
-fingerprints. Nine generated safeguard cases and all 422 offline pipeline tests
-passed (62.04 s). Fresh single-agent review additionally corrected lower-RPM
-spacing, full saved-run identity comparison, image byte/dimension limits and the
-batch time reservation. Test fixture response classification was corrected without
-weakening production validation. Named-key runtime access stays in the existing
-transport; no credential output/copy, new backend dependency or paid call.
+Fresh single-agent review checked exact membership/byte/pixel identities,
+success versus failure routing, fixed policy, per-image gating, invalid inputs,
+safe deterministic export, original notices, configuration hashes, missing-data
+recovery and visitor-state privacy. Screenshot review found/fixed active-button
+hover contrast and reduced reference tint; the corrected real-outline state was
+rescanned and viewed. **Two distinct real examples** were visually inspected,
+not the full dataset. Browser screenshots/downloads/timing JSON remain under
+ignored `artifacts/browser-verification/` and can be regenerated without inference.
 
-The [scoped local-use review](GEMINI_LOCAL_USE.md) records the user's Switzerland/UK
-answer, regional data-use terms and interpretation for private noncommercial
-offline execution. It does not clear publication/live API clients or reconstruct
-source receipts. Nonsecret access records bind user confirmations and this review;
-four-hour validity is an internal freshness deadline, not provider expiry. The
-screenshot is not an independent remaining-quota audit. Other applications remain
-outside coordination. Both Lite trial submissions will be deducted for evaluation.
+The native VS Code Computer Use helper was unavailable after prescribed retries;
+VS Code integrated-browser UI remains unverified. The recorded browser evidence
+is actual Chromium. Local server started and evidence checked at
+**http://127.0.0.1:5174/**; use **Browser: Open Integrated Browser**
+(`workbench.action.browser.open`) to try it in VS Code.
 
-Independent web logic now has 15 passing unit checks and a passing TypeScript
-check for workload boundaries, invalid input, answer/reveal locking and saved-state
-recovery. Schema/browser check tools are pinned locally; complete UI/bundle work
-continues next. The website still shows its starter page at this checkpoint.
+The user's Free-tier/key authorization remains accepted. Lite used 118 requests
+including trials; Flash used four. Paid fallback, billing activation, other
+providers, publication and remote changes were not used. The scoped Swiss/UK
+noncommercial-use review is recorded, not a general publication clearance or
+independent billing audit. Unknown source download receipts, related-object
+independence and public-model contamination remain disclosed; local evidence keeps
+development status. Optional surfaces, complete release/publication clearance,
+full accessibility audit and authorized VPS/load checks remain future scope.
 
-Visitor-experience milestone: implemented start/direct-lab, five answers with
-zoom and gated reference/model reveal, fixed revealed answers, navigation and
-raw challenge counts, run selection, full-set success/routing evidence, editable
-scenario, decision/rationale, safe deterministic Markdown download and browser-only
-restore/confirmed resets. Unsupported API maps/sensitivity and one-run comparison
-are explained. The optional surface track is explicitly outside this fastener goal.
-Missing/corrupt evidence has a recovery page; the app never serves fixture fallback.
-
-Added canonical public-bundle/report/state schemas, Python/Pydantic and browser
-validation, complete-set metric reconstruction and checked asset packaging with
-original dataset notices. The compact shared fixture and eight tiny generated PNGs
-are labelled test-only; the default page has no installed authentic bundle yet.
-Checks: all 434 offline pipeline cases (74.20 s), 27 web units, TypeScript/static
-build (126.72 KiB compressed JS+CSS, below 500 KiB) and seven Chromium fixture
-journeys passed, including no external visitor requests, download content,
-keyboard, errors/storage/reset and automated accessibility/layout at 360/768/1440.
-An integration check caught enriched metrics being rejected by the scenario
-calculator; fixed its four-count input handling. Browser checks caught error text
-changing a field's accessible name; fixed the stable label. No checks weakened.
-Fresh single-agent review additionally preserved other progress during invalid
-assumptions, included reported versions in export, kept fixture-derived reports
-labelled fixture and required the original licence/readme. Final genuine browser
-journey and screenshot/performance review remain next; fixtures do not pass Gate 2.
-
-VS Code Computer Use initialization/retry/reset/retry returned native-pipe
-unavailable, so integrated-browser UI is unverified. Automated Chromium verification
-is distinct; do not claim VS Code inspection. Local URL/command and user trial:
-[fastener guide](FASTENER_LOCAL.md). No publication, paid call or remote change.
-
-Production-build fixture browser rerun: all seven journeys/scans pass (35.6 s).
-The first production rerun pressed Tab before evidence was ready; fixed the test
-to await the actual skip link before verifying keyboard order. Canonical visitor
-state/Pydantic agreement brings focused public-contract tests to 13 passing cases;
-the earlier combined count remains 434 until the next full run. Latest genuine
-batch reports **115/115 terminal, complete**. Next: regenerate actual metrics,
-package the five-image authentic local bundle, then verify the production journey
-and review a bounded screenshot sample. No further inference is needed for metrics.
+Try next: answer/reveal image 1, return to it, then use Evidence & pilot to change
+capacity and download a brief. No additional inference is needed for this goal.
+See [local guide](FASTENER_LOCAL.md), [complete verification](FASTENER_VERIFICATION.md),
+[selection/execution bounds](GEMINI_EVALUATION.md) and [local-use review](GEMINI_LOCAL_USE.md).
 
 ## Gemini runner and user-confirmed free limits — latest continuation
 

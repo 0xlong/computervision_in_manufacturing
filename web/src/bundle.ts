@@ -2,7 +2,7 @@ import Ajv2020 from 'ajv/dist/2020';
 import addFormats from 'ajv-formats';
 import apiSchema from '../../schemas/api-evidence.v1.schema.json';
 import reportSchema from '../../schemas/evaluation-report.v1.schema.json';
-import bundleSchema from '../../schemas/fastener-bundle.v1.schema.json';
+import bundleSchema from '../../schemas/fastener-bundle.v2.schema.json';
 import type { Bundle, Metrics } from './types';
 
 // Canonical Draft 2020-12 contracts are shared with Python; no permissive fallback.
@@ -46,6 +46,7 @@ export function parseBundle(value: unknown): Bundle {
       report.run_id !== run.run_id || report.model_id !== run.model_id || report.manifest_sha256 !== bundle.manifest_sha256 ||
       run.hashes.manifest !== bundle.manifest_sha256 || report.inputs_sha256 !== run.hashes.inputs) throw Error('Model and evaluation identities disagree.');
     runIds.add(run.run_id);
+    if (bundle.execution === 'recorded_live' && !bundle.configuration_assets.some(c => c.run_id === run.run_id && c.path === `configurations/${run.run_id}.json`)) throw Error('The frozen run configuration is missing.');
     if ((evidence_status === 'fixture' || report.evidence_status === 'fixture') && (bundle.execution !== 'fixture' || bundle.evidence_status !== 'fixture')) throw Error('Test examples must be labelled as test examples.');
     const inputs = new Set(run.inputs.map(i => i.image_id));
     const rows = new Map(report.images.map(i => [i.image_id, i]));
@@ -77,6 +78,8 @@ export function parseBundle(value: unknown): Bundle {
       !same([report.technical_reviews.normal, report.technical_reviews.anomalous], [technical.normal, technical.anomalous]) ||
       bundle.images.some(i => rows.get(i.image_id)?.label !== i.label)) throw Error('Evaluation totals disagree with the saved responses.');
   }
+  if (new Set(bundle.configuration_assets.map(c => c.run_id)).size !== bundle.configuration_assets.length ||
+    (bundle.execution === 'recorded_live' && bundle.configuration_assets.some(c => !runIds.has(c.run_id)))) throw Error('Frozen configuration identities disagree with the runs.');
   return bundle;
 }
 

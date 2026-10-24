@@ -38,10 +38,11 @@ export interface SavedRun {
   report: Evaluation;
 }
 export interface Bundle {
-  schema_version: 1; bundle_id: string; track_id: 'fasteners'; evidence_status: 'fixture' | 'development_only' | 'authentic';
+  schema_version: 2; bundle_id: string; track_id: 'fasteners'; evidence_status: 'fixture' | 'development_only' | 'authentic';
   execution: 'fixture' | 'recorded_live';
   dataset: { dataset_id: 'mvtec_ad'; category: 'metal_nut'; attribution: string; licence: string; licence_url: string; source_url: string; modification_notice: string };
   manifest_sha256: string; challenge: { version: string; image_ids: string[]; rationale: string };
   images: ChallengeImage[]; runs: SavedRun[]; limitations: string[];
   notices: { path: string; sha256: string }[];
+  configuration_assets: { run_id: string; path: string; sha256: string }[];
 }

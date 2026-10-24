@@ -1,8 +1,9 @@
 # Offline API evaluation
 
 The evaluator counts every declared test image. It makes no network requests,
-reads no credentials, and never reruns inference. Current checks use generated
-pictures and invented responses only; there are no real model quality results yet.
+reads no credentials, and never reruns inference. Generated pictures and invented
+responses test its edge cases. The complete authentic fastener results are now
+available in the [local verification record](FASTENER_VERIFICATION.md).
 
 From the project root, after a **complete evaluation run** has been saved:
 

@@ -15,14 +15,15 @@ from referencing import Registry, Resource
 from pipeline.api_contracts import ApiEvidence, fingerprint, read_evidence, strict_json
 from pipeline.contracts import read_manifest
 from pipeline.evaluate_api import evaluate_files, metrics
+from pipeline.run_gemini_trial import TRIAL_SCHEMA
 
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMAS = {name: json.loads((ROOT / "schemas" / name).read_text(encoding="utf-8")) for name in
-    ("api-evidence.v1.schema.json", "evaluation-report.v1.schema.json", "fastener-bundle.v1.schema.json", "visitor-state.v1.schema.json")}
+    ("api-evidence.v1.schema.json", "evaluation-report.v1.schema.json", "fastener-bundle.v2.schema.json", "visitor-state.v1.schema.json", "model-inputs.v1.schema.json", "frozen-configuration.v1.schema.json")}
 for schema in SCHEMAS.values(): Draft202012Validator.check_schema(schema)
 REGISTRY = Registry().with_resources((s["$id"], Resource.from_contents(s)) for s in SCHEMAS.values())
-VALIDATOR = Draft202012Validator(SCHEMAS["fastener-bundle.v1.schema.json"], registry=REGISTRY, format_checker=FormatChecker())
+VALIDATOR = Draft202012Validator(SCHEMAS["fastener-bundle.v2.schema.json"], registry=REGISTRY, format_checker=FormatChecker())
 
 
 def validate_bundle(data):
@@ -41,6 +42,9 @@ def validate_bundle(data):
     if {n["path"] for n in data["notices"]} != {"notices/license.txt", "notices/readme.txt"}:
         raise ValueError("Dataset notices must be complete")
     run_ids = set()
+    config_ids = [c["run_id"] for c in data["configuration_assets"]]
+    if len(config_ids) != len(set(config_ids)):
+        raise ValueError("Duplicate configuration asset identity")
     membership = None
     for saved in data["runs"]:
         evidence = ApiEvidence.model_validate(saved["evidence"]).root
@@ -48,6 +52,8 @@ def validate_bundle(data):
         if run["state"] != "complete" or run["track_id"] != "fasteners" or run["run_id"] in run_ids:
             raise ValueError("Bundle needs distinct completed fastener runs")
         run_ids.add(run["run_id"])
+        if data["execution"] == "recorded_live" and run["run_id"] not in config_ids:
+            raise ValueError("Live evidence needs its frozen public configuration")
         if (report["run_id"], report["model_id"], report["manifest_sha256"], report["inputs_sha256"], report["evidence_sha256"]) != (
                 run["run_id"], run["model_id"], data["manifest_sha256"], run["hashes"]["inputs"], fingerprint(evidence)) or run["hashes"]["manifest"] != data["manifest_sha256"]:
             raise ValueError("Bundle run/report provenance mismatch")
@@ -82,6 +88,8 @@ def validate_bundle(data):
         if any(rows[k]["label"] != i["label"] for k, i in images.items()): raise ValueError("Challenge reference mismatch")
         if "fixture" in (evidence["evidence_status"], report["evidence_status"]) and (data["execution"] != "fixture" or data["evidence_status"] != "fixture"):
             raise ValueError("Fixture predictions must stay labelled fixture")
+    if data["execution"] == "recorded_live" and set(config_ids) != run_ids:
+        raise ValueError("Configuration assets must match all completed runs")
     return deepcopy(data)
 
 
@@ -102,6 +110,27 @@ class VisitorStateArtifact(RootModel[dict[str, JsonValue]]):
         return deepcopy(data)
 
 
+class FrozenConfiguration(RootModel[dict[str, JsonValue]]):
+    @model_validator(mode="before")
+    @classmethod
+    def validate_data(cls, data):
+        validator = Draft202012Validator(SCHEMAS["frozen-configuration.v1.schema.json"], registry=REGISTRY, format_checker=FormatChecker())
+        if next(validator.iter_errors(data), None): raise ValueError("Invalid frozen configuration schema")
+        plan = data["frozen_plan"]
+        identity = fingerprint({k: v for k, v in plan.items() if k not in {"frozen_at", "run_id"}})
+        if data["run_id"] != plan["run_id"] or plan["run_id"] != "eval-flash-lite-" + identity[:16]:
+            raise ValueError("Frozen configuration identity mismatch")
+        config = deepcopy(plan["configuration"])
+        if config["max_requests_per_model"] != 345 or config["minimum_interval_seconds"] != 10:
+            raise ValueError("Unexpected evaluation bounds")
+        config.update(max_requests_per_model=6, minimum_interval_seconds=65)
+        if not Draft202012Validator(TRIAL_SCHEMA).is_valid(config): raise ValueError("Frozen request settings mismatch")
+        ids = [i["image_id"] for i in plan["probes"]]
+        if len(set(ids)) != 115 or plan["reference"]["image_id"] in ids:
+            raise ValueError("Frozen reference/evaluation membership mismatch")
+        return deepcopy(data)
+
+
 def build(package: Path, evidence_paths: list[Path], output: Path):
     if output.exists(): raise ValueError("Preserve existing bundle; choose unused output directory")
     manifest = read_manifest(package / "evaluator/image-manifest.v2.json").root
@@ -119,24 +148,37 @@ def build(package: Path, evidence_paths: list[Path], output: Path):
     challenge_ids = [normal[0], selected[0], normal[1], selected[1], selected[2]]
     images = [{k: deepcopy(by_id[i][k]) for k in ("image_id", "label", "display", "mask")} for i in challenge_ids]
     fixture = any(r["report"]["evidence_status"] == "fixture" for r in runs)
+    configurations = []
     if not fixture:
         for path, saved in zip(evidence_paths, runs, strict=True):
             access = strict_json((path.parent / "access.json").read_text(encoding="utf-8"))
             plan = strict_json((path.parent / "plan.json").read_text(encoding="utf-8"))
             if not all(access.get(k) is True for k in ("free_execution_verified", "paid_execution_disabled", "terms_and_data_use_verified")) or plan["run_id"] != saved["evidence"]["run"]["run_id"]:
                 raise ValueError("Missing local execution/access audit records")
+            if fingerprint({k: v for k, v in plan.items() if k not in {"frozen_at", "run_id"}}) != saved["evidence"]["run"]["hashes"]["configuration"]:
+                raise ValueError("Frozen configuration does not match run")
+            public_config = {"schema_version": 1, "run_id": plan["run_id"], "frozen_plan": plan,
+                "effective_execution_limits": {"submissions_per_batch": 12, "batch_request_wait_seconds": 900,
+                    "request_timeout_seconds": 60, "minimum_start_interval_seconds": 10,
+                    "maximum_run_submissions": 345, "attempts_per_image": 3},
+                "notes": ["The frozen dictionary retains trial-purpose/probe-count/runtime fields as inherited history; the outer purpose/probes and effective execution limits describe complete evaluation.",
+                    "No evaluator labels, masks, visitor data or credentials entered these requests. Input paths are neutral model-input-relative identities."]}
+            FrozenConfiguration.model_validate(public_config)
+            content = (json.dumps(public_config, sort_keys=True, indent=2, allow_nan=False) + "\n").encode("utf-8")
+            configurations.append((f"configurations/{plan['run_id']}.json", content, plan["run_id"]))
     dataset = {k: manifest["dataset"][k] for k in ("dataset_id", "category", "attribution", "licence", "licence_url", "source_url", "modification_notice")}
     notices = []
     for name in ("license.txt", "readme.txt"):
         source = package / "evaluator" / name
         if not source.is_file() or source.is_symlink() or source.is_junction(): raise ValueError("Original notices are required")
         notices.append({"path": f"notices/{name}", "sha256": sha256(source.read_bytes()).hexdigest()})
-    bundle = {"schema_version": 1, "bundle_id": "pending", "track_id": "fasteners", "local_only": True,
+    bundle = {"schema_version": 2, "bundle_id": "pending", "track_id": "fasteners", "local_only": True,
         "evidence_status": "fixture" if fixture else "development_only", "execution": "fixture" if fixture else "recorded_live",
         "dataset": dataset, "manifest_sha256": runs[0]["report"]["manifest_sha256"],
         "challenge": {"version": "fastener-challenge-v1", "image_ids": challenge_ids,
             "rationale": "Five teaching examples selected after complete evaluation: two normal and three anomalous images from distinct defect groups; prefer a genuine missed anomaly or normal review when available. Curated examples do not change benchmark membership or establish superiority."},
         "images": images, "runs": runs, "notices": notices,
+        "configuration_assets": [{"run_id": run_id, "path": path, "sha256": sha256(content).hexdigest()} for path, content, run_id in configurations],
         "limitations": ["Local noncommercial development evidence; not cleared for publication.",
             "Public MVTec fasteners are GIS manufacturing proxies, not validated factory criteria or affiliation.",
             "General-purpose models may have encountered this public benchmark during training.",
@@ -157,6 +199,8 @@ def build(package: Path, evidence_paths: list[Path], output: Path):
         shutil.copyfile(package / "evaluator" / name, output / "notices" / name)
     if any(sha256((output / n["path"]).read_bytes()).hexdigest() != n["sha256"] for n in notices):
         raise ValueError("Copied dataset notice changed")
+    for path, content, _ in configurations:
+        target = output / path; target.parent.mkdir(exist_ok=True); target.write_bytes(content)
     (output / "bundle.json").write_text(json.dumps(bundle, sort_keys=True, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     return bundle
 

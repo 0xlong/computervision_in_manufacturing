@@ -1,5 +1,10 @@
 # Frozen fastener evaluation
 
+Completed: 115/115 genuine final assessments, with one recovered server error.
+The fixed policy missed 12/93 anomalous images and reviewed 5/22 normal images.
+The [local journey and verification record](FASTENER_VERIFICATION.md) is current;
+the plan and bounds below document how these results were obtained.
+
 Local noncommercial development only; no publication or paid requests. The
 [local-use review](GEMINI_LOCAL_USE.md) records the applicable terms interpretation.
 

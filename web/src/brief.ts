@@ -48,6 +48,7 @@ export function buildBrief(bundle: Bundle, state: VisitorState): string {
     '', '## Provenance', '',
     `Manifest SHA-256: ${bundle.manifest_sha256}`, `Evaluation membership SHA-256: ${report.membership_sha256}`,
     `Evidence SHA-256: ${report.evidence_sha256}`,
+    ...bundle.configuration_assets.filter(c => c.run_id === r.run_id).map(c => `Frozen configuration: ${c.path}; SHA-256: ${c.sha256}`),
     ...Object.keys(r.hashes).sort().map(key => `${key} SHA-256: ${r.hashes[key]}`),
     `Challenge version: ${bundle.challenge.version}`, safeText(bundle.challenge.rationale),
     '', '## Limitations', '',

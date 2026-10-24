@@ -1,5 +1,5 @@
 {
-  "bundle_id": "fasteners-eafba454a4512405",
+  "bundle_id": "fasteners-a6daa78c68bcb105",
   "challenge": {
     "image_ids": [
       "img-000002",
@@ -11,6 +11,7 @@
     "rationale": "Five teaching examples selected after complete evaluation: two normal and three anomalous images from distinct defect groups; prefer a genuine missed anomaly or normal review when available. Curated examples do not change benchmark membership or establish superiority.",
     "version": "fastener-challenge-v1"
   },
+  "configuration_assets": [],
   "dataset": {
     "attribution": "TEST FIXTURE ONLY. No MVTec data was acquired; no dataset images are included.",
     "category": "metal_nut",
@@ -468,6 +469,6 @@
       }
     }
   ],
-  "schema_version": 1,
+  "schema_version": 2,
   "track_id": "fasteners"
 }

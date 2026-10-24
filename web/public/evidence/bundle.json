@@ -1,0 +1,4867 @@
+{
+  "bundle_id": "fasteners-f0b61a212fefce56",
+  "challenge": {
+    "image_ids": [
+      "img-000071",
+      "img-000050",
+      "img-000076",
+      "img-000001",
+      "img-000026"
+    ],
+    "rationale": "Five teaching examples selected after complete evaluation: two normal and three anomalous images from distinct defect groups; prefer a genuine missed anomaly or normal review when available. Curated examples do not change benchmark membership or establish superiority.",
+    "version": "fastener-challenge-v1"
+  },
+  "configuration_assets": [
+    {
+      "path": "configurations/eval-flash-lite-46e242a298f20b6f.json",
+      "run_id": "eval-flash-lite-46e242a298f20b6f",
+      "sha256": "4a8003259fe158053c80d7c727ae71ff1885c2a9a90d40fcd537063b27e73160"
+    }
+  ],
+  "dataset": {
+    "attribution": "MVTec Software GmbH, MVTec AD metal_nut; included source notices retained.",
+    "category": "metal_nut",
+    "dataset_id": "mvtec_ad",
+    "licence": "CC-BY-NC-SA-4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "modification_notice": "Evaluator display/masks use unchanged source bytes. Separate model inputs re-encode unchanged RGB pixels without metadata.",
+    "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad"
+  },
+  "evidence_status": "development_only",
+  "execution": "recorded_live",
+  "images": [
+    {
+      "display": {
+        "dimensions": {
+          "height_px": 700,
+          "width_px": 700
+        },
+        "path": "images/img-000071.png",
+        "sha256": "d7ca543f04733fb91ac02e18d0fbf06dcff554a1b1ad754173c42d10bb026bb6"
+      },
+      "image_id": "img-000071",
+      "label": "normal",
+      "mask": null
+    },
+    {
+      "display": {
+        "dimensions": {
+          "height_px": 700,
+          "width_px": 700
+        },
+        "path": "images/img-000050.png",
+        "sha256": "663dc37246c611dfd39e89d04fbe44eeb43bab8f247905b7dfa426667a4d4fab"
+      },
+      "image_id": "img-000050",
+      "label": "anomalous",
+      "mask": {
+        "dimensions": {
+          "height_px": 700,
+          "width_px": 700
+        },
+        "path": "masks/img-000050.png",
+        "sha256": "2d76eb6bb1a9c1b9d6dae03813a10718349068fb1a389b3793d5e815464fbec4"
+      }
+    },
+    {
+      "display": {
+        "dimensions": {
+          "height_px": 700,
+          "width_px": 700
+        },
+        "path": "images/img-000076.png",
+        "sha256": "3562e63b3a22cea2a66eb48ce81ff20bf908d2fe1d2c3c585eafe3b28f72330b"
+      },
+      "image_id": "img-000076",
+      "label": "normal",
+      "mask": null
+    },
+    {
+      "display": {
+        "dimensions": {
+          "height_px": 700,
+          "width_px": 700
+        },
+        "path": "images/img-000001.png",
+        "sha256": "602cceb099d5aa10a416f31cd6370ef9d8c810118f4ada9dbc9c28e91a889e0b"
+      },
+      "image_id": "img-000001",
+      "label": "anomalous",
+      "mask": {
+        "dimensions": {
+          "height_px": 700,
+          "width_px": 700
+        },
+        "path": "masks/img-000001.png",
+        "sha256": "2ba625f7fa1357d3d31b84c39f38b5a2ddc546d751f3186388d0b7a4be150938"
+      }
+    },
+    {
+      "display": {
+        "dimensions": {
+          "height_px": 700,
+          "width_px": 700
+        },
+        "path": "images/img-000026.png",
+        "sha256": "0baf957a972988323713a48fdf85c5e93cd3f21ac3d829095c13f703e6aed14b"
+      },
+      "image_id": "img-000026",
+      "label": "anomalous",
+      "mask": {
+        "dimensions": {
+          "height_px": 700,
+          "width_px": 700
+        },
+        "path": "masks/img-000026.png",
+        "sha256": "50b93801a92d4fbc526ddc9f8ef88ec329fe448b0cb61f245d4a82fa1775d2a5"
+      }
+    }
+  ],
+  "limitations": [
+    "Local noncommercial development evidence; not cleared for publication.",
+    "Public MVTec fasteners are GIS manufacturing proxies, not validated factory criteria or affiliation.",
+    "General-purpose models may have encountered this public benchmark during training.",
+    "Unpacked acquisition has missing URL/time/archive receipt; physical-object/session independence is unverified.",
+    "API decisions have no authentic heatmap, calibrated probability or adjustable sensitivity.",
+    "Human review is required; this does not establish production readiness."
+  ],
+  "local_only": true,
+  "manifest_sha256": "5c77a9e478d03ce4b211d655b577b4363cc2853b9900eaef93ebb94f0a1940d5",
+  "notices": [
+    {
+      "path": "notices/license.txt",
+      "sha256": "a355a57937552790ebd751f8a8026b23882160ab73f1c38f8030456dfcf1a330"
+    },
+    {
+      "path": "notices/readme.txt",
+      "sha256": "60222d7e42a41e6e63ee6ed632d1149b76705fa49924b4c7594ebfc36f0a667c"
+    }
+  ],
+  "runs": [
+    {
+      "evidence": {
+        "evidence_status": "development_only",
+        "predictions": [
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:39:17.191Z",
+                "latency_ms": 8177.267800027039,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The metal nut exhibits noticeable deformation and missing portions on two of its outer prongs compared to the acceptable reference."
+                },
+                "response_sha256": "9f2d43bad7d5a53b131790c2a24ba7cc2ef9064c27b00ec9bd532d24674789e8",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:39:08.968Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 41
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000001",
+            "request_sha256": "0e4170ddb70ee0f2e0bf4ad74a52d281530d579fde78cd06523b8d22e59c2b5b",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:39:24.344Z",
+                "latency_ms": 5281.454399984796,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "Surface scratches and marks are visible across the top face and one of the prongs."
+                },
+                "response_sha256": "9d47e3fea5f9938a9c10492b9178cc5a41bbab483756cef8729111b78b7e37f8",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:39:19.000Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000002",
+            "request_sha256": "4cf2dfafc9882e6ea4c9e6a7cfe096a5608e0933e8f60f1d6b8ebdc0dfd1e4a6",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:39:38.111Z",
+                "latency_ms": 9010.591299971566,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a noticeable irregularity or protrusion on the lower-left prong of the metal nut compared to the reference."
+                },
+                "response_sha256": "cf8fbfa5c6e9f89fa05a85b6645a4498d1a30ea7db4688e0cd9520c7e6bccae9",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:39:29.042Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 41
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000003",
+            "request_sha256": "2d4580de7fb7bf75cf751ae3d1e7909ef28143e12e66ad83b6c76ad337e71e8e",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:39:45.402Z",
+                "latency_ms": 6265.279799990822,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a missing prong and a broken piece on the right side of the metal nut."
+                },
+                "response_sha256": "af9f881c8e113f54cceb9ee464f8565138407e42a543bf2d87d1950cebd96539",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:39:39.072Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000004",
+            "request_sha256": "377bb4939474cd8c5ee7f37679fe5ab5d5ed8f941fd824d221f347bd4eeba4df",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:39:56.127Z",
+                "latency_ms": 6993.408699985594,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a noticeable anomaly or breakage on one of the prongs at the top right compared to the reference image."
+                },
+                "response_sha256": "9eb0536f0b5255f71f62823d6c381c9949ba9c66037cfd8a0327bbbeeae34cd1",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:39:49.082Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 42
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000005",
+            "request_sha256": "9a2234cd1a2869f7b1e275b67f445af1797f108837b7f35ef1b38bae864c25ec",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:40:05.233Z",
+                "latency_ms": 6063.564500014763,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There are extra metal protrusions and irregular material attached to the outer edges of the nut compared to the acceptable reference."
+                },
+                "response_sha256": "1d96e914c44253d098d1cca656075be95612f3c1a7930365a383d48cb4af443c",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:39:59.095Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 41
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000006",
+            "request_sha256": "0eb30a99836024cababb2ba8e6f32e6124e642cef4e3464a46eadb27fe252669",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:40:13.742Z",
+                "latency_ms": 4519.192399980966,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "one of the prongs has a missing piece on the bottom left corner"
+                },
+                "response_sha256": "4b1c8aaef189082b6bc1289a1bcfdd5a3331545472f667d74ecae665e52b7097",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:40:09.127Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000007",
+            "request_sha256": "b3d24b0033a5884993d3d1366d33d2983ab674a641e21bce0f43cff95e1da0a4",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:40:24.288Z",
+                "latency_ms": 5084.547399950679,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a small dark flaw or particle on the top-left prong of the metal nut."
+                },
+                "response_sha256": "a82ce312b674c1b990144b556e61dd2ef6cf870a97b13582cb5725fac01849ce",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:40:19.145Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000008",
+            "request_sha256": "aadea523880f5e8b2f25742ba8d5e8a851e5e4c688598f644ee7d5c5e0966955",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:40:32.164Z",
+                "latency_ms": 2909.910899994429,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "One of the prongs shows deformed, scraped metal on its top surface compared to the reference."
+                },
+                "response_sha256": "d103fdc927e0a741ec62243393e107600ee29cdda8a23a3db47e2c8f9ed044ec",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:40:29.182Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000009",
+            "request_sha256": "03361df31f03b95c3dd8edd9f4fc1666570395c290fbf6a28f823b0d6fc6c2ef",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:40:42.095Z",
+                "latency_ms": 2821.9994000392035,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "One of the corner tabs shows a missing piece and visible damage on the edge compared to the reference image."
+                },
+                "response_sha256": "a70786e6a3d3128d5eeb39a7cda1539a9e933096a54b7a28e1ca911d47bcedcc",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:40:39.200Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 40
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000010",
+            "request_sha256": "8688cc3f2194dfee54277ba4b9d068a8c554ff2d7b305ed0ed22fe42235b1489",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:40:52.571Z",
+                "latency_ms": 3247.309700003825,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate metal nut shows a deformed or bent prong on the right side compared to the acceptable reference."
+                },
+                "response_sha256": "ad45ef970de498c977fdaee80db9eb658f34986368ed07fd13cfa9d0412ff086",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:40:49.230Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 39
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000011",
+            "request_sha256": "e65e2ee1eed22a5bcb58ce72d6a53f4765f15a71b0018a0f281e54c61ea0a588",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:41:02.937Z",
+                "latency_ms": 3636.366100050509,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "one of the prongs at the top right is bent upwards"
+                },
+                "response_sha256": "dd472ceca3136c9ecd31dd36a9fde1f37827e850da16f3528ab06c0f85d0b691",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:40:59.241Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000012",
+            "request_sha256": "99bfce8ee303f36ba9e25579c0e3d0c3ee2627d9f017481a74b069d9ce605206",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:42:08.541Z",
+                "latency_ms": 3267.2570000286214,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "Surface irregularity and missing material are visible on the right prong of the metal nut."
+                },
+                "response_sha256": "eca2a9a062eb1876068507edd3f76488e1229ae861d3e0825fbe991ad248abf2",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:42:05.218Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000013",
+            "request_sha256": "936e1951cc937a4b2988b2b0efa835fe755342d1d2a4647adfd0c2193082f057",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:42:20.389Z",
+                "latency_ms": 5092.363100033253,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "One of the prongs is broken or detached at the upper left corner."
+                },
+                "response_sha256": "575a70fd26e946c6b8d3f12db21956c244173f4efd184877e59cd198fba56eff",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:42:15.238Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000014",
+            "request_sha256": "f86ca50892205268504c858906435bab4f1e8c98ac66b17ead2fddfd44d859c1",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:42:29.008Z",
+                "latency_ms": 3672.000299964566,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is foreign debris or a smudge present on the upper right area outside the main body of the nut."
+                },
+                "response_sha256": "02219c808024d0bda9f07f13c3c9baa25ddad17bc114919676ddddb0289c1bef",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:42:25.270Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 40
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000015",
+            "request_sha256": "552aaf3677568773822279dcf00ca846857f27975406084c0f81e1ab5838ac86",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:42:38.629Z",
+                "latency_ms": 3251.9155999762006,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "Visible surface irregularities and deformation are present on one of the outer prongs and face compared to the reference image."
+                },
+                "response_sha256": "fada22f1800debe6844a69d0ef6d0a153e8c88cc0e62c6703f9f8656e806cfed",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:42:35.309Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 41
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000016",
+            "request_sha256": "cf30c35b0165f1668bbdae9685a6caf22a7cec30b8961c70718796cbffafc49c",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:42:47.939Z",
+                "latency_ms": 2529.7208999982104,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a visible chip or anomaly on the edge of one of the prongs of the nut."
+                },
+                "response_sha256": "52bd896f245cc93d038a1bebc6b411a3c4ebb271eca95a84ec9f0efd6afd4aba",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:42:45.324Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 39
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000017",
+            "request_sha256": "5d754d3e1169f3b8da356c74b6ab60c3850d5773f1f23a9ee11654b5d45a4836",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:42:58.577Z",
+                "latency_ms": 3165.5970999854617,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "one of the prongs exhibits a visible structural distortion compared to the acceptable reference."
+                },
+                "response_sha256": "fe937eee73da4c304fa696f512e55ae5b7c9394bcc0c7fb07a9ec8d954a222a6",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:42:55.348Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000018",
+            "request_sha256": "83cc626a322343dbc80d884a7c936ba61e145115b9386cf9d2976ec40ed9b1c0",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:43:08.471Z",
+                "latency_ms": 3034.30150001077,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "An anomalous piece of metal debris or breakage is attached near the top-left flange of the nut."
+                },
+                "response_sha256": "6c59dffaee48190899af4e73680a15172f5045058b2245c5e79c20a577912da0",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:43:05.360Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 39
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000019",
+            "request_sha256": "0eae969d2bcb88d29b1f35234d8f2a06bb68bc04faac9afa670ebed6bf8912fa",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:43:19.168Z",
+                "latency_ms": 3701.745899976231,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "One of the four prongs is visibly bent and deformed compared to the reference image."
+                },
+                "response_sha256": "20ecb4af2903b348e4761af1dcb1a4cf3394cab49e6e79a5e5c034a086379d0e",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:43:15.389Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000020",
+            "request_sha256": "ee2bcafbfd24577c9f4abded3596cb6342ef2a3fd323f800592c0bd3e55d8d62",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:43:28.364Z",
+                "latency_ms": 2866.245399985928,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "One of the corner tabs of the metal nut exhibits noticeable surface deformation and material breakage compared to the reference."
+                },
+                "response_sha256": "4f9ccb1415ce74026985ef3ed97b144885169379f0c3cdfb4d76ea4662ac8454",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:43:25.421Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 40
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000021",
+            "request_sha256": "d7894c8900a7fde821ce5c442c2595c12f6686f58f8883ebea7224147f16f962",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:43:38.429Z",
+                "latency_ms": 2879.0088999667205,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate metal nut shows a missing corner or breakage on one of the outer projections."
+                },
+                "response_sha256": "8c084aedcc5453933e859f7a3ea6cdcc38f8273d0145b5bce17c9412ca419a26",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:43:35.459Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000022",
+            "request_sha256": "c294701f7bc792eaacbfb8bb7aad45c1965b71d4cef8aa90eba3e39f20029dfa",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:43:49.426Z",
+                "latency_ms": 3875.402999983635,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a noticeable chip or missing piece on the outer tip of the rightmost flange compared to the reference."
+                },
+                "response_sha256": "ca48bfb89542deb1001d6ba792d39bcafe7d07266073dec46171882187f94042",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:43:45.482Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 41
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000023",
+            "request_sha256": "52df894d7368bccf7e7f81d41d10d39c0c31fcb4f063ba84f907eddb87414aff",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:43:58.838Z",
+                "latency_ms": 3230.3534999955446,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a noticeable anomaly and distortion on the top flange edge of the metal nut."
+                },
+                "response_sha256": "a56d525fb2a9a0265e6ff8589919489649ed4288f0a5b579fa0044faef487239",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:43:55.523Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000024",
+            "request_sha256": "d75310103c7a64f6d291f92c538e5ffa6d8e0c60f59834baa3842859476b99da",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:47:49.214Z",
+                "latency_ms": 2891.527700005099,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "An abnormality or foreign object is visible on the right prong of the nut."
+                },
+                "response_sha256": "a8a6df98439a5ed19fb373084ae8abea612e8db42d732eb74d91997c84dfef45",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:47:46.262Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000025",
+            "request_sha256": "e61ea75d56cf9baecfcb1bc34d4ab9434a8161dd90e423710a594efa04a1189d",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:47:59.472Z",
+                "latency_ms": 3086.701299995184,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "A dark spot is visible on the surface near the top right of the inner ring."
+                },
+                "response_sha256": "603f4fba491646659ed66dbd86928aae4dc9eb420ad5569f1e1364eededd8e32",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:47:56.302Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000026",
+            "request_sha256": "59b37d86b6d4a2cf00bacc217cb8c63a94200352dd983f58bd8a2bde40132097",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:48:13.326Z",
+                "latency_ms": 6889.021800016053,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a dark irregular mark on the surface of the metal nut."
+                },
+                "response_sha256": "c62bd2c98936e51ee446fbf513f29089f2eda9985453fa08508adbfc3787bd44",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:48:06.329Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000027",
+            "request_sha256": "9506cabc53d810a15b201934f66cb7b4c5803cba169a56c14dc63bddcd733092",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:48:23.163Z",
+                "latency_ms": 6737.432199995965,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a blue mark or contaminant present on the outer edge of one of the tabs."
+                },
+                "response_sha256": "15cb3a86e7c175a6b5c19739eb0aa2d7800b45a51ba4974da4d9790cac14c1f6",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:48:16.356Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000028",
+            "request_sha256": "f85b3af087783b604d44c9c8042d10b030e95a9b98f886cd9621f9f0489bb43e",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:48:33.682Z",
+                "latency_ms": 7212.576000019908,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There are dark spots and markings visible on the surface of the lower right prong."
+                },
+                "response_sha256": "ff2b129e9be7ec14f64131f2e9c5815aa5a8f83c3a3c483be4013449af2d9b7f",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:48:26.395Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000029",
+            "request_sha256": "e7e51b292992bfb29ccfc54bd78c47f2ad58ede4eb3bee2befe666d42425db18",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:48:44.273Z",
+                "latency_ms": 7782.183500006795,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "A dark blue mark or streak is visible on the surface of the metal nut."
+                },
+                "response_sha256": "6a9c6e08e09e01028abae779ab28177a13845912823d4f9d692e59f1d0bc9a50",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:48:36.418Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000030",
+            "request_sha256": "b94106d789059ffa2227223ac13fa63191b7a24ffbab66f252110b0a17e092ba",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:48:56.453Z",
+                "latency_ms": 9444.185000029393,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a blue ink or smudge mark present on the surface near the center hole."
+                },
+                "response_sha256": "ffa7db1366b4045493d25b41a0dceaf59116d5d0de7583446cd8910baeb1279a",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:48:46.558Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000031",
+            "request_sha256": "05e7584225134e1616dda10886ed640b5c18e5802e573ba6094be28acb934d1c",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:49:04.629Z",
+                "latency_ms": 7894.041199993808,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "A dark mark or blemish is visible on the surface of one of the prongs."
+                },
+                "response_sha256": "3806f1f73244af0a40dec1aad6ba18673eb8e256dae691bae0978249562a332e",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:48:56.605Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000032",
+            "request_sha256": "ae72583255d834d6b503eb8ba8abf1d5af255bfa4fcfa8c8a661793c70b57958",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:49:14.248Z",
+                "latency_ms": 7524.958099995274,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a dark mark and irregular surface texture on the upper right section of the nut body."
+                },
+                "response_sha256": "127d821340a2530d50773f8fd0cad46fd8865c4a01839656e88d0d433ac5f86f",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:49:06.625Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000033",
+            "request_sha256": "60be0f03608778d116e3ff82ac7b91259cbb39ed717623942d97a43442ef26a8",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:49:23.452Z",
+                "latency_ms": 6735.151199973188,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a prominent dark scratch mark across the top-right flange."
+                },
+                "response_sha256": "418295b3de111f859ee605e497c60fa883ff6a74fee016fbac3241b822cb2738",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:49:16.639Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000034",
+            "request_sha256": "05a7d1b2e34ac4ecfccd66a103168e2a7a3e608c8fc94c0f0bed9af44e917022",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:49:33.994Z",
+                "latency_ms": 7255.116099957377,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a dark scratch or smudge mark visible on the upper left arm extending towards the center hole."
+                },
+                "response_sha256": "8f175d6c49f08b36454c7d4ca51a4973cc090889ceb5fcea804673abaa7489c9",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:49:26.657Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 39
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000035",
+            "request_sha256": "b222f392321dfef6942bd71ce9d2c8a585edc96773451560014344d5f300582d",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:49:41.911Z",
+                "latency_ms": 4896.317299979273,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "Dark scratch or smudge marks are visible on the right prong of the metal nut."
+                },
+                "response_sha256": "e499a3c2ef8caa9adff4621faef1306e4aa28f6d739157a832e726ef2aa2831f",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:49:36.692Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000036",
+            "request_sha256": "789664c09db62dad137df6f5b3682f5db53843219ca01bf9016dd69997f3de8e",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:51:05.113Z",
+                "latency_ms": 7676.39949999284,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "Dark scratch or marking is visible on the upper surface of the candidate nut."
+                },
+                "response_sha256": "d9a285250f3a3a7de48ea3d6f4c479093fece3a6a097c1dea7039943072e4ce1",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:50:57.359Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000037",
+            "request_sha256": "2da87228a297d1e52f0393aa59bd0c141a3d9250ed16658343e263dd48aaf37c",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:51:12.667Z",
+                "latency_ms": 5207.968400034588,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a prominent red marking on one of the top-right prongs of the candidate nut."
+                },
+                "response_sha256": "56d313285e58aec9bb89666668839d66d263f1381a52e02db49480e281ffbe63",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:51:07.372Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 39
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000038",
+            "request_sha256": "939e756e423e523765fbd041e11390bde476dc8350fcc42b623e5eacc6718b4f",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:51:24.785Z",
+                "latency_ms": 7305.459999945015,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a prominent red mark on the surface of the metal nut."
+                },
+                "response_sha256": "2a0c7a181f828463073867640546bdcd1f0a2bb833fc33045d8009ee97fb3d36",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:51:17.391Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000039",
+            "request_sha256": "2b3d4fb79df61ce0a1c1c8695835efd2e9af9facf3ea30fda59e6042f080dfc2",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:51:38.117Z",
+                "latency_ms": 10557.77080002008,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a reddish mark on one of the prongs of the candidate nut."
+                },
+                "response_sha256": "65773b2048ea64c432f6a930b7e5c7d883f48ebf2eca6fb42975f00d47356ca2",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:51:27.412Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000040",
+            "request_sha256": "10937a5728134448e6342b13338722d04b36b614365ab170ee695bff28d9bf9d",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:51:43.151Z",
+                "latency_ms": 4822.889899951406,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a reddish discoloration on the surface above the central hole."
+                },
+                "response_sha256": "17c3a37bf750d9985d212359c5b3440cc92549bb483162a4a0aeef1aaa34df86",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:51:38.241Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000041",
+            "request_sha256": "5a31093e074b20918f996f28a562a70d1668a9e81ecf7c4c1c97d258e50dd522",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:51:56.139Z",
+                "latency_ms": 7795.79190001823,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a blue marking and noticeable scratches on the surface of the metal nut."
+                },
+                "response_sha256": "7935ab89cf266e6bb555ca04494827c74be7f3401679eae71eb4d9a2b58d012f",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:51:48.254Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000042",
+            "request_sha256": "f0b2f733402de0205917abf316fd247790ac0f89e5b1bc7ab3fd41fbf3eea321",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:52:01.859Z",
+                "latency_ms": 3499.5215999661013,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is dark blue marking or ink on one of the outer prongs of the candidate metal nut."
+                },
+                "response_sha256": "052beb887572465b645580aacffa9a0d7ef84b6698c18e4f72e40e54f38b38ba",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:51:58.267Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 39
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000043",
+            "request_sha256": "f15693c4100a5243fe666370d26759f4a5f82581430ecf373b268393a878a3d8",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:52:12.732Z",
+                "latency_ms": 4365.207199996803,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a prominent blue mark on the surface near the center hole."
+                },
+                "response_sha256": "455fd243d0923044e1e00a31dcd721a25f6b430aa93eef6f6a700df90333d9cb",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:52:08.279Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000044",
+            "request_sha256": "7a1b6abc7f8a90a1665d85879074a294150ce6a186fe5d18f040bebb84609f00",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:52:21.942Z",
+                "latency_ms": 3555.237799999304,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a reddish mark and linear surface scratch on the upper right area of the metal nut."
+                },
+                "response_sha256": "87955fed1b6be43feff63d1d0b4d6cdd7a465d5d016eb7becf49426aac4bfa31",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:52:18.294Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000045",
+            "request_sha256": "7c34b84c1a5be5e8a8f509db497938eee048d8223cf83240f8974d14e4b39539",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:52:31.761Z",
+                "latency_ms": 3353.0286999884993,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a reddish discoloration on one of the prongs of the metal nut."
+                },
+                "response_sha256": "5bb1ed8ca902840df6d491343cb05944c478dbeff81ea9b93565ab76b4251576",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:52:28.314Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000046",
+            "request_sha256": "d2157a1b16b4b46f7387bc0219543338c490f6f68530fbc2920b922b9eb662a8",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:52:42.392Z",
+                "latency_ms": 3900.6216999841854,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "A dark linear scratch or foreign mark is visible across the top surface of the nut."
+                },
+                "response_sha256": "5e3ea08241223b6fd0832fb4ef75cb6b719d790ef17ee8183a2bc61c840a0c85",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:52:38.338Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000047",
+            "request_sha256": "81884348123c63569d905bd918f653e89869e8bbd9f906235b30824e5eca6593",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:52:55.844Z",
+                "latency_ms": 7355.882600008044,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "A dark spot is visible on one of the prongs of the metal nut."
+                },
+                "response_sha256": "8c49766c863e8a3cc415d0e31aa29a5a27e29d02ccea989635f5b03f698433e2",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:52:48.362Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000048",
+            "request_sha256": "4c72a762175b5a6309e7158e04307873cc4246352878c8ed71e544e88958666c",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:55:37.934Z",
+                "latency_ms": 9906.5108000068,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a dark linear mark visible on the surface near the center hole."
+                },
+                "response_sha256": "58ca6b9932c2488cae4f4d46d76e9748262b8ffeab13f764337f102bfbc88400",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:55:27.559Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000049",
+            "request_sha256": "8feac0280cb21e352b8ea3e8b1552a8bfb1661fabac8564ee5ac2cf73e95125b",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:55:44.724Z",
+                "latency_ms": 6617.043899954297,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut shows consistent overall structure and features comparable to the acceptable reference image."
+                },
+                "response_sha256": "6988db9168e26665d11922e8fb8aa04d8d3b8c444b1f7107873d78b3e0a2c7a8",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:55:38.023Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000050",
+            "request_sha256": "0ff1b883d52255a2c43d4662315b7a4e8cd052e4d0e4484a7f744980db4aba71",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:55:55.141Z",
+                "latency_ms": 6988.433999998961,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the surface texture and structural features of the reference image without noticeable anomalies."
+                },
+                "response_sha256": "9abbc88c08558db1f49b534970c9694e2a1e5777a03317ddf19388b7e20b7623",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:55:48.034Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000051",
+            "request_sha256": "b22a05a05030870a18fdfcf79fda70e50031c9839429baf04ea2ec304d8241fe",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:56:03.229Z",
+                "latency_ms": 5047.280900005717,
+                "number": 1,
+                "reason": "server_5xx",
+                "reported_model_version": null,
+                "response": null,
+                "response_sha256": "01f5c7d4e4d8ec06c8098777e731b3d552ba518feb02b681f6c569edcd9c6f6d",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:55:58.048Z",
+                "status": "provider_error",
+                "usage": null
+              },
+              {
+                "finished_at": "2026-10-24T11:56:14.087Z",
+                "latency_ms": 5932.025899994187,
+                "number": 2,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the surface texture and geometry of the reference image."
+                },
+                "response_sha256": "6ad5befcc8487395de0700f233c7c019a9fc7efcd783c2ddef18d4d354a8a369",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:56:08.059Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000052",
+            "request_sha256": "820b548f9d90119259db92bfc5d0c186c971f551458f1a19ccb238bf41fb753e",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:56:27.527Z",
+                "latency_ms": 9381.452400004491,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate metal nut shows noticeable surface smudging and discoloration on the body and arms compared to the reference image."
+                },
+                "response_sha256": "d85379ce9611b4d0886fef962d48e826774f885e20e1e1b680ea9faa277bd9a5",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:56:18.070Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 41
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000053",
+            "request_sha256": "d41c92acd35dc2824495aee578e889bf4385458c2bffcc3b66c97e218702b225",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:56:38.585Z",
+                "latency_ms": 9899.116099986713,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the shape, features, and surface finish of the acceptable reference image."
+                },
+                "response_sha256": "56f0bb503fdb21a078968e2c0509286b59be95874a951eb81a1010473d7cc95c",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:56:28.081Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000054",
+            "request_sha256": "1c80fdbb072d91bc9dcb6287f8cab15d4666590b8a871b07f43e4afe9bee8e43",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:56:47.589Z",
+                "latency_ms": 8696.396099985577,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the acceptable reference image in structure, symmetry, and surface finish."
+                },
+                "response_sha256": "471913b8caf09d3576cf9d99818115cdaef502edf4fd867263e07d5ec3d8962b",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:56:38.723Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000055",
+            "request_sha256": "0ae099bfe79f592a3144eb47d0056920f094ad4f6f41a5dec2c041ca046b56fd",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:56:56.043Z",
+                "latency_ms": 7161.726100021042,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The metal nut appears uniform in shape and texture compared to the reference image."
+                },
+                "response_sha256": "bba992dbc6d83f1313fe4e1e0388050294821598f837a5fb0d12db5c6cf562fe",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:56:48.743Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000056",
+            "request_sha256": "4d8f71463ab48b5f9971f5f42217fdd42909cd3df1bd1faacde756a0b2e8a9b4",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:57:06.106Z",
+                "latency_ms": 7212.092500005383,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There are surface scratches and discoloration visible across the metal nut body compared to the reference."
+                },
+                "response_sha256": "48e81ef9bbb31fbbcb3e279262eec81f7e2e8638a92ddd930e5670b708fbe487",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:56:58.754Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000057",
+            "request_sha256": "ee67171d700b2bb3f91d4832609a3c15b2ccea23c3ce11d2050eecb8ff4c0817",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:57:18.371Z",
+                "latency_ms": 8845.342900021933,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate image shows blurriness and altered lighting compared to the reference image."
+                },
+                "response_sha256": "d604f778b5890c325aa003684894d8884fadc897c7f57156c9b1a8398ac1f22b",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:57:08.848Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000058",
+            "request_sha256": "17238880252dc68a1056a862d318638051455bc78b98ef189be8b10f341a4008",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:57:26.077Z",
+                "latency_ms": 6856.924999970943,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the acceptable reference image in structure, color, and surface texture without visible anomalies."
+                },
+                "response_sha256": "7d7adbb56618dee28cdad8ce4dbba6f47be884303f4baecac7158440d2431017",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:57:18.861Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 40
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000059",
+            "request_sha256": "85b7e2428abaf21dcfa0c384669c11ba074bc503b6d64c37404671aa2ec92628",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:57:42.699Z",
+                "latency_ms": 5701.055499957874,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the acceptable reference image in structure, color, and texture."
+                },
+                "response_sha256": "fb77454e768caaad161eedb9ca6d67c4e57eb5aa22da9df0f6f9fcd6ec918d3d",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:57:36.620Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000060",
+            "request_sha256": "306b661265699553e9facd0eaabc3f0e5cbf0df39c5b170481fef40cd2293528",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:57:53.923Z",
+                "latency_ms": 7020.449600007851,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a noticeable scratch and discoloration along the inner ring and surface compared to the reference."
+                },
+                "response_sha256": "6b6f05c1f5e993345657327f3be7ecf565956eb0460aac28276a1666508efaf7",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:57:46.645Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000061",
+            "request_sha256": "ee7ec37be682d9e028ee4b9a0f8efd652ed286cc077a30b9a6efd546a3d4b0b2",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:58:01.672Z",
+                "latency_ms": 4895.552299974952,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The surface texture and coloration around the inner ring differ noticeably from the reference image."
+                },
+                "response_sha256": "3ae04b0031583d9d7a051410b2e46787b1fe138483975a78beddc945d9cc8729",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:57:56.655Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000062",
+            "request_sha256": "14f3d86c3ed886e275effad7f174b723b4b2f6da17cba045f11f32eea69d94bc",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:58:12.546Z",
+                "latency_ms": 5754.125700041186,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the acceptable reference image in overall form, surface texture, and features without visible anomalies."
+                },
+                "response_sha256": "62cc0466b4771eeacaa45b8c31dc35cc774f4d2c13e517a9d3c8919cd6b02354",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:58:06.675Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 41
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000063",
+            "request_sha256": "038e3514a90b4cd642ebc87f946d4f5996ca83aa34b6df6b281d0dfa4b752a71",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:58:20.614Z",
+                "latency_ms": 3824.3874000036158,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the acceptable reference image in shape, texture, and overall appearance."
+                },
+                "response_sha256": "0be551569e0af57538c2de5993fb00cf7d61d9e8b4d79ab6e088e4a0fa745363",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:58:16.689Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000064",
+            "request_sha256": "deadc520a53eec20662bdabe6b8892ddd28198bb8b5b068a9aba75da4c2c35dc",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:58:29.591Z",
+                "latency_ms": 2791.662900010124,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the acceptable reference image in structure and surface finish without visible anomalies."
+                },
+                "response_sha256": "d3f6700ff25f8f60a7c2b2c975e2b142a13a197c46cd64a58979a371a050e0b0",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:58:26.700Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000065",
+            "request_sha256": "6770f7d12b67fd90a94d6277a3842b8a6966bd581c320854d1e47b5809d4b156",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:58:40.575Z",
+                "latency_ms": 3772.7843999746256,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate image shows noticeable surface texture differences and blurriness compared to the acceptable reference."
+                },
+                "response_sha256": "475ab0b78b9d21a1ff4db37c37f800660c3d60e93c0805fda1abd60f435ab592",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:58:36.712Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000066",
+            "request_sha256": "88437fa3fabd49762d6ee6e80cd7d697da2b37bc7d1f806e08c4fee9575c14d3",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:58:50.095Z",
+                "latency_ms": 3261.2088000169024,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "the candidate metal nut matches the acceptable reference image in overall form, surface texture, and features without visible anomalies"
+                },
+                "response_sha256": "5a8c7d054f2e91571dcbc295fad1ff57da3510711e2e577f3609512c71fc6e76",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:58:46.748Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 41
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000067",
+            "request_sha256": "8e5a0db4c0676897420c3b2ca10618db40a9622a84ac56f460dc31effd5b267c",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:59:02.328Z",
+                "latency_ms": 5459.695299970917,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate metal nut shows dark smudges and discoloration marks on the surface compared to the reference."
+                },
+                "response_sha256": "44d6a6f2b88c2dcf24d25c6843171509e480fffa4a9d57418a8097c0061b1678",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:58:56.770Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000068",
+            "request_sha256": "24ff0179107de72e1bb5437f35fdd4b7ebed415667f18ac431bbe85e2ba8c981",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:59:09.930Z",
+                "latency_ms": 3055.7717999909073,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate metal nut shows noticeable surface smudges and irregularities compared to the reference."
+                },
+                "response_sha256": "d88da91a4bfe3480b55663d26bf0eb0ecbe908f8948c464d76603214bbf26ec3",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:59:06.793Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000069",
+            "request_sha256": "6f82cbb2cff516c1495402b2f1687929bdc8190ce0af6c106d592ac8ad30eb29",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:59:20.068Z",
+                "latency_ms": 3148.4610000043176,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a dark irregular smudge pattern visible on the upper right surface of the metal nut."
+                },
+                "response_sha256": "84316dee1ed05ec55dc3472564fe8f36498e5de6bb247038918be5e617561318",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:59:16.806Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000070",
+            "request_sha256": "10b7de2ae48a5a05065113b02def5699e7836ac1621701f582665b9a8e4ee099",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:59:29.893Z",
+                "latency_ms": 2978.6329999915324,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There are visible scratch marks and circular abrasion patterns on the surface of the metal nut."
+                },
+                "response_sha256": "f8861f35ea5d4d2e0cdd2a374ff26affacc646022517a3b8f3be52b930edb027",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:59:26.830Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000071",
+            "request_sha256": "3c46050bb5707c1fc3c2d46306055546e03eba496a5b451d2771361c402d8208",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:59:41.293Z",
+                "latency_ms": 3651.7485000076704,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "the candidate metal nut matches the acceptable reference image in structure, surface texture, and overall appearance without visible anomalies"
+                },
+                "response_sha256": "63668e7f54f32b0078513deec32f7ea76777a2de31a6fc79fa31926122515875",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:59:37.417Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 41
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000072",
+            "request_sha256": "b943d1ebb337d357c0ab90c3c7df6a5b3aff67d97759893327800116904b3583",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T11:59:53.986Z",
+                "latency_ms": 6351.328999968246,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the acceptable reference image in structure, surface texture, and overall geometry without visible anomalies."
+                },
+                "response_sha256": "aad191454efcdfce8b9a51e598d9a82ab89ad54109dd6ec057cdf5847dbf7620",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:59:47.438Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 41
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000073",
+            "request_sha256": "5052c30101a5f8ace8bc6595b9df4df5be21f7263b462d0a00b74a7c638dedb6",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:00:01.116Z",
+                "latency_ms": 3500.361799960956,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut shows consistent surface texture and features compared to the acceptable reference image."
+                },
+                "response_sha256": "f155d03452d3402e8235bc6bf4b7313df58f780f931eb92734bdb0962b952974",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T11:59:57.454Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000074",
+            "request_sha256": "567c3fc046a5edcd2d9fdd0b087a7c95a463d034131d6a1ea85914573ff38474",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:00:12.499Z",
+                "latency_ms": 4770.729499985464,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the acceptable reference image in structure, surface texture, and general appearance."
+                },
+                "response_sha256": "68a2540b24a56b661a809e7722dc15887659a835c3eb7b2d3ee4a5a4aec66677",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:00:07.476Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000075",
+            "request_sha256": "6a88ed3041570189a9647dcc142e09d67509703b5d5ef326da7907c66bfe92d5",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:00:22.736Z",
+                "latency_ms": 5016.327499994077,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "one of the prongs shows visible surface indentation and deformation compared to the reference"
+                },
+                "response_sha256": "2e1398cc698d6ba52ca483769247bc0fe90ae41727a955d2bfd3f1db2889a81d",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:00:17.490Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000076",
+            "request_sha256": "641da5db64b93ea8ec9c7115e6a256efb787202c3ba9d6ca60632856133876d2",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:00:31.040Z",
+                "latency_ms": 3293.644300021697,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the acceptable reference image in overall form, texture, and surface features."
+                },
+                "response_sha256": "ed67ba3113ce6940c435efe2a8c0967d8cf1dcd2658569942950334c5bb8e4ae",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:00:27.503Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000077",
+            "request_sha256": "b7bf052b5ebe2079967b4e49013f88c5f4e7564b7761d8c791c5e1c9497e3db8",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:00:40.643Z",
+                "latency_ms": 2958.1739000277594,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "the top prong of the nut shows a noticeable missing piece or deformation compared to the reference image."
+                },
+                "response_sha256": "ba3d5f4ae365c544ba44296deff44918b4df69448da9d54bd2429768ea3bfee7",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:00:37.519Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000078",
+            "request_sha256": "a081ea8dbe9ee0ec3911ab031abb53c615ee88c7c46ed7c2d19f1aa93c6a9d85",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:00:52.425Z",
+                "latency_ms": 4330.750100023579,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut shows consistent surface texture and geometry comparable to the reference image."
+                },
+                "response_sha256": "eed3a999281f83ac761007de606e0c31902384cc75682e31b30d18fd7f66cdfe",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:00:47.543Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000079",
+            "request_sha256": "c25f77f7b5e2ccfd9b6d6355511cee729490d5f55efff77b8d33cedf736165fe",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:01:01.605Z",
+                "latency_ms": 3833.0415000091307,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "the candidate metal nut matches the acceptable reference image with consistent geometry and surface finish"
+                },
+                "response_sha256": "e07fa88b6b4c6e01a94835e9b06bdcb643ad03cc8c7aeb67a8b28421965a45db",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:00:57.558Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000080",
+            "request_sha256": "87b7548ae18a54a2f9f18a158b9144fe576641cb224fa54d39e2e3008d957272",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:01:10.668Z",
+                "latency_ms": 2997.3863000050187,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "the candidate object matches the appearance and features of the acceptable reference image"
+                },
+                "response_sha256": "4718e018693eea561f2bb7c6d7fd8d5216d142dee3106b0cec8f0a478e4d2dc7",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:01:07.583Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000081",
+            "request_sha256": "51a125199de90640a275b3f2c42880ffd777ddf950630cc520d8f49811a9753f",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:01:20.781Z",
+                "latency_ms": 3075.411800004076,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "A visible crack or scratch spans across the upper section of the metal nut."
+                },
+                "response_sha256": "46ffbb25d5988a9eca14a790517a9ab1697ae3c1bc65f603a92c56ff4c522235",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:01:17.608Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000082",
+            "request_sha256": "72eb182e2656ba023ef96512d6d50b80e324774d68e4f897a1bee9a5af175787",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:01:32.555Z",
+                "latency_ms": 4513.646700012032,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the reference sample closely in shape, surface texture, and overall appearance."
+                },
+                "response_sha256": "7deada49f10e3ab0d617e67957d36b6b18d97a751fa2a08f045a277bf8ed4a9c",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:01:27.652Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000083",
+            "request_sha256": "7b1d94c294b9ded249dfaa3e6e1878eb9661acd265bf434f5350e688fbfd2afd",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:01:48.134Z",
+                "latency_ms": 3203.6315000150353,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the acceptable reference image with consistent shape, features, and surface texture."
+                },
+                "response_sha256": "1ced74910464972d57b1460b91d5d7530273ee16e212f19797dae1dc0625490e",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:01:44.846Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000084",
+            "request_sha256": "2a155f5dea2d704dcceba3508f8f9fb096f7a1081e3bf6816be517508c39e059",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:01:59.833Z",
+                "latency_ms": 4744.991599989589,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "the candidate metal nut matches the acceptable reference image in overall surface texture and structural features without visible irregularities"
+                },
+                "response_sha256": "f1327095cd556c84a085a96d17754d0076d597d39a00ca6ff35ca5c95211e8c8",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:01:54.876Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 39
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000085",
+            "request_sha256": "ef82086ddccdf72550a2c1dd7c13c173e7cb7ad908b418a00ab47aff7a590bfa",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:02:08.098Z",
+                "latency_ms": 3081.8744999705814,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "the candidate metal nut matches the acceptable reference with no visible anomalies"
+                },
+                "response_sha256": "caf6c3f03db4aacaa98fad63dda569c84450bedd7a0a2bc4012253b83684e3e7",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:02:04.912Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000086",
+            "request_sha256": "218497e6034e1a32c8e5dff6e250bf0ae4262ac96e22dbeac7b4eec57eebb116",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:02:18.317Z",
+                "latency_ms": 3218.707900028676,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The metal nut is noticeably rotated relative to the acceptable reference image orientation."
+                },
+                "response_sha256": "9e180afabbfb01b6f6c83601eb115adb6dc7f55560f0266f450089aa2e06e155",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:02:14.925Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000087",
+            "request_sha256": "6d8965532d4dc86e13f19c4ed8d390875923b3681c9e5359286476e048711657",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:02:28.028Z",
+                "latency_ms": 2999.85869997181,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "the candidate metal nut matches the acceptable reference image in overall appearance and features"
+                },
+                "response_sha256": "b5a5798a41d68cbd20509f7f0bb27871b16ab1098f90395305cde0cbe20bf93d",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:02:24.937Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000088",
+            "request_sha256": "3dc5e08fcd8afb019a4d6fc2284e057b9901e54195fae029c9e72b63401c9880",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:02:38.022Z",
+                "latency_ms": 2967.893799999729,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the acceptable reference image in structure, surface texture, and overall geometry."
+                },
+                "response_sha256": "430006aa78ea8334b6b1d39f8804c3b6ca257a928373c9fbc14b424df67d785f",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:02:34.950Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000089",
+            "request_sha256": "5cf494556a4858ab6d07d9beba28378a1c409032f73aa9b3004898be00283f7e",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:02:49.443Z",
+                "latency_ms": 3857.0641000405885,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The metal nut appears uniform with no visible surface defects or anomalies compared to the reference."
+                },
+                "response_sha256": "8ce61abb3c73a7b1612aea8cb6e50b0169d2521b09b773ff4f0d07a02dcfba2b",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:02:45.002Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000090",
+            "request_sha256": "b2cfcd8c92dfe8eaa5cf49cf95b7d974a422c5bcb8a5fb5895c6ee9ee9160e0f",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:03:01.450Z",
+                "latency_ms": 6200.030100008007,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "the candidate metal nut matches the acceptable reference image in structure, color, and surface features with no visible anomalies"
+                },
+                "response_sha256": "66519095639ca8660b8d07730cb1453aae67fb8c31dd9488d449efe27674a1ad",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:02:55.022Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 41
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000091",
+            "request_sha256": "0fac2cf6fbd38cae54b140372bef83e715445c22251922a082bafbfb9533a008",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:03:10.480Z",
+                "latency_ms": 5343.643300002441,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the acceptable reference image in shape, texture, and overall appearance."
+                },
+                "response_sha256": "9b757360679c81e9acb53c740f7377dc222142d0b8c37bf41ed0ce8f34f851f7",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:03:05.038Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000092",
+            "request_sha256": "c88dcc88205b7bf79e68a8f6576cd71f054edc84b732700510fb49f50810d9e1",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:03:20.904Z",
+                "latency_ms": 5541.763400018681,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "Scratch marks and surface irregularities are visible on the lower right portion of the metal nut face."
+                },
+                "response_sha256": "62b39f0324dc7e038e33c4265374eed104a4dd4c5c644d60c3245a1429f9e8e4",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:03:15.055Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000093",
+            "request_sha256": "6676c78e3ddeb5a41a5f8fc244c5d5664186f7f0101d1e4fffb2416f47fe61cb",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:03:29.805Z",
+                "latency_ms": 4631.152199988719,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There are visible scratch marks on the surface extending from the inner ring towards the lower right lobe."
+                },
+                "response_sha256": "8f81abbaf3c94390f86a34d529850a0c29a21682a4df6480874db604421bbc93",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:03:25.067Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000094",
+            "request_sha256": "23be545093e9673d2a90d022c2d4903002300c9afabb9ef84a2000fe4dad229a",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:03:39.632Z",
+                "latency_ms": 4315.769100037869,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a prominent scratch or scratch-like mark across the top surface of the nut."
+                },
+                "response_sha256": "5ed75a7f3150ff9960ebc359020575f1574e6521f5d08d37e3e4d2b417742b01",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:03:35.083Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000095",
+            "request_sha256": "2fd53a58022b605074ad6b1eb50494333f0b2eb79a7d6fe210af7d9ec68db348",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:03:55.914Z",
+                "latency_ms": 6708.631799963769,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a noticeable scratch or surface anomaly on the top-left prong of the candidate nut."
+                },
+                "response_sha256": "60a59462cbbd4fa36e1fc6a2f3516b9ee385e8ec27f619f2ae52e05fbc57ae6e",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:03:48.326Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000096",
+            "request_sha256": "ac14afccd331e7bd15d54433121de5ace3f94ae0b3a2726cf8f8b5d41b077706",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:04:03.545Z",
+                "latency_ms": 5096.488799958024,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "Visible dark scratching and surface abrasion marks on the upper left prongs."
+                },
+                "response_sha256": "cfacc9b90325090fca5b9518729c3cdfd527bc0dffcf5bba39defb8af3de77f1",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:03:58.337Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000097",
+            "request_sha256": "b325fc27969ec154f187baa428d73d7cbe00ed34f8e08a78edba7b4f4e3f5fbb",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:04:12.199Z",
+                "latency_ms": 3549.783100024797,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There are surface scratches and discoloration visible on the top prong of the metal nut."
+                },
+                "response_sha256": "c3f01ef0731dc29bc5c2fcaf44b8123c90c7abfa28cf3a1d218ee41a1ec01f25",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:04:08.375Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000098",
+            "request_sha256": "b882b8c4aee3882c6e59b1b3d53b39be1c2c7f2873b1bb7161168c37189f9abd",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:04:22.532Z",
+                "latency_ms": 3935.786599991843,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "Dark scratch-like marks are visible on the top-left surface of the metal nut."
+                },
+                "response_sha256": "08c7f55568c288b06b00e66617595ad49ad5fa51ac343c0efe03f3fff54a5d49",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:04:18.402Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000099",
+            "request_sha256": "aad06c5f3095b28434b86270133724c53fed6f2c1bb7c26bd3ce8a2a64983a1e",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:04:31.243Z",
+                "latency_ms": 2730.4388000047766,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There are visible dark scratch marks across two prongs of the metal nut compared to the reference."
+                },
+                "response_sha256": "341d659c221829bcb2fc8d7bde4b7a47f2b0037e0475a336085c85523adb04df",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:04:28.413Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000100",
+            "request_sha256": "ba59d3a3a3046a667c3bd7e582f122f7de2a54c196dfe45e8047331ccdc943b3",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:04:43.180Z",
+                "latency_ms": 4146.499999973457,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "Surface scratches and discoloration are visible across the face of the metal nut."
+                },
+                "response_sha256": "99205400b60f048a352d2abaee3bc347fd1d04b0cca3484d13cc7333dc6a3649",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:04:38.441Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000101",
+            "request_sha256": "981e9bf25924af05b97f511e7f3c68e25241b68363e3766df6d1e4a758c3f1ec",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:04:53.068Z",
+                "latency_ms": 4439.063200028613,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There are surface scratches and discoloration visible on the top prong of the metal nut."
+                },
+                "response_sha256": "8c5a020165227d35b50350838e20d86797d871a4bcc2c3f9eb606771e073a5c9",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:04:48.457Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000102",
+            "request_sha256": "6f0cb8ab9cfa7d5757120f904f48c09c4825948308587b1cc8594c9b3acc6390",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:05:08.615Z",
+                "latency_ms": 10022.86309999181,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate metal nut shows scratch marks and a distinct color variation on the top prong compared to the reference image."
+                },
+                "response_sha256": "c1f5afe763f194617ffafca224cda5b396ad3d341de7f73a0476a39a6188fa55",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:04:58.471Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 41
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000103",
+            "request_sha256": "5ccaecdfe6a48c8c023f0179712e9f06f503f35c5c9aed041a25fb5a10ad960b",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:05:13.685Z",
+                "latency_ms": 4846.98859998025,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "A linear surface mark and a damaged edge/corner are visible on the candidate metal nut."
+                },
+                "response_sha256": "b9f4c33d6cec8a26ea219a51162094bdcf75670532707df30649d9e4cc2338f2",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:05:08.747Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000104",
+            "request_sha256": "fcc63236bccb1a08a78722799e9da2606c209a51e0449931e64ab21792e5409b",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:05:25.123Z",
+                "latency_ms": 6189.423499978147,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a prominent scratch mark spanning vertically across the right side of the metal nut face."
+                },
+                "response_sha256": "c92b2862d9f53acaaed61946ec01606abce4683917508bc97043f5f97d3228c9",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:05:18.759Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000105",
+            "request_sha256": "6f95d5fdce2896b21ec634039c225b21dd43d33e44f6db91be8370f7bb14e042",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:05:39.480Z",
+                "latency_ms": 9925.365499977488,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There are visible surface blemishes and scratches across the top and bottom prongs compared to the reference image."
+                },
+                "response_sha256": "a364528bea409a55da73755c65e91da6527f0dc7d593e0847b2be138cc97afa5",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:05:28.810Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 39
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000106",
+            "request_sha256": "a9b74a202ca7e75aed0d048bc146ca147a66931394f06d6a9625ac7596e47a4a",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:05:51.835Z",
+                "latency_ms": 11163.30710001057,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "A linear surface anomaly is visible across the lower portion of the candidate metal nut."
+                },
+                "response_sha256": "7a83fc597b02e561f290ac0b6ad3fbdbede95c74882257a57784770d20162875",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:05:40.028Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000107",
+            "request_sha256": "1a938d867f06c5d0c81654cccf26525a32de55ce5331dd1f6d040c225893cafe",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:06:13.149Z",
+                "latency_ms": 6465.42970003793,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There are missing or broken portions on two of the prong extensions compared to the reference."
+                },
+                "response_sha256": "3adc79e3cfade9583d138390e7cd784279ede66cf149f32d42d6a7de83096cd1",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:06:06.592Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000108",
+            "request_sha256": "3661a9cc7f3836bc77fca7e6f46ccf9b2a2b1b2bb6080c3683f2d95a6f01f57f",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:06:23.075Z",
+                "latency_ms": 6335.480899957474,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a prominent horizontal linear surface scratch across the face of the metal nut."
+                },
+                "response_sha256": "63534f2158f83234876b2d129ad2dc42fc04989de48b4577a619ae943e04adc3",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:06:16.603Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000109",
+            "request_sha256": "6610e6aa9fe7a00231654b1c719ff60c392d4ba37fb7d803c3141e9760d39952",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:06:34.707Z",
+                "latency_ms": 6986.844800005201,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a dark streak or scratch across the lower section of the metal nut."
+                },
+                "response_sha256": "c7297ef55716a9cddde56aff9aafffaec41565041e91ef75f961042e4c867254",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:06:26.718Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000110",
+            "request_sha256": "669dee512bd9059f1a1e33f50114b286ad5fecec7a1c3eec730650febdde9b53",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:06:44.890Z",
+                "latency_ms": 7919.754999980796,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a noticeable dark scratch across two opposing prongs of the metal nut."
+                },
+                "response_sha256": "afce040a4a3ea81a44e843779cfaa948de0ac9feb86c4e08549ef67c124cf0b4",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:06:36.730Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000111",
+            "request_sha256": "b72d84641fda9c279ef421c2bf2992a4b2509b53439178596a593b60dac3a9ce",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:06:56.859Z",
+                "latency_ms": 9808.149999997113,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "Visible scratches and linear marks are present on the upper right prong surface of the metal nut."
+                },
+                "response_sha256": "d4337922bfe258c20609ece8ef44ff8c77980b7587e3b793c7551d2b4e333e7f",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:06:46.744Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000112",
+            "request_sha256": "9dd29c7e2726b1d78c215da6a6216e4579e59b7fb3033f796cb5eae2ee48f644",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:07:06.991Z",
+                "latency_ms": 9362.971000024118,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There are noticeable surface scratches and linear abrasion marks on the face of the metal nut."
+                },
+                "response_sha256": "2230ec1b6464d9eee32edac4ef1869d482379a6abc698268a22b0583e425faf9",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:06:57.176Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000113",
+            "request_sha256": "9ebda49c5e96a20b3b814fa98a9a8dfe9b476e3a60a2099b9aa1e5a5a0ceca40",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:07:15.341Z",
+                "latency_ms": 7726.084700028878,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There are visible scratches on the surface of the candidate metal nut."
+                },
+                "response_sha256": "22d68e2662d8414bcc0724f09bdf5b1683b3404fc3299c7391d020ee7f3f306c",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:07:07.294Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000114",
+            "request_sha256": "ec5765e5c242a986bffbb7d2e3d3f37f41bafc9549406864e531b451977cf899",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-24T12:07:23.989Z",
+                "latency_ms": 6471.2389999767765,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemini-3.5-flash-lite",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate image shows visible scratch marks near the bottom lobe."
+                },
+                "response_sha256": "c6718258d47d0c2dbb9166cbe8257ed63e33eb5ee27f39d6eac33df5588c9dee",
+                "retry_not_before": null,
+                "started_at": "2026-10-24T12:07:17.327Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 2277,
+                  "output_tokens": 123
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000115",
+            "request_sha256": "0f1d1cb6a0b81ed0c84888063bcbc83498ab4c6c38cdbfe8026144a1b2a01517",
+            "run_id": "eval-flash-lite-46e242a298f20b6f",
+            "status": "success"
+          }
+        ],
+        "run": {
+          "capabilities": {
+            "adjustable_sensitivity": false,
+            "calibrated_probability": false,
+            "categorical_decision": true,
+            "heatmap": false
+          },
+          "created_at": "2026-10-24T11:38:39.247Z",
+          "hashes": {
+            "configuration": "46e242a298f20b6fa5bb71b45db84c82820b6807628c8266ccf830cc8e414d10",
+            "inputs": "00bfb7bd04b3f369426e4db8c6d78d69926ef659bf8072d114369c1415d42516",
+            "manifest": "5c77a9e478d03ce4b211d655b577b4363cc2853b9900eaef93ebb94f0a1940d5",
+            "preparation": "c68839b5cd915b870e6020e689426cef4eb5fa279b9abe735f6a8624d4d4bf0b",
+            "prompt": "9479dbef92f1f25405e9e259b4cb710caeae494bf7bcd68483850f4e62de71e0",
+            "references": "399556c9589cf683223d73aa588b25182d219b151ec694d67979a082aee42efc",
+            "response_schema": "21e80eb4ccb381071b47dc6f3f58aa5c6f0be05c511d4fb1403d7f6ce30f96fa",
+            "split": "c41a3ad606e3b7634fd3176806bf875f0954a8816a5560fa358d06715018b0d4"
+          },
+          "inputs": [
+            {
+              "image_id": "img-000001",
+              "sha256": "3257bc74718d4bdab6f397dc176ec2886893b4a49970f032eefa74a9e647ee48"
+            },
+            {
+              "image_id": "img-000002",
+              "sha256": "6d64d28d9d4586e490938f7c0a59502345234db887b20dbee6a8fb1b9bdfa303"
+            },
+            {
+              "image_id": "img-000003",
+              "sha256": "039e7147c280cfc9ea40dee186e5ec3d754dd6950763673ef15388328d850a18"
+            },
+            {
+              "image_id": "img-000004",
+              "sha256": "57938af871c90ab39b64115a12841a27169b1f43a95c744a9f3e0a0ad46050e4"
+            },
+            {
+              "image_id": "img-000005",
+              "sha256": "db82d3dc7f950c444a778a69c51ab3408a06f515cabb6df51b85052973ab9f71"
+            },
+            {
+              "image_id": "img-000006",
+              "sha256": "c9e67058f4fb58cc36cef59d550a160662f429ad69ae21b36e84f3419a26dbb6"
+            },
+            {
+              "image_id": "img-000007",
+              "sha256": "b260fe56ea657ca4a9c7c09a8d609babdaeaeaace8a26c79daca08a938593d7f"
+            },
+            {
+              "image_id": "img-000008",
+              "sha256": "1c8bea8e2fbfcd66edb6db61f79f330192342ef7c5f0ce303751e59c6b82dde4"
+            },
+            {
+              "image_id": "img-000009",
+              "sha256": "b4b887c214b895a2f6313e07571fff123811b8cdd041fae82eef678de2a92885"
+            },
+            {
+              "image_id": "img-000010",
+              "sha256": "591cc5833d06237bb698caa4e3ab800bb31e442f58b958a8f2725a20a581442f"
+            },
+            {
+              "image_id": "img-000011",
+              "sha256": "df34dc79077e5dc377f1f33fee55c3484355918dd9c345a9a7f739016106d0af"
+            },
+            {
+              "image_id": "img-000012",
+              "sha256": "74d2e1ada9ec20f356dd5017eebf5053496b0bd1c83a0c407bf23c4b10c15524"
+            },
+            {
+              "image_id": "img-000013",
+              "sha256": "ca8c7740837f9fb505660d9b1dee54c0924e580c5285f346eee7e90e997cd0c1"
+            },
+            {
+              "image_id": "img-000014",
+              "sha256": "276ab29c029c34bd1743ab1c3a0d4d86d6aea86caa7ad1acda5e119cadaa6dd6"
+            },
+            {
+              "image_id": "img-000015",
+              "sha256": "2b893107762ffab6e03b3b36920051a54a4665b73ae4447315d95dfe8843cec2"
+            },
+            {
+              "image_id": "img-000016",
+              "sha256": "1f5134733e65b9e431562fb8ca61786bc848df46eafbb0f835a48dd70876346d"
+            },
+            {
+              "image_id": "img-000017",
+              "sha256": "7d19ba13a6f89692416afb7a92a68df05ced405c0ff6e48a46343733266d7be2"
+            },
+            {
+              "image_id": "img-000018",
+              "sha256": "3c609d13b4f4c740a9b9d22fcc6e75cfc4094d0a435156a31f06fb2bf80e1af0"
+            },
+            {
+              "image_id": "img-000019",
+              "sha256": "d8e6c957c71d0c996c46f2028195a22f55fa49395d6a58c2f2aa021784dae0a8"
+            },
+            {
+              "image_id": "img-000020",
+              "sha256": "124fa0c37e86d420fd54e4fb544d7fad3face258f4e8a7db7e0a0d1e790315b9"
+            },
+            {
+              "image_id": "img-000021",
+              "sha256": "4bd8ba9f96315b1a9350665a911cbffb2b4659e523d7e76ba2bcfb588ab476ca"
+            },
+            {
+              "image_id": "img-000022",
+              "sha256": "88b78187872f499ada3113d779ab06cb686bf8d2f69d1a9401d72b0bfe958822"
+            },
+            {
+              "image_id": "img-000023",
+              "sha256": "dad9e66d87289017f7c3934e45983cdb5bebb82f7345c8d3a2e3e50ad5890e65"
+            },
+            {
+              "image_id": "img-000024",
+              "sha256": "17697efd77a8c390a9c3f1229a187e80f92ee342aa692bd927f015494598ced2"
+            },
+            {
+              "image_id": "img-000025",
+              "sha256": "05a706b2996e5de444ac768bf02cb1a8d476655cc20c362590eb73bcae94fa8b"
+            },
+            {
+              "image_id": "img-000026",
+              "sha256": "ff7b71ebf88ac0d2fbde42970dd74e72d0956f9be4a5036df041a003dc1cdb84"
+            },
+            {
+              "image_id": "img-000027",
+              "sha256": "5abe3a150c5a4a20a7c146c81ed8efc5fef3895ba1e1a0f5377e32da6c37e0b7"
+            },
+            {
+              "image_id": "img-000028",
+              "sha256": "4071c611006634b48303a3638c6d59c1aa5fc7d5a4a2836e2dcec4b6fa0f6ea2"
+            },
+            {
+              "image_id": "img-000029",
+              "sha256": "99314dc907193b2224ab7b51cd8cfd40698cfce199b33a86648910d606b07198"
+            },
+            {
+              "image_id": "img-000030",
+              "sha256": "2c7610cda3f1f54151ab91cd74f7827b0cd150c58e82b03a358b26f67769ff48"
+            },
+            {
+              "image_id": "img-000031",
+              "sha256": "8166b911c5f03a37a9813373318684bf93652d1c3c398fa0fa3b700704082092"
+            },
+            {
+              "image_id": "img-000032",
+              "sha256": "149a65b0ee7ae49fa050ec02b0778ba812d3cd9c9d36f5b892bfeac8bdf91817"
+            },
+            {
+              "image_id": "img-000033",
+              "sha256": "f9cabf13cba6bb41376e4bb448cc888387b284a5253997e51e8ad018ed35d0e3"
+            },
+            {
+              "image_id": "img-000034",
+              "sha256": "07932b13d09137c35cc6ac3cccd96bafa646eaa1c3c5a602cd23f89e00c90779"
+            },
+            {
+              "image_id": "img-000035",
+              "sha256": "9c1f7ff6fa50b6a3089bb4fa816f2c9d198c46cd8385959bbbac36c9b9bdd067"
+            },
+            {
+              "image_id": "img-000036",
+              "sha256": "c092674fc05555265663a01b8ca4e0cb408bee1666535f034a1f07451f65f11f"
+            },
+            {
+              "image_id": "img-000037",
+              "sha256": "05ec20925b8993f07ef4454e62030048583c6f056117a62955c7aae78de8e386"
+            },
+            {
+              "image_id": "img-000038",
+              "sha256": "076ec813050cd52e7a2c95b6ffd625e2717a36f5062efa3ccb18cf91554f15e0"
+            },
+            {
+              "image_id": "img-000039",
+              "sha256": "98f5b1601869b158340b0aad295c119fe6ec754133a95502d5d033c0cfbac019"
+            },
+            {
+              "image_id": "img-000040",
+              "sha256": "58478ee7fc5ecbe82599ebec4bbf53e51e6ca03d51df928731eda29d07bbe847"
+            },
+            {
+              "image_id": "img-000041",
+              "sha256": "8b2fbcacc90eaa556003bd48eeae9358d6893ae2a0822461f22b002cd0e732f1"
+            },
+            {
+              "image_id": "img-000042",
+              "sha256": "943d65a284959980199910e37c38afe1bab2a1348d18375a60455116367b3e7c"
+            },
+            {
+              "image_id": "img-000043",
+              "sha256": "a884a32c6c3e3d03736bca32a3b037f67a72dcfce3f115833304529c258d9161"
+            },
+            {
+              "image_id": "img-000044",
+              "sha256": "d6e7d70a0eb2528c5e5c2c02770906339807e26335a801dea3e5f5af747fae8d"
+            },
+            {
+              "image_id": "img-000045",
+              "sha256": "95338792d49a861e21aeb57d8c9bd6de8b3bed5e424f860008ac71c27399a97f"
+            },
+            {
+              "image_id": "img-000046",
+              "sha256": "21fd44bc2b735dbb7ff00fc8e33d4b632d3ffc5c3079bf172ec7daeb8652f3cf"
+            },
+            {
+              "image_id": "img-000047",
+              "sha256": "cea2ab1b311fd083acdad74c33c570f8c90a531135697c4181b26bb5a2993b6c"
+            },
+            {
+              "image_id": "img-000048",
+              "sha256": "f8268ca3d93c970682d5d0554126d049c89f79daa558e58ffbf63111dca761e0"
+            },
+            {
+              "image_id": "img-000049",
+              "sha256": "b3b8b18045a863f6e8330a7b4b956a633e210e137ed2b2354a46c5f52b0d9fb0"
+            },
+            {
+              "image_id": "img-000050",
+              "sha256": "1265abe8628509bae0786220712b232f4f2363ae2bc04562a7edc8f76915ac87"
+            },
+            {
+              "image_id": "img-000051",
+              "sha256": "647d67e2d06ef5dc41c20bc0528434c0fb49272ad2c502558c5c1b14933bb2be"
+            },
+            {
+              "image_id": "img-000052",
+              "sha256": "21a10d08a85e13a331336f840d07757cd7911829759357a050be585c7a74610b"
+            },
+            {
+              "image_id": "img-000053",
+              "sha256": "ada2142dae667d0456b0e39b81e427fe3c3bdfd2ba9d49cdd03407c310f4823b"
+            },
+            {
+              "image_id": "img-000054",
+              "sha256": "e7093d30a64cf84005382c8025acfc25dd3b5dc5fe4a88b973c879b03b7d67b8"
+            },
+            {
+              "image_id": "img-000055",
+              "sha256": "60d69b88bac3574776d7acacd0b3a4d2e454d5f40920cfdba0fff9ec3bf2b85f"
+            },
+            {
+              "image_id": "img-000056",
+              "sha256": "db024db8429edc7ef50677746f9934182d9d56ddbe86b728a689c111f4390de5"
+            },
+            {
+              "image_id": "img-000057",
+              "sha256": "4f8310a68a7241ec5fb48e922815f807f6a3c73fed991fa7ed7e44cb6d4bc601"
+            },
+            {
+              "image_id": "img-000058",
+              "sha256": "2733bbb3ced62bcec06272bc63ec362fdd73a1874c8b2a2fbeccf15a6b28d653"
+            },
+            {
+              "image_id": "img-000059",
+              "sha256": "cd876a78d748b99286a6415ec93c68784a61826b219ffaeacc08528e7b1eb23e"
+            },
+            {
+              "image_id": "img-000060",
+              "sha256": "dbd96634fcd52e70e196a4856dd603ff038a8e907ae7f52d1ad75218f35d56c5"
+            },
+            {
+              "image_id": "img-000061",
+              "sha256": "0d88125b861328d0ce722adec6aa691e9135d73842041672362710ec7530d48c"
+            },
+            {
+              "image_id": "img-000062",
+              "sha256": "97c79e18f3eca65f7cddef0a508e09aaf607448466cf48027df4d9f6efa7e93f"
+            },
+            {
+              "image_id": "img-000063",
+              "sha256": "809e9b905eec44d2585afc55d7b31f93bb1ca89bce968543ce03f66aec3e9b3d"
+            },
+            {
+              "image_id": "img-000064",
+              "sha256": "5bddaba155be5329c712a3bd3bb7e3c68e7ec370c3c6877d40c0e2e7972c8732"
+            },
+            {
+              "image_id": "img-000065",
+              "sha256": "b2bcb5d42323de1477230dbc8ea6225117fa9dab477fb3e54b24df0418ffe18d"
+            },
+            {
+              "image_id": "img-000066",
+              "sha256": "b2e6b22f44f1176cad1e9dec8a8ac9328201f896b8c770802e10122528b919ea"
+            },
+            {
+              "image_id": "img-000067",
+              "sha256": "f2632298e8bd114a4f66802ef11fa003972f8e0e756501c89ad95538ce502337"
+            },
+            {
+              "image_id": "img-000068",
+              "sha256": "4d24d257fa7b99384116fba1e619a69eaa7591bc4a81a69bae0ac9c4d7f4f41f"
+            },
+            {
+              "image_id": "img-000069",
+              "sha256": "f3e462a06d8360bc5fbd5e85b9b87f850751fb5852ccaad411f4d96a3f787399"
+            },
+            {
+              "image_id": "img-000070",
+              "sha256": "0faa4cec77362508b91c5d4ebe5ffd508e6498fc1c399a01d4af368ba4802d64"
+            },
+            {
+              "image_id": "img-000071",
+              "sha256": "aebcd3fdfebd62d23fd6b60d0be590253140815b142febbebc2a41b407c14952"
+            },
+            {
+              "image_id": "img-000072",
+              "sha256": "d29b0ebbc8e1c92c16a30728dcb0b5379e5c41dbec6003f40e039675deb78a5f"
+            },
+            {
+              "image_id": "img-000073",
+              "sha256": "fb1efeebe0823dd9280f10cc73514daf5a41961b3920d7b9cef40c887889ce04"
+            },
+            {
+              "image_id": "img-000074",
+              "sha256": "756aa5000aa08b6a20fecebdecd3c7b13864e161bbe6be380ab0119e26883599"
+            },
+            {
+              "image_id": "img-000075",
+              "sha256": "089776a21bee8f7e0db8c672fdd27268c972e8f2ecd50a620242ffe0355fcb3a"
+            },
+            {
+              "image_id": "img-000076",
+              "sha256": "99326c5532262894bb716678a596063b6a1b76837c5b0ef2ea620ab34c6827f1"
+            },
+            {
+              "image_id": "img-000077",
+              "sha256": "5ea197cbb4de4b7f533c0801262d41813035deec255250d6c9a321e9ed50d1da"
+            },
+            {
+              "image_id": "img-000078",
+              "sha256": "cbc0316872e8cecd6e6d7e96b04c68ec380018512525146e4d9b9cf71abd06f2"
+            },
+            {
+              "image_id": "img-000079",
+              "sha256": "bcb829eec71bf6204669e04e877552a20c41ff727bd5574423788addbe5540cd"
+            },
+            {
+              "image_id": "img-000080",
+              "sha256": "3b272653bffa78830703fca8b0e649e31e36aa10b0ee4954325f5be87e55d8ac"
+            },
+            {
+              "image_id": "img-000081",
+              "sha256": "16c9c9c18e2416fed695fb257f57b73ae424fe710478a15e0a062116a210ac76"
+            },
+            {
+              "image_id": "img-000082",
+              "sha256": "05d557104f3126867fdf36a9dff960de8b3676a66291c5cd19d84aa52c7bb5e8"
+            },
+            {
+              "image_id": "img-000083",
+              "sha256": "8042c41578985c4094137b00f7976de43e9bdc5bdb4a2a38f0dc208d4e2bb61b"
+            },
+            {
+              "image_id": "img-000084",
+              "sha256": "1c31f3b37ec76fde5300b5aad4dedfc8ad30a1b29eceb927071ecbd871bd530f"
+            },
+            {
+              "image_id": "img-000085",
+              "sha256": "f48e2df4cd5219b3b6c232d97bbb07dfeccd5368bcca91a67eb06e6a186c1a5f"
+            },
+            {
+              "image_id": "img-000086",
+              "sha256": "c587beddb7a38bd05c59aea8630b117ae7e6ab812cfc0ccdb80c00eb455aaa4e"
+            },
+            {
+              "image_id": "img-000087",
+              "sha256": "b1e3449d1ad633a31a43f7a1476e8daecc8c771e7066fb7b8ff9ed77df0d1465"
+            },
+            {
+              "image_id": "img-000088",
+              "sha256": "12a19c255420f302b7e0f42ed80eb55e850ed94b1d6710b5298ab8f7c2fa53e4"
+            },
+            {
+              "image_id": "img-000089",
+              "sha256": "d468220ef944c481455e1288b4043f92c90ddca23c1d85e0d68cc40d319bcbf5"
+            },
+            {
+              "image_id": "img-000090",
+              "sha256": "464e05449c2dd2ccfe6bc29b4633ef17d9fdf5c6ec8f56b6512af571b8eecb42"
+            },
+            {
+              "image_id": "img-000091",
+              "sha256": "50616360f869f8b95099945df652fd6886ab3749fe2efef37527dc57cd3ceb5c"
+            },
+            {
+              "image_id": "img-000092",
+              "sha256": "e08197bd4aeadb2be49bcb83e7b9b864673dab9e3e397cff4f858a291964eb91"
+            },
+            {
+              "image_id": "img-000093",
+              "sha256": "9e739336f1c1705f113ed9cb4548369670c7c0a257678e296dc2d4ab4c071c1a"
+            },
+            {
+              "image_id": "img-000094",
+              "sha256": "0b84e77e93357536b6d8006461619e86186e9d27e484ce68a04ad7e26c3c1747"
+            },
+            {
+              "image_id": "img-000095",
+              "sha256": "d933bee36efb98b275c42b4e653afb3950bba75673dcac73e7abe01f950fa7c0"
+            },
+            {
+              "image_id": "img-000096",
+              "sha256": "5814f0006eec2bc3521b61888d8dad92afb5f1cb2857d8de7327293d364be79a"
+            },
+            {
+              "image_id": "img-000097",
+              "sha256": "1c63540fbf06816070751716a37967ba8e6b25e7607e9c805a8f606a6d28747b"
+            },
+            {
+              "image_id": "img-000098",
+              "sha256": "42891d583297f32a4a04924940ecb8d19d68a896fc4d9729f6049c5774eeeea4"
+            },
+            {
+              "image_id": "img-000099",
+              "sha256": "973488842d74c6bd31dfa20e8936c1ed4f134908babfd772800e310c9d83b7e7"
+            },
+            {
+              "image_id": "img-000100",
+              "sha256": "08f5dcccb868fb5cfce04118773c89df332182d49fd444bf4132e51367ef4415"
+            },
+            {
+              "image_id": "img-000101",
+              "sha256": "a58926440911a02a531474e6e4b9126272ad7afcb73c5ef80bd061dac07599ae"
+            },
+            {
+              "image_id": "img-000102",
+              "sha256": "509a08b7ce83b217afe1ff725d2fc0fae3a5d15836e5384d2f3d460e282eaf70"
+            },
+            {
+              "image_id": "img-000103",
+              "sha256": "f9d3fc280398a8d7638b5b77d8aa3ae51c2b1ac58f4da90d7ee1ed55fd34463e"
+            },
+            {
+              "image_id": "img-000104",
+              "sha256": "07c0921db69b9be2c884b389e7207d5123583337325993cd99f4362996a6d567"
+            },
+            {
+              "image_id": "img-000105",
+              "sha256": "aece2151ee0faa1724b25f6c5b1fc5116af061f448bcfe633747be49d685ca2f"
+            },
+            {
+              "image_id": "img-000106",
+              "sha256": "5b842ec44e02cebe39361d9e76e18ca304188679218b91dcbd0f35ee8b67c4c7"
+            },
+            {
+              "image_id": "img-000107",
+              "sha256": "5f6f919ffb85c00fb2f798919ad85156fcc36b24e0a592dbb49d50708f836829"
+            },
+            {
+              "image_id": "img-000108",
+              "sha256": "147adaff908c8f4dc739033a9f03bc95c0b0574753281025a2b2266a17e6b30b"
+            },
+            {
+              "image_id": "img-000109",
+              "sha256": "874ae040e40d3d5d59d2ec94da405de681cc905c121ed7dd31ed29f11462721b"
+            },
+            {
+              "image_id": "img-000110",
+              "sha256": "8ab7793d6f3e59606e3e601cfde0e81a1b4128e09b4a9f4cdcf40e1dedcc7610"
+            },
+            {
+              "image_id": "img-000111",
+              "sha256": "690667ddaf797121f0cee496c22775978b18095754577354b287ab762b48c53c"
+            },
+            {
+              "image_id": "img-000112",
+              "sha256": "7594f8e8402121e4536217f4f367b072a0f4e8dd475b9ae4b11ddaa78ed955ee"
+            },
+            {
+              "image_id": "img-000113",
+              "sha256": "bfd8a3df4d075783eedb507e8688dd7a6f169e3069a6d7cd7517b223c0665acd"
+            },
+            {
+              "image_id": "img-000114",
+              "sha256": "86fb2b0422634da5fa269c94e77d5531c9ba720f56709fa2cb706fc9c81bc2c6"
+            },
+            {
+              "image_id": "img-000115",
+              "sha256": "640d1076f5dd169b5537e9cb442f4e469f849e34d399d706eabf66e7dd56401d"
+            }
+          ],
+          "max_attempts": 3,
+          "model_id": "gemini-3.5-flash-lite",
+          "policy": "fixed_categorical_review_uncertain_and_failures",
+          "provider": "gemini",
+          "request_timeout_seconds": 60,
+          "run_id": "eval-flash-lite-46e242a298f20b6f",
+          "state": "complete",
+          "track_id": "fasteners"
+        },
+        "schema_version": 1
+      },
+      "report": {
+        "attempted": 115,
+        "coverage": 1.0,
+        "evidence_sha256": "5b43e34fca2dcca4db8db6852043e20cf4bd23b2d5381041f9a54cd3a93ee240",
+        "evidence_status": "development_only",
+        "expected": 115,
+        "failed": 0,
+        "failure_breakdown": {},
+        "full_set_routing": {
+          "anomalous": 93,
+          "false_positive_rate": 0.22727272727272727,
+          "false_positive_rate_wilson_95": [
+            0.10123039985248516,
+            0.4343995317522171
+          ],
+          "fn": 12,
+          "fp": 5,
+          "normal": 22,
+          "precision": 0.9418604651162791,
+          "recall": 0.8709677419354839,
+          "recall_wilson_95": [
+            0.7878821193288207,
+            0.9246226367979565
+          ],
+          "review_count": 86,
+          "tn": 17,
+          "tp": 81
+        },
+        "images": [
+          {
+            "decision": "needs_review",
+            "image_id": "img-000001",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000002",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000003",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000004",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000005",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000006",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000007",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000008",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000009",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000010",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000011",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000012",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000013",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000014",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000015",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000016",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000017",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000018",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000019",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000020",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000021",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000022",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000023",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000024",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000025",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000026",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000027",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000028",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000029",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000030",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000031",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000032",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000033",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000034",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000035",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000036",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000037",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000038",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000039",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000040",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000041",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000042",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000043",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000044",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000045",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000046",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000047",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000048",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000049",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000050",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000051",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000052",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000053",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000054",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000055",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000056",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000057",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000058",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000059",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000060",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000061",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000062",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000063",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000064",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000065",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000066",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000067",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000068",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000069",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000070",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000071",
+            "label": "normal",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000072",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000073",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000074",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000075",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000076",
+            "label": "normal",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000077",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000078",
+            "label": "normal",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000079",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000080",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000081",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000082",
+            "label": "normal",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000083",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000084",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000085",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000086",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000087",
+            "label": "normal",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000088",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000089",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000090",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000091",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000092",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000093",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000094",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000095",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000096",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000097",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000098",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000099",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000100",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000101",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000102",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000103",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000104",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000105",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000106",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000107",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000108",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000109",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000110",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000111",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000112",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000113",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000114",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000115",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          }
+        ],
+        "inputs_sha256": "00bfb7bd04b3f369426e4db8c6d78d69926ef659bf8072d114369c1415d42516",
+        "limitations": [
+          "Fixed categorical policy: uncertain and technical failures route to human review.",
+          "Wilson intervals describe sample uncertainty, not dataset shift or public-benchmark contamination.",
+          "Public fastener images are GIS proxies, not factory validation.",
+          "Development evidence is not publication clearance or an authenticity certificate."
+        ],
+        "manifest_sha256": "5c77a9e478d03ce4b211d655b577b4363cc2853b9900eaef93ebb94f0a1940d5",
+        "membership_sha256": "84661975acfcb5549302fbff086d18463420a874ab7603d0c7dcb4a2a44ebcc5",
+        "model_id": "gemini-3.5-flash-lite",
+        "policy": "fixed_categorical_review_uncertain_and_failures",
+        "reported_model_versions": [
+          "gemini-3.5-flash-lite"
+        ],
+        "run_id": "eval-flash-lite-46e242a298f20b6f",
+        "schema_version": 1,
+        "succeeded": 115,
+        "successful_output": {
+          "anomalous": 93,
+          "false_positive_rate": 0.22727272727272727,
+          "false_positive_rate_wilson_95": [
+            0.10123039985248516,
+            0.4343995317522171
+          ],
+          "fn": 12,
+          "fp": 5,
+          "normal": 22,
+          "precision": 0.9418604651162791,
+          "recall": 0.8709677419354839,
+          "recall_wilson_95": [
+            0.7878821193288207,
+            0.9246226367979565
+          ],
+          "review_count": 86,
+          "tn": 17,
+          "tp": 81
+        },
+        "technical_reviews": {
+          "anomalous": 0,
+          "normal": 0
+        },
+        "track_id": "fasteners"
+      }
+    }
+  ],
+  "schema_version": 2,
+  "track_id": "fasteners"
+}

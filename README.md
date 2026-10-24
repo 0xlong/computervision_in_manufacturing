@@ -1,5 +1,22 @@
 # AI Inspection Pilot Lab
 
+## Current local fastener experience
+
+The fastener journey now works locally: inspect five pictures, reveal genuine
+saved Gemini results, explore review workload, keep or reset progress, and
+download a pilot brief. Saved results cover all 115 public fastener test images.
+No visitor action calls a model provider. Nothing has been published.
+
+Start with the [local fastener guide](docs/FASTENER_LOCAL.md) and
+[recorded verification](docs/FASTENER_VERIFICATION.md). The local website uses
+http://127.0.0.1:5174/; in VS Code choose **Browser: Open Integrated Browser**
+(`workbench.action.browser.open`). The guide includes the start command and what
+to try. Dataset source limitations remain visible; this is not factory validation.
+
+Earlier status notes below describe earlier development stages and are retained
+for context. This section and the linked verification record own the current
+fastener status.
+
 A public-data inspection game and model-comparison lab. We are building it with coding agents while learning practical software engineering.
 
 **Current direction:** use fast, efficient models, with API models preferred.

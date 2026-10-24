@@ -88,6 +88,7 @@ export function Lab({ bundle, state, update }: { bundle: Bundle; state: VisitorS
       <p>Challenge: {bundle.challenge.version}. {bundle.challenge.rationale}</p>
       <ul>{[...new Set([...bundle.limitations, ...report.limitations])].map(text => <li key={text}>{text}</li>)}</ul>
       <a href="/evidence/bundle.json" download>Download the complete saved evidence (JSON)</a>
+      {bundle.configuration_assets.map(c => <p key={c.run_id}><a href={`/evidence/${c.path}`} download>Download frozen instructions, normal reference and image settings ({c.run_id})</a></p>)}
       <p>{bundle.notices.map(n => <a key={n.path} href={`/evidence/${n.path}`} download>{n.path.endsWith('license.txt') ? 'Original dataset licence' : 'Original dataset readme'}{' '}</a>)}</p>
     </details>
   </>;

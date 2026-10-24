@@ -1,8 +1,10 @@
 # Gemini request runner
 
-The runner can prepare requests offline and execute a bounded, resumable trial
-when current access/use evidence is supplied. The website still shows its starter
-page. Prepared requests are not real model answers or accuracy evidence.
+The two authentic normal-only trials and selected Lite model's complete fastener
+evaluation have now finished. The website has the local inspection-to-brief
+journey; see the [current verification](FASTENER_VERIFICATION.md). Offline
+preparation still does not produce model answers. The original implementation
+and prerequisite notes below are historical where superseded by that record.
 
 ## Confirmed account information
 
@@ -116,7 +118,11 @@ instances of this runner, but cannot coordinate other applications using the key
 or changes to account usage. Ordinary power loss/filesystem failures remain
 possible despite fsync/atomic replacement; corrupt snapshots fail closed.
 
-## Remaining use prerequisite and next work
+## Original use prerequisite and next-work record (historical)
+
+The scoped private local-use conclusion is now recorded in
+[GEMINI_LOCAL_USE.md](GEMINI_LOCAL_USE.md). The following describes the original
+runner-implementation checkpoint, before the user's regional answer and trial.
 
 The existing [terms/data-use investigation](API_FEASIBILITY.md#terms-and-data-suitability-still-need-a-recorded-conclusion)
 is unresolved for submitting these licensed images and publishing saved results.

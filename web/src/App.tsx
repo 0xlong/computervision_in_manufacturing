@@ -90,7 +90,7 @@ export function App() {
   const [bundle, setBundle] = useState<Bundle | null>(null), [error, setError] = useState(''), [retry, setRetry] = useState(0);
   useEffect(() => {
     const controller = new AbortController(); setError('');
-    loadBundle(controller.signal).then(value => { if (!controller.signal.aborted) setBundle(value); }).catch(() => { if (!controller.signal.aborted) setError('Saved inspection evidence is missing, corrupt or incompatible. Prepare the local evidence bundle, then retry.'); });
+    loadBundle(controller.signal).then(value => { if (!controller.signal.aborted) setBundle(value); }).catch(() => { if (!controller.signal.aborted) setError('Saved inspection evidence could not be loaded. Retry below. If this continues, the preview’s saved data needs to be restored.'); });
     return () => controller.abort();
   }, [retry]);
   if (bundle) return <Experience key={bundle.bundle_id} bundle={bundle} />;

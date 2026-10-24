@@ -1,0 +1,5 @@
+# Preserve the exact bytes identified by the local evidence bundle's hashes.
+web/public/evidence/notices/* -text
+web/public/evidence/images/* -text
+web/public/evidence/masks/* -text
+web/public/evidence/configurations/* -text

@@ -1,0 +1,318 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "bundle_id",
+    "track_id",
+    "evidence_status",
+    "execution",
+    "local_only",
+    "dataset",
+    "manifest_sha256",
+    "challenge",
+    "images",
+    "runs",
+    "limitations",
+    "notices",
+    "configuration_assets"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "bundle_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,99}$"
+    },
+    "track_id": {
+      "const": "fasteners"
+    },
+    "evidence_status": {
+      "enum": [
+        "fixture",
+        "development_only"
+      ]
+    },
+    "execution": {
+      "enum": [
+        "fixture",
+        "recorded_live"
+      ]
+    },
+    "local_only": {
+      "const": true
+    },
+    "dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset_id",
+        "category",
+        "attribution",
+        "licence",
+        "licence_url",
+        "source_url",
+        "modification_notice"
+      ],
+      "properties": {
+        "dataset_id": {
+          "const": "mvtec_ad"
+        },
+        "category": {
+          "const": "metal_nut"
+        },
+        "attribution": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "licence": {
+          "const": "CC-BY-NC-SA-4.0"
+        },
+        "licence_url": {
+          "const": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+        },
+        "source_url": {
+          "const": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad"
+        },
+        "modification_notice": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      }
+    },
+    "manifest_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "challenge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "image_ids",
+        "rationale"
+      ],
+      "properties": {
+        "version": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]{0,99}$"
+        },
+        "image_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^img-[0-9]{6}$"
+          },
+          "minItems": 5,
+          "maxItems": 5,
+          "uniqueItems": true
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      }
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "image_id",
+          "label",
+          "display",
+          "mask"
+        ],
+        "properties": {
+          "image_id": {
+            "type": "string",
+            "pattern": "^img-[0-9]{6}$"
+          },
+          "label": {
+            "enum": [
+              "normal",
+              "anomalous"
+            ]
+          },
+          "display": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "sha256",
+              "dimensions"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^(images|masks)/img-[0-9]{6}\\.png$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "dimensions": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "width_px",
+                  "height_px"
+                ],
+                "properties": {
+                  "width_px": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 700
+                  },
+                  "height_px": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 700
+                  }
+                }
+              }
+            }
+          },
+          "mask": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "path",
+                  "sha256",
+                  "dimensions"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "pattern": "^(images|masks)/img-[0-9]{6}\\.png$"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "dimensions": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "width_px",
+                      "height_px"
+                    ],
+                    "properties": {
+                      "width_px": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 700
+                      },
+                      "height_px": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 700
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "evidence",
+          "report"
+        ],
+        "properties": {
+          "evidence": {
+            "$ref": "urn:ai-inspection-pilot-lab:api-evidence:1"
+          },
+          "report": {
+            "$ref": "urn:ai-inspection-pilot-lab:evaluation-report:1"
+          }
+        }
+      },
+      "minItems": 1,
+      "maxItems": 2
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "minItems": 1
+    },
+    "notices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "enum": [
+              "notices/license.txt",
+              "notices/readme.txt"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "configuration_assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "run_id",
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._-]{0,99}$"
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^configurations/[a-z0-9-]+\\.json$(?![\\s\\S])"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      },
+      "maxItems": 2
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-inspection-pilot-lab:fastener-bundle:2",
+  "description": "Local-only fastener evidence; recorded_live is an audited workflow assertion, not cryptographic provider attestation."
+}

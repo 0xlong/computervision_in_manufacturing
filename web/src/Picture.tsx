@@ -50,7 +50,7 @@ export function Picture({ image, revealed, onReady }: { image: ChallengeImage; r
               setError('Image dimensions disagree with the evidence.'); onReady(false);
             } else onReady(true);
           }} onError={() => { setError('The picture could not be decoded. Retry before answering.'); onReady(false); }} />
-          {revealed && outline && maskUrl && <div className="reference-mask" style={{ maskImage: `url("${maskUrl}")`, WebkitMaskImage: `url("${maskUrl}")` }} aria-label="Dataset reference region" />}
+          {revealed && outline && maskUrl && <div className="reference-mask" role="img" style={{ maskImage: `url("${maskUrl}")`, WebkitMaskImage: `url("${maskUrl}")` }} aria-label="Dataset reference region" />}
         </div> : <p role="status">Loading photograph…</p>}
       </div>}
     {revealed && <div className="outline-controls">{image.mask ? <>
