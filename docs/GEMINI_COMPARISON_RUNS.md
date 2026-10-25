@@ -9,9 +9,22 @@ must be completed before new website benchmark rows are shown.
 The user supplied a headed AI Studio limits screenshot and identified it as Free
 tier. This is user-supplied account evidence, not an independent account/billing
 audit. Capture time and project identifier are not visible. Record the observed
-usage as supplied; do not assume a reset or ask again whether the account is Free.
+display as supplied; do not assume a reset or ask again whether the account is Free.
 
-| Displayed model | API identifier | RPM | Input TPM | RPD | Used / daily limit in screenshot |
+**Correction after the user's clarification:** the limits page shows peak usage,
+not today's consumption. [Google's support explanation](https://discuss.ai.google.dev/t/rpd-is-not-being-reset/145704/3)
+says the default period is 90 days and directs current usage checks to the separate
+Usage page. The original local receipt's `used_rpd` field and access records were
+based on an incorrect reading of those peaks. They are preserved as historical
+records, not silently corrected or reused as current access evidence. Actual saved
+responses and the locally journaled 19 submissions/model remain authentic. The
+claimed remaining one was an internal allocation deduction, **not a verified
+Google balance**. The limits themselves still describe the supplied account caps.
+The user's subsequent reply reports 19 for each new Gemini model and zero for all
+other models; the explicit zero-use confirmation is recorded separately for the
+[new Gemma feasibility trials](GEMMA_TRIAL.md). No account was independently queried.
+
+| Displayed model | API identifier | RPM cap | Input TPM cap | RPD cap | Peak / daily limit in screenshot |
 | --- | --- | ---: | ---: | ---: | ---: |
 | Gemini 3.5 Flash Lite | `gemini-3.5-flash-lite` | 15 | 250,000 | 500 | 118 / 500 |
 | Gemini 3.8 Flash | `gemini-3.8-flash` | 5 | 250,000 | 20 | 4 / 20 |
@@ -170,8 +183,9 @@ All three candidates saved **17/115 successful structured test assessments**,
 with **98 pending each** and no terminal failures or retries so far. These are
 successful responses, not claims that 17 predictions were correct. Each model
 used two normal-fitting trial submissions plus 17 evaluation submissions: **19
-generation requests/model**, leaving one request of the screenshot allowance as
-headroom. Total new generation submissions: **57**, separately from three model
+generation requests/model**, then paused at the local allocation's one-request
+headroom. This does not verify the actual remaining Google balance (see correction
+above). Total new generation submissions: **57**, separately from three model
 metadata GETs. No saved success was resubmitted.
 
 | Model | Frozen full evaluation ID | Successful / declared | Pending | State |
@@ -194,7 +208,8 @@ defect benchmark or new website model row was produced.
 the verified states, request totals, frozen input identities and pacing. Evidence,
 plans and latest access records are under ignored `artifacts/gemini-comparisons/`.
 The receipt is user-supplied, so other project usage is not independently audited;
-the remaining one is a deduction from that snapshot, not an authenticated balance.
+the remaining one was a deduction based on an incorrect reading of a peak display,
+not an authenticated balance. Do not reuse those historical access snapshots.
 
 Resume only in a later usable quota window with a current model-specific account
 snapshot and a new nonsecret access record; do not fabricate refreshed timestamps

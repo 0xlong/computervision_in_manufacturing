@@ -2,6 +2,65 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Additional free candidates and quota-display correction (25 October 2026)
+
+**Current state: isolated Gemma normal-picture trials prepared and checked;
+actual Gemma feasibility is not yet measured. Existing website/results unchanged.**
+
+Owner: one coordinator on `main`, no workers; user requested genuine free-model
+comparison, then supplied additional limits and confirmed all other models unused
+today. Parent EN-03 / US-03/06/09; API-FREE/INPUT/OUTPUT/RUN/QUOTA/RETRY/AUDIT and
+T-CONTRACT/ACCESS. Baseline `075dbcb`. Allowed: new isolated Gemma config/schema/
+probe/tests, comparison guides and this section. Do not edit frozen Gemini runners.
+
+| Task | Dependencies / observable completion check | Result |
+| --- | --- | --- |
+| Correct peak/current usage interpretation | User clarification and first-party source; preserve original receipts | Documented; limits numerators are peaks, not today's balance |
+| Prepare small Gemma trials | Exact hosted IDs/image support/free pricing, user zero-use reply, same normal pixels/prompt | Prepared: 26B and 31B; strict JSON support remains unverified |
+| Verify and checkpoint request path | Generated offline checks; 16K TPM protected, no changed frozen campaigns | 465 pipeline tests pass; 12 new tests, no network/key access |
+| Run and inspect real normal trials | Frozen checkpoint/current access; at most 3 submissions/model | Next; need 2 successful versioned answers/model |
+
+The earlier multi-model section below interpreted the first limits screenshot's
+numerators as today's usage. That was incorrect. [Google support](https://discuss.ai.google.dev/t/rpd-is-not-being-reset/145704/3)
+explains default peak usage over 90 days. Historical receipts/access/evidence are
+preserved; an append-only local correction identifies the mistaken fields. The
+19 actual locally journaled submissions/model are real; the earlier “one left”
+was an internal allocation deduction, not a verified provider balance. Do not
+reuse those historical access records. Existing three runs remain 17/115 each,
+98 pending. Their saved responses and complete 3.5 Lite evidence stay unchanged.
+
+Gemma screenshot caps: **30 RPM, 16K input TPM, 14.4K RPD/model**. The explicit reply
+“all other models 0” to the current-usage question is recorded separately from the
+peak display. It is user-confirmed access evidence, not an independent account
+audit. Existing Free-tier and Swiss/UK private-local-use confirmation stands; no
+repeated billing or regional question. Robotics ER 2 is a possible later candidate;
+Live/embedding/generation endpoints are not selected here.
+
+The isolated trial reuses normal-fitting reference/two probes, unchanged PNGs and
+prompt, minimal thinking and the same strict JSON contract. Reserve 4,096 input
+tokens/request, 12,288 total trial budget below 16,000 TPM, 60-second start spacing,
+60-second hard request deadline, at most 3 total submissions/model. Journal before
+send; stop on unknown/missing/excess usage, pause quota, no paid/format fallback.
+New source/config/input identities protect existing multi-day Gemini campaigns.
+Full Gemma evaluation/packaging needs a new frozen token-aware configuration; the
+old evaluator's 16K/request reservation is incompatible with a 16K TPM cap.
+
+Verification: the initial restricted pytest process could not create temporary
+folders; the permitted offline rerun worked. A fake quota response lacked its
+required retry window and was corrected; no checks weakened. **465 pipeline tests
+pass** (12 new Gemma cases). Code/configuration reviewed again against token,
+retry, deadline, privacy and evidence boundaries. No web code changed, so earlier
+web/browser checks were not repeated. No source photographs visually opened.
+No paid requests, billing changes, dependencies, publication or remote changes.
+Earlier uncommitted files remain preserved and excluded from these checkpoints.
+
+[Trial settings, sources and next step](GEMMA_TRIAL.md),
+[corrected previous run record](GEMINI_COMPARISON_RUNS.md).
+Ignored audit/access files: `artifacts/additional-models-oct25/`; future saved Gemma
+plans/evidence: `artifacts/gemma-probes/`. Four-hour access freshness is internal,
+not provider expiry. Next: checkpoint then measure both tiny genuine normal trials;
+do not claim qualification or defect performance from offline checks.
+
 ## Multi-model free-tier runner and first batches (25 October 2026)
 
 **Current state: three new models qualified; each has 17/115 saved test assessments

@@ -8,6 +8,15 @@ saved test assessments and is paused at daily headroom; 98/model remain. See the
 [current run/allowance record](GEMINI_COMPARISON_RUNS.md). The initial shortlist and
 staged-delivery notes below describe the earlier 24 October planning checkpoint.
 
+Later 25 October update: the user's second screenshot also includes Gemma 4 26B
+and 31B (30 RPM / 16K input TPM / 14.4K RPD each). They are the next small image/
+answer-format feasibility check, not qualified benchmark rows yet. See the
+[isolated Gemma trial](GEMMA_TRIAL.md). The limits page's numerators are **peaks**,
+not current consumption; the previous interpretation and claimed remaining one
+are corrected in the run record above. The user separately confirmed zero use for
+the other models in reply to the current-usage question. Existing genuine results
+are preserved; no comparison winner can be declared from unfinished runs.
+
 Updated 24 October 2026. The user now wants several free API models evaluated on
 the same inspection task, with a clear comparison table. This takes priority over
 starting the surface track. It expands the earlier single-qualifying-model outcome;
