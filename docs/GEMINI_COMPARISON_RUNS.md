@@ -142,3 +142,43 @@ New partial runs cannot be packaged or used for benchmark quality claims. After
 complete evaluations, the frozen-configuration packaging path must support the new
 version and preserve the five existing challenge IDs; model-aware playback must
 be integrated and checked before claiming the whole comparison request is done.
+
+### Authentic normal-fitting qualification
+
+All three new candidates returned two valid structured responses with a recorded
+model version, using **two submissions each and no retries**. Both probes were
+called looks_acceptable by each candidate. This is normal-fitting feasibility,
+not a defect benchmark or evidence that the models are equally accurate.
+
+| Model | Saved trial ID | Recorded request seconds |
+| --- | --- | --- |
+| 2.5 Flash | `trial-comparison-gemini-2.5-flash-3fd37536f00f` | 2.925 / 3.712 |
+| 2.5 Flash-Lite | `trial-comparison-gemini-2.5-flash-lite-b794e8fd68fe` | 3.038 / 2.259 |
+| 3 Flash preview | `trial-comparison-gemini-3-flash-preview-0de1bb38f319` | 20.854 / 14.439 |
+
+The 2.5 responses each report 615 input tokens; 3 Flash input/output usage and
+all response metadata remain in the ignored saved evidence. The trial observations
+were checked as concise visible-appearance text; no source photograph was visually
+opened. New full evaluations use these frozen qualifications. Existing baseline
+evidence and the earlier 3.8 failure remain unchanged. Request-supervisor checkpoint:
+`dc432fb`.
+
+### Packaging preparation
+
+Frozen public configuration **version 2** now represents the new model-specific
+settings and quota-aware execution limits. Version 1 remains unchanged, and its
+existing public configuration regenerates identically. The bundle builder still
+rejects partial/pending evaluations; this does not expose unfinished results.
+An optional `--challenge-from` accepts an existing validated bundle and preserves
+its five teaching IDs, labels and asset identities. A different manifest or changed
+assets is rejected. Generated tests cover all three new configuration variants,
+modified settings/limits/identity, preserved old output and teaching membership.
+
+When complete new runs exist, an example packaging command from the project root
+is below. It is **not executed here**; use real complete evidence paths and a new
+unused output directory. Publication and replacement of the active bundle are
+separate reviewed integration steps.
+
+```powershell
+.\.venv\Scripts\python.exe -m pipeline.public_bundle --package data/metal_nut.inputs.v2 --evidence artifacts/gemini-evaluations/eval-flash-lite-46e242a298f20b6f/evidence.json --evidence artifacts/gemini-comparisons/your-complete-run/evidence.json --challenge-from web/public/evidence/bundle.json --out artifacts/your-new-complete-bundle
+```

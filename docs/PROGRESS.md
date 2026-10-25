@@ -12,10 +12,10 @@ extensions and offline tests, comparison/evaluation guides and this new section.
 
 | Task | Dependency and observable completion check | Status |
 | --- | --- | --- |
-| Record screenshot limits and add a versioned runner | Exact visible model limits/usage, no invented quota; unchanged baseline; all-model request settings, daily ledger and cross-phase pacing tests | Done: 448 offline pipeline tests pass |
-| Qualify three eligible new candidates | Current screenshot/access/use record, metadata access, two successful normal-fitting probes with saved versions/usage, bounded submissions/deadline | Ready for authentic execution |
-| Start fixed full-set runs | Qualifying frozen configuration; all 115 IDs retained; serial resumable batches stop at current allowance headroom | Pending qualification |
-| Finish complete model comparison | All new full runs complete; new configuration packaging, same five teaching IDs, model-aware playback and browser verification | Pending multi-day evaluation |
+| Record screenshot limits and add a versioned runner | Exact visible model limits/usage, no invented quota; unchanged baseline; all-model request settings, daily ledger and cross-phase pacing tests | Done; 453 offline pipeline tests now pass after packaging checks |
+| Qualify three eligible new candidates | Current screenshot/access/use record, metadata access, two successful normal-fitting probes with saved versions/usage, bounded submissions/deadline | Done: two real successful probes each, no retries |
+| Start fixed full-set runs | Qualifying frozen configuration; all 115 IDs retained; serial resumable batches stop at current allowance headroom | Qualified; first 2.5 Flash evaluation batch in progress |
+| Finish complete model comparison | All new full runs complete; new configuration packaging, same five teaching IDs, model-aware playback and browser verification | v2 packaging / same-five preservation ready; full runs and model-aware playback integration pending |
 
 The supplied Free-tier screenshot records 3.5 Lite 15 RPM / 250K input TPM / 500 RPD
 (118 used), 3.8 Flash 5 / 250K / 20 (4 used), 2.5 Flash 5 / 250K / 20, 2.5 Lite
@@ -56,6 +56,26 @@ metadata records remain ignored under `artifacts/model-comparison-oct25/`.
 Checkpoint: Prepare quota-safe multi-model Gemini comparison runs. Next: execute
 bounded real qualification, then eligible first full-set batches without fabricating
 unfinished metrics. At 20 requests/day, this cannot finish every 115-image run today.
+
+Authentic qualification completed after request-supervisor checkpoint `dc432fb`.
+2.5 Flash: two successes, 2.925/3.712 s; 2.5 Lite: two successes, 3.038/2.259 s;
+3 Flash preview: two successes, 20.854/14.439 s. Exactly six generation submissions,
+no retries, both normal probes acceptable; real observations/versions/usage saved.
+This is normal-only request feasibility, not defect-quality evidence. New trial IDs
+and full settings are in GEMINI_COMPARISON_RUNS.md. A first bounded 12-submission
+2.5 Flash evaluation batch was started on all 115 fixed members; results remain
+partial and are not packaged or presented as benchmark metrics.
+
+Packaging preparation is also verified: frozen public config v2 supports the new
+model settings/limits; existing v1 public config regenerates identically. The
+bundle builder accepts --challenge-from to preserve existing five IDs, labels and
+asset bytes, and still rejects pending runs. Five new generated packaging checks
+bring the full offline suite to **453 passing cases**. An initial packaging test
+needed the shared generated-image fixture import; corrected it and reran focused
+and complete suites. Fresh review checked old version behavior, tampering and
+teaching-set preservation. New packaging code does not alter the frozen request
+supervisor or live run identities. No public evidence or web files changed.
+The prior dev server is no longer running; no fresh UI verification is claimed.
 
 ## Model comparison — display ready; additional evaluations pending (24 October 2026)
 

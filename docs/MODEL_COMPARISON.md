@@ -1,5 +1,12 @@
 # Comparing inspection models
 
+25 October update: the user's actual free-tier screenshot supports 2.5 Flash,
+2.5 Flash-Lite and 3 Flash preview as new candidates; 3.6 is absent. All three new
+normal-fitting trials qualified. The quota-aware runner and frozen-configuration
+packaging are implemented; initial full-set batches are in progress. See the
+[current run/allowance record](GEMINI_COMPARISON_RUNS.md). The initial shortlist and
+staged-delivery notes below describe the earlier 24 October planning checkpoint.
+
 Updated 24 October 2026. The user now wants several free API models evaluated on
 the same inspection task, with a clear comparison table. This takes priority over
 starting the surface track. It expands the earlier single-qualifying-model outcome;
@@ -29,7 +36,7 @@ structured answer sent for checking; technical failures are not successful model
 predictions. Neither a small trial nor five curated pictures proves inspection
 quality or factory performance. Keep surface-category comparisons separate later.
 
-## Current evidence and practical shortlist
+## Initial evidence and shortlist — 24 October
 
 | Model | Genuine evidence now | Next prerequisite |
 | --- | --- | --- |

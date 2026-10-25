@@ -20,7 +20,7 @@ from pipeline.run_gemini_trial import TRIAL_SCHEMA
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMAS = {name: json.loads((ROOT / "schemas" / name).read_text(encoding="utf-8")) for name in
-    ("api-evidence.v1.schema.json", "evaluation-report.v1.schema.json", "fastener-bundle.v2.schema.json", "visitor-state.v1.schema.json", "model-inputs.v1.schema.json", "frozen-configuration.v1.schema.json")}
+    ("api-evidence.v1.schema.json", "evaluation-report.v1.schema.json", "fastener-bundle.v2.schema.json", "visitor-state.v1.schema.json", "model-inputs.v1.schema.json", "frozen-configuration.v1.schema.json", "frozen-configuration.v2.schema.json")}
 for schema in SCHEMAS.values(): Draft202012Validator.check_schema(schema)
 REGISTRY = Registry().with_resources((s["$id"], Resource.from_contents(s)) for s in SCHEMAS.values())
 VALIDATOR = Draft202012Validator(SCHEMAS["fastener-bundle.v2.schema.json"], registry=REGISTRY, format_checker=FormatChecker())
@@ -114,24 +114,46 @@ class FrozenConfiguration(RootModel[dict[str, JsonValue]]):
     @model_validator(mode="before")
     @classmethod
     def validate_data(cls, data):
-        validator = Draft202012Validator(SCHEMAS["frozen-configuration.v1.schema.json"], registry=REGISTRY, format_checker=FormatChecker())
+        version = data.get("schema_version")
+        if version not in (1, 2): raise ValueError("Unsupported frozen configuration version")
+        validator = Draft202012Validator(SCHEMAS[f"frozen-configuration.v{version}.schema.json"], registry=REGISTRY, format_checker=FormatChecker())
         if next(validator.iter_errors(data), None): raise ValueError("Invalid frozen configuration schema")
         plan = data["frozen_plan"]
         identity = fingerprint({k: v for k, v in plan.items() if k not in {"frozen_at", "run_id"}})
-        if data["run_id"] != plan["run_id"] or plan["run_id"] != "eval-flash-lite-" + identity[:16]:
+        prefix = "eval-flash-lite-" if version == 1 else "eval-comparison-"
+        if data["run_id"] != plan["run_id"] or plan["run_id"] != prefix + identity[:16]:
             raise ValueError("Frozen configuration identity mismatch")
         config = deepcopy(plan["configuration"])
         if config["max_requests_per_model"] != 345 or config["minimum_interval_seconds"] != 10:
             raise ValueError("Unexpected evaluation bounds")
-        config.update(max_requests_per_model=6, minimum_interval_seconds=65)
-        if not Draft202012Validator(TRIAL_SCHEMA).is_valid(config): raise ValueError("Frozen request settings mismatch")
+        config.update(max_requests_per_model=6, minimum_interval_seconds=65 if version == 1 else 10)
+        schema = TRIAL_SCHEMA if version == 1 else json.loads((ROOT / "schemas/gemini-trial.v2.schema.json").read_text(encoding="utf-8"))
+        if not Draft202012Validator(schema).is_valid(config): raise ValueError("Frozen request settings mismatch")
         ids = [i["image_id"] for i in plan["probes"]]
         if len(set(ids)) != 115 or plan["reference"]["image_id"] in ids:
             raise ValueError("Frozen reference/evaluation membership mismatch")
         return deepcopy(data)
 
 
-def build(package: Path, evidence_paths: list[Path], output: Path):
+def public_configuration(plan):
+    version = 2 if plan["configuration"]["schema_version"] == 2 else 1
+    limits = {"submissions_per_batch": 12, "batch_request_wait_seconds": 900,
+              "request_timeout_seconds": 60, "minimum_start_interval_seconds": 10,
+              "maximum_run_submissions": 345, "attempts_per_image": 3}
+    if version == 2:
+        limits.update(daily_request_headroom=1, shared_trial_evaluation_allowance=True, automatic_daily_reset=False,
+                      quota_start_spacing="max(10 seconds, 120 / verified RPM)")
+    data = {"schema_version": version, "run_id": plan["run_id"], "frozen_plan": plan,
+            "effective_execution_limits": limits,
+            "notes": ["The frozen dictionary retains trial-purpose/probe-count/runtime fields as inherited history; the outer purpose/probes and effective execution limits describe complete evaluation.",
+                "No evaluator labels, masks, visitor data or credentials entered these requests. Input paths are neutral model-input-relative identities."]}
+    if version == 2:
+        data["notes"].append("Model-specific thinking settings are frozen configurations, not identical reasoning effort. Trials and evaluation share each model's verified daily allowance.")
+    FrozenConfiguration.model_validate(data)
+    return data
+
+
+def build(package: Path, evidence_paths: list[Path], output: Path, *, challenge_from: Path | None = None):
     if output.exists(): raise ValueError("Preserve existing bundle; choose unused output directory")
     manifest = read_manifest(package / "evaluator/image-manifest.v2.json").root
     runs = [{"evidence": read_evidence(p).root, "report": evaluate_files(package, p)} for p in evidence_paths]
@@ -146,6 +168,14 @@ def build(package: Path, evidence_paths: list[Path], output: Path):
         if group not in groups: selected.append(i); groups.add(group)
         if len(selected) == 3: break
     challenge_ids = [normal[0], selected[0], normal[1], selected[1], selected[2]]
+    if challenge_from is not None:
+        previous = validate_bundle(strict_json(challenge_from.read_text(encoding="utf-8")))
+        if previous["manifest_sha256"] != runs[0]["report"]["manifest_sha256"]:
+            raise ValueError("Previous challenge uses another manifest")
+        challenge_ids = previous["challenge"]["image_ids"]
+        for image in previous["images"]:
+            if {k: by_id[image["image_id"]][k] for k in ("image_id", "label", "display", "mask")} != image:
+                raise ValueError("Previous challenge assets/labels changed")
     images = [{k: deepcopy(by_id[i][k]) for k in ("image_id", "label", "display", "mask")} for i in challenge_ids]
     fixture = any(r["report"]["evidence_status"] == "fixture" for r in runs)
     configurations = []
@@ -157,13 +187,7 @@ def build(package: Path, evidence_paths: list[Path], output: Path):
                 raise ValueError("Missing local execution/access audit records")
             if fingerprint({k: v for k, v in plan.items() if k not in {"frozen_at", "run_id"}}) != saved["evidence"]["run"]["hashes"]["configuration"]:
                 raise ValueError("Frozen configuration does not match run")
-            public_config = {"schema_version": 1, "run_id": plan["run_id"], "frozen_plan": plan,
-                "effective_execution_limits": {"submissions_per_batch": 12, "batch_request_wait_seconds": 900,
-                    "request_timeout_seconds": 60, "minimum_start_interval_seconds": 10,
-                    "maximum_run_submissions": 345, "attempts_per_image": 3},
-                "notes": ["The frozen dictionary retains trial-purpose/probe-count/runtime fields as inherited history; the outer purpose/probes and effective execution limits describe complete evaluation.",
-                    "No evaluator labels, masks, visitor data or credentials entered these requests. Input paths are neutral model-input-relative identities."]}
-            FrozenConfiguration.model_validate(public_config)
+            public_config = public_configuration(plan)
             content = (json.dumps(public_config, sort_keys=True, indent=2, allow_nan=False) + "\n").encode("utf-8")
             configurations.append((f"configurations/{plan['run_id']}.json", content, plan["run_id"]))
     dataset = {k: manifest["dataset"][k] for k in ("dataset_id", "category", "attribution", "licence", "licence_url", "source_url", "modification_notice")}
@@ -210,9 +234,10 @@ def main(argv=None):
     parser.add_argument("--package", type=Path, required=True)
     parser.add_argument("--evidence", type=Path, action="append", required=True)
     parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--challenge-from", type=Path, help="Preserve five teaching IDs/assets from an existing validated bundle")
     args = parser.parse_args(argv)
     try:
-        bundle = build(args.package, args.evidence, args.out)
+        bundle = build(args.package, args.evidence, args.out, challenge_from=args.challenge_from)
     except (ValueError, OSError, KeyError, IndexError):
         print("FAIL bundle: check complete evidence, identities, source assets and unused destination"); return 1
     print(f"PASS local bundle: {bundle['bundle_id']}; {len(bundle['runs'])} run(s); 5 challenge pictures"); return 0
