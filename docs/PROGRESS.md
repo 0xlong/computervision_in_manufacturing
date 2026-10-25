@@ -2,6 +2,82 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Interactive Architecture view (25 October 2026)
+
+Status: verified locally; focused checkpoint. One coordinator on `main`, no
+workers. Parent: explicit Architecture-tab request; specification section 5,
+US-06/08/09 and privacy/evidence/layout requirements. Dependencies: existing
+navigation, authentic saved bundle and browser verification tools.
+Allowed: App navigation, new Architecture component/styles/browser checks,
+existing navigation expectation and only this progress section. All earlier
+documentation/setup edits are preserved and excluded from the checkpoint.
+
+Tasks/acceptance: (1) add Architecture immediately after Results, with a distinct
+view and six connected selectable steps; (2) explain preparation, label-free
+model requests, evaluation/bundle, static serving, local exploration and human
+brief/decision without implying live AI or deployed infrastructure; (3) verify
+all selections, keyboard/focus, 320/360/768/1440 px, real/fixture journeys,
+unchanged saved judgments/calculations/export and paused Watch on departure;
+(4) bounded visual review, fresh diff review, recorded checks and focused save.
+
+Implemented: six numbered steps, restrained line icons and connecting arrows
+using the existing palette. Two groups distinguish preparation before a visit
+from exploration in the browser. One detail panel explains only the selected
+step, its output and its evidence/privacy boundary. The content covers public
+pictures, separate Python model execution, evaluation and validated versioned
+bundles, React/TypeScript static delivery, local judgments/workday calculations,
+and deterministic Markdown export/human decision. The unavailable surface track
+and unverified VPS deployment remain explicit. This is an architecture
+explanation, not new model evidence or an inference animation.
+
+Desktop shows the six steps in one row; tablet uses two rows; phones use a
+vertical flow. Pointer selection brings the explanation into view without smooth
+motion. Keyboard Tab/Enter/Space selection preserves focus and announces the
+updated explanation. Phone navigation uses two aligned rows, with Architecture
+beside Results. The new view is temporary navigation like Watch: it does not
+change the saved visitor-state schema or overwrite the previous challenge/lab
+screen. Returning to Try it restores answers; entering Architecture pauses Watch.
+No dependencies, provider calls, image assets, calculations or evidence changed.
+
+Verification: production TypeScript/build passed. The complete **33-case browser
+suite passed** in 3.4 minutes, including the authentic five-image journey, all
+115 playback pictures, genuine saved comparisons, fixture recovery, private
+state and deterministic export. After the final phone alignment and pointer
+scroll adjustment, all **16 affected journey/layout/keyboard browser checks
+passed** in 1.2 minutes against the rebuilt production preview. These include
+all six Architecture selections, 320/360/768/1440 px, Try it, Watch, Results and
+the completed dashboard. No automated WCAG-tagged violations, horizontal
+overflow, browser errors or external requests were found in the new journey.
+The new journey compares stored judgments and exported brief content before
+and after Architecture and confirms unchanged workday projections. Fixture
+notices remain explicit. Pure calculation/unit checks were not repeated because
+those modules did not change and the browser verifies the affected outputs.
+
+Actual development page http://127.0.0.1:5174/ renders in Chromium 156.0.8078.4
+at all four widths; pointer/keyboard selection works and the Architecture path
+requests no source photographs. Visually reviewed the diagram at desktop,
+tablet and phone widths, including the final phone navigation. **Zero source
+photographs visually opened**; earlier picture findings are reused. This is
+layout review, not a visual dataset audit. Local screenshots and render record:
+`.cache/architecture/dev-*.png` and `.cache/architecture/dev-render.json`.
+The first restricted browser launch returned `spawn EPERM`; local checks passed
+with normal process access, without changing checks or requirements.
+
+Fresh single-agent review checked each architecture claim against specification
+section 5/current source, single active navigation, reveal gating, separate
+visitor judgments, fixed API policy, failed-assessment routing, honest track/
+deployment status, responsive CSS and saved-state/export integrity. Earlier
+progress text is compared with a pre-task copy; only this new section is staged
+alongside the five UI/browser-check files. No unrelated edits are included.
+
+Limits: VS Code computer-use connection returned an unavailable native pipe on
+the initial call, retry and fresh-session retry. Actual Chromium verification
+passed; VS Code's integrated browser, native devices, Safari/Firefox and a
+screen-reader audit remain unverified. No publication or remote changes.
+Next: refresh the local website, open Results then Architecture, and select a
+step. Use VS Code's **Browser: Open Integrated Browser**
+(`workbench.action.browser.open`) with the same URL to try it there.
+
 ## Three-second Watch playback (25 October 2026)
 
 Status: Verified locally; focused checkpoint. One coordinator on `main`, no workers. Parent: user's speed

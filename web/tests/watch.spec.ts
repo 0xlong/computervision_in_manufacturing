@@ -19,7 +19,7 @@ test('picture → first model → second model → reference; counts wait for th
   await expect(page.locator('.context-bar')).toHaveCount(0);
   expect(await status(watch).evaluate(el => getComputedStyle(el).clipPath)).toBe('inset(50%)');
   expect((await status(watch).boundingBox())!.height).toBe(1);
-  await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button')).toHaveText(['Try it', 'Watch AI Inspect', 'Results']);
+  await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button')).toHaveText(['Try it', 'Watch AI Inspect', 'Results', 'Architecture']);
   await expect(page.getByRole('button', { name: 'Try it yourself', exact: true })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Watch AI Inspect', exact: true })).toHaveCount(1);
   await expect(watch.getByRole('combobox')).toHaveCount(0);

@@ -8,14 +8,17 @@ import { Picture } from './Picture';
 import { Lab } from './Lab';
 import { AnswerCard, Assessment, AssessmentDetails, answerLabel } from './Assessment';
 import { Watch } from './Watch';
+import { Architecture } from './Architecture';
 
 function Experience({ bundle }: { bundle: Bundle }) {
   const [loaded] = useState(() => {
     try { return loadState(window.localStorage, bundle); }
     catch { return { state: freshState(bundle), notice: 'Browser storage is unavailable. Progress stays in memory for this visit.', persistent: false }; }
   });
-  const [watch, setWatch] = useState(false), [watchOpened, setWatchOpened] = useState(false);
-  const openWatch = () => { setWatchOpened(true); setWatch(true); document.getElementById('main')?.focus(); window.scrollTo(0, 0); };
+  const [view, setView] = useState<'experience' | 'watch' | 'architecture'>('experience'), [watchOpened, setWatchOpened] = useState(false);
+  const watch = view === 'watch', architecture = view === 'architecture';
+  const openView = (next: typeof view) => { setView(next); document.getElementById('main')?.focus(); window.scrollTo(0, 0); };
+  const openWatch = () => { setWatchOpened(true); openView('watch'); };
   const [state, setState] = useState(loaded.state), [notice, setNotice] = useState(loaded.notice);
   const [persistent, setPersistent] = useState(loaded.persistent), [confirmReset, setConfirmReset] = useState('');
   const [pictureReady, setPictureReady] = useState(false), [resetEpoch, setResetEpoch] = useState(0);
@@ -41,21 +44,22 @@ function Experience({ bundle }: { bundle: Bundle }) {
   const count = Object.keys(state.answers).length;
   const correct = bundle.images.filter(i => state.answers[i.image_id] && ((state.answers[i.image_id] === 'needs_review') === (i.label === 'anomalous'))).length;
   const goImage = (id: string) => { if (id === state.selectedImage) return; setPictureReady(false); update({ selectedImage: id }); document.getElementById('inspection-title')?.focus(); window.scrollTo(0, 0); };
-  const goScreen = (screen: VisitorState['screen']) => { setWatch(false); update({ screen }); document.getElementById('main')?.focus(); window.scrollTo(0, 0); };
+  const goScreen = (screen: VisitorState['screen']) => { update({ screen }); openView('experience'); };
   function reset() { setState(freshState(bundle)); setResetEpoch(n => n + 1); setConfirmReset(''); setNotice('Fastener progress has been reset.'); }
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
     <header className="site-header"><a href="#main" className="brand" onClick={() => goScreen('start')}><span aria-hidden="true" className="brand-mark">◈</span><span>Manufacturing<span className="brand-light"> / AI Inspection</span></span></a>
-      {(state.screen !== 'start' || watch) && <nav aria-label="Main navigation"><button aria-current={!watch && state.screen === 'inspect' ? 'page' : undefined} onClick={() => goScreen('inspect')}>Try it</button><button aria-current={watch ? 'page' : undefined} onClick={openWatch}>Watch AI Inspect</button><button aria-current={!watch && state.screen === 'lab' ? 'page' : undefined} onClick={() => goScreen('lab')}>Results</button></nav>}</header>
+      {(state.screen !== 'start' || view !== 'experience') && <nav aria-label="Main navigation"><button aria-current={view === 'experience' && state.screen === 'inspect' ? 'page' : undefined} onClick={() => goScreen('inspect')}>Try it</button><button aria-current={watch ? 'page' : undefined} onClick={openWatch}>Watch AI Inspect</button><button aria-current={view === 'experience' && state.screen === 'lab' ? 'page' : undefined} onClick={() => goScreen('lab')}>Results</button><button aria-current={architecture ? 'page' : undefined} onClick={() => openView('architecture')}>Architecture</button></nav>}</header>
     <main id="main" tabIndex={-1}>
       {!watch && <div className="context-bar"><span>Public-data demo</span></div>}
       {bundle.execution === 'fixture' && <p className="development-notice">TEST EXAMPLES ONLY — invented model answers; not real AI evidence.</p>}
       {notice && <p className="notice" role="status">{notice}</p>}
-      {!watch && state.screen === 'start' && <section className="hero"><h1>AI Visual Inspection<br /><em>for Manufacturing</em></h1><p className="hero-copy">Computer vision for quality control. Try five parts.</p>
+      {!watch && !architecture && state.screen === 'start' && <section className="hero"><h1>AI Visual Inspection<br /><em>for Manufacturing</em></h1><p className="hero-copy">Computer vision for quality control. Try five parts.</p>
         <div className="hero-actions"><button className="primary" onClick={() => goScreen('inspect')}>Try it →</button><button onClick={openWatch}>Watch AI Inspect</button><button className="text-button" onClick={() => goScreen('lab')}>See the results →</button></div>
         <p className="prototype-note">A public-image demo, not factory validation.</p></section>}
       {watchOpened && <Watch bundle={bundle} active={watch} />}
-      {!watch && state.screen === 'inspect' && <>
+      {architecture && <Architecture />}
+      {!watch && !architecture && state.screen === 'inspect' && <>
         <section className="section-heading"><h1 id="inspection-title" tabIndex={-1}>Does this part need checking?</h1></section>
         <div className="challenge-progress"><strong>Image {index + 1} of 5</strong><span>{count} of 5 answered</span><progress max={5} value={count} aria-label="Challenge answers completed" /></div>
         <div className="inspection-layout"><Picture key={`${image.image_id}-${resetEpoch}`} image={image} revealed={revealed} onReady={readyCallback} />
@@ -77,8 +81,8 @@ function Experience({ bundle }: { bundle: Bundle }) {
         <nav className="image-navigation" aria-label="Challenge image navigation"><button disabled={index === 0} onClick={() => goImage(bundle.challenge.image_ids[index - 1])}>← Previous</button><div className="image-dots">{bundle.challenge.image_ids.map((id, n) => <button key={id} aria-label={`Go to image ${n + 1}${state.answers[id] ? ', answered' : ''}`} aria-current={id === state.selectedImage ? 'step' : undefined} onClick={() => goImage(id)}>{n + 1}{state.answers[id] && <span aria-hidden="true"> ✓</span>}</button>)}</div>{index < 4 ? <button onClick={() => goImage(bundle.challenge.image_ids[index + 1])}>Next →</button> : <button onClick={() => goScreen('lab')}>See all results →</button>}</nav>
         {count === 5 && <section className="challenge-summary" role="status"><h2>Your five-picture summary</h2><p>{correct} correct · {5 - correct} incorrect against the dataset labels.</p><p className="small">Five selected examples aren’t a performance test.</p><button className="primary" onClick={() => goScreen('lab')}>See the full AI results →</button></section>}
       </>}
-      {!watch && state.screen === 'lab' && <Lab key={resetEpoch} bundle={bundle} state={state} update={update} />}
-      <details className="about-demo" hidden={watch}><summary>About this demo{state.screen !== 'start' ? ' & reset progress' : ''}</summary>
+      {!watch && !architecture && state.screen === 'lab' && <Lab key={resetEpoch} bundle={bundle} state={state} update={update} />}
+      <details className="about-demo" hidden={watch || architecture}><summary>About this demo{state.screen !== 'start' ? ' & reset progress' : ''}</summary>
         <p>{bundle.execution === 'fixture' ? 'This test preview uses invented AI answers.' : `The AI answers are saved responses from all ${selected.report.expected} test images. Your visit makes no AI requests.`} Your answers stay in this browser.</p>
         <p>Five selected teaching pictures, not a representative factory sample. Dataset: {bundle.dataset.dataset_id} / {bundle.dataset.category}. The optional metal-surface track is unavailable.</p>
         <p>Local development preview, not factory validation. Dataset source records have limitations; this preview is not cleared for publication. No manufacturer affiliation is implied.</p>
