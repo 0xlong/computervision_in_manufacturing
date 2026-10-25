@@ -138,10 +138,11 @@ resumption and missing-access refusal. The old trial/evaluation/transport checks
 remain in the full regression suite. No dependency or web change is required for
 this step; the website still shows only the completed Lite comparison row.
 
-New partial runs cannot be packaged or used for benchmark quality claims. After
-complete evaluations, the frozen-configuration packaging path must support the new
-version and preserve the five existing challenge IDs; model-aware playback must
-be integrated and checked before claiming the whole comparison request is done.
+New partial runs cannot be packaged or used for benchmark quality claims. The new
+versioned packaging and model-aware playback are now implemented and checked with
+generated/labelled fixtures. Once complete real runs exist, preserve the five
+teaching IDs and verify the combined genuine multi-model bundle before claiming
+the whole comparison request is done.
 
 ### Authentic normal-fitting qualification
 

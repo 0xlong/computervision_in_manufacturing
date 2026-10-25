@@ -489,3 +489,41 @@ paid access, publication or remote change occurred. Remaining: verify current
 candidate quotas/remaining allowance, prepare model-specific execution, obtain
 genuine complete additional evaluations and integrate them before calling the
 model comparison complete. Existing source/publication limits still apply.
+
+## Model-aware playback readiness — 25 October 2026
+
+The saved-result player now follows the selected model. With multiple complete
+saved runs, a Saved model selector appears. Switching models preserves the current
+playback picture, pauses at its first stage and clears counts. Restart preserves
+the chosen model. Counters and cards read that model's actual saved responses;
+visitor answers/reveals and challenge image identity remain unchanged. A model
+selected in Results is used when entering playback. Existing one-model behavior
+is preserved; no extra selector is shown for the current genuine single-model bundle.
+
+**32 web unit checks**, TypeScript/production build and all **21 production
+Chromium checks pass**. The extended labelled two-model fixture journey checks
+Results-to-playback selection, switching from a revealed second picture while
+playing, same-picture pause/reset, cleared counters and unchanged visitor storage.
+A focused rerun of both comparison browser checks additionally verifies zero
+automated WCAG-tagged violations and no page overflow with the multi-model controls
+at 360 px. A unit case gives the models different normal-part decisions and checks
+that their false-alarm counts stay separate. Every existing genuine and fixture
+inspection/playback/export/reset/privacy journey still passes.
+
+Fresh single-agent diff review checked model identity, synchronized selection,
+instant model-change reset, timer/load restart, preserved judgments and the honest
+one-real-model boundary. Viewed only the [phone controls crop](../artifacts/model-comparison-oct25/player-controls-fixture-360.png),
+which uses labelled synthetic fixture model names. **Zero source photographs**
+were visually opened in this task. This is bounded UI review, not full accessibility
+certification. Actual browser: Chromium 156.0.8078.4 on Windows; VS Code integrated
+browser remains unverified because native control is unavailable. The prior dev
+server was not running when checked; the [local guide](FASTENER_LOCAL.md) has its
+start command. Automated checks used their own production preview on port 4175.
+
+The [new free-tier run record](GEMINI_COMPARISON_RUNS.md) owns authentic qualification
+and partial full-set progress. Both new trial/evaluation request settings and future
+configuration packaging are checked by **453 offline pipeline tests**. The genuine
+website still shows only the completed 115-image Lite baseline. The two-model
+fixture check does not establish a second complete real evaluation, and no partial
+run is packaged. Existing source/licensing, provider terms, factory-use, cross-browser
+and publication limits remain. No paid access, new dependency or publication.

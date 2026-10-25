@@ -55,7 +55,7 @@ function Experience({ bundle }: { bundle: Bundle }) {
         <div className="hero-actions"><button className="primary" onClick={() => goScreen('inspect')}>Try it →</button><button onClick={openWatch}>Watch AI Inspect</button><button className="text-button" onClick={() => goScreen('lab')}>See the results →</button></div>
         <p className="prototype-note">A public-image demo, not factory validation.</p></section>}
       {(watch || state.screen === 'inspect') && <div className="mode-switch" role="group" aria-label="Inspection mode"><button aria-pressed={!watch} onClick={() => goScreen('inspect')}>Try it yourself</button><button aria-pressed={watch} onClick={openWatch}>Watch AI Inspect</button></div>}
-      {watchOpened && <Watch bundle={bundle} active={watch} />}
+      {watchOpened && <Watch bundle={bundle} active={watch} selectedRun={state.selectedRun} onSelectRun={id => update({ selectedRun: id, comparisonRun: '' })} />}
       {!watch && state.screen === 'inspect' && <>
         <section className="section-heading"><h1 id="inspection-title" tabIndex={-1}>Does this part need checking?</h1></section>
         <div className="challenge-progress"><strong>Image {index + 1} of 5</strong><span>{count} of 5 answered</span><progress max={5} value={count} aria-label="Challenge answers completed" /></div>

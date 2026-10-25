@@ -38,4 +38,19 @@ describe('saved playback', () => {
     expect(playbackCounts(bundle, [])).toEqual({ flagged: 0, missed: 0, falseAlarms: 0, unsure: 0, unavailable: 0, revealed: 0 });
     expect(playbackCounts(bundle, [0, 1, 2, 3, 4, 0, 3])).toEqual({ flagged: 0, missed: 1, falseAlarms: 1, unsure: 1, unavailable: 2, revealed: 5 });
   });
+  it('switches model on the same picture paused, clears counts, and counts the selected response', () => {
+    const state = { ...initialPlayback, index: 3, stage: 2 as const, playing: true, seen: [0, 3], runId: 'previous' };
+    const switched = playbackReducer(state, { type: 'model', runId: 'next' });
+    expect(switched).toMatchObject({ index: 3, stage: 0, playing: false, seen: [], runId: 'next' });
+    expect(playbackReducer(switched, { type: 'restart' })).toMatchObject({ index: 0, runId: 'next', seen: [] });
+    const bundle = parseBundle(structuredClone(fixture));
+    const second = structuredClone(bundle.runs[0]);
+    second.evidence.run.run_id = 'unit-second-run';
+    bundle.runs.push(second); // Isolated counter input; not a public evidence artifact.
+    // Select the normal first challenge picture, originally needs_review.
+    const normalId = bundle.challenge.image_ids[0];
+    second.evidence.predictions.find(p => p.image_id === normalId)!.attempts.at(-1)!.response!.decision = 'looks_acceptable';
+    expect(playbackCounts(bundle, [0], second.evidence.run.run_id).falseAlarms).toBe(0);
+    expect(playbackCounts(bundle, [0], bundle.runs[0].evidence.run.run_id).falseAlarms).toBe(1);
+  });
 });

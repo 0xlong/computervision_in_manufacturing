@@ -14,8 +14,8 @@ extensions and offline tests, comparison/evaluation guides and this new section.
 | --- | --- | --- |
 | Record screenshot limits and add a versioned runner | Exact visible model limits/usage, no invented quota; unchanged baseline; all-model request settings, daily ledger and cross-phase pacing tests | Done; 453 offline pipeline tests now pass after packaging checks |
 | Qualify three eligible new candidates | Current screenshot/access/use record, metadata access, two successful normal-fitting probes with saved versions/usage, bounded submissions/deadline | Done: two real successful probes each, no retries |
-| Start fixed full-set runs | Qualifying frozen configuration; all 115 IDs retained; serial resumable batches stop at current allowance headroom | Qualified; first 2.5 Flash evaluation batch in progress |
-| Finish complete model comparison | All new full runs complete; new configuration packaging, same five teaching IDs, model-aware playback and browser verification | v2 packaging / same-five preservation ready; full runs and model-aware playback integration pending |
+| Start fixed full-set runs | Qualifying frozen configuration; all 115 IDs retained; serial resumable batches stop at current allowance headroom | Both 2.5 models at 17/115 successes, paused at daily headroom; 3 Flash first batch started |
+| Finish complete model comparison | All new full runs complete; new configuration packaging, same five teaching IDs, model-aware playback and browser verification | v2 packaging and model-aware playback verified; full real evaluations / combined bundle pending |
 
 The supplied Free-tier screenshot records 3.5 Lite 15 RPM / 250K input TPM / 500 RPD
 (118 used), 3.8 Flash 5 / 250K / 20 (4 used), 2.5 Flash 5 / 250K / 20, 2.5 Lite
@@ -76,6 +76,26 @@ and complete suites. Fresh review checked old version behavior, tampering and
 teaching-set preservation. New packaging code does not alter the frozen request
 supervisor or live run identities. No public evidence or web files changed.
 The prior dev server is no longer running; no fresh UI verification is claimed.
+
+Both 2.5 candidates now have **17/115 saved full-set successes each**, using two
+normal-trial plus 17 evaluation submissions/model. Each paused with one of the
+screenshot's 20 daily requests left as headroom; no retries or terminal failures
+in those new runs so far. 3 Flash's first bounded evaluation batch is now running.
+No partial defect-quality metrics or new website benchmark rows are claimed.
+
+Model-aware playback is implemented and verified ahead of completed runs. It follows
+Results selection; a Saved model selector appears only when multiple completed
+runs are packaged. Changing model keeps the playback picture, pauses stage zero
+and clears counters; Restart keeps that model. Cards/counters use the selected
+saved response. Visitor judgments/reveals and selected challenge picture stay fixed.
+Checks: **32 web unit tests**, build and **21 production Chromium checks pass**;
+two comparison checks reran with the new mobile control scan and pass. Fixtures
+verify model selection/reset and do not constitute real second-model evidence.
+360 px multi-model controls have no overflow or automated WCAG-tagged violations.
+Viewed only the labelled fixture control crop: zero source photographs. Fresh
+single-agent review checked selection/state/timer reset and counter separation.
+Genuine public evidence is unchanged. VS Code integrated browser remains unverified;
+no dev server was running at 5174 when checked. Local/browser guides are updated.
 
 ## Model comparison — display ready; additional evaluations pending (24 October 2026)
 

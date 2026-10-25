@@ -104,4 +104,38 @@ test('two labelled fixture models can be selected without changing visitor judgm
   const after = await page.evaluate(() => JSON.parse(localStorage.getItem('ai-inspection-pilot-lab:visitor:v1')!));
   expect(after.answers).toEqual(before.answers); expect(after.revealed).toEqual(before.revealed);
   expect(after.selectedImage).toBe(before.selectedImage);
+  // The player follows the selected model, keeps image identity, and never mixes counters.
+  await page.getByRole('button', { name: 'Try it', exact: true }).click();
+  await page.getByRole('button', { name: 'Watch AI Inspect', exact: true }).click();
+  const watch = page.getByRole('region', { name: 'Watch AI Inspect', exact: true });
+  const status = watch.getByRole('status').filter({ hasText: 'Picture' });
+  await expect(watch.getByLabel('Saved model', { exact: true })).toHaveValue(second.evidence.run.run_id);
+  await watch.getByRole('button', { name: 'Next', exact: true }).click();
+  await expect(status).toContainText('Picture 2 of 5 · Paused · Look at the picture');
+  await page.clock.install({ time: new Date('2026-10-25T12:00:00Z') });
+  await page.clock.pauseAt(new Date('2026-10-25T13:00:00Z'));
+  await watch.getByRole('button', { name: 'Play', exact: true }).click();
+  await page.clock.runFor(1000);
+  await expect(status).toContainText('AI assessment');
+  await page.clock.runFor(1000);
+  await expect(status).toContainText('Dataset reference');
+  const playbackResults = watch.getByRole('region', { name: 'Results for this five-picture playback', exact: true });
+  await expect(playbackResults).toContainText('1 of 5 references shown');
+  await expect(playbackResults.getByRole('region', { name: 'Defects missed', exact: true }).locator('strong')).toHaveText('1');
+  await watch.getByLabel('Saved model', { exact: true }).selectOption(data.runs[0].evidence.run.run_id);
+  await expect(status).toContainText('Picture 2 of 5 · Paused · Look at the picture');
+  await expect(playbackResults).toContainText('0 of 5 references shown');
+  await expect(playbackResults.getByRole('region', { name: 'Defects missed', exact: true }).locator('strong')).toHaveText('0');
+  await page.clock.runFor(5000);
+  await expect(status).toContainText('Paused · Look at the picture');
+  const final = await page.evaluate(() => JSON.parse(localStorage.getItem('ai-inspection-pilot-lab:visitor:v1')!));
+  expect(final.answers).toEqual(before.answers); expect(final.revealed).toEqual(before.revealed);
+  expect(final.selectedImage).toBe(before.selectedImage);
+  await page.setViewportSize({ width: 360, height: 1000 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.clock.resume(); // Playback is paused; allow axe's own scheduling.
+  expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze()).violations).toEqual([]);
+  const playerArtifacts = resolve('../artifacts/model-comparison-oct25');
+  await mkdir(playerArtifacts, { recursive: true });
+  await watch.getByRole('group', { name: 'Playback controls', exact: true }).screenshot({ path: resolve(playerArtifacts, 'player-controls-fixture-360.png') });
 });

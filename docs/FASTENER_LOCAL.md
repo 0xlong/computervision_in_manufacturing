@@ -71,6 +71,13 @@ no animation or automatic scrolling, including with reduced motion enabled.
 Playback stays in memory during mode switches and restarts paused after a page
 refresh. Your challenge answers keep their existing browser storage behavior.
 
+When more than one complete saved model is packaged, **Saved model** also appears
+in playback. It starts with your Results selection. Changing it keeps the current
+picture, pauses at the picture-first stage and clears playback counts so different
+models never share totals. Restart keeps the selected model. Your visitor answers
+stay unchanged. Currently the public local bundle still has only the completed
+3.5 Flash-Lite run; new comparison evaluations are in progress.
+
 ## Evidence preparation
 
 The [trial](GEMINI_TRIAL.md), [local-use review](GEMINI_LOCAL_USE.md) and

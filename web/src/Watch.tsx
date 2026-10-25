@@ -4,8 +4,8 @@ import { Picture } from './Picture';
 import { AnswerCard, Assessment, AssessmentDetails, answerLabel } from './Assessment';
 import { initialPlayback, playbackCounts, playbackReducer } from './playback';
 
-export function Watch({ bundle, active }: { bundle: Bundle; active: boolean }) {
-  const [state, dispatch] = useReducer(playbackReducer, initialPlayback);
+export function Watch({ bundle, active, selectedRun, onSelectRun }: { bundle: Bundle; active: boolean; selectedRun: string; onSelectRun: (id: string) => void }) {
+  const [state, dispatch] = useReducer(playbackReducer, { ...initialPlayback, runId: selectedRun });
   const [ready, setReady] = useState(false), [failed, setFailed] = useState(false), [seconds, setSeconds] = useState(3);
   const onReady = useCallback((value: boolean) => setReady(value), []);
   const onFailure = useCallback((value: boolean) => { setFailed(value); if (value) dispatch({ type: 'pause' }); }, []);
@@ -13,11 +13,14 @@ export function Watch({ bundle, active }: { bundle: Bundle; active: boolean }) {
   const clock = useRef({ key: '', remaining: 1 });
   const ids = bundle.challenge.image_ids;
   const image = bundle.images.find(i => i.image_id === ids[state.index])!;
-  const saved = bundle.runs[0];
+  const saved = bundle.runs.find(r => r.evidence.run.run_id === state.runId)!;
   const prediction = saved.evidence.predictions.find(p => p.image_id === image.image_id)!;
   const response = prediction.status === 'success' ? prediction.attempts.at(-1)!.response : null;
   const complete = state.finished;
-  const counts = playbackCounts(bundle, state.seen);
+  const counts = playbackCounts(bundle, state.seen, state.runId);
+  useEffect(() => {
+    if (selectedRun !== state.runId) { setReady(false); dispatch({ type: 'model', runId: selectedRun }); }
+  }, [selectedRun, state.runId]);
   useEffect(() => { if (!active) dispatch({ type: 'pause' }); }, [active]);
   useEffect(() => {
     const pause = () => { if (document.hidden) dispatch({ type: 'pause' }); };
@@ -61,6 +64,9 @@ export function Watch({ bundle, active }: { bundle: Bundle; active: boolean }) {
       <button disabled={state.index === 0} onClick={() => navigate(state.index - 1)}>Previous</button>
       <button disabled={state.index === ids.length - 1} onClick={() => navigate(state.index + 1)}>Next</button>
       <button onClick={restart}>Restart</button>
+      {bundle.runs.length > 1 && <div><label htmlFor="playback-model">Saved model</label><select id="playback-model" value={state.runId} onChange={e => {
+        setReady(false); dispatch({ type: 'model', runId: e.target.value }); onSelectRun(e.target.value);
+      }}>{bundle.runs.map(r => <option key={r.evidence.run.run_id} value={r.evidence.run.run_id}>{r.evidence.run.model_id}</option>)}</select></div>}
       <div><label htmlFor="viewing-time">Viewing time per picture</label><select id="viewing-time" value={seconds} onChange={e => setSeconds(Number(e.target.value))}>
         <option value={1.5}>Fast · 1.5 s</option><option value={3}>Normal · 3 s</option><option value={6}>Slow · 6 s</option>
       </select></div>
