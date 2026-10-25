@@ -2,6 +2,57 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Keep playback scores visible between pictures (25 October 2026)
+
+Status: Verified locally; focused checkpoint. One coordinator
+on `main`, no workers. Follow-up to the accepted card layout; US-02/03/08/09,
+FR-REVEAL-001/002, NFR-ACCESS-001, NFR-LAYOUT-001. Dependencies: existing card
+footer and unchanged playback counters. Allowed: Watch/assessment components,
+playback browser checks/helpers, and only this new progress section.
+
+Small tasks: keep model names/scores and the dataset-reference heading visible;
+hide only unrevealed answers/explanations; check automatic next-picture changes,
+navigation, full/filtered scores, keyboard and 360/768/1440 px layouts; review and
+save a focused checkpoint excluding unrelated edits. Acceptance: both model
+scores remain visible at every picture/model stage, update only on reference,
+and answers still reveal Gemini, Gemma, then dataset reference.
+
+Implemented: persistent Gemini/Gemma card headings and score footers, plus a
+persistent dataset-reference heading. Only each answer/status and its explanation
+are hidden until that stage. Reserved explanation space avoids moving the other
+model card when an explanation becomes available. Existing colors, collapsed score
+details, reference-gated counting and all calculation/state/evidence files remain
+unchanged. The default visitor cards retain their existing behavior.
+
+Verification: all **25 production browser cases pass across the full run and
+focused rerun**. Full run: 21 passed; four newly edited checks had test-setup
+mistakes (one undefined before-snapshot, three absolute screen-coordinate checks
+affected by image controls/keyboard scrolling). Corrected the snapshot placement
+and compared score position within its card; retained visible-score, reveal-order,
+overflow, keyboard, focus and accessibility requirements. All eight Watch cases
+then passed in 29.6 s. Production TypeScript/build passed on both runs.
+
+The full 115-picture check now explicitly verifies both scores remain visible at
+each new picture and model decisions remain hidden until their stage. The
+26-picture filtered ending retains Gemini 98/115 and Gemma 89/115; visitor answers,
+refresh, replay, failures, uncertain/unavailable cases and the separate challenge
+pass. At 360/768/1440 px, checks verify persistent scores, stable placement within
+cards, keyboard expansion/focus, no page overflow and no automated WCAG-tagged
+violations. Fresh single-agent diff review checked default visitor behavior,
+neutral pending cards, hidden answer accessibility, reference gating and unchanged
+evidence/calculations. No pipeline or pure-calculation tests were repeated: those
+modules were unchanged. No source photographs were visually opened in this step;
+the previously accepted card styling was reused, with automated layout checks.
+
+Limitations: native VS Code browser access remains unverified as recorded in the
+preceding step; checks use local production Chromium. No native-device, Safari or
+screen-reader audit is claimed. Open http://127.0.0.1:5174/ using **Browser: Open
+Integrated Browser** (`workbench.action.browser.open`), then Watch AI Inspect and
+Play: both model names and scores remain visible as each new picture starts.
+No model evaluations, provider calls, dependencies or deployment work. Only four
+UI/test files and this new section are included; earlier unrelated edits remain
+preserved and excluded. Next: user tries the continuous score display.
+
 ## Running scores inside model cards (25 October 2026)
 
 Status: Done locally. One coordinator on `main`, no workers. User-requested UI

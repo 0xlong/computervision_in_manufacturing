@@ -15,16 +15,18 @@ test('picture → first model → second model → reference; counts wait for th
   await expect(watch.getByRole('combobox')).toHaveCount(1); // Viewing time; both models are always shown.
   expect(new Set(images).size).toBe(1); // Catalog is complete; images load one at a time.
   const comparison = watch.getByRole('group', { name: 'Saved answer comparison', exact: true });
-  await expect(comparison.getByRole('region')).toHaveCount(0);
+  await expect(comparison.getByRole('region').getByRole('heading')).toHaveText([...modelNames, 'Dataset reference']);
+  await expect(comparison.locator('.comparison-value:visible')).toHaveCount(0);
+  for (let n = 0; n < 2; n++) await expect(totals(watch, n)).toBeVisible();
   await watch.getByRole('button', { name: 'Play', exact: true }).click();
   await tick(page, watch, modelNames[0]);
-  await expect(comparison.getByRole('region')).toHaveCount(1);
+  await expect(comparison.locator('.comparison-value:visible')).toHaveCount(1);
   await expect(comparison.getByRole('region', { name: modelNames[0], exact: true })).toContainText('Needs checking');
   await expect(comparison.getByRole('group', { name: `${modelNames[0]} playback score`, exact: true })).toBeVisible();
   await expect(totals(watch, 0).locator('strong')).toHaveText('0 / 0');
   await tick(page, watch, modelNames[1]);
-  await expect(comparison.getByRole('region')).toHaveCount(2);
-  await expect(comparison.getByRole('region', { name: 'Dataset reference', exact: true })).toHaveCount(0);
+  await expect(comparison.locator('.comparison-value:visible')).toHaveCount(2);
+  await expect(comparison.getByRole('region', { name: 'Dataset reference', exact: true }).locator('.comparison-value')).toBeHidden();
   for (let n = 0; n < 2; n++) await expect(metric(totals(watch, n), 'Defects flagged')).toHaveText('0');
   const scoreDetails = totals(watch, 0).getByText('Score details', { exact: true });
   await scoreDetails.focus(); await page.keyboard.press('Enter');
@@ -33,11 +35,23 @@ test('picture → first model → second model → reference; counts wait for th
   await expect(scoreDetails).toBeFocused(); // Reference reveal preserves this open control.
   await expect(metric(totals(watch, 0), 'Defects flagged')).toBeVisible();
   await expect(comparison.getByRole('region')).toHaveCount(3);
+  await expect(comparison.locator('.comparison-value:visible')).toHaveCount(3);
   for (let n = 0; n < 2; n++) {
     await expect(metric(totals(watch, n), 'Defects flagged')).toHaveText('1');
     await expect(totals(watch, n).locator('strong')).toHaveText('1 / 1');
   }
   await expect(watch.locator('.playback-results')).toHaveCount(0);
+  await tick(page, watch, 'Picture 2 of 115');
+  await expect(comparison.locator('.comparison-value:visible')).toHaveCount(0);
+  for (let n = 0; n < 2; n++) {
+    await expect(totals(watch, n)).toBeVisible();
+    await expect(totals(watch, n).locator('strong')).toHaveText('1 / 1');
+  }
+  await tick(page, watch, modelNames[0]);
+  for (let n = 0; n < 2; n++) {
+    await expect(totals(watch, n)).toBeVisible();
+    await expect(totals(watch, n).locator('strong')).toHaveText('1 / 1');
+  }
   // Revisit the same reference; neither model gains a second count.
   await watch.focus(); await page.keyboard.press('Home');
   await expect(metric(totals(watch, 0), 'Defects flagged')).toHaveText('0');
@@ -88,7 +102,8 @@ test('loading and changed pictures hold the timer; retry recovers without reveal
   await watch.getByRole('button', { name: 'Play', exact: true }).click();
   await page.clock.runFor(20000);
   await expect(status(watch)).toContainText('Picture 1 of 115');
-  await expect(watch.getByRole('group', { name: 'Saved answer comparison', exact: true }).getByRole('region')).toHaveCount(0);
+  await expect(watch.getByRole('group', { name: 'Saved answer comparison', exact: true }).locator('.comparison-value:visible')).toHaveCount(0);
+  for (let n = 0; n < 2; n++) await expect(totals(watch, n)).toBeVisible();
   blocked = false; release();
   await expect(status(watch)).toContainText('Playing · Picture');
   await page.clock.runFor(999); await expect(status(watch)).toContainText('Playing · Picture');
@@ -119,11 +134,16 @@ for (const width of [360, 768, 1440]) test(`three revealed cards, keyboard and m
   test.setTimeout(60000);
   await page.setViewportSize({ width, height: 1000 }); await page.emulateMedia({ reducedMotion: 'reduce' });
   const watch = await openWatch(page);
+  for (let n = 0; n < 2; n++) await expect(totals(watch, n)).toBeVisible();
+  const before = await watch.locator('.playback-score').evaluateAll(scores => scores.map(el => { const b = el.getBoundingClientRect(); const card = el.closest('.comparison-card')!.getBoundingClientRect(); return { x: b.x - card.x, y: b.y - card.y }; }));
   await watch.focus(); await page.keyboard.press('Space');
   for (const stage of [...modelNames, 'Dataset reference']) await tick(page, watch, stage);
   await page.keyboard.press('Escape');
   const comparison = watch.getByRole('group', { name: 'Saved answer comparison', exact: true });
   await expect(comparison.getByRole('region')).toHaveCount(3);
+  await expect(comparison.locator('.comparison-value:visible')).toHaveCount(3);
+  const after = await watch.locator('.playback-score').evaluateAll(scores => scores.map(el => { const b = el.getBoundingClientRect(); const card = el.closest('.comparison-card')!.getBoundingClientRect(); return { x: b.x - card.x, y: b.y - card.y }; }));
+  expect(after).toEqual(before);
   for (let n = 0; n < 2; n++) {
     const card = comparison.getByRole('region', { name: modelNames[n], exact: true });
     await expect(card.locator('.playback-score strong')).toHaveText('1 / 1');
@@ -157,6 +177,10 @@ for (const width of [360, 768, 1440]) test(`three revealed cards, keyboard and m
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await watch.focus(); await page.keyboard.press('ArrowRight');
   await expect(status(watch)).toContainText('Picture 2 of 115 · Paused');
+  for (let n = 0; n < 2; n++) {
+    await expect(totals(watch, n)).toBeVisible();
+    await expect(totals(watch, n).locator('strong')).toHaveText('1 / 1');
+  }
   await page.keyboard.press('ArrowLeft'); await expect(status(watch)).toContainText('Picture 1 of 115 · Paused');
   await page.keyboard.press('Home'); await expect(metric(totals(watch, 0), 'Defects flagged')).toHaveText('0');
 });

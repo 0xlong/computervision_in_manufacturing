@@ -109,12 +109,14 @@ function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: Playback
                 </dl><p className="small">{count.unsure} unsure · {count.unavailable} unavailable</p>
               </details>
             </div>;
-            return <div key={saved.report.run_id} className={state.stage <= index ? 'pending-assessment' : ''} aria-hidden={state.stage <= index}>
-              <Assessment saved={saved} imageId={image.image_id} reference={referenceShown ? image.label : undefined} title={title}>{score}</Assessment>
-              {state.stage > index && <AssessmentDetails key={image.image_id} saved={saved} imageId={image.image_id} fixture={bundle.execution === 'fixture'} />}
+            return <div key={saved.report.run_id}>
+              <Assessment saved={saved} imageId={image.image_id} reference={referenceShown ? image.label : undefined} title={title} pending={state.stage <= index}>{score}</Assessment>
+              <div className={state.stage <= index ? 'pending-assessment' : ''} aria-hidden={state.stage <= index}>
+                <AssessmentDetails key={image.image_id} saved={saved} imageId={image.image_id} fixture={bundle.execution === 'fixture'} />
+              </div>
             </div>;
           })}
-          <div className={referenceShown ? '' : 'pending-assessment'} aria-hidden={!referenceShown}><AnswerCard title="Dataset reference" value={image.label === 'normal' ? 'Looks fine' : 'Needs checking'} detail={image.label === 'normal' ? 'No defect labelled' : 'Defect labelled'} tone="reference" /></div>
+          <div><AnswerCard title="Dataset reference" value={image.label === 'normal' ? 'Looks fine' : 'Needs checking'} detail={image.label === 'normal' ? 'No defect labelled' : 'Defect labelled'} tone="reference" pending={!referenceShown} /></div>
         </div>
       </div>}
     </>}

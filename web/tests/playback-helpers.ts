@@ -61,10 +61,12 @@ export async function finish(page: Page, watch: Locator, ids: string[], modelCou
   await watch.getByRole('button', { name: 'Play', exact: true }).click();
   for (const [index, id] of ids.entries()) {
     await expect(status(watch)).toContainText(`Picture ${index + 1} of ${ids.length} · Playing · Picture`);
+    for (let n = 0; n < modelCount; n++) await expect(totals(watch, n)).toBeVisible();
+    await expect(watch.locator('.playback-comparison .comparison-value:visible')).toHaveCount(0);
     for (let n = 0; n < modelCount; n++) {
       await page.clock.runFor(duration);
-      await expect(watch.getByRole('group', { name: 'Saved answer comparison', exact: true }).getByRole('region')).toHaveCount(n + 1);
-      await expect(watch.getByRole('region', { name: 'Dataset reference', exact: true })).toHaveCount(0);
+      await expect(watch.getByRole('group', { name: 'Saved answer comparison', exact: true }).locator('.comparison-value:visible')).toHaveCount(n + 1);
+      await expect(watch.getByRole('region', { name: 'Dataset reference', exact: true }).locator('.comparison-value')).toBeHidden();
       const prediction = evidence.runs[n].evidence.predictions.find(p => p.image_id === id)!;
       const decision = prediction.status === 'success' ? prediction.attempts.at(-1)!.response?.decision : null;
       await expect(watch.getByRole('group', { name: 'Saved answer comparison', exact: true }).getByRole('region').nth(n).locator('.comparison-value')).toHaveText(
