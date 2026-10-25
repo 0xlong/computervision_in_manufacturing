@@ -11,10 +11,12 @@ async function assetUrl(asset: Asset, signal: AbortSignal) {
   return URL.createObjectURL(new Blob([bytes], { type: 'image/png' }));
 }
 
-export function Picture({ image, revealed, onReady, onFailure }: { image: ChallengeImage; revealed: boolean; onReady: (ready: boolean) => void; onFailure?: (failed: boolean) => void }) {
+export function Picture({ image, revealed, onReady, onFailure, referenceOutline }: { image: ChallengeImage; revealed: boolean; onReady: (ready: boolean) => void; onFailure?: (failed: boolean) => void; referenceOutline?: boolean }) {
   const [url, setUrl] = useState(''), [maskUrl, setMaskUrl] = useState('');
   const [error, setError] = useState(''), [maskError, setMaskError] = useState('');
-  const [zoom, setZoom] = useState(1), [outline, setOutline] = useState(false), [retry, setRetry] = useState(0);
+  const [zoom, setZoom] = useState(1), [localOutline, setLocalOutline] = useState(false), [retry, setRetry] = useState(0);
+  // A supplied value lets the parent place the outline control beside the reference.
+  const outline = referenceOutline ?? localOutline;
   useEffect(() => {
     const controller = new AbortController(); let objectUrl = '';
     setError(''); setUrl(''); onReady(false); onFailure?.(false);
@@ -53,8 +55,8 @@ export function Picture({ image, revealed, onReady, onFailure }: { image: Challe
           {revealed && outline && maskUrl && <div className="reference-mask" role="img" style={{ maskImage: `url("${maskUrl}")`, WebkitMaskImage: `url("${maskUrl}")` }} aria-label="Dataset reference region" />}
         </div> : <p role="status">Loading photograph…</p>}
       </div>}
-    {revealed && <div className="outline-controls">{image.mask ? <>
-      <button aria-pressed={outline} onClick={() => setOutline(v => !v)}>{outline ? 'Hide reference outline' : 'Show reference outline'}</button>
+    {revealed && referenceOutline === undefined && <div className="outline-controls">{image.mask ? <>
+      <button aria-pressed={outline} onClick={() => setLocalOutline(v => !v)}>{outline ? 'Hide reference outline' : 'Show reference outline'}</button>
       <p>Dataset outline, not AI output.</p>
     </> : null}</div>}
     {maskError && <p role="alert">{maskError} <button onClick={() => setRetry(n => n + 1)}>Retry outline</button></p>}

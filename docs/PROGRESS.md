@@ -2,6 +2,75 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Cleaner Watch screen and reference-tile outline (25 October 2026)
+
+Status: UI verified locally; startup speed target remains unmet in this session.
+One coordinator on
+`main`, no workers. Parent: user-requested UI iteration, US-02/03/06/08/09,
+FR-REVEAL-001/003, NFR-ACCESS-001, NFR-LAYOUT-001. Dependencies: current persistent
+model cards and existing verified reference masks. Allowed: Watch, Picture, App,
+styles, Watch browser checks and only this new progress section.
+
+Tasks and acceptance checks: (1) extend the dataset-reference tile with its own
+outline toggle, gated until reference reveal and scoped to the current picture;
+(2) remove the Watch subtitle, visible playback-status row and About this playback,
+and hide the global background/footer on Watch while retaining them elsewhere;
+(3) verify outline lazy loading/toggling/recovery, persistent scores, full/filtered
+playback, visitor-state preservation, keyboard and 360/768/1440 px layouts;
+(4) review the diff and save a focused checkpoint excluding unrelated edits.
+
+Implemented: the reference tile extends to the same height as the model cards
+and contains **Show/Hide reference outline** in its lower section. The toggle is
+available only after the reference appears and only for pictures with a mask. It
+loads the authentic mask on demand, and resets when the picture/replay changes.
+The button and its explanatory line are removed from beneath the Watch picture;
+the separate visitor challenge keeps its existing outline controls.
+
+Removed the Watch subtitle and About this playback section, and suppressed the
+global Public-data demo bar and About this demo/reset footer while watching.
+Attribution, source limitations and reset remain available on the other screens.
+The picture/stage status and keyboard instructions are available to assistive
+technology without taking visible space. Controls, model explanations, persistent
+scores, real error recovery and fixture notices remain available.
+
+Verification: TypeScript/production build passed; **25 of 26 browser cases passed**
+in the full run (8.3 min). This includes all functional checks: the complete
+115-picture run and 26-picture filter, unchanged final Gemini **98/115** and Gemma
+**89/115**, retained visitor judgments/refresh/reset/export, genuine challenge
+outline, timers, keyboard and 360/768/1440 px accessibility/layout checks. New
+checks verify no visible subtitle/status/background/footer, equal reference/model
+card height, an outline toggle inside the reference tile and none below the
+picture, keyboard show/hide/focus, no page overflow, and no automated WCAG-tagged
+violations. A separate generated fixture checks lazy mask requests, a missing
+mask/retry, a normal picture without an outline, and correct reset/identity on the
+next defective picture. Fixture results are not AI evaluation evidence.
+
+**Remaining failed check:** startup under 10 Mbps / 100 ms RTT measured
+**3000.1245 ms**, above the unchanged `<3000 ms` target. An isolated rerun measured
+**3425.3614 ms**, so this is not marked passed. Inspected its network trace: all
+five local requests returned HTTP 200, with one challenge photograph fetched;
+no full-corpus startup load. The cause of the timing increase and whether it is a
+regression remain unresolved; no threshold, test or requirement was weakened.
+No further performance implementation was added to this UI iteration.
+
+Fresh single-agent review checked outline gating/current-picture identity,
+default Picture behavior, reference versus AI attribution, persistent scores,
+screen-reader status, source/attribution availability on other screens, and the
+focused diff. Public evidence, calculations/playback state, data, dependencies and
+provider code are unchanged. Pipeline/pure-calculation tests were not repeated.
+Visually inspected two card-only screenshots (360/1440 px), zero source pictures;
+tablet layout checked automatically. This is not a dataset visual review.
+
+Native VS Code browser access remains unverified as previously recorded; actual
+checks use production Chromium 156.0.8078.4 on port 4175. No native-device, Safari
+or screen-reader audit is claimed. Next: try Watch AI Inspect on
+http://127.0.0.1:5174/ using **Browser: Open Integrated Browser**
+(`workbench.action.browser.open`), then Play and Show reference outline inside the
+reference tile. A separate follow-up should investigate the startup timing.
+No model evaluations, provider calls, publication or deployment work resumed.
+Checkpoint scope: five UI/test files and only this new progress section; earlier
+unrelated documentation/setup edits remain preserved and excluded.
+
 ## Keep playback scores visible between pictures (25 October 2026)
 
 Status: Verified locally; focused checkpoint. One coordinator

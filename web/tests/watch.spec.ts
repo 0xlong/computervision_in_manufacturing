@@ -9,6 +9,12 @@ test('picture → first model → second model → reference; counts wait for th
   page.on('request', r => { if (r.url().includes('/evidence/images/')) images.push(r.url()); });
   const watch = await openWatch(page);
   await expect(status(watch)).toContainText('Picture 1 of 115 · Paused · Picture');
+  await expect(watch.locator('.watch-heading p')).toHaveCount(0);
+  await expect(watch.getByText('About this playback', { exact: true })).toHaveCount(0);
+  await expect(page.locator('.about-demo')).toBeHidden();
+  await expect(page.locator('.context-bar')).toHaveCount(0);
+  expect(await status(watch).evaluate(el => getComputedStyle(el).clipPath)).toBe('inset(50%)');
+  expect((await status(watch).boundingBox())!.height).toBe(1);
   await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button')).toHaveText(['Try it', 'Watch AI Inspect', 'Results']);
   await expect(page.getByRole('button', { name: 'Try it yourself', exact: true })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Watch AI Inspect', exact: true })).toHaveCount(1);
@@ -135,6 +141,7 @@ for (const width of [360, 768, 1440]) test(`three revealed cards, keyboard and m
   await page.setViewportSize({ width, height: 1000 }); await page.emulateMedia({ reducedMotion: 'reduce' });
   const watch = await openWatch(page);
   for (let n = 0; n < 2; n++) await expect(totals(watch, n)).toBeVisible();
+  await expect(watch.getByRole('button', { name: 'Show reference outline', exact: true })).toHaveCount(0);
   const before = await watch.locator('.playback-score').evaluateAll(scores => scores.map(el => { const b = el.getBoundingClientRect(); const card = el.closest('.comparison-card')!.getBoundingClientRect(); return { x: b.x - card.x, y: b.y - card.y }; }));
   await watch.focus(); await page.keyboard.press('Space');
   for (const stage of [...modelNames, 'Dataset reference']) await tick(page, watch, stage);
@@ -158,6 +165,7 @@ for (const width of [360, 768, 1440]) test(`three revealed cards, keyboard and m
   }
   const boxes = await comparison.locator('.comparison-card').evaluateAll(cards => cards.map(c => { const b = c.getBoundingClientRect(); return { x: b.x, y: b.y, width: b.width, height: b.height }; }));
   expect(Math.abs(boxes[0].width - boxes[1].width)).toBeLessThan(1);
+  expect(Math.abs(boxes[0].height - boxes[2].height)).toBeLessThan(1);
   if (width > 650) expect(Math.abs(boxes[0].y - boxes[2].y)).toBeLessThan(1);
   else expect(boxes[1].y).toBeGreaterThan(boxes[0].y);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -167,6 +175,16 @@ for (const width of [360, 768, 1440]) test(`three revealed cards, keyboard and m
   const artifacts = resolve('../artifacts/card-scores'); await mkdir(artifacts, { recursive: true });
   await comparison.screenshot({ path: resolve(artifacts, `cards-${width}.png`) });
   await writeFile(resolve(artifacts, `layout-${width}.json`), JSON.stringify({ width, boxes, overflow: false, violations: [], reduced_motion: true }, null, 2));
+  const reference = comparison.getByRole('region', { name: 'Dataset reference', exact: true });
+  const outline = reference.getByRole('button', { name: 'Show reference outline', exact: true });
+  await expect(watch.locator('.picture-panel').getByRole('button', { name: /reference outline/ })).toHaveCount(0);
+  await outline.focus(); await page.keyboard.press('Enter');
+  await expect(reference.getByRole('button', { name: 'Hide reference outline', exact: true })).toBeFocused();
+  await expect(outline).toHaveCount(0);
+  await expect(watch.getByRole('img', { name: 'Dataset reference region', exact: true })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.keyboard.press('Enter');
+  await expect(watch.getByRole('img', { name: 'Dataset reference region', exact: true })).toHaveCount(0);
   for (let n = 0; n < 2; n++) {
     const summary = totals(watch, n).getByText('Score details', { exact: true });
     await summary.focus(); await page.keyboard.press('Enter');
@@ -183,6 +201,42 @@ for (const width of [360, 768, 1440]) test(`three revealed cards, keyboard and m
   }
   await page.keyboard.press('ArrowLeft'); await expect(status(watch)).toContainText('Picture 1 of 115 · Paused');
   await page.keyboard.press('Home'); await expect(metric(totals(watch, 0), 'Defects flagged')).toHaveText('0');
+});
+
+test('reference tile lazily loads its outline, recovers a missing mask and resets between fixture pictures', async ({ page }) => {
+  const data = await fixturePlayback(page);
+  let broken = true;
+  const masks: string[] = [];
+  await page.route('**/evidence/masks/**', route => {
+    masks.push(new URL(route.request().url()).pathname);
+    return broken ? route.fulfill({ status: 404 }) : route.fallback();
+  });
+  const watch = await openWatch(page);
+  const reference = watch.getByRole('region', { name: 'Dataset reference', exact: true });
+  const reveal = async () => {
+    await watch.getByRole('button', { name: 'Play', exact: true }).click();
+    for (const stage of [data.runs[0].report.model_id, 'Dataset reference']) await tick(page, watch, stage, 1334);
+    await watch.getByRole('button', { name: 'Pause', exact: true }).click();
+  };
+  await reveal();
+  expect(masks).toEqual([]);
+  await reference.getByRole('button', { name: 'Show reference outline', exact: true }).click();
+  await expect(watch.getByRole('alert')).toContainText('reference outline is unavailable');
+  expect(masks).toEqual(['/evidence/masks/img-000001.png']);
+  broken = false;
+  await watch.getByRole('button', { name: 'Retry outline', exact: true }).click();
+  await expect(watch.getByRole('img', { name: 'Dataset reference region', exact: true })).toBeVisible();
+  await expect(reference.getByRole('button', { name: 'Hide reference outline', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await watch.getByRole('button', { name: 'Next', exact: true }).click();
+  await reveal(); // Normal fixture image has no annotation.
+  await expect(reference.getByRole('button')).toHaveCount(0);
+  await expect(watch.getByRole('img', { name: 'Dataset reference region', exact: true })).toHaveCount(0);
+  await watch.getByRole('button', { name: 'Next', exact: true }).click();
+  await reveal();
+  await expect(reference.getByRole('button', { name: 'Show reference outline', exact: true })).toHaveAttribute('aria-pressed', 'false');
+  await reference.getByRole('button', { name: 'Show reference outline', exact: true }).click();
+  await expect(watch.getByRole('img', { name: 'Dataset reference region', exact: true })).toBeVisible();
+  expect(masks.at(-1)).toBe('/evidence/masks/img-000003.png');
 });
 
 test('identical fixture models show an empty filtered state and Show all recovers paused', async ({ page }) => {

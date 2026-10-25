@@ -118,7 +118,8 @@ main:has(.model-comparison) { max-width: 1200px; }
 .watch-controls .playback-controls, .watch-controls .playback-filter { margin: 0; gap: 8px; }
 .viewing-time { font-size: .75rem; }
 .viewing-time select { margin: 2px 0 0; padding: 9px; }
-.playback-status { font-size: .85rem; color: var(--muted); margin: 16px 0 8px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.watch-controls { margin-bottom: 16px; }
 .pending-assessment { visibility: hidden; }
 .playback-comparison { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; align-items: start; }
 .playback-comparison > div { min-width: 0; }
@@ -126,7 +127,8 @@ main:has(.model-comparison) { max-width: 1200px; }
 .playback-comparison .comparison-card h2 { overflow-wrap: anywhere; min-height: 2.8em; }
 .playback-comparison .comparison-value { font-size: 1.35rem; }
 .playback-comparison .assessment { border: 0; margin: 8px 0 0; padding: 0 4px; font-size: .75rem; }
-.playback-score { grid-column: 1 / -1; border-top: 1px solid currentColor; margin-top: 16px; padding-top: 12px; }
+.playback-score, .reference-outline { grid-column: 1 / -1; border-top: 1px solid currentColor; margin-top: 16px; padding-top: 12px; min-height: 74px; }
+.reference-outline button { width: 100%; padding: 9px 8px; font-size: .78rem; }
 .playback-score > p { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 8px; font-size: .75rem; margin: 0; }
 .playback-score strong { font-size: 1.3rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .playback-score details { border: 0; margin-top: 8px; padding: 0; font-size: .75rem; }

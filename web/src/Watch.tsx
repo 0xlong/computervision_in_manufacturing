@@ -25,6 +25,7 @@ export function Watch({ bundle, active }: { bundle: Bundle; active: boolean }) {
 function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: PlaybackCatalog; active: boolean }) {
   const [state, dispatch] = useReducer(playbackReducer, initialPlayback);
   const [ready, setReady] = useState(false), [failed, setFailed] = useState(false), [seconds, setSeconds] = useState(4);
+  const [outlinedPicture, setOutlinedPicture] = useState('');
   const onReady = useCallback((value: boolean) => setReady(value), []);
   const onFailure = useCallback((value: boolean) => { setFailed(value); if (value) dispatch({ type: 'pause' }); }, []);
   const clock = useRef({ key: '', remaining: 1 });
@@ -33,6 +34,8 @@ function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: Playback
   const different = differentAnswerIndices(bundle, allIds);
   const indices = state.filter === 'different' ? different : catalog.images.map((_, index) => index);
   const image = catalog.images[indices[state.index]];
+  const pictureKey = image ? `${image.image_id}-${state.epoch}` : '';
+  const outline = outlinedPicture === pictureKey;
   const referenceStage = bundle.runs.length + 1;
   const referenceShown = state.stage === referenceStage;
   const stageLabel = state.stage === 0 ? 'Picture' : referenceShown ? 'Dataset reference' : modelName(bundle.runs[state.stage - 1].report.model_id);
@@ -74,7 +77,7 @@ function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: Playback
     if (e.key === 'Home') { e.preventDefault(); restart(); }
     if (e.key === 'End' && indices.length) { e.preventDefault(); navigate(indices.length - 1); }
   }}>
-    <div className="section-heading watch-heading"><h1 id="watch-title">Watch AI Inspect</h1><p>{allIds.length} pictures · {bundle.runs.length} models · Saved results</p></div>
+    <div className="section-heading watch-heading"><h1 id="watch-title">Watch AI Inspect</h1></div>
     <div className="watch-controls">
       <div className="playback-controls" role="group" aria-label="Playback controls">
         <button className="primary" disabled={state.finished || failed || !indices.length} onClick={() => dispatch({ type: state.playing ? 'pause' : 'play' })}>{state.playing ? 'Pause' : 'Play'}</button>
@@ -89,12 +92,12 @@ function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: Playback
         {state.filter === 'all' ? <button disabled={bundle.runs.length < 2} onClick={() => changeFilter('different')}>Different answers only ({different.length})</button> : <button onClick={() => changeFilter('all')}>Show all pictures</button>}
       </div>
     </div>
-    <p className="playback-status" role="status">{indices.length ? `Picture ${state.index + 1} of ${indices.length}` : 'No matching pictures'} · {state.finished ? 'Finished' : state.playing ? 'Playing' : 'Paused'}{indices.length > 0 && !state.finished && ` · ${!ready && !failed ? 'Loading picture' : stageLabel}`}{state.filter === 'different' && ' · Different answers'}</p>
+    <p className="playback-status sr-only" role="status">{indices.length ? `Picture ${state.index + 1} of ${indices.length}` : 'No matching pictures'} · {state.finished ? 'Finished' : state.playing ? 'Playing' : 'Paused'}{indices.length > 0 && !state.finished && ` · ${!ready && !failed ? 'Loading picture' : stageLabel}`}{state.filter === 'different' && ' · Different answers'}</p>
     {state.finished ? <ComparisonDashboard bundle={bundle} watched={counts[0].revealed} matching={different.length} filtered={state.filter === 'different'} active={active}
       onReview={() => returnToPlayback(() => changeFilter('all'))} onDifferent={() => returnToPlayback(() => changeFilter('different'))} onAgain={() => returnToPlayback(restart)} /> : <>
       {!image && <p className="notice">No different answers. Choose “Show all pictures” to continue.</p>}
       {image && <div className="playback-evidence">
-        <Picture key={`${image.image_id}-${state.epoch}`} image={image} revealed={referenceShown} onReady={onReady} onFailure={onFailure} />
+        <Picture key={pictureKey} image={image} revealed={referenceShown} onReady={onReady} onFailure={onFailure} referenceOutline={outline} />
         <div className="answer-comparison playback-comparison" role="group" aria-label="Saved answer comparison">
           {bundle.runs.map((saved, index) => {
             const title = modelName(saved.report.model_id);
@@ -116,14 +119,14 @@ function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: Playback
               </div>
             </div>;
           })}
-          <div><AnswerCard title="Dataset reference" value={image.label === 'normal' ? 'Looks fine' : 'Needs checking'} detail={image.label === 'normal' ? 'No defect labelled' : 'Defect labelled'} tone="reference" pending={!referenceShown} /></div>
+          <div><AnswerCard title="Dataset reference" value={image.label === 'normal' ? 'Looks fine' : 'Needs checking'} detail={image.label === 'normal' ? 'No defect labelled' : 'Defect labelled'} tone="reference" pending={!referenceShown}>
+            <div className={`reference-outline${referenceShown ? '' : ' pending-assessment'}`} aria-hidden={!referenceShown}>
+              {image.mask && <button aria-pressed={outline} onClick={() => setOutlinedPicture(outline ? '' : pictureKey)}>{outline ? 'Hide reference outline' : 'Show reference outline'}</button>}
+            </div>
+          </AnswerCard></div>
         </div>
       </div>}
     </>}
-    <details className="playback-help"><summary>About this playback</summary>
-      <p>Picture → each model → dataset reference. Totals update once when the reference appears. Unsure and unavailable answers stay separate. Viewing time is per picture, not AI request time.</p>
-      <p>Changing the filter pauses playback and clears its counters. Full benchmark scores never change.</p>
-      <p id="playback-keys">Focus the playback area: Space to play or pause, arrows for pictures, Home to restart, End for the last picture, Esc to pause. Buttons work with Tab and Enter.</p>
-    </details>
+    <p className="sr-only" id="playback-keys">Space to play or pause, arrows for pictures, Home to restart, End for the last picture, Escape to pause. Buttons work with Tab and Enter.</p>
   </section>;
 }

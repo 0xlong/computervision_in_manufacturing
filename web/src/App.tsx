@@ -48,7 +48,7 @@ function Experience({ bundle }: { bundle: Bundle }) {
     <header className="site-header"><a href="#main" className="brand" onClick={() => goScreen('start')}><span aria-hidden="true" className="brand-mark">◈</span><span>Manufacturing<span className="brand-light"> / AI Inspection</span></span></a>
       {(state.screen !== 'start' || watch) && <nav aria-label="Main navigation"><button aria-current={!watch && state.screen === 'inspect' ? 'page' : undefined} onClick={() => goScreen('inspect')}>Try it</button><button aria-current={watch ? 'page' : undefined} onClick={openWatch}>Watch AI Inspect</button><button aria-current={!watch && state.screen === 'lab' ? 'page' : undefined} onClick={() => goScreen('lab')}>Results</button></nav>}</header>
     <main id="main" tabIndex={-1}>
-      <div className="context-bar"><span>Public-data demo</span></div>
+      {!watch && <div className="context-bar"><span>Public-data demo</span></div>}
       {bundle.execution === 'fixture' && <p className="development-notice">TEST EXAMPLES ONLY — invented model answers; not real AI evidence.</p>}
       {notice && <p className="notice" role="status">{notice}</p>}
       {!watch && state.screen === 'start' && <section className="hero"><h1>AI Visual Inspection<br /><em>for Manufacturing</em></h1><p className="hero-copy">Computer vision for quality control. Try five parts.</p>
@@ -78,7 +78,7 @@ function Experience({ bundle }: { bundle: Bundle }) {
         {count === 5 && <section className="challenge-summary" role="status"><h2>Your five-picture summary</h2><p>{correct} correct · {5 - correct} incorrect against the dataset labels.</p><p className="small">Five selected examples aren’t a performance test.</p><button className="primary" onClick={() => goScreen('lab')}>See the full AI results →</button></section>}
       </>}
       {!watch && state.screen === 'lab' && <Lab key={resetEpoch} bundle={bundle} state={state} update={update} />}
-      <details className="about-demo"><summary>About this demo{state.screen !== 'start' ? ' & reset progress' : ''}</summary>
+      <details className="about-demo" hidden={watch}><summary>About this demo{state.screen !== 'start' ? ' & reset progress' : ''}</summary>
         <p>{bundle.execution === 'fixture' ? 'This test preview uses invented AI answers.' : `The AI answers are saved responses from all ${selected.report.expected} test images. Your visit makes no AI requests.`} Your answers stay in this browser.</p>
         <p>Five selected teaching pictures, not a representative factory sample. Dataset: {bundle.dataset.dataset_id} / {bundle.dataset.category}. The optional metal-surface track is unavailable.</p>
         <p>Local development preview, not factory validation. Dataset source records have limitations; this preview is not cleared for publication. No manufacturer affiliation is implied.</p>
