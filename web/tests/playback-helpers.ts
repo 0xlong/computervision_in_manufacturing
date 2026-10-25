@@ -58,7 +58,7 @@ export async function fixturePlayback(page: Page, twoModels = false) {
 export async function finish(page: Page, watch: Locator, ids: string[], modelCount = 2, evidence: Bundle = bundle) {
   const duration = Math.ceil(4000 / (modelCount + 2));
   const seenCounts = evidence.runs.map(() => ({ flagged: 0, missed: 0, goodFlags: 0, correct: 0, unsure: 0, unavailable: 0 }));
-  await watch.getByRole('button', { name: 'Play', exact: true }).click();
+  await watch.getByRole('button', { name: 'Start', exact: true }).click();
   for (const [index, id] of ids.entries()) {
     await expect(status(watch)).toContainText(`Picture ${index + 1} of ${ids.length} · Playing · Picture`);
     for (let n = 0; n < modelCount; n++) await expect(totals(watch, n)).toBeVisible();
@@ -94,6 +94,6 @@ export async function finish(page: Page, watch: Locator, ids: string[], modelCou
   const dashboard = watch.getByRole('region', { name: 'The complete comparison', exact: true });
   await expect(dashboard).toBeVisible();
   await expect(dashboard.getByRole('heading', { name: 'The complete comparison', exact: true })).toBeFocused();
-  await expect(watch.getByRole('button', { name: 'Play', exact: true })).toBeDisabled();
+  await expect(watch.getByRole('button', { name: 'Start', exact: true })).toBeDisabled();
   return dashboard;
 }

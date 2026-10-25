@@ -67,8 +67,6 @@ details { border-top: 1px solid var(--line); padding: 18px 0; margin-top: 25px; 
 @media (max-width: 650px) { .answer-comparison { grid-template-columns: 1fr; gap: 10px; } .comparison-card { display: grid; grid-template-columns: minmax(90px, .85fr) minmax(0, 1.3fr); column-gap: 12px; padding: 16px; } .comparison-card h2 { grid-row: 1 / 3; margin: 2px 0 0; } .comparison-value { grid-column: 2; min-height: 0; font-size: 1.35rem; } .comparison-status { grid-column: 2; margin-top: 8px; } }
 
 .playback-controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
-.playback-controls { align-items: end; }
-.playback-controls select { margin-bottom: 0; }
 .model-comparison { margin: 32px 0; }
 main:has(.model-comparison) { max-width: 1200px; }
 .model-comparison > h2 { font-size: 1.25rem; }
@@ -82,8 +80,7 @@ main:has(.model-comparison) { max-width: 1200px; }
 .comparison-table-window .small { display: block; font-weight: 400; margin-top: 8px; }
 .comparison-guide { margin-top: 0; border-top: 0; }
 /* Stages change instantly: no motion, animated timer or automatic scrolling. */
-.playback-filter, .dashboard-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
-.playback-filter p { flex-basis: 100%; margin-bottom: 0; }
+.dashboard-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
 .benchmark-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .benchmark-card > h3 { overflow-wrap: anywhere; line-height: 1.4; letter-spacing: -.02em; }
 .comparison-dashboard { margin: 32px 0; padding: 28px 0; border-block: 1px solid var(--line); }
@@ -123,14 +120,9 @@ main:has(.model-comparison) { max-width: 1200px; }
 
 /* One grid for the photograph and three assessments; details may grow naturally. */
 .watch-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 0; }
-.watch-controls .playback-controls, .watch-controls .playback-filter { margin: 0; gap: 8px; }
-.watch-controls .playback-filter { margin-left: auto; }
-.viewing-time { align-self: stretch; }
-.viewing-time select { min-height: var(--control-height); height: 100%; margin: 0; padding: 10px 12px; border: 1px solid var(--control-border); border-radius: var(--control-radius); font-size: .875rem; }
-.playback-evidence { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 56px; align-items: start; }
+.watch-controls .playback-controls { margin: 0; gap: 8px; }
+.playback-evidence { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 24px; align-items: start; }
 .playback-evidence .picture-panel { position: relative; max-width: none; margin: 0; }
-.playback-evidence .image-toolbar { position: absolute; bottom: calc(100% + 8px); left: 0; right: 0; padding: 0; gap: 6px; }
-.playback-evidence .image-toolbar button { min-height: 36px; min-width: 36px; padding: 6px 10px; font-size: .8rem; }
 .playback-evidence .image-window { max-height: none; border-radius: 10px; }
 .playback-evidence > div { min-width: 0; }
 .playback-comparison .comparison-card { display: flex; flex-direction: column; aspect-ratio: 1; padding: 16px; border-radius: 10px; }
@@ -146,12 +138,6 @@ main:has(.watch:not([hidden])) { max-width: 800px; }
   .playback-evidence { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 @media (max-width: 650px) {
-  .watch-controls { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-  .watch-controls .playback-controls { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .watch-controls .playback-controls button { padding: 8px 4px; font-size: .8rem; }
-  .viewing-time, .watch-controls .playback-filter { grid-column: span 2; min-width: 0; margin: 0; }
-  .watch-controls .playback-filter button { width: 100%; padding: 8px; font-size: .8rem; }
-  .viewing-time select { width: 100%; font-size: .8rem; }
   .playback-evidence { grid-template-columns: 1fr; }
   .playback-comparison .comparison-card { aspect-ratio: auto; }
   .playback-comparison .comparison-card h2 { min-height: 0; margin-bottom: 12px; }

@@ -4,7 +4,7 @@ import { loadPlaybackCatalog } from './bundle';
 import { Picture } from './Picture';
 import { AnswerCard, Assessment, AssessmentDetails } from './Assessment';
 import { initialPlayback, playbackCounts, playbackReducer } from './playback';
-import { differentAnswerIndices, modelName } from './comparison';
+import { modelName } from './comparison';
 import { ComparisonDashboard } from './ComparisonDashboard';
 
 export function Watch({ bundle, active }: { bundle: Bundle; active: boolean }) {
@@ -24,15 +24,14 @@ export function Watch({ bundle, active }: { bundle: Bundle; active: boolean }) {
 
 function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: PlaybackCatalog; active: boolean }) {
   const [state, dispatch] = useReducer(playbackReducer, initialPlayback);
-  const [ready, setReady] = useState(false), [failed, setFailed] = useState(false), [seconds, setSeconds] = useState(4);
+  const [ready, setReady] = useState(false), [failed, setFailed] = useState(false);
   const [outlinedPicture, setOutlinedPicture] = useState('');
   const onReady = useCallback((value: boolean) => setReady(value), []);
   const onFailure = useCallback((value: boolean) => { setFailed(value); if (value) dispatch({ type: 'pause' }); }, []);
   const clock = useRef({ key: '', remaining: 1 });
   const playbackArea = useRef<HTMLElement>(null);
   const allIds = catalog.images.map(i => i.image_id);
-  const different = differentAnswerIndices(bundle, allIds);
-  const indices = state.filter === 'different' ? different : catalog.images.map((_, index) => index);
+  const indices = catalog.images.map((_, index) => index);
   const image = catalog.images[indices[state.index]];
   const pictureKey = image ? `${image.image_id}-${state.epoch}` : '';
   const outline = outlinedPicture === pictureKey;
@@ -50,7 +49,7 @@ function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: Playback
     const key = `${state.index}-${state.stage}-${state.epoch}`;
     if (clock.current.key !== key) clock.current = { key, remaining: 1 };
     if (!state.playing || !active || !ready || !indices.length || document.hidden) return;
-    const duration = seconds * 1000 / (referenceStage + 1);
+    const duration = 4000 / (referenceStage + 1);
     const started = performance.now();
     const timer = window.setTimeout(() => {
       if (document.hidden) { dispatch({ type: 'pause' }); return; }
@@ -61,10 +60,9 @@ function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: Playback
       window.clearTimeout(timer);
       clock.current.remaining = Math.max(0, clock.current.remaining - (performance.now() - started) / duration);
     };
-  }, [state.index, state.stage, state.epoch, state.playing, state.filter, active, ready, indices.length, seconds, referenceStage, referenceShown]);
+  }, [state.index, state.stage, state.epoch, state.playing, active, ready, indices.length, referenceStage, referenceShown]);
   const navigate = (index: number) => { setReady(false); dispatch({ type: 'navigate', index }); };
   const restart = () => { setReady(false); dispatch({ type: 'restart' }); };
-  const changeFilter = (filter: 'all' | 'different') => { setReady(false); setFailed(false); dispatch({ type: 'filter', filter }); };
   const returnToPlayback = (action: () => void) => { action(); playbackArea.current?.focus({ preventScroll: true }); };
   return <section ref={playbackArea} hidden={!active} className="watch" aria-labelledby="watch-title" aria-describedby="playback-keys" tabIndex={0} onKeyDown={e => {
     if (e.key === 'Escape') { dispatch({ type: 'pause' }); return; }
@@ -80,24 +78,15 @@ function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: Playback
     <div className="section-heading watch-heading"><h1 id="watch-title">Watch AI Inspect</h1></div>
     <div className="watch-controls">
       <div className="playback-controls" role="group" aria-label="Playback controls">
-        <button className="primary" disabled={state.finished || failed || !indices.length} onClick={() => dispatch({ type: state.playing ? 'pause' : 'play' })}>{state.playing ? 'Pause' : 'Play'}</button>
-        <button disabled={state.index === 0} onClick={() => navigate(state.index - 1)}>Previous</button>
-        <button disabled={state.index >= indices.length - 1} onClick={() => navigate(state.index + 1)}>Next</button>
-        <button onClick={restart}>Restart</button>
-      </div>
-      <div className="viewing-time"><label className="sr-only" htmlFor="viewing-time">Viewing time</label><select id="viewing-time" value={seconds} onChange={e => setSeconds(Number(e.target.value))}>
-        <option value={2}>Fast · 2 s</option><option value={4}>Normal · 4 s</option><option value={8}>Slow · 8 s</option>
-      </select></div>
-      <div className="playback-filter" role="group" aria-label="Picture filter">
-        {state.filter === 'all' ? <button aria-label={`Different answers only (${different.length})`} disabled={bundle.runs.length < 2} onClick={() => changeFilter('different')}>Different answers ({different.length})</button> : <button onClick={() => changeFilter('all')}>Show all pictures</button>}
+        <button className="primary" disabled={state.finished || failed || !indices.length} onClick={() => dispatch({ type: state.playing ? 'pause' : 'play' })}>{state.playing ? 'Pause' : 'Start'}</button>
+        <button onClick={restart}>Stop</button>
       </div>
     </div>
-    <p className="playback-status sr-only" role="status">{indices.length ? `Picture ${state.index + 1} of ${indices.length}` : 'No matching pictures'} · {state.finished ? 'Finished' : state.playing ? 'Playing' : 'Paused'}{indices.length > 0 && !state.finished && ` · ${!ready && !failed ? 'Loading picture' : stageLabel}`}{state.filter === 'different' && ' · Different answers'}</p>
-    {state.finished ? <ComparisonDashboard bundle={bundle} watched={counts[0].revealed} matching={different.length} filtered={state.filter === 'different'} active={active}
-      onReview={() => returnToPlayback(() => changeFilter('all'))} onDifferent={() => returnToPlayback(() => changeFilter('different'))} onAgain={() => returnToPlayback(restart)} /> : <>
-      {!image && <p className="notice">No different answers. Choose “Show all pictures” to continue.</p>}
+    <p className="playback-status sr-only" role="status">{`Picture ${state.index + 1} of ${indices.length}`} · {state.finished ? 'Finished' : state.playing ? 'Playing' : 'Paused'}{!state.finished && ` · ${!ready && !failed ? 'Loading picture' : stageLabel}`}</p>
+    {state.finished ? <ComparisonDashboard bundle={bundle} watched={counts[0].revealed} active={active}
+      onAgain={() => returnToPlayback(restart)} /> : <>
       {image && <div className="playback-evidence playback-comparison" role="group" aria-label="Saved answer comparison">
-        <Picture key={pictureKey} image={image} revealed={referenceShown} onReady={onReady} onFailure={onFailure} referenceOutline={outline} />
+        <Picture key={pictureKey} image={image} revealed={referenceShown} onReady={onReady} onFailure={onFailure} referenceOutline={outline} zoomControls={false} />
           {bundle.runs.map((saved, index) => {
             const title = modelName(saved.report.model_id);
             const count = counts[index];

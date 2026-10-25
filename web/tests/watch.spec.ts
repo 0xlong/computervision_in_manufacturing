@@ -18,13 +18,16 @@ test('picture → first model → second model → reference; counts wait for th
   await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button')).toHaveText(['Try it', 'Watch AI Inspect', 'Results']);
   await expect(page.getByRole('button', { name: 'Try it yourself', exact: true })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Watch AI Inspect', exact: true })).toHaveCount(1);
-  await expect(watch.getByRole('combobox')).toHaveCount(1); // Viewing time; both models are always shown.
+  await expect(watch.getByRole('combobox')).toHaveCount(0);
+  await expect(watch.locator('.watch-controls button')).toHaveText(['Start', 'Stop']);
+  await expect(watch.locator('.image-toolbar')).toHaveCount(0);
+  await expect(watch.getByRole('button', { name: /Different answers|Zoom|Fit image/ })).toHaveCount(0);
   expect(new Set(images).size).toBe(1); // Catalog is complete; images load one at a time.
   const comparison = watch.getByRole('group', { name: 'Saved answer comparison', exact: true });
   await expect(comparison.getByRole('region').getByRole('heading')).toHaveText([...modelNames, 'Dataset reference']);
   await expect(comparison.locator('.comparison-value:visible')).toHaveCount(0);
   for (let n = 0; n < 2; n++) await expect(totals(watch, n)).toBeVisible();
-  await watch.getByRole('button', { name: 'Play', exact: true }).click();
+  await watch.getByRole('button', { name: 'Start', exact: true }).click();
   await tick(page, watch, modelNames[0]);
   await expect(comparison.locator('.comparison-value:visible')).toHaveCount(1);
   await expect(comparison.getByRole('region', { name: modelNames[0], exact: true })).toContainText('Needs checking');
@@ -61,26 +64,25 @@ test('picture → first model → second model → reference; counts wait for th
   // Revisit the same reference; neither model gains a second count.
   await watch.focus(); await page.keyboard.press('Home');
   await expect(metric(totals(watch, 0), 'Defects flagged')).toHaveText('0');
-  await watch.getByRole('button', { name: 'Play', exact: true }).click();
+  await watch.getByRole('button', { name: 'Start', exact: true }).click();
   for (const stage of [...modelNames, 'Dataset reference']) await tick(page, watch, stage);
-  await watch.getByRole('button', { name: 'Next', exact: true }).click();
-  await watch.getByRole('button', { name: 'Previous', exact: true }).click();
-  await watch.getByRole('button', { name: 'Play', exact: true }).click();
+  await watch.focus(); await page.keyboard.press('ArrowRight');
+  await watch.focus(); await page.keyboard.press('ArrowLeft');
+  await watch.getByRole('button', { name: 'Start', exact: true }).click();
   for (const stage of [...modelNames, 'Dataset reference']) await tick(page, watch, stage);
   await expect(metric(totals(watch, 0), 'Defects flagged')).toHaveText('1');
 });
 
-test('pause keeps remaining viewing time; speed, top tabs and hidden tabs preserve the stage and visitor judgments', async ({ page }) => {
+test('pause keeps remaining four-second viewing time; top tabs and hidden tabs preserve the stage and visitor judgments', async ({ page }) => {
   const watch = await openWatch(page, true);
   const before = await page.evaluate(key => localStorage.getItem(key), storage);
-  await watch.getByRole('button', { name: 'Play', exact: true }).click();
+  await watch.getByRole('button', { name: 'Start', exact: true }).click();
   await page.clock.runFor(400);
   await watch.getByRole('button', { name: 'Pause', exact: true }).click();
   await page.clock.runFor(5000);
   await expect(status(watch)).toContainText('Paused · Picture');
-  await watch.getByLabel('Viewing time', { exact: true }).selectOption('8');
-  await watch.getByRole('button', { name: 'Play', exact: true }).click();
-  await page.clock.runFor(1199); await expect(status(watch)).toContainText('Playing · Picture');
+  await watch.getByRole('button', { name: 'Start', exact: true }).click();
+  await page.clock.runFor(599); await expect(status(watch)).toContainText('Playing · Picture');
   await tick(page, watch, modelNames[0], 1);
   await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button', { name: 'Try it', exact: true }).click();
   await page.clock.runFor(10000);
@@ -88,7 +90,7 @@ test('pause keeps remaining viewing time; speed, top tabs and hidden tabs preser
   expect(await page.evaluate(key => localStorage.getItem(key), storage)).toBe(before);
   await page.getByRole('button', { name: 'Watch AI Inspect', exact: true }).click();
   await expect(status(watch)).toContainText(`Paused · ${modelNames[0]}`);
-  await watch.getByRole('button', { name: 'Play', exact: true }).click();
+  await watch.getByRole('button', { name: 'Start', exact: true }).click();
   await page.evaluate(() => { Object.defineProperty(document, 'hidden', { configurable: true, value: true }); document.dispatchEvent(new Event('visibilitychange')); });
   await page.clock.runFor(10000);
   await expect(status(watch)).toContainText(`Paused · ${modelNames[0]}`);
@@ -105,7 +107,7 @@ test('loading and changed pictures hold the timer; retry recovers without reveal
   const watch = page.getByRole('region', { name: 'Watch AI Inspect', exact: true });
   await expect(status(watch)).toContainText('Loading picture');
   await page.clock.install(); await page.clock.pauseAt(new Date(Date.now() + 1000));
-  await watch.getByRole('button', { name: 'Play', exact: true }).click();
+  await watch.getByRole('button', { name: 'Start', exact: true }).click();
   await page.clock.runFor(20000);
   await expect(status(watch)).toContainText('Picture 1 of 115');
   await expect(watch.getByRole('group', { name: 'Saved answer comparison', exact: true }).locator('.comparison-value:visible')).toHaveCount(0);
@@ -114,9 +116,9 @@ test('loading and changed pictures hold the timer; retry recovers without reveal
   await expect(status(watch)).toContainText('Playing · Picture');
   await page.clock.runFor(999); await expect(status(watch)).toContainText('Playing · Picture');
   await tick(page, watch, modelNames[0], 1);
-  broken = true; await watch.getByRole('button', { name: 'Next', exact: true }).click();
+  broken = true; await watch.focus(); await page.keyboard.press('ArrowRight');
   await expect(watch.getByRole('alert')).toContainText('missing or changed');
-  await expect(watch.getByRole('button', { name: 'Play', exact: true })).toBeDisabled();
+  await expect(watch.getByRole('button', { name: 'Start', exact: true })).toBeDisabled();
   broken = false; await watch.getByRole('button', { name: 'Retry picture', exact: true }).click();
   await expect(status(watch)).toContainText('Picture 2 of 115 · Paused · Picture');
 });
@@ -191,7 +193,7 @@ for (const width of [320, 360, 768, 1440]) test(`three revealed cards, keyboard 
   await page.clock.resume();
   expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze()).violations).toEqual([]);
   expect(await watch.evaluate(el => el.getAnimations({ subtree: true }).length)).toBe(0);
-  const artifacts = resolve('../artifacts/aligned-watch'); await mkdir(artifacts, { recursive: true });
+  const artifacts = resolve('../artifacts/simple-watch'); await mkdir(artifacts, { recursive: true });
   await comparison.screenshot({ path: resolve(artifacts, `cards-${width}.png`) });
   await watch.locator('.watch-controls').screenshot({ path: resolve(artifacts, `controls-${width}.png`) });
   await writeFile(resolve(artifacts, `layout-${width}.json`), JSON.stringify({ width, boxes, photograph, controls, overflow: false, violations: [], reduced_motion: true }, null, 2));
@@ -234,7 +236,7 @@ test('reference tile lazily loads its outline, recovers a missing mask and reset
   const watch = await openWatch(page);
   const reference = watch.getByRole('region', { name: 'Dataset reference', exact: true });
   const reveal = async () => {
-    await watch.getByRole('button', { name: 'Play', exact: true }).click();
+    await watch.getByRole('button', { name: 'Start', exact: true }).click();
     for (const stage of [data.runs[0].report.model_id, 'Dataset reference']) await tick(page, watch, stage, 1334);
     await watch.getByRole('button', { name: 'Pause', exact: true }).click();
   };
@@ -247,11 +249,11 @@ test('reference tile lazily loads its outline, recovers a missing mask and reset
   await watch.getByRole('button', { name: 'Retry outline', exact: true }).click();
   await expect(watch.getByRole('img', { name: 'Dataset reference region', exact: true })).toBeVisible();
   await expect(reference.getByRole('button', { name: 'Hide reference outline', exact: true })).toHaveAttribute('aria-pressed', 'true');
-  await watch.getByRole('button', { name: 'Next', exact: true }).click();
+  await watch.focus(); await page.keyboard.press('ArrowRight');
   await reveal(); // Normal fixture image has no annotation.
   await expect(reference.getByRole('button')).toHaveCount(0);
   await expect(watch.getByRole('img', { name: 'Dataset reference region', exact: true })).toHaveCount(0);
-  await watch.getByRole('button', { name: 'Next', exact: true }).click();
+  await watch.focus(); await page.keyboard.press('ArrowRight');
   await reveal();
   await expect(reference.getByRole('button', { name: 'Show reference outline', exact: true })).toHaveAttribute('aria-pressed', 'false');
   await reference.getByRole('button', { name: 'Show reference outline', exact: true }).click();
@@ -259,15 +261,27 @@ test('reference tile lazily loads its outline, recovers a missing mask and reset
   expect(masks.at(-1)).toBe('/evidence/masks/img-000003.png');
 });
 
-test('identical fixture models show an empty filtered state and Show all recovers paused', async ({ page }) => {
-  await fixturePlayback(page, true); const watch = await openWatch(page);
-  await watch.getByRole('button', { name: 'Play', exact: true }).click();
-  await watch.getByRole('button', { name: 'Different answers only (0)', exact: true }).click();
-  await expect(status(watch)).toHaveText('No matching pictures · Paused · Different answers');
-  await expect(watch.getByRole('button', { name: 'Play', exact: true })).toBeDisabled();
-  await expect(watch.getByRole('button', { name: 'Next', exact: true })).toBeDisabled();
-  await watch.focus(); await page.keyboard.press('Space'); await page.clock.runFor(20000);
-  await expect(status(watch)).toContainText('Paused');
-  await watch.getByRole('button', { name: 'Show all pictures', exact: true }).click();
-  await expect(status(watch)).toContainText('Picture 1 of 6 · Paused · Picture');
+test('Start, Pause and Stop keep the full catalog and reset only playback', async ({ page }) => {
+  const watch = await openWatch(page, true);
+  const before = await page.evaluate(key => localStorage.getItem(key), storage);
+  const start = watch.getByRole('button', { name: 'Start', exact: true });
+  const stop = watch.getByRole('button', { name: 'Stop', exact: true });
+  await start.focus(); await page.keyboard.press('Enter');
+  await expect(watch.getByRole('button', { name: 'Pause', exact: true })).toBeFocused();
+  await page.clock.runFor(999); await expect(status(watch)).toContainText('Playing · Picture');
+  for (const stage of [...modelNames, 'Dataset reference']) await tick(page, watch, stage, stage === modelNames[0] ? 1 : 1000);
+  await page.clock.runFor(999); await expect(status(watch)).toContainText('Picture 1 of 115');
+  await tick(page, watch, 'Picture 2 of 115', 1); // Exactly 4,000 ms, excluding loading.
+  await page.clock.runFor(250);
+  await page.keyboard.press('Enter'); // Pause preserves the stage and remaining time.
+  await expect(start).toBeFocused();
+  await page.keyboard.press('Tab'); await expect(stop).toBeFocused();
+  expect(await stop.evaluate(el => getComputedStyle(el).outlineStyle)).toBe('solid');
+  await page.keyboard.press('Enter');
+  await expect(status(watch)).toContainText('Picture 1 of 115 · Paused · Picture');
+  for (let n = 0; n < 2; n++) await expect(totals(watch, n).locator('strong')).toHaveText('0 / 0');
+  await page.clock.runFor(10000); await expect(status(watch)).toContainText('Picture 1 of 115 · Paused · Picture');
+  await start.click(); await page.clock.runFor(999); await expect(status(watch)).toContainText('Playing · Picture');
+  await tick(page, watch, modelNames[0], 1);
+  expect(await page.evaluate(key => localStorage.getItem(key), storage)).toBe(before);
 });

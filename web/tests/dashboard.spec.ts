@@ -7,12 +7,6 @@ import { bundle, catalog, finish, fixturePlayback, metric, modelNames, openWatch
 
 const artifacts = resolve('../artifacts/sequential-playback');
 const allIds = catalog.images.map(i => i.image_id);
-// Independent categorization; no imports from the application's comparison helpers.
-const differingIds = allIds.filter(id => new Set(bundle.runs.map(r => {
-  const p = r.evidence.predictions.find(p => p.image_id === id)!;
-  return p.status === 'success' ? p.attempts.at(-1)!.response!.decision : 'unavailable';
-})).size > 1);
-
 test('all 115 pictures reveal both genuine models, count every reference, stop and preserve visitor judgments', async ({ page, browser }) => {
   test.setTimeout(180000);
   const errors: string[] = [], external: string[] = [];
@@ -38,9 +32,7 @@ test('all 115 pictures reveal both genuine models, count every reference, stop a
     await expect(card.locator('dd').nth(2)).toHaveText(values.median);
   }
   await page.clock.runFor(20000); await expect(dashboard).toBeVisible();
-  // Keyboard reaches the three end actions without passing through explanatory text.
-  await page.keyboard.press('Tab'); await expect(dashboard.getByRole('button', { name: 'Review pictures', exact: true })).toBeFocused();
-  await page.keyboard.press('Tab'); await expect(dashboard.getByRole('button', { name: 'Review different answers', exact: true })).toBeFocused();
+  // The one replay action is reachable from the completion heading.
   await page.keyboard.press('Tab'); await expect(dashboard.getByRole('button', { name: 'Watch again', exact: true })).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(watch).toBeFocused();
@@ -60,45 +52,22 @@ test('all 115 pictures reveal both genuine models, count every reference, stop a
     replay_paused_cleared: true, judgments_preserved: true, errors, external }, null, 2));
 });
 
-test('26 different answers play in full with unchanged scores, paused filter changes and review actions', async ({ page }) => {
-  test.setTimeout(120000);
+test('skipping to the end keeps partial viewing honest and Stop resets the completed playback', async ({ page }) => {
   const watch = await openWatch(page, true), before = await page.evaluate(key => localStorage.getItem(key), storage);
-  expect(differingIds).toHaveLength(26);
-  await watch.getByRole('button', { name: 'Play', exact: true }).click(); await page.clock.runFor(300);
-  await watch.getByRole('button', { name: 'Different answers only (26)', exact: true }).click();
-  await expect(status(watch)).toContainText('Picture 1 of 26 · Paused · Picture');
-  await page.clock.runFor(10000); await expect(status(watch)).toContainText('Paused · Picture');
-  const dashboard = await finish(page, watch, differingIds);
-  await expect(dashboard).toContainText('26 of 26 pictures viewed · Filtered playback. Scores below cover all 115 pictures.');
+  await watch.focus(); await page.keyboard.press('End');
+  await watch.getByRole('button', { name: 'Start', exact: true }).click();
+  for (const stage of [...modelNames, 'Dataset reference']) await tick(page, watch, stage);
+  await page.clock.runFor(1000);
+  const dashboard = watch.getByRole('region', { name: 'The complete comparison', exact: true });
+  await expect(dashboard).toContainText('1 of 115 pictures viewed. Scores below cover all 115 pictures.');
   for (const [index, value] of ['98 / 115', '89 / 115'].entries()) await expect(dashboard.locator('.benchmark-card').nth(index).locator('.benchmark-bar').first()).toContainText(value);
-  const scores = await dashboard.locator('.benchmark-cards').innerText();
-  await dashboard.getByRole('button', { name: 'Review different answers', exact: true }).click();
-  await expect(watch).toBeFocused(); await expect(status(watch)).toContainText('Picture 1 of 26 · Paused');
-  for (let n = 0; n < 2; n++) await expect(totals(watch, n).locator('strong')).toHaveText('0 / 0');
-  // Skipping ahead remains honest about the number of references actually viewed.
-  await watch.focus(); await page.keyboard.press('End');
-  await expect(status(watch)).toContainText('Picture 26 of 26 · Paused · Picture');
-  await watch.getByRole('button', { name: 'Play', exact: true }).click();
-  for (const stage of [...modelNames, 'Dataset reference']) await tick(page, watch, stage);
-  await page.clock.runFor(1000);
-  await expect(dashboard).toContainText('1 of 26 pictures viewed · Filtered playback');
-  expect(await dashboard.locator('.benchmark-cards').innerText()).toBe(scores);
-  await dashboard.getByRole('button', { name: 'Watch again', exact: true }).click();
-  await expect(status(watch)).toContainText('Picture 1 of 26 · Paused · Picture');
-  await watch.focus(); await page.keyboard.press('End');
-  await watch.getByRole('button', { name: 'Play', exact: true }).click();
-  for (const stage of [...modelNames, 'Dataset reference']) await tick(page, watch, stage);
-  await page.clock.runFor(1000);
-  await dashboard.getByRole('button', { name: 'Review pictures', exact: true }).click();
-  await expect(watch).toBeFocused(); await expect(status(watch)).toContainText('Picture 1 of 115 · Paused · Picture');
-  await watch.getByRole('button', { name: 'Different answers only (26)', exact: true }).click();
-  await watch.getByRole('button', { name: 'Play', exact: true }).click();
-  await watch.getByRole('button', { name: 'Show all pictures', exact: true }).click();
+  await expect(dashboard.getByRole('button')).toHaveText(['Watch again']);
+  await watch.getByRole('button', { name: 'Stop', exact: true }).click();
   await expect(status(watch)).toContainText('Picture 1 of 115 · Paused · Picture');
+  await expect(dashboard).toHaveCount(0);
+  await expect(watch.locator('.watch-controls button')).toHaveText(['Start', 'Stop']);
+  for (let n = 0; n < 2; n++) await expect(totals(watch, n).locator('strong')).toHaveText('0 / 0');
   expect(await page.evaluate(key => localStorage.getItem(key), storage)).toBe(before);
-  await mkdir(artifacts, { recursive: true });
-  await writeFile(resolve(artifacts, 'filtered-run.json'), JSON.stringify({ pictures: 26, benchmark: 115, ids: differingIds,
-    full_scores_unchanged: true, paused_filters: true, review_and_replay: true, skipped_references_honest: true, judgments_preserved: true }, null, 2));
 });
 
 for (const width of [360, 768, 1440]) test(`dashboard layout and keyboard at ${width}px`, async ({ page }) => {
@@ -107,7 +76,7 @@ for (const width of [360, 768, 1440]) test(`dashboard layout and keyboard at ${w
   const watch = await openWatch(page);
   await watch.focus(); await page.keyboard.press('End');
   await expect(status(watch)).toContainText('Picture 115 of 115 · Paused · Picture');
-  await watch.getByRole('button', { name: 'Play', exact: true }).click();
+  await watch.getByRole('button', { name: 'Start', exact: true }).click();
   for (const stage of [...modelNames, 'Dataset reference']) await tick(page, watch, stage);
   await page.clock.runFor(1000);
   const dashboard = watch.getByRole('region', { name: 'The complete comparison', exact: true });
@@ -119,7 +88,7 @@ for (const width of [360, 768, 1440]) test(`dashboard layout and keyboard at ${w
   else expect(Math.abs(boxes[0].y - boxes[1].y)).toBeLessThan(1);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await expect(dashboard.getByRole('heading', { name: 'The complete comparison', exact: true })).toBeFocused();
-  for (const name of ['Review pictures', 'Review different answers', 'Watch again']) {
+  for (const name of ['Watch again']) {
     await page.keyboard.press('Tab'); await expect(dashboard.getByRole('button', { name, exact: true })).toBeFocused();
   }
   expect(await dashboard.getByRole('button', { name: 'Watch again', exact: true }).evaluate(el => getComputedStyle(el).outlineStyle)).toBe('solid');
@@ -143,7 +112,7 @@ test('single-model fixture plays all six records and keeps unsure, unavailable a
   await expect(card.locator('dd').nth(0)).toHaveText('1 / 6');
   await expect(card.locator('dd').nth(1)).toHaveText('3 / 6');
   await expect(card.locator('dd').nth(2)).toHaveText('Unavailable');
-  await expect(dashboard.getByRole('button', { name: 'Review different answers', exact: true })).toBeDisabled();
-  await expect(watch.getByRole('button', { name: 'Different answers only (0)', exact: true })).toBeDisabled();
+  await expect(dashboard.getByRole('button', { name: /different answers/i })).toHaveCount(0);
+  await expect(watch.getByRole('button', { name: /different answers/i })).toHaveCount(0);
   await expect(dashboard).toContainText('Test examples only');
 });

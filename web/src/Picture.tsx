@@ -11,7 +11,7 @@ async function assetUrl(asset: Asset, signal: AbortSignal) {
   return URL.createObjectURL(new Blob([bytes], { type: 'image/png' }));
 }
 
-export function Picture({ image, revealed, onReady, onFailure, referenceOutline }: { image: ChallengeImage; revealed: boolean; onReady: (ready: boolean) => void; onFailure?: (failed: boolean) => void; referenceOutline?: boolean }) {
+export function Picture({ image, revealed, onReady, onFailure, referenceOutline, zoomControls = true }: { image: ChallengeImage; revealed: boolean; onReady: (ready: boolean) => void; onFailure?: (failed: boolean) => void; referenceOutline?: boolean; zoomControls?: boolean }) {
   const [url, setUrl] = useState(''), [maskUrl, setMaskUrl] = useState('');
   const [error, setError] = useState(''), [maskError, setMaskError] = useState('');
   const [zoom, setZoom] = useState(1), [localOutline, setLocalOutline] = useState(false), [retry, setRetry] = useState(0);
@@ -37,15 +37,15 @@ export function Picture({ image, revealed, onReady, onFailure, referenceOutline 
     return () => { controller.abort(); if (objectUrl) URL.revokeObjectURL(objectUrl); setMaskUrl(''); };
   }, [image, outline, revealed, retry]);
   return <div className="picture-panel">
-    <div className="image-toolbar" aria-label="Image controls">
+    {zoomControls && <div className="image-toolbar" aria-label="Image controls">
       <span>Zoom</span>
       <button onClick={() => setZoom(z => Math.max(1, z - .25))} disabled={zoom <= 1} aria-label="Zoom out">−</button>
       <output aria-live="polite">{Math.round(zoom * 100)}%</output>
       <button onClick={() => setZoom(z => Math.min(2.5, z + .25))} disabled={zoom >= 2.5} aria-label="Zoom in">+</button>
       <button onClick={() => setZoom(1)} disabled={zoom === 1}>Fit image</button>
-    </div>
+    </div>}
     {error ? <div role="alert" className="image-error"><p>{error}</p><button onClick={() => setRetry(n => n + 1)}>Retry picture</button></div> :
-      <div className="image-window" tabIndex={0} aria-label="Photograph; use arrow keys to scroll when zoomed">
+      <div className="image-window" tabIndex={zoomControls ? 0 : undefined} aria-label={zoomControls ? 'Photograph; use arrow keys to scroll when zoomed' : undefined}>
         {url ? <div className="image-canvas" style={{ width: `${zoom * 100}%` }}>
           <img src={url} alt="Metal nut for your visual inspection" onLoad={e => {
             if (e.currentTarget.naturalWidth !== image.display.dimensions.width_px || e.currentTarget.naturalHeight !== image.display.dimensions.height_px) {

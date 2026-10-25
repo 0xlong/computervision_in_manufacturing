@@ -2,6 +2,80 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Minimal fixed-time Watch controls (25 October 2026)
+
+Status: Verified locally; focused checkpoint. One coordinator on `main`, no
+workers. Parent: user's
+requested Watch simplification, US-02/03/08/09. Dependencies: existing saved
+115-picture catalog, sequential reveal and persistent scores. Allowed files:
+Watch, Picture, comparison dashboard, styles, affected browser checks and only
+this new progress section; existing unrelated edits remain excluded.
+
+Tasks/acceptance: (1) Start/Pause toggle and Stop returning to picture one,
+fixed four-second total viewing time per picture; remove previous/next/restart,
+speed, different-answer and Watch zoom controls; (2) retain authentic assessments,
+reference outline, scores, calculations and saved visitor judgments; keep Try it
+zoom; (3) verify playback, stop/resume, failure recovery, completed comparison,
+Try it/Results/export, keyboard and 320/360/768/1440 px layouts; (4) inspect at
+most five source-picture appearances, review the diff, record results and save a
+focused checkpoint. VS Code browser automation connection is unavailable after
+retry/reset; Chromium rendering checks will be used and the limitation recorded.
+
+Implemented: Watch has a Start/Pause toggle and Stop. Stop starts paused at the
+first picture, clears only playback counters and resets the reference outline;
+visitor judgments remain saved. Each loaded picture gets four seconds total,
+split equally between original, the model reveals and reference. Pausing keeps
+the remaining stage time; loading does not consume viewing time. Removed speed,
+previous/next/restart and different-answer controls, including the duplicate
+end-screen review actions. The end screen retains Watch again and authentic
+full-benchmark results. Arrow/Home/End shortcuts remain available.
+
+Watch no longer renders Zoom, minus, plus, percentage or Fit image. The image is
+uncropped at its natural proportions. Removed the toolbar's reserved gap and
+unused styles; existing colors and aligned grids remain. Try it retains its
+required zoom tools. The genuine reference outline and model explanations remain
+available; no evidence, scenario calculations, provider code or dependencies changed.
+
+Verified actual development-page rendering at http://127.0.0.1:5174/ using
+Chromium 156.0.8078.4, including original image decoding, staged real results,
+Start/Pause/Stop labels, no zoom/speed controls and no browser errors. Visually
+inspected exactly **three appearances of the same first source photograph** at
+360/768/1440 px. No other source photographs visually viewed. Image sizes are
+324/336/288 px respectively, uncropped, with no page overflow. This small sample
+does not establish dataset-wide visual correctness. Local screenshots and checks:
+`.cache/simple-watch/dev-*.png`, `.cache/simple-watch/dev-render.json`.
+
+Checks: production TypeScript/build passed; all **49 unit tests passed** and
+all **27 browser cases passed** in 3.2 minutes;
+the browser completed all 115 pictures, checked 230 genuine saved model decisions
+and counted every reference once. Final scores remain Gemini **98/115**, Gemma
+**89/115**, including Gemma's unsure answer. Visitor judgments survive playback,
+replay and refresh. No external requests or browser errors in the full run.
+Authentic Try it/Results/brief download and fixture recovery journeys passed.
+Startup measured **1998.1958 ms** under the unchanged 10 Mbps / 100 ms RTT
+profile, fetching one challenge picture; this is one observation, not a claimed
+performance improvement. Browser checks also verify the four-second boundary,
+pause/resume remaining time, Stop during playback and after completion, keyboard
+focus, reference-mask recovery and 320/360/768/1440 px geometry/accessibility.
+No automated WCAG-tagged violations or horizontal overflow at those widths.
+Initial restricted test launches failed with `spawn EPERM`; the same commands
+passed with normal local process access. No checks or thresholds were weakened.
+
+Fresh single-agent diff review checked requirement scope, default Try it zoom,
+reference reveal gating, honest partial-view denominators, unchanged score and
+scenario calculations, keyboard focus and saved judgment preservation. Earlier
+progress text was compared with a pre-task copy and is unchanged. Checkpoint
+contains seven UI/browser-test files and only this new progress section; all
+earlier documentation/setup edits remain preserved and excluded.
+
+Limits: the Windows computer-use helper returned an unavailable native pipe after
+retry and session reset. VS Code's integrated browser, native devices, Safari and
+a screen-reader audit remain unverified. Actual Chromium rendering was checked
+on both the development page and production preview. Next: refresh the local
+URL in VS Code's **Browser: Open Integrated Browser**
+(`workbench.action.browser.open`), choose Watch AI Inspect and try Start, Pause,
+then Stop. No provider calls, evaluation reruns, deployment or publication.
+
 ## Local page connection restored (25 October 2026)
 
 User reported page error -102. Reproduced a refused connection to
