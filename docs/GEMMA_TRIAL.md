@@ -129,9 +129,53 @@ and after sending; completed successes are reused across invocations.
 
 Public frozen configuration version 3 records these limits and Gemma settings;
 versions 1 and 2 remain compatible. Pending evaluations cannot be packaged.
-Only complete genuine runs can produce benchmark rows. The website still has
-its sole complete Gemini 3.5 Flash-Lite result while this evaluation is prepared.
-The faster qualifying 26B model is the first complete-set run; 31B remains qualified
-but has no defect evaluation yet. This priority uses normal-preparation timings,
+Only complete genuine runs can produce benchmark rows. Gemma 26B is now complete
+and packaged alongside the unchanged Gemini 3.5 Flash-Lite baseline; 31B remains
+qualified but has no defect evaluation yet. This priority uses normal-preparation timings,
 not final-test labels or outcomes. No new Gemini requests are authorized by a
 Gemma batch, and no paid fallback or publication occurs.
+
+## Complete genuine 26B evaluation and local integration
+
+Frozen evaluator checkpoint: `9cfd7b1`. Run: `eval-gemma-7292d2441bcfd2c1`.
+**115/115 successful structured answers, 115 submissions, zero retries/failures**;
+one answer is `uncertain`, a valid response needing human checking rather than a
+categorical success. It is an anomalous part and counts as routed to review.
+
+| Complete model/configuration | Defects missed | Good parts flagged | Unsure | Median recorded attempt |
+| --- | --- | --- | --- | --- |
+| Gemini 3.5 Flash-Lite, low thinking | 12 / 93 | 5 / 22 | 0 / 115 answers | 4.96 s |
+| Gemma 4 26B, minimal thinking | 20 / 93 | 5 / 22 | 1 / 115 answers | 6.06 s |
+
+Gemma routes 73 anomalous parts to checking (72 categorical flags plus one unsure)
+and 5 normal parts, 78/115 total. The baseline routes 86/115. Fewer checks alone
+does not mean better: Gemma misses eight more labelled defects here. The baseline
+has fewer misses, equal normal flags and faster median requests on this dataset;
+this is not a universal model ranking or a statistical significance claim. Both
+use the same 115 pixels/labels, prompt and normal reference, with documented
+different thinking settings. This public benchmark may occur in model training.
+
+[Complete evaluation audit](../artifacts/additional-models-oct25/complete-26b-audit.json)
+independently recounts the confusion totals from saved answers/reference labels.
+All original Gemini evidence/source hashes were unchanged before integration.
+Minimum full-evaluation start gap across phases/batches: **10.010 seconds**;
+maximum reserved rolling input window: **7,171**, below 16,000. Total shared Gemma
+submissions: **119** (four normal trials plus 115 evaluation), zero unknowns.
+No new Gemini generations occurred during this Gemma milestone.
+
+Local public bundle: **`fasteners-92538e3ac8f7cbfa`**, two complete genuine rows.
+[Integration audit](../artifacts/additional-models-oct25/bundle-integration.json)
+verifies the original baseline evidence/report, five teaching IDs/labels/image/mask
+bytes, notices and baseline frozen configuration all identical. A full prior copy
+is preserved at `artifacts/additional-models-oct25/baseline-public/`. Only the
+combined bundle and one new Gemma configuration are installed. A real pending
+Gemma run was rejected by packaging before output creation. Nothing is published.
+Existing browser progress follows the app's bundle-change restart rule once;
+switching models/modes within this bundle must preserve visitor answers.
+
+Checks: **481 offline pipeline tests**, **32 web unit tests**, TypeScript and
+production build pass. Browser outcomes and the exact local-use steps are in
+[verification](FASTENER_VERIFICATION.md) and [local guide](FASTENER_LOCAL.md).
+Next candidates: the qualified 31B trial needs its own full run; the three earlier
+Gemini campaigns still need 98 pictures each in usable quota windows. Their partial
+results remain excluded from the website. No background evaluator remains.

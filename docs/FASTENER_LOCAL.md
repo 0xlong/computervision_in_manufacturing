@@ -32,7 +32,7 @@ Open **Results** for three plain-language counts. **Detailed results** holds the
 full statistics; **Explore a workday & download a brief** opens workload assumptions,
 a decision and the download. **Where the results come from** holds source records.
 To start over, open **About this demo & reset progress** and confirm a reset.
-No visitor action sends a prompt, answer or rationale to Gemini.
+No visitor action sends a prompt, answer or rationale to an AI provider.
 
 **Compare models** shows one row per completed saved model evaluation on the same
 test pictures. Select a model's row to use its detailed results and workday/brief
@@ -40,8 +40,12 @@ calculations. The table shows missed defects, good parts flagged, answer coverag
 unavailable/unsure answers, median recorded request time and total checks. On small
 screens scroll the table sideways; Tab to its border and use arrow keys when using
 a keyboard. Open **How to read the table** for counting/timing explanations.
-Currently only Flash-Lite has genuine complete-set results; additional model
-evaluation is pending. Multi-row test examples do not add a second real model.
+There are now two genuine complete results: Gemini 3.5 Flash-Lite and Gemma 4 26B,
+each on all 115 pictures. Three other Gemini evaluations remain partial; Gemma 31B
+has only its normal-picture trial. They are not shown as completed comparisons.
+The evidence update has a new version, so an older saved challenge restarts once
+under the app's existing evidence-change rule. Model switches keep answers within
+the current version.
 
 ## Watch the five saved results
 
@@ -61,8 +65,8 @@ stays visible at the end. A missing or changed picture offers **Retry picture**.
 The three counts cover only references revealed in this five-picture playback.
 Revisiting a picture does not count it twice. Unsure and unavailable answers need
 human checking and are listed separately from categorical decisions. Complete
-115-image benchmark results remain in **Results**. Only the existing qualifying
-saved model is used; no confidence, sensitivity or second-model result is invented.
+115-image benchmark results remain in **Results**. Choose **Saved model** to watch
+either genuine complete model. No confidence or sensitivity control is invented.
 
 Tab to the playback area to use **Space** for play/pause, **Left/Right arrows** for
 pictures, **Home** for Restart and **Esc** for Pause. Buttons work with Tab and
@@ -71,8 +75,8 @@ no animation or automatic scrolling, including with reduced motion enabled.
 Playback stays in memory during mode switches and restarts paused after a page
 refresh. Your challenge answers keep their existing browser storage behavior.
 
-When more than one complete saved model is packaged, **Saved model** also appears
-in playback. It starts with your Results selection. Changing it keeps the current
+With both complete saved models packaged, **Saved model** appears in playback.
+It starts with your Results selection. Changing it keeps the current
 picture, pauses at the picture-first stage and clears playback counts so different
 models never share totals. Restart keeps the selected model. Your visitor answers
 stay unchanged. Currently the public local bundle still has only the completed

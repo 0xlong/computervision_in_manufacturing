@@ -80,7 +80,7 @@ function Experience({ bundle }: { bundle: Bundle }) {
       </>}
       {!watch && state.screen === 'lab' && <Lab key={resetEpoch} bundle={bundle} state={state} update={update} />}
       <details className="about-demo"><summary>About this demo{state.screen !== 'start' ? ' & reset progress' : ''}</summary>
-        <p>{bundle.execution === 'fixture' ? 'This test preview uses invented AI answers.' : `The AI answers are saved Gemini responses from all ${selected.report.expected} test images. Your visit makes no AI requests.`} Your answers stay in this browser.</p>
+        <p>{bundle.execution === 'fixture' ? 'This test preview uses invented AI answers.' : `The AI answers are saved responses from all ${selected.report.expected} test images. Your visit makes no AI requests.`} Your answers stay in this browser.</p>
         <p>Five selected teaching pictures, not a representative factory sample. Dataset: {bundle.dataset.dataset_id} / {bundle.dataset.category}. The optional metal-surface track is unavailable.</p>
         <p>Local development preview, not factory validation. Dataset source records have limitations; this preview is not cleared for publication. No manufacturer affiliation is implied.</p>
         <p>{bundle.dataset.attribution} <a href={bundle.dataset.licence_url}>{bundle.dataset.licence}</a>. <a href={bundle.dataset.source_url}>Dataset source</a>.</p>

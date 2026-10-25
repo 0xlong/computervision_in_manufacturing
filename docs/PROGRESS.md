@@ -4,8 +4,8 @@ Updated: 25 October 2026. This file records project state, not promised implemen
 
 ## Additional free candidates and quota-display correction (25 October 2026)
 
-**Current state: both Gemma models passed their genuine normal-picture trials;
-the token-aware full evaluator is verified and ready to run. Website unchanged.**
+**Current state: the local website compares two genuine complete 115-image runs:
+the preserved Gemini 3.5 Flash-Lite baseline and Gemma 4 26B. Locally verified.**
 
 Owner: one coordinator on `main`, no workers; user requested genuine free-model
 comparison, then supplied additional limits and confirmed all other models unused
@@ -21,6 +21,8 @@ section. Do not edit frozen Gemini runners.
 | Verify and checkpoint request path | Generated offline checks; 16K TPM protected, no changed frozen campaigns | 465 pipeline tests pass; 12 new tests, no network/key access |
 | Run and inspect real normal trials | Frozen checkpoint/current access; at most 3 submissions/model | Done: 2 successes/model, four total submissions, zero retries |
 | Prepare complete 26B evaluation | Same 115 pictures/prompt/reference; rolling shared TPM, quota/error/resume checks, versioned public configuration | Verified; full 480-test regression plus final 16-case evaluator rerun pass |
+| Complete real 26B evaluation | Frozen checkpoint `9cfd7b1`, usable user-confirmed access, bounded serial batches | Done: 115 answers / 115 submissions; zero retries/failures, one unsure |
+| Integrate and verify genuine comparison | Complete evidence only; baseline/assets/labels unchanged, model-specific player/visitor separation | Done: two real rows, 481 pipeline / 32 web / 22 production browser checks pass |
 
 The earlier multi-model section below interpreted the first limits screenshot's
 numerators as today's usage. That was incorrect. [Google support](https://discuss.ai.google.dev/t/rpd-is-not-being-reset/145704/3)
@@ -63,7 +65,8 @@ after evaluation/packaging additions. The final 16-case evaluator rerun also pas
 including a new heavy-token window-expiry case and a minimum timer sleep to prevent
 rounding stalls. It covers a complete fake 115-picture run, repeat/resume, shared
 allowance, unknown/quota/auth/timeout/usage cases and frozen configuration v3.
-No checks weakened. No paid requests, billing changes, dependencies, publication or remote changes.
+The final complete pipeline suite passes **481 tests**. No checks weakened. No paid
+requests, billing changes, dependencies, publication or remote changes.
 Earlier uncommitted files remain preserved and excluded from these checkpoints.
 
 [Trial settings, sources and next step](GEMMA_TRIAL.md),
@@ -77,8 +80,53 @@ The trial audit verifies old evidence, frozen sources and public bundle unchange
 No source photographs opened. Ignored audit/access files:
 `artifacts/additional-models-oct25/`; saved Gemma plans/evidence:
 `artifacts/gemma-probes/` and next `artifacts/gemma-evaluations/`. Four-hour access
-freshness is internal, not provider expiry. Next: save the verified evaluator checkpoint,
-then the genuine full 26B run; 31B is qualified but not fully evaluated.
+freshness is internal, not provider expiry. 31B is qualified but not fully evaluated.
+
+Full 26B evaluation: `eval-gemma-7292d2441bcfd2c1`, 115/115 valid structured answers,
+115 submissions, zero retries/terminal failures/unknowns. One unsure anomalous part
+is routed for checking, not called a successful categorical prediction. Independent
+recount: 73/93 defects routed to review (72 categorical flags plus one unsure),
+20 missed, 5/22 normal flagged, 17 normal passed, 78/115 total routed. Median recorded
+attempt 6.060 s. Baseline remains 12/93 missed, 5/22 normal flagged, zero unsure,
+median 4.956 s, 86/115 review. It has fewer misses and lower request time on this
+dataset; no universal winner or significance claim. Model/configuration settings
+differ as recorded, without final-test tuning.
+
+Minimum full-evaluation start gap including phase/batch boundaries: 10.010 s;
+maximum reserved rolling input window: 7,171 < 16,000. Total shared Gemma calls:
+119, including both two-picture trials. A real partial Gemma run was rejected
+before packaging output creation. All original Gemini evidence and frozen request
+sources remained byte-identical. No new Gemini generations in this milestone.
+The complete-set audit checks exact 115 IDs/pixel hashes/prompt/reference/schema
+against baseline and independently recounts outcomes from labels/saved answers.
+
+New bundle `fasteners-92538e3ac8f7cbfa` adds one genuine completed model. Baseline
+evidence/report, five teaching IDs/labels/image/mask bytes, notices and original
+public configuration are identical. Full old public copy preserved under
+`artifacts/additional-models-oct25/baseline-public/`. Existing evidence-change
+handling restarts an older saved browser challenge once; within the new bundle,
+model/mode changes preserve visitor judgments. Only App's provider-specific wording
+changed to saved responses; title/colors/layout/footer behavior are unchanged.
+
+**32 web unit checks**, TypeScript/build and **22 production Chromium checks pass**.
+The first browser run found one old test assuming a single configuration-download
+link. It now verifies every exact model file and SHA-256; full rerun passes. New
+real Gemma playback checks all five saved decisions/observations/counters, final
+stop, selected-model identity, same-picture paused model switch, cleared counts and
+unchanged visitor answers/reveals/image. Fixture edge cases remain explicitly
+labelled. No external browser requests/page errors, no page overflow or automated
+WCAG-tagged violations in responsive scans. Viewed two UI crops (desktop comparison,
+phone controls), **zero source photographs**. Chromium 156.0.8078.4; native VS Code
+browser unavailable/unverified, tab visibility simulated as documented. Automated
+browser uses production preview 4175; use local guide for VS Code on 5174.
+
+[Complete 26B audit](../artifacts/additional-models-oct25/complete-26b-audit.json),
+[integration audit](../artifacts/additional-models-oct25/bundle-integration.json),
+[genuine browser playback](../artifacts/additional-models-oct25/genuine-playback-browser.json).
+Next: further genuine full evaluations (31B and remaining 98/model for three Gemini
+campaigns) with usable current access; do not rank partial runs or fabricate access
+refreshes. No evaluator/background schedule remains. Surface track and source/
+publication clearance are separate later work. Earlier user changes remain intact.
 
 ## Multi-model free-tier runner and first batches (25 October 2026)
 

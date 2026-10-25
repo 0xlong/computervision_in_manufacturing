@@ -1,5 +1,5 @@
 {
-  "bundle_id": "fasteners-f0b61a212fefce56",
+  "bundle_id": "fasteners-92538e3ac8f7cbfa",
   "challenge": {
     "image_ids": [
       "img-000071",
@@ -16,6 +16,11 @@
       "path": "configurations/eval-flash-lite-46e242a298f20b6f.json",
       "run_id": "eval-flash-lite-46e242a298f20b6f",
       "sha256": "4a8003259fe158053c80d7c727ae71ff1885c2a9a90d40fcd537063b27e73160"
+    },
+    {
+      "path": "configurations/eval-gemma-7292d2441bcfd2c1.json",
+      "run_id": "eval-gemma-7292d2441bcfd2c1",
+      "sha256": "6198755e25239f739fad328aa76ff0701a4984f506ed68710b3b9b5f3489f822"
     }
   ],
   "dataset": {
@@ -4853,6 +4858,4716 @@
           "review_count": 86,
           "tn": 17,
           "tp": 81
+        },
+        "technical_reviews": {
+          "anomalous": 0,
+          "normal": 0
+        },
+        "track_id": "fasteners"
+      }
+    },
+    {
+      "evidence": {
+        "evidence_status": "development_only",
+        "predictions": [
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:26:51.042Z",
+                "latency_ms": 6002.549300028477,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The outer edges of the nut show significant chipping and material loss compared to the reference."
+                },
+                "response_sha256": "a6c6bf708c1c21b0223c43e2969fb2f89b753db9ad1f2bb54316129415b5d1d0",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:26:44.995Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 30
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000001",
+            "request_sha256": "fff38df59cfa1d5db6c2f475e03c4ad9e0ee61add5fa4b5b337ffd0a66272ffb",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:27:01.878Z",
+                "latency_ms": 6679.570699983742,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut shows asymmetrical shape and irregular edges compared to the reference."
+                },
+                "response_sha256": "768e67c6a686fc4d87cf2e18b9bef3397876f6a7417aa7de15f555613846c5ab",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:26:55.005Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 27
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000002",
+            "request_sha256": "824ff20bd17adf295cf1a22e609ad327cd8fa116ac3eef7c5063cab0661e4754",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:27:11.303Z",
+                "latency_ms": 6210.958400042728,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut shows a similar shape, central hole, and surface texture to the reference image."
+                },
+                "response_sha256": "577ce98751a6243c935ca8ea66a3b69aeb6197c90554562dda25149a71caf2db",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:27:05.036Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000003",
+            "request_sha256": "668b250f9eae65f891fcaeea77689a4792c73c7c40814ecceb8e69eb81004c52",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:27:22.003Z",
+                "latency_ms": 6836.032500024885,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has an irregular, asymmetrical shape compared to the circular symmetry seen in the reference."
+                },
+                "response_sha256": "0060b36f68676344406e0c61a5cb594711052ea0f826b6c8d72ac09c412cba02",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:27:15.073Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000004",
+            "request_sha256": "44a223d39bbe344b8152b12fe88ddcd363616a17186a5f5ece7f384126ca406b",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:27:30.879Z",
+                "latency_ms": 5730.5041999788955,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut shares the same shape, color, and surface texture as the reference image."
+                },
+                "response_sha256": "b8e09cb0e722b1550b3895dfd6495a44630cce2bb51534b028e89dd66449a884",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:27:25.084Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000005",
+            "request_sha256": "8611dfb2a44d7a08a1cad33705bcd715e9fac84443d3b0d89b3e1a2d78f5ef01",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:27:41.209Z",
+                "latency_ms": 6043.405299948063,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The outer edge of the nut shows irregular deformations and material loss compared to the reference."
+                },
+                "response_sha256": "b72436d3f02d087d913efcf49aa5987d5eab6ca030bbc486d7a4db635f80b059",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:27:35.098Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 30
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000006",
+            "request_sha256": "3545461ef8bc1d305111c95e7e9baea2fd8285442f5171ef1cc488b922a3abf6",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:27:51.373Z",
+                "latency_ms": 6103.777499985881,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The shape of the nut in the candidate image differs significantly from the reference, lacking the symmetric flange pattern."
+                },
+                "response_sha256": "ca6d77b51d622985ac684b1ffdff12985723d80967395d5f4caf9f2156ae0f0c",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:27:45.131Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000007",
+            "request_sha256": "e4b480f484a21e9d2b0941ba55ec66d84a6d14866034c0e1e3051d45a99eb022",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:28:01.293Z",
+                "latency_ms": 6057.999800017569,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "Visible dark spot on the top left edge of the nut surface."
+                },
+                "response_sha256": "6b04bd5167b01f89c67465588dfb582e6df41ae4628b7d2794717389769b7e92",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:27:55.161Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 26
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000008",
+            "request_sha256": "2220cc0ac926b102392f5f599fa54ca6d30675eb95a3efd69acd808a883c6996",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:28:12.656Z",
+                "latency_ms": 7365.325899969321,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has a visible broken or irregular piece on its top right edge that is not present in the reference."
+                },
+                "response_sha256": "2744d434f9c77eb42bdc25f88884e7010c2e473ba470e16e43aa3693374b902c",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:28:05.186Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000009",
+            "request_sha256": "8aef8b9cc139c9b9deb003a8129b6bfc1dda394f360c18fb1cc1f7f0d1ee8561",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:28:20.199Z",
+                "latency_ms": 4860.616099962499,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut shows visible material damage or chipping on the right edge, which is not present in the reference image."
+                },
+                "response_sha256": "cb01aa803f5c767a95a5ebe8a9dcfc465e34e688c57245d051c72ff5ea345938",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:28:15.215Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000010",
+            "request_sha256": "1811c068a9d1a60da61eb510f41d85613a0b725bf0e3175f30329eaee0b4098c",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:28:31.114Z",
+                "latency_ms": 5733.161800017115,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut shows significant surface deformation and visible material displacement on the right edge compared to the reference."
+                },
+                "response_sha256": "b67c9fd0ce7b8b57c48f840ebe9386a621b57e2fd1c9a24612a26d4a16d3a135",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:28:25.277Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000011",
+            "request_sha256": "fb11f1b82cf6d2bbc64b89a3a57eaf79e26ae26ac016d552c5aa7bfc44b91c98",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:28:42.031Z",
+                "latency_ms": 6628.239300043788,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has a structural protrusion or deformation at the top edge that is not present in the reference image."
+                },
+                "response_sha256": "e024b5c62c87b2fa3a68f3e390b549082ed35bd0ec33b132bcc63c3f6da6461b",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:28:35.321Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000012",
+            "request_sha256": "79b1f6f0143c5e8d600af3ada7e723d71a60517971640c30d2ee7fa93b97eda9",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:29:57.363Z",
+                "latency_ms": 5859.735100006219,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate shows significant material loss and irregular shape on the right edge compared to the reference."
+                },
+                "response_sha256": "b59522063db22b53c16ab5a8b4f96e270fa02040ee006f63935ae4e541c4226b",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:29:51.427Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 31
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000013",
+            "request_sha256": "8b0ea0cd4ea5f1b679f2dc4052eb0e883035fb855c87d54f91b32a8b28788e62",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:30:07.967Z",
+                "latency_ms": 6208.066200022586,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "One of the nut corners shows significant material loss or a chip compared to the reference."
+                },
+                "response_sha256": "908d6393b663c4a345a20db4409ac30c2ac8155c3c9944c3b872c4a05fd64723",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:30:01.484Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 30
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000014",
+            "request_sha256": "cd3ba48a5b4d640dfd5b3d1a09b37e66cd6462f1b27176261790abec61c792f3",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:30:15.925Z",
+                "latency_ms": 4332.358999992721,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut matches the shape, texture, and color of the reference image."
+                },
+                "response_sha256": "273aeda17b93729b4b5981f0e8558b1cb0d00f8b80d24a53614c0217769b93a4",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:30:11.515Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 29
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000015",
+            "request_sha256": "8bd7e9bfde986095e17ceb348ca532b9854d553251358fb15f7adb08d83865cc",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:30:27.366Z",
+                "latency_ms": 5713.125200010836,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate metal nut shows significant material loss or deformation on one of its outer protrusions compared to the reference."
+                },
+                "response_sha256": "5eab515dcbf50d1400bf31145927e43675082147559c0eae1a76503d7ca5bfb3",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:30:21.571Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000016",
+            "request_sha256": "dc2f7e0135654518109680ffd5cb95e096de632f40b9335ab5cc3e2fb44619f1",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:30:38.203Z",
+                "latency_ms": 6571.55380002223,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The outer edge of the nut shows a significant physical deformity or chip on the right side compared to the reference."
+                },
+                "response_sha256": "e50be1c5c133be4702f73962a8b95d1ce2df4618ef5d5ff88e66e31cc3821671",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:30:31.581Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000017",
+            "request_sha256": "8ee64be411f9cd3d4adead72c64f9f20b3a7fce74498ca8c9a62205185b5a06b",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:30:48.619Z",
+                "latency_ms": 6910.309400002006,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has a visible piece of debris or a foreign object attached to its outer edge."
+                },
+                "response_sha256": "921488d36ce03ad4fd100e6e8219118ff922d8b5ec796c41d35b76aea034a076",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:30:41.624Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000018",
+            "request_sha256": "2da37c4a1cc0edfb8048a3819a6ec93657c08c60953af97def94390ac27def84",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:30:57.834Z",
+                "latency_ms": 6102.7241999981925,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has a significant piece of material broken off from one of its outer corners, unlike the reference."
+                },
+                "response_sha256": "e1c6c0788db9a1d994ebe0a26383c92367fb5140f0a143d57dd17a2652f63e85",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:30:51.659Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000019",
+            "request_sha256": "ba33839acae3107969e6ad6e070885e1333b40139be1710555d0f1b3536a1e7f",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:31:08.381Z",
+                "latency_ms": 6634.043099998962,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut shows a significant irregularity or material protrusion on the right-hand side notch compared to the reference."
+                },
+                "response_sha256": "993781ea63ae4e1635c18daf16b3b072336393e61c6cba0dcb923b9d4ec7a229",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:31:01.684Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000020",
+            "request_sha256": "c7e765cfa3ed214e5cbf18864e9a78433704787e018e18db7397568411e5c2c9",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:31:18.381Z",
+                "latency_ms": 6619.271499977913,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has a significant structural deformity or missing piece on the right side compared to the reference."
+                },
+                "response_sha256": "7eda4491482857124f623d2c1ea3ab4d7ad0b302611a167be56e0126594b6372",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:31:11.697Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000021",
+            "request_sha256": "9925264f00609598ecc343a919352365614a05a7e0b737d303451516bb700a92",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:31:28.074Z",
+                "latency_ms": 6258.432200003881,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The bottom left corner of the nut shows visible material loss or chipping compared to the reference."
+                },
+                "response_sha256": "82cfb9caa9599145d581855e5a6d39fa8440db6bc1cd67de913bf4cf8ebe6069",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:31:21.716Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 31
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000022",
+            "request_sha256": "43909faa445f6aa3b31387bcf7a77a92b8a5dfe17e6cb11af9ef57eb3f477664",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:31:36.325Z",
+                "latency_ms": 4476.562099996954,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut exhibits a similar shape, color, and surface texture to the reference image."
+                },
+                "response_sha256": "7325192674502cc2482902271e6aafe4276f3458edee02beeeee28a9ec28ca6f",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:31:31.760Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 31
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000023",
+            "request_sha256": "7d134d64e9be40aac85f66491881f6a314f12b9286f3e404e427442fc5a2e5d0",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:31:47.766Z",
+                "latency_ms": 5888.322599988896,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut shows significant material deformation and structural damage on one of its outer edges compared to the reference."
+                },
+                "response_sha256": "9163cca5c32a0599b8f66ba20b1b012d1f179950614ae57de101e7245b16d2a0",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:31:41.783Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 31
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000024",
+            "request_sha256": "b1cdc99e7e28f5b6b75d66c617419baba25894c9a6d8f54dc104f1a1744db6ae",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:32:08.517Z",
+                "latency_ms": 5738.714499981143,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has a visible notch or chip on the right side edge that is not present in the reference."
+                },
+                "response_sha256": "35e91443201b282d7ed3ddccfe74048412e0d503e7bf11650091b7fadf53f22e",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:32:02.722Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000025",
+            "request_sha256": "e78d145400758250a344c5713bfa4d7433604eb643acac7bf9a707ff245fd4dd",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:32:19.262Z",
+                "latency_ms": 6348.721700021997,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "A dark spot or surface irregularity is visible on the upper part of the nut surface."
+                },
+                "response_sha256": "d552b2a6bd54e8aace80aff6b02048a92049e7663ad2a218a38c324ddd1a5c45",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:32:12.732Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 30
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000026",
+            "request_sha256": "77878c0c19c1bc35c620fefa8159169fd83f195d772f1870a5527bc0424e08af",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:32:29.497Z",
+                "latency_ms": 6622.267699975055,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate metal nut has a dark, blueish marking on the upper right surface that is not present in the reference."
+                },
+                "response_sha256": "093b4274a9809d951d531f662e2468c934f658be8132968a9777e6640edb37ec",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:32:22.775Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000027",
+            "request_sha256": "429ba3fd1414d021060819193a7fd68c66001976d4b601014807040b8f8f3291",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:32:39.305Z",
+                "latency_ms": 6397.097199980635,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "A blue mark is visible on the left edge of the metal nut."
+                },
+                "response_sha256": "4609625d587a56543b8ec4effae23b5dccde12d079520c2cdf77b43639ac3481",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:32:32.815Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 27
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000028",
+            "request_sha256": "0fb97b8151f89068b8f3ab13d0f6f7f4a8266a3ff0263a2a58b3ec1a20b58042",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:32:49.378Z",
+                "latency_ms": 6462.078599957749,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate image shows dark spots on the surface that are not present in the reference image."
+                },
+                "response_sha256": "375a75cd6cc13e247a89e75903db5ad598f5ffcb1425bb19469b2f94555bc8f0",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:32:42.830Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 31
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000029",
+            "request_sha256": "903bd9fd8281dd05a4e4e4b62f1f33845d64fd14a31bdcdbb8daa876a3491fcc",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:33:00.198Z",
+                "latency_ms": 7284.2667999793775,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "A dark blue mark is visible on the surface of the metal nut."
+                },
+                "response_sha256": "26a6a276b7ae7fe3b997fe739a78309921054e69a5738171e77df4765f12426d",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:32:52.844Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 27
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000030",
+            "request_sha256": "4f1288c8a8aa39cf6a45f194a5c4f82bf16414cebc3a9f1582750e413b005394",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:33:09.291Z",
+                "latency_ms": 6345.138699980453,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate shows a dark blue/black mark or discoloration on the surface that is not present in the reference image."
+                },
+                "response_sha256": "f4db1d21d9f720da395d382ac77d9e5ed5291b9116c088b8cea2120a21e1c0e8",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:33:02.875Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000031",
+            "request_sha256": "a411a7eb4f092c4f502ae78d34e819055dbae415bfbc129466aba6cce34e7b11",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:33:19.093Z",
+                "latency_ms": 6102.961299999151,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "Dark spot/marking visible on the top-left edge of the nut."
+                },
+                "response_sha256": "379245d3cbe11f8f653e181edb9e4419b327c13dc7f7a2cca08468a029aee6a4",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:33:12.907Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 28
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000032",
+            "request_sha256": "f3aae330a988862b166493351b770199a823e701f71b448bad86ce21d66489ec",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:33:28.170Z",
+                "latency_ms": 5125.817399995867,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is a large dark chip or gouge on the upper right surface of the nut."
+                },
+                "response_sha256": "7f54351c102f46db5e14a82c7d6b8f649d547e7ef6c50959473a8ad38e78a7bd",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:33:22.948Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 31
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000033",
+            "request_sha256": "3c1738183edc64c0999f4a70925866d447bc80e95d501614b7436fe849b3a003",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:33:38.327Z",
+                "latency_ms": 5234.711199998856,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut contains a dark, elongated foreign object or stain on its top surface that is not present in the reference."
+                },
+                "response_sha256": "e5433e55ecda64a816e30dd5c6e2075a58ad8b82cf927fed8f1834e7cd8e90c4",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:33:32.990Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000034",
+            "request_sha256": "e7a240339fec91bdcc201f042b7c25cf232428310bca1479b6299a3c5e4d5161",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:33:49.414Z",
+                "latency_ms": 6339.917499979492,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate part has a prominent dark streak on the upper left surface that is not present in the reference."
+                },
+                "response_sha256": "ad735dfb9dd97152e998c43fac6a5b236cc41c268fe5aa29b5c146510b04e045",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:33:43.000Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000035",
+            "request_sha256": "cc1fc7580284023d12457ca2b23aa896d54a1c757fe995ff5f601b8d8177a725",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:33:59.440Z",
+                "latency_ms": 6303.790999983903,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "There is visible reddish discoloration on the right flange of the candidate nut."
+                },
+                "response_sha256": "4bedfd99060c712a913b6eb4e89404213d4a68899735887a2c98163623234a93",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:33:53.047Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 27
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000036",
+            "request_sha256": "3d6cf99c0c3488bb888dec672e794c3511256c106c1b86c0f78ced3e416bede2",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:34:17.361Z",
+                "latency_ms": 6640.8370999852195,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate metal nut has dark, linear surface markings not present on the reference."
+                },
+                "response_sha256": "e4b128f717d148762c69d27ec4d057eb184999cea1d82b83bf00e30dc30b3768",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:34:10.572Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 29
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000037",
+            "request_sha256": "69b01144a1a9cb6587604cad6bde11964f2c193af8b47325daa008b2ee1e11e2",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:34:26.635Z",
+                "latency_ms": 5974.477100011427,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut shows a red marking on one of its edges which is not present in the reference image."
+                },
+                "response_sha256": "f53c41a88b9697f84f076f0ede243d732e0b0018fb7c24eb2e876623177bd0e8",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:34:20.584Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000038",
+            "request_sha256": "55d9791cc14b4fc3ec050ca0c922ac9d15435c2e496bad557044911e7426eccf",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:34:36.594Z",
+                "latency_ms": 5847.527399950195,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "A red mark is visible on the surface of the metal nut."
+                },
+                "response_sha256": "1bddd4add7364571c7c6fdf9e38c2deb398f277ebbb3037ee59299de8dbd9bb3",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:34:30.632Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 26
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000039",
+            "request_sha256": "aa0ced8bd479aed0da964f495ae4e0af11336aea0b247cce0adad6bf94e5d9a7",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:34:46.735Z",
+                "latency_ms": 5978.188499982934,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate metal nut has a prominent red mark on its surface that is not present in the reference image."
+                },
+                "response_sha256": "05e1211e61610160a013e71fba64bfc2f46692717cd6668e3ca303322b3887b1",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:34:40.667Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000040",
+            "request_sha256": "51f2af9dfe8690605912cab3c9ae4ec33f4023891ae46b5b686897f6bafee3fb",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:34:55.716Z",
+                "latency_ms": 4968.309400021099,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate metal nut has a prominent red discoloration on its surface which is not present in the reference image."
+                },
+                "response_sha256": "648dbd2c6285a50a41f35ae3c89c07e5957044366a54cea1361776019924f311",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:34:50.679Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000041",
+            "request_sha256": "01d157517093b3a4b22350e61dc75c97d61974b07fce821aad3d3573989e9589",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:35:07.436Z",
+                "latency_ms": 6591.999800002668,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate metal nut has visible dark blue markings on the upper right surface that are not present in the reference image."
+                },
+                "response_sha256": "45b70dec47ac8625f2dcce3e88441a9908117ab877e209893e000e81eb2207a2",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:35:00.741Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000042",
+            "request_sha256": "36ceb57dd7197871dbe7d67cfd850d599d7e7e34d39366b0dbf0785ddc7ba8f2",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:35:16.346Z",
+                "latency_ms": 5434.368399961386,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has a blue marking on the surface that is not present in the reference image."
+                },
+                "response_sha256": "81f05795e498f2f2558766ec7755d45da5ca8a595d5b680fab256e6f9a0f3215",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:35:10.779Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000043",
+            "request_sha256": "796314d50a4daee286816539550a95c0f905dddd2be95229872b1dd7717dd1bc",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:35:27.364Z",
+                "latency_ms": 6482.375800027512,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "A dark blue discoloration or stain is visible on the surface of the nut, which is not present in the reference."
+                },
+                "response_sha256": "06a59078c3563401089ea2188dee7124f8a760b3ecb706c924547c9402d88e6e",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:35:20.794Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000044",
+            "request_sha256": "8fc401c21fab52db1494fe27e28399cde711020ac53405dc2473b1a5e6ff3010",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:35:37.462Z",
+                "latency_ms": 6577.266299980693,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate shows a red mark on its right edge that is not present in the reference."
+                },
+                "response_sha256": "65a6f0a2a44321b3767a5a51d6c6293111671012c81975eabe20848652e7e75b",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:35:30.807Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 31
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000045",
+            "request_sha256": "55033c42f215cf323c50f8f7f005bf6e43c7d43e9b9b2070a72e33175035ece0",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:35:46.575Z",
+                "latency_ms": 5204.855200019665,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate shows a prominent red marking/stain on the upper surface which is not present in the reference image."
+                },
+                "response_sha256": "e16867129f0060948f5de5c87588c9e1c1fa1a703af668d32e6d5cd8633c8a2a",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:35:40.858Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000046",
+            "request_sha256": "b03f865879b231284bd18306cc0172c92f6ceb5efc4c9e83df31d76d88a66e47",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:35:57.285Z",
+                "latency_ms": 6304.121399996802,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "A prominent dark scratch is visible on the surface of the metal nut."
+                },
+                "response_sha256": "7597a438042dfcba44a010f4b85840e4098863fc88aa6a9b3498d4999dc64c98",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:35:50.870Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 27
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000047",
+            "request_sha256": "14ef11111d4f111fabf7bf01875458d21ad4cee8f384654e999d72a0ceff9fe2",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:36:07.145Z",
+                "latency_ms": 6144.626200024504,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut matches the shape, color, and texture of the reference image."
+                },
+                "response_sha256": "d505606b132b35a2ed91a804945e2faa4f926656404a1836390955c90f69cc11",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:36:00.882Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 29
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000048",
+            "request_sha256": "eaf4115611cc6963730b1ba8da0cb52b9f004e0183c12f50c9e03c2ddec7972d",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:36:26.792Z",
+                "latency_ms": 6028.194799961057,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate image is significantly blurred and lacks the same surface detail and texture clarity seen in the reference image."
+                },
+                "response_sha256": "d4839b26fdfda8d7db38de510b053176307d2f38373f3f8e414415b35c50842f",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:36:20.671Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000049",
+            "request_sha256": "186e57fae406386fd938a52e8e0f11366639cfa15a3df00fdb0e198b9c01947b",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:36:35.875Z",
+                "latency_ms": 5074.568099982571,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut shares the same structural shape and surface finish as the reference."
+                },
+                "response_sha256": "060c078374aa76cf5ee11152df8bdf31c0f15e6d17647334652e4a950d7b62d3",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:36:30.683Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 28
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000050",
+            "request_sha256": "918d218378d1e761c996bdbf0e2c000da9e67bff118f174670307badbf2694c1",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:36:47.215Z",
+                "latency_ms": 6412.915699998848,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut matches the shape and color of the reference nut."
+                },
+                "response_sha256": "d1cfd602b5ad492765b460534b40b6bb6a399f3b89f6fc7ac2b2fca7173e0cb9",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:36:40.696Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 26
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000051",
+            "request_sha256": "c1c34dd24000073d7a3f5befe8009dd3c12810c69f36173b1f29d7d62cfd6ae7",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:36:56.649Z",
+                "latency_ms": 5541.252499970142,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut shares the same general shape, color, and central hole structure as the reference."
+                },
+                "response_sha256": "c183100bb742ef3342c6d1252db69be9fc2bdcbdf9fce692acdcb7d77bf19a77",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:36:50.757Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000052",
+            "request_sha256": "8890dd4e713c7e3919334527bc6c3609bfc2fb3120f3961967f24f31292b3c0a",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:37:05.852Z",
+                "latency_ms": 4985.1502000237815,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut shares the same basic geometric structure and material appearance as the reference."
+                },
+                "response_sha256": "3708358e5bd22ebc959c3a046e300e1148a8dc8a39a08e0318b4dd5cf5795fa7",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:37:00.772Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 29
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000053",
+            "request_sha256": "7882cb7236d3d4830c67e613a3ef08cd3bdb911d2145edc072ea3ccf3bb03751",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:37:17.171Z",
+                "latency_ms": 6212.355599971488,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut matches the shape and color of the reference."
+                },
+                "response_sha256": "2c9affb77c52e42baa083310d4a577a3517c4f516ed360d144667ff954e5db8f",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:37:10.789Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 26
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000054",
+            "request_sha256": "316029eb4fe10eea0e08222f469501bcc4a097b9526ff3e5acce2d4652febdbb",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:37:27.997Z",
+                "latency_ms": 7073.838700016495,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut shows a similar shape, structure, and metallic finish to the reference image."
+                },
+                "response_sha256": "d7b8e3d50b8cdd5b1dbe77c0bd06d6ff5e474992d8a101d59228c9593370db32",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:37:20.799Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 31
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000055",
+            "request_sha256": "4a2038612bba59dc0aa83fc8a09ea6370894c9a072d1688839eae15269bcb374",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:37:35.826Z",
+                "latency_ms": 4918.41129999375,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has a different geometric profile and surface texture compared to the reference nut."
+                },
+                "response_sha256": "e110fcefbaf122545b72e3cd39f5f4cfa6be59470d664f7989f4f46f422e4b0d",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:37:30.812Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 30
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000056",
+            "request_sha256": "34572f173619890bd1d4fd82cf925214b6efda06cc9697efc50a82eba2188f49",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:37:46.264Z",
+                "latency_ms": 5311.098199978005,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut matches the general shape and central hole appearance of the reference."
+                },
+                "response_sha256": "1851a8f3d7ef6a138f838e335ddc33ab18261fb458987cc8ec099fd7e0b51939",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:37:40.824Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 28
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000057",
+            "request_sha256": "5f0b8d3c86a0308ab84e7e4441e11fb8466ec4c02c15f89a6bd4120f835503d4",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:37:57.194Z",
+                "latency_ms": 6263.050900015514,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut matches the general shape, structure, and internal threading appearance of the reference image."
+                },
+                "response_sha256": "b4d637ed7b491c6fce7f0aad6a5300f8ceaa17084f2027fc5da4570a02d61249",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:37:50.837Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000058",
+            "request_sha256": "e06b688b2d738a68a5f9801c8bea5719b11aa48df1616396289658b5275421d7",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:38:06.309Z",
+                "latency_ms": 5358.883800043259,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has an irregular, asymmetrical shape compared to the reference."
+                },
+                "response_sha256": "b45a33700e1169f51048e43d96fc4394f6292ddb133fa2f121a3dde327121ee4",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:38:00.863Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 27
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000059",
+            "request_sha256": "6aa6b315fc5f975885fff13f5c2b3c9883ee8fc8bfa104880aa2480d3ece7fd0",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:38:16.357Z",
+                "latency_ms": 5377.051700023003,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has a different structural shape and irregular edges compared to the reference."
+                },
+                "response_sha256": "3dedf9deaa3f3d4fbd8be6d2122e51669960d5acc285dd9167e9b25e12bf0cb6",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:38:10.888Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 29
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000060",
+            "request_sha256": "d6b5cc2692e986695fea4b723558e0e1914f9a6f27ba52a0a0572f7b826c07b7",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:38:33.174Z",
+                "latency_ms": 6831.939499999862,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut shares a similar shape, color, and surface texture with the reference image."
+                },
+                "response_sha256": "36a6ac65cac629709ef6a1ef713b91991b6f5eeea7cdba888bda746885e45677",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:38:26.260Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 31
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000061",
+            "request_sha256": "33e8da3f228618df6f8461fadd859909e6350caceede3819a1a749f0fbdc524f",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:38:43.246Z",
+                "latency_ms": 6855.170700000599,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut's overall shape and central hole features appear consistent with the reference image."
+                },
+                "response_sha256": "7071b94789d3725c7e0cd5f3948a159ede733e1aac32f23db7fba41f0d2ccfad",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:38:36.290Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 31
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000062",
+            "request_sha256": "8931504e79eef460ad249b0dc7680393c59e1351564a7a0200b6a517aa5ca0ab",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:38:52.525Z",
+                "latency_ms": 6120.7447000197135,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut shape and central hole structure appear consistent with the reference image."
+                },
+                "response_sha256": "2b479400e7e5bfbc11faa2ccc6a643a251801d7d85785bd68c255e0ce56a6012",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:38:46.312Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 29
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000063",
+            "request_sha256": "c547a6afef175b0275b8f18326bf210c88ac77f17bd8987c7e0ddfc4afc5748a",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:39:03.112Z",
+                "latency_ms": 6633.124599989969,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "uncertain",
+                  "observation": "The candidate image is out of focus, making it impossible to assess the surface quality or geometric integrity compared to the reference."
+                },
+                "response_sha256": "20fcfa851cf33f3db3d6233bf719ba3fcf53323c2403c5c73943ed31ce41be6d",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:38:56.363Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000064",
+            "request_sha256": "c533e919bd6715e50a882b74075e23e724c4099c892ae84b7faad29f4bb25dbe",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:39:12.925Z",
+                "latency_ms": 6435.236599994823,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut shows a different shape and geometry compared to the reference nut."
+                },
+                "response_sha256": "89d8daf4e53c4b3b967b3d62ab1cc941b6de6a5bf400603f1702e4177024827a",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:39:06.391Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 28
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000065",
+            "request_sha256": "2337848c29030cb4f42fe646d30b9c0880564b6fcfa5dacd87e9b54374f13dc5",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:39:22.408Z",
+                "latency_ms": 5884.4298999756575,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut shows a different geometric shape and profile compared to the reference."
+                },
+                "response_sha256": "cd9bf0ddeda01e71f01151472b539322924429108c1fbbb22fa2b7abac0a44a8",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:39:16.430Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 28
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000066",
+            "request_sha256": "3b65311ecd08502c4d58f511345b1e78555ec7422d4a67bb89b822972ef4c07a",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:39:32.317Z",
+                "latency_ms": 5758.2272999570705,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut shares the same shape, color, and center hole characteristics as the reference image."
+                },
+                "response_sha256": "49d2911b72cc1a287d21a23c53183aecc2622de386d7461bf80c2171d23f5f55",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:39:26.453Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000067",
+            "request_sha256": "89379810cc33fe3de51482e0428de13c47b0557facb518f4a43a3697fbddc192",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:39:42.624Z",
+                "latency_ms": 5984.687199990731,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut shape and inner threading appearance are consistent with the reference."
+                },
+                "response_sha256": "86bf0d1e68a486d3bb6b6be4c43417d7b58d60d7e9c2aba00fb067541b837327",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:39:36.500Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 27
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000068",
+            "request_sha256": "d1be1139bab3454d320598ec19afd168b47e7ceb7da4de719953a4056bc6d08c",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:39:53.280Z",
+                "latency_ms": 6674.186500022188,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut shows similar shape, color, and surface texture to the reference image."
+                },
+                "response_sha256": "15fe14898f8d29da919350b0208a0f0793a075c6af1f6ef10cbea66f654582f8",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:39:46.516Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 31
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000069",
+            "request_sha256": "42e0541bdf623dbdec0c073e10bb334d0fc8b964ead29b0201026a90b1623ea9",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:40:03.085Z",
+                "latency_ms": 6456.814899982419,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut shape and surface texture appear different from the reference, with less defined edges and a different concentric ring pattern."
+                },
+                "response_sha256": "176d81bfcec53c1b05c830204067f1515cef1a83c0d82ddf445789dc10a41f14",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:39:56.532Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000070",
+            "request_sha256": "66d5dea3913bf9075a26574793f7e02863943158a2bb5e84609bc794acd9a70f",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:40:12.271Z",
+                "latency_ms": 5544.3021999672055,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut displays a surface texture and shape consistent with the provided reference image."
+                },
+                "response_sha256": "410b75535bc4a9b078384e958db0b3cbf588226c076a74fd3916d4ce9bd81e69",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:40:06.598Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 30
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000071",
+            "request_sha256": "fb38fd809695b3750a58f4abb5997cdac21fdab2f3cad7e18684c436e1a97a94",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:40:21.326Z",
+                "latency_ms": 4631.796900008339,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut is identical in shape, color, and surface texture to the reference image."
+                },
+                "response_sha256": "da9259f6855bfe02b38fe4445c3893c7f4cb641575a5674a76914c791a5a11fc",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:40:16.608Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000072",
+            "request_sha256": "e5cef8d123bda706eaa6df34ad1e3bb7efc90e652b28b23ab61935810c955c58",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:40:37.548Z",
+                "latency_ms": 6188.759700045921,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut exhibits a similar shape, color, and texture to the reference."
+                },
+                "response_sha256": "3b04af8d88b8ee4a411b5637c0e93941a8906fe23f1e2e7aad82be608bdb6f90",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:40:31.284Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 29
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000073",
+            "request_sha256": "90eefdb6d68b1c2eafbe5666e9285e52d25dd380919697cb002872c7060f8b56",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:40:46.644Z",
+                "latency_ms": 5189.35080000665,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut's shape, texture, and central bore appear consistent with the reference image."
+                },
+                "response_sha256": "942619c05a15c43d57c6d91848f215718df0df3a24963ca2ec2d46f5bc972fc4",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:40:41.332Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000074",
+            "request_sha256": "17bc451cbb7f79c704ab059b65f2556a73d11d3304ab11acccdd1ac35a07f9ac",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:40:57.274Z",
+                "latency_ms": 5797.331499983557,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The shape of the nut is irregular compared to the reference, showing asymmetric protrusions."
+                },
+                "response_sha256": "38e90ee7bbe84c2aede6f0630e68e779916dbd1af21fc84d24c6d402b892850c",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:40:51.371Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 29
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000075",
+            "request_sha256": "e7a7464fde060c9f77e6cea8e06568881f9d53af7a827a03e3af512b8e0d8886",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:41:07.657Z",
+                "latency_ms": 6133.607199997641,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut matches the reference in shape, texture, and color."
+                },
+                "response_sha256": "b3e94f5264f74f8e47f55d55962032d97606e6d7ce60f6ad2a7a9be680a4311a",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:41:01.395Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 27
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000076",
+            "request_sha256": "6cbeaa2fe6ca1e4ada9f898ffb1bf9058de239c0906829c48159177c7fe26e68",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:41:17.974Z",
+                "latency_ms": 6481.613300042227,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has a different geometric shape and flange configuration compared to the reference."
+                },
+                "response_sha256": "1db6f612045397c4fee8f78b24fc4b7740092bc81f99e88547889f8f52d2dbb2",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:41:11.405Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 29
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000077",
+            "request_sha256": "8044c256e6c730c1eb8ece81034b5bbfbd2ecd142db24f2e920aa95ae15789e3",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:41:25.819Z",
+                "latency_ms": 4252.053699980024,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut maintains the same shape, texture, and general surface appearance as the reference."
+                },
+                "response_sha256": "f8c2dedfa96598e9a1f92da91a1f8dea3a34d0412494b94939100e6ca62df600",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:41:21.454Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 31
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000078",
+            "request_sha256": "b579d513525f349edaab544e17f74945b985f72f17719c8b3d1104c847e17956",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:41:37.531Z",
+                "latency_ms": 5912.392699974589,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has a different geometric shape and outer profile compared to the reference."
+                },
+                "response_sha256": "e0082d3377de0f0eee1d686b39f1d77e59eded266d37b643ba65d58e18f5399c",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:41:31.499Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 29
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000079",
+            "request_sha256": "af6bbc36bca517726d453f438077232445380ec0b98b5bd6da8d3aadc7a9e54b",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:41:46.399Z",
+                "latency_ms": 4782.321500009857,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut shape and texture closely match the reference image."
+                },
+                "response_sha256": "8d62bc427785f86c084ce4c192bf1470e96b2a871cc749017335dcc5fe704256",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:41:41.519Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 25
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000080",
+            "request_sha256": "f7cf5e9a8e6f2f335b71304d4925faa21aa567bd54325831cfe9faf6d4b976d4",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:41:56.902Z",
+                "latency_ms": 5253.269899985753,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The nut's shape, central hole, and surface texture appear consistent with the reference image."
+                },
+                "response_sha256": "938485e46a3a6a7ed90e794937d9ed4e5bbcd5462f8dba1ed6b64bb8e2bb909e",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:41:51.549Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000081",
+            "request_sha256": "ab9e0d7c9b18df55a16fb350f9e7f801153c51b93f005de3c11bfabb3f445d45",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:42:07.958Z",
+                "latency_ms": 6262.052099977154,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The shape and protrusions of the nut do not match the reference image."
+                },
+                "response_sha256": "8a44c93870af56379dba1ffc44287b69494a77994bd131c7ebc3f50ce2df194d",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:42:01.575Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 27
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000082",
+            "request_sha256": "e398584ca8aeb9dc99579866142b1e879d04803b5220c6bfaae6236a20b53acd",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:42:17.607Z",
+                "latency_ms": 5899.653300002683,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut matches the visual characteristics and surface texture of the reference image."
+                },
+                "response_sha256": "9ab5b21170df16215d52492c9d6808a0ab283d630729c85e0b00528a6381a21e",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:42:11.587Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 28
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000083",
+            "request_sha256": "50e960ee01fad224b37e483ab629b0f1006508e86a3b44912b98f690182ec10b",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:42:27.152Z",
+                "latency_ms": 5449.0222000167705,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut's shape, texture, and surface finish appear consistent with the reference image."
+                },
+                "response_sha256": "f2c3b24c8ea8c07a36c6a1e8c36d943347fad7d36585132079edb4ce7ab209b3",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:42:21.600Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000084",
+            "request_sha256": "542a53cf1c912e2a7894c4f52c396eb3125239c3134824463194c8bd6af2977e",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:42:49.718Z",
+                "latency_ms": 6322.011700016446,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut shows irregular shape and edges that do not match the symmetry of the reference nut."
+                },
+                "response_sha256": "a813b13d4ec49d901bc51f40536a4dfe9ee1a46a59dd7da79f92cf17f5964c3f",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:42:43.146Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000085",
+            "request_sha256": "e956335df0527d7b4906498dc96c8d59454e4fa21659596418b88e947fd3fcf7",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:42:59.219Z",
+                "latency_ms": 5957.704600004945,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate metal nut shows a similar shape, texture, and surface finish as the reference image."
+                },
+                "response_sha256": "c32e85cf17246199bf12a81ef5e21161c133f4c9216b27b351c49af2f3ffeb2f",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:42:53.156Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000086",
+            "request_sha256": "9b048076c75f8f687ad7e22aea177f014b4b311a455d1da3a6f007efc5a96969",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:43:08.578Z",
+                "latency_ms": 5278.049500018824,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut matches the shape, color, and texture of the reference image."
+                },
+                "response_sha256": "2cf44bf90b4247d467a7e0cdce1056601ac66b00e7e22d9a8d8db1b2511c0e9d",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:43:03.192Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 26
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000087",
+            "request_sha256": "058d4c20330baca6a34065007f2532b3a812c6be35384c3a51cc1a7d20b4c260",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:43:19.396Z",
+                "latency_ms": 6079.030799970496,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut's shape and surface texture appear consistent with the reference image."
+                },
+                "response_sha256": "ab75d9b34c7a763db0f2bb5faa4dd903dba7b4c25ec392cba29d29f414e124d7",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:43:13.207Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 29
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000088",
+            "request_sha256": "f34f504317bce3c7633fca4f58909fe3c799395eb88d425b926f463a2f085095",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:43:29.468Z",
+                "latency_ms": 6137.237799994182,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut matches the shape, texture, and color of the reference image."
+                },
+                "response_sha256": "cd8d1a94b4717eea38301891c24cb7abddc4cea7f652ba5ba0b2056ac0470d56",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:43:23.220Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 29
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000089",
+            "request_sha256": "f73f1b07caf695d72273a3689d974d734993fc625c105bcc1ef1bab5d47b522a",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:43:39.808Z",
+                "latency_ms": 6434.489900013432,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut displays the same shape, texture, and central hole characteristic as the reference image."
+                },
+                "response_sha256": "e26e1ce01babe25b13e8e5474f0ff22bf431d011c8a6ebb2198f4d52edee79fd",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:43:33.254Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000090",
+            "request_sha256": "61ca651759641e511b897369470f384b1252fcacdf56c9e1b32a3b22623418cb",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:43:49.974Z",
+                "latency_ms": 6569.155999983195,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The shape and surface texture of the candidate nut match the provided reference image."
+                },
+                "response_sha256": "0d973d69a0bb04ef6445f85b4e70d4f5a5e4cf0d4afbf1af1fa70332f48719a2",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:43:43.282Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 28
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000091",
+            "request_sha256": "f0d3f9b017c881179035dc76ad0ce8c5169b1989751acfba066572087ae1c933",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:43:58.516Z",
+                "latency_ms": 5109.690599958412,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut matches the shape, texture, and color of the reference image."
+                },
+                "response_sha256": "96d2093de5a3fa5ad086cf2462e437b654774bf3a5070fe62523aba7664e9016",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:43:53.303Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 29
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000092",
+            "request_sha256": "b1d0b8e53e9f88a69a2d2601f3dd02a0abdc500cdd4d70807dbe5bc7ffe4a49d",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:44:09.399Z",
+                "latency_ms": 5935.960300033912,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "Visible surface scratches are present on the right side of the nut face."
+                },
+                "response_sha256": "29f3030c1b51a2242e8849a80b9749d58ec32fa38b1743d046d30238a65be2ea",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:44:03.324Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 24
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000093",
+            "request_sha256": "5eb692b95e7da7bd7833e8ea9ee3baaa276beb00fe53f734ea025d5d96646519",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:44:17.751Z",
+                "latency_ms": 4269.736999995075,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut exhibits significant linear surface scratching and material displacement in the lower right quadrant, which is not present in the reference."
+                },
+                "response_sha256": "a827cb02dfa0f6cc995838832df13c3465f51bad47603c2e22f4ef23fbba3682",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:44:13.370Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000094",
+            "request_sha256": "a8a8e9dd1e5c6cba8def01cecf5004a14f984d60be2b47c3c57331690574be77",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:44:28.210Z",
+                "latency_ms": 4620.521400007419,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate shows a prominent dark diagonal surface discoloration or marking not present in the reference."
+                },
+                "response_sha256": "468fde09fd158b4162c5598f90afca47f538c9b89cda0d09ce404761b19a95ef",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:44:23.423Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 30
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000095",
+            "request_sha256": "92909dc51d46544c6c6e326bc5911dd1d578b6c5d30a926b36ae00aaa5fb150c",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:44:37.779Z",
+                "latency_ms": 4198.9889999968,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut shows significant surface discoloration and dark streaks on the upper surface compared to the reference."
+                },
+                "response_sha256": "5fac08e9b0125ed3713f5d2746af091564962848dc9eb672db7a3e316ee8ef48",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:44:33.444Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000096",
+            "request_sha256": "2b4c522355800b3492cea338410071f0da67fd710198973eec78879237cdb8cd",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:44:57.755Z",
+                "latency_ms": 5800.813500012737,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate shows significant surface gouging and irregular shape on the top left corner compared to the reference."
+                },
+                "response_sha256": "920782bdd300da2230388550ea886ffe497ffb8a86abe0e9f59fb30cdee47fbd",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:44:51.856Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000097",
+            "request_sha256": "d633f483b74c72f90eaffe7174487c8981cb5ae4b0e312c1cec6de4ed875b8ab",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:45:08.237Z",
+                "latency_ms": 6229.320899990853,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut shows dark surface discoloration or staining on the upper surface that is not present on the reference."
+                },
+                "response_sha256": "1b5e2307c5f7c2a042a811474634d4ae9e4f243be680e496c3ab0170fe91d31d",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:45:01.869Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000098",
+            "request_sha256": "43e06bcfd1d094b45c5828aca75f6e7550e16c2b419acb4377cd2bb90f727dbc",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:45:17.850Z",
+                "latency_ms": 5862.21769999247,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate surface shows visible linear scratches on the upper left quadrant that are not present in the reference."
+                },
+                "response_sha256": "87e1209cfeb314217bd85f739be706a131d72f49dd699904224313e1a388f15d",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:45:11.881Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000099",
+            "request_sha256": "693278e54fa083a47d718974fc07d9fb67d969827f9947a8d16970e584fb0163",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:45:27.390Z",
+                "latency_ms": 5373.61409998266,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has two straight-edged cutouts that differ significantly from the curved notches shown in the reference image."
+                },
+                "response_sha256": "805f259685c3cb840acd5c5b6cbac1d85699e2790cd4a72c3397d630eb02c4ac",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:45:21.896Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000100",
+            "request_sha256": "3803c55cb48c6d9976d4099e6e1c7ca0bd749d7b22233c57f9dcae8140d8c6b5",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:45:38.341Z",
+                "latency_ms": 6255.838599987328,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut exhibits prominent linear surface scratches across its face that are not present in the reference."
+                },
+                "response_sha256": "231cd898461539d1ef2f23e14acb55c00a9dfc7656c651e843da015e0b34d5f2",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:45:31.941Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000101",
+            "request_sha256": "a196f1ecb09d8e58804fa84538efb15cb30fdf2743a7bd01ee8ce098051e857f",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:45:47.443Z",
+                "latency_ms": 5346.047200029716,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "looks_acceptable",
+                  "observation": "The candidate nut shares the same overall geometry and surface texture as the reference."
+                },
+                "response_sha256": "2089befcfe1b45c35bf39df606901b8e7361421f90221da268a9097b343bb9bd",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:45:41.977Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 28
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000102",
+            "request_sha256": "0cbb393dfae88a47e2a4468fb6bc6a87b5845d5499236771ffe62131c77af8e6",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:45:57.254Z",
+                "latency_ms": 5126.027900027111,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate shows distinct linear scratch patterns on the upper surface that are not present in the reference."
+                },
+                "response_sha256": "7e912a1f8491e53af04cc7631df92c5d404d681e2cf5a0fb12d1b3c611dcf4a9",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:45:51.993Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 32
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000103",
+            "request_sha256": "5bbf05e83d0f7a24b13f4dc5fa869f10a0326370e4a149ad2f6ddb1e753c5807",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:46:08.343Z",
+                "latency_ms": 6142.047000001185,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "A prominent linear scratch or groove is visible across the surface of the nut, which is not present in the reference."
+                },
+                "response_sha256": "fe0b3290d628af2bb2c7123ecc6c09419cdfcffcdacea92c16efea32e616203c",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:46:02.003Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 36
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000104",
+            "request_sha256": "8e30d8c2c499c90df5dbd55547e52175d16f485b0962892e8622e63ac954a0a2",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:46:18.940Z",
+                "latency_ms": 6616.427399974782,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate shows a large area of surface discoloration and visible striations on the right side that are not present in the reference."
+                },
+                "response_sha256": "08ab44da6158488a48e98e15d317e89d7845639b7992af3aa6956d8208a7b469",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:46:12.034Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000105",
+            "request_sha256": "3f9d0101cf618a3abb7d005f4fea6070d56a17c61aa91dcb6f4e0119373d94b6",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:46:27.901Z",
+                "latency_ms": 5720.723500009626,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate shows a visible linear scratch or groove on the surface that is not present in the reference."
+                },
+                "response_sha256": "290c6e70bb0fa56141f66c4a5ffcdffd0425d238251f2f59dfb94113365d0211",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:46:22.050Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000106",
+            "request_sha256": "67638bc01b2ede95ccc8a307eaf247de576da53012948b76699b6f145cf8cfaf",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:46:38.295Z",
+                "latency_ms": 6113.97120001493,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate shows a visible linear scratch/groove across the surface that is not present in the reference."
+                },
+                "response_sha256": "cf6e6582752075d557c0f627645e925c4a58226f133acc9b0180ed9994bd4d5e",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:46:32.062Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000107",
+            "request_sha256": "8de7b92bfaa0324fe9a561768bf1c6a5196551cdbd9b5d4b4a32cee4a66f17e3",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:46:48.255Z",
+                "latency_ms": 6060.253500007093,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut exhibits significant material loss or jagged edges on the inner flange areas compared to the reference."
+                },
+                "response_sha256": "96a439d91123342183255befb8adc3d3f070ffe19b5a26b9c583556f46498f72",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:46:42.074Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000108",
+            "request_sha256": "e9ac769735e96e7307d844882a05392ff67418ecbc8de2fb2a111c6bef732cc2",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:47:07.134Z",
+                "latency_ms": 6133.4771000547335,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate shows a distinct horizontal surface scratch or gouge across the face of the nut that is not present in the reference."
+                },
+                "response_sha256": "7abd06f634dee5bbc5c04b36b3c6661f03783afe4a29946c6a2c3a635f072bd2",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:47:00.862Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 38
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000109",
+            "request_sha256": "37d52cca6daf32d420f49039e3627ea863a1a0a9cfa252f71ba944fc37540a68",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:47:16.445Z",
+                "latency_ms": 5280.401399999391,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has a large, prominent crack or fracture across the bottom portion, which is not present in the reference."
+                },
+                "response_sha256": "c19f96c8cf6e80d9001ae4ed15dc1dec6199b1663e1176509c611942f7508c0a",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:47:10.880Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 37
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000110",
+            "request_sha256": "03729208da74361de71910678f34e2f5e858010664bbcec727d869c96159eae3",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:47:27.410Z",
+                "latency_ms": 6351.17659997195,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate nut has dark, streak-like marks on its surface that are not present in the reference image."
+                },
+                "response_sha256": "105b224ee911ace4f31e2a2a5bf1671d6e54fe36c0807b97610878bacc52cd0c",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:47:20.896Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 35
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000111",
+            "request_sha256": "fafce501bbab63fde48c1c6831cc258ef8cfcb0ef885d1a790c8b2c8a2206325",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:47:37.459Z",
+                "latency_ms": 6275.498300034087,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate shows visible surface scratches on the upper right portion that are not present in the reference image."
+                },
+                "response_sha256": "4366f855ee59575e4387acdc59f321daa9cca3bbae8c87bf4024154707f89e89",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:47:30.917Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 33
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000112",
+            "request_sha256": "3df4326add1d793d792df7dd09a9bfead0b70b9fe66bd4bd37980a88de360b05",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:47:46.915Z",
+                "latency_ms": 5860.842199996114,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The nut shape and orientation are different from the reference, and there are visible scratch marks on the surface."
+                },
+                "response_sha256": "98ed12b46eb6bee79edf6a2eba5bd065eaf4e47ddebb8f5612f3428fd4e6b131",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:47:40.937Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 34
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000113",
+            "request_sha256": "ce785f7446bb08ca905d34ab0e33de60efa3718a5b9f23a5c31d3cd5dab6f738",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:47:56.664Z",
+                "latency_ms": 5576.9539999892,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The candidate shows visible linear scratches across the surface that are not present in the reference."
+                },
+                "response_sha256": "a7a42a00b8670bf4ab4077f42fd86f5ab1e5fd8535b84b6394aa8cc07960145a",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:47:50.967Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 30
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000114",
+            "request_sha256": "63cf7ba580ce5f6c9b7cd2d1bacddce0893ce81cde91511216b06cad7fc35ffd",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          },
+          {
+            "attempts": [
+              {
+                "finished_at": "2026-10-25T13:48:07.876Z",
+                "latency_ms": 6763.071599998511,
+                "number": 1,
+                "reason": "none",
+                "reported_model_version": "gemma-4-26b-a4b-it",
+                "response": {
+                  "decision": "needs_review",
+                  "observation": "The surface of the candidate nut shows visible scratches and linear markings not present in the reference."
+                },
+                "response_sha256": "304a045cbec1d9ae580294b9d03e8065968cbff3e447b6633c5740ee77986a70",
+                "retry_not_before": null,
+                "started_at": "2026-10-25T13:48:00.999Z",
+                "status": "success",
+                "usage": {
+                  "input_tokens": 615,
+                  "output_tokens": 31
+                }
+              }
+            ],
+            "execution_state": "terminal",
+            "image_id": "img-000115",
+            "request_sha256": "15f4c488456114a9473a0dcd61c9648fe7503f262bfb3619e151bae8b063914d",
+            "run_id": "eval-gemma-7292d2441bcfd2c1",
+            "status": "success"
+          }
+        ],
+        "run": {
+          "capabilities": {
+            "adjustable_sensitivity": false,
+            "calibrated_probability": false,
+            "categorical_decision": true,
+            "heatmap": false
+          },
+          "created_at": "2026-10-25T13:26:44.687Z",
+          "hashes": {
+            "configuration": "7292d2441bcfd2c129c601d2017534399db7563f22e827fb3da3e3838dbcc4de",
+            "inputs": "00bfb7bd04b3f369426e4db8c6d78d69926ef659bf8072d114369c1415d42516",
+            "manifest": "5c77a9e478d03ce4b211d655b577b4363cc2853b9900eaef93ebb94f0a1940d5",
+            "preparation": "c68839b5cd915b870e6020e689426cef4eb5fa279b9abe735f6a8624d4d4bf0b",
+            "prompt": "9479dbef92f1f25405e9e259b4cb710caeae494bf7bcd68483850f4e62de71e0",
+            "references": "399556c9589cf683223d73aa588b25182d219b151ec694d67979a082aee42efc",
+            "response_schema": "21e80eb4ccb381071b47dc6f3f58aa5c6f0be05c511d4fb1403d7f6ce30f96fa",
+            "split": "c41a3ad606e3b7634fd3176806bf875f0954a8816a5560fa358d06715018b0d4"
+          },
+          "inputs": [
+            {
+              "image_id": "img-000001",
+              "sha256": "3257bc74718d4bdab6f397dc176ec2886893b4a49970f032eefa74a9e647ee48"
+            },
+            {
+              "image_id": "img-000002",
+              "sha256": "6d64d28d9d4586e490938f7c0a59502345234db887b20dbee6a8fb1b9bdfa303"
+            },
+            {
+              "image_id": "img-000003",
+              "sha256": "039e7147c280cfc9ea40dee186e5ec3d754dd6950763673ef15388328d850a18"
+            },
+            {
+              "image_id": "img-000004",
+              "sha256": "57938af871c90ab39b64115a12841a27169b1f43a95c744a9f3e0a0ad46050e4"
+            },
+            {
+              "image_id": "img-000005",
+              "sha256": "db82d3dc7f950c444a778a69c51ab3408a06f515cabb6df51b85052973ab9f71"
+            },
+            {
+              "image_id": "img-000006",
+              "sha256": "c9e67058f4fb58cc36cef59d550a160662f429ad69ae21b36e84f3419a26dbb6"
+            },
+            {
+              "image_id": "img-000007",
+              "sha256": "b260fe56ea657ca4a9c7c09a8d609babdaeaeaace8a26c79daca08a938593d7f"
+            },
+            {
+              "image_id": "img-000008",
+              "sha256": "1c8bea8e2fbfcd66edb6db61f79f330192342ef7c5f0ce303751e59c6b82dde4"
+            },
+            {
+              "image_id": "img-000009",
+              "sha256": "b4b887c214b895a2f6313e07571fff123811b8cdd041fae82eef678de2a92885"
+            },
+            {
+              "image_id": "img-000010",
+              "sha256": "591cc5833d06237bb698caa4e3ab800bb31e442f58b958a8f2725a20a581442f"
+            },
+            {
+              "image_id": "img-000011",
+              "sha256": "df34dc79077e5dc377f1f33fee55c3484355918dd9c345a9a7f739016106d0af"
+            },
+            {
+              "image_id": "img-000012",
+              "sha256": "74d2e1ada9ec20f356dd5017eebf5053496b0bd1c83a0c407bf23c4b10c15524"
+            },
+            {
+              "image_id": "img-000013",
+              "sha256": "ca8c7740837f9fb505660d9b1dee54c0924e580c5285f346eee7e90e997cd0c1"
+            },
+            {
+              "image_id": "img-000014",
+              "sha256": "276ab29c029c34bd1743ab1c3a0d4d86d6aea86caa7ad1acda5e119cadaa6dd6"
+            },
+            {
+              "image_id": "img-000015",
+              "sha256": "2b893107762ffab6e03b3b36920051a54a4665b73ae4447315d95dfe8843cec2"
+            },
+            {
+              "image_id": "img-000016",
+              "sha256": "1f5134733e65b9e431562fb8ca61786bc848df46eafbb0f835a48dd70876346d"
+            },
+            {
+              "image_id": "img-000017",
+              "sha256": "7d19ba13a6f89692416afb7a92a68df05ced405c0ff6e48a46343733266d7be2"
+            },
+            {
+              "image_id": "img-000018",
+              "sha256": "3c609d13b4f4c740a9b9d22fcc6e75cfc4094d0a435156a31f06fb2bf80e1af0"
+            },
+            {
+              "image_id": "img-000019",
+              "sha256": "d8e6c957c71d0c996c46f2028195a22f55fa49395d6a58c2f2aa021784dae0a8"
+            },
+            {
+              "image_id": "img-000020",
+              "sha256": "124fa0c37e86d420fd54e4fb544d7fad3face258f4e8a7db7e0a0d1e790315b9"
+            },
+            {
+              "image_id": "img-000021",
+              "sha256": "4bd8ba9f96315b1a9350665a911cbffb2b4659e523d7e76ba2bcfb588ab476ca"
+            },
+            {
+              "image_id": "img-000022",
+              "sha256": "88b78187872f499ada3113d779ab06cb686bf8d2f69d1a9401d72b0bfe958822"
+            },
+            {
+              "image_id": "img-000023",
+              "sha256": "dad9e66d87289017f7c3934e45983cdb5bebb82f7345c8d3a2e3e50ad5890e65"
+            },
+            {
+              "image_id": "img-000024",
+              "sha256": "17697efd77a8c390a9c3f1229a187e80f92ee342aa692bd927f015494598ced2"
+            },
+            {
+              "image_id": "img-000025",
+              "sha256": "05a706b2996e5de444ac768bf02cb1a8d476655cc20c362590eb73bcae94fa8b"
+            },
+            {
+              "image_id": "img-000026",
+              "sha256": "ff7b71ebf88ac0d2fbde42970dd74e72d0956f9be4a5036df041a003dc1cdb84"
+            },
+            {
+              "image_id": "img-000027",
+              "sha256": "5abe3a150c5a4a20a7c146c81ed8efc5fef3895ba1e1a0f5377e32da6c37e0b7"
+            },
+            {
+              "image_id": "img-000028",
+              "sha256": "4071c611006634b48303a3638c6d59c1aa5fc7d5a4a2836e2dcec4b6fa0f6ea2"
+            },
+            {
+              "image_id": "img-000029",
+              "sha256": "99314dc907193b2224ab7b51cd8cfd40698cfce199b33a86648910d606b07198"
+            },
+            {
+              "image_id": "img-000030",
+              "sha256": "2c7610cda3f1f54151ab91cd74f7827b0cd150c58e82b03a358b26f67769ff48"
+            },
+            {
+              "image_id": "img-000031",
+              "sha256": "8166b911c5f03a37a9813373318684bf93652d1c3c398fa0fa3b700704082092"
+            },
+            {
+              "image_id": "img-000032",
+              "sha256": "149a65b0ee7ae49fa050ec02b0778ba812d3cd9c9d36f5b892bfeac8bdf91817"
+            },
+            {
+              "image_id": "img-000033",
+              "sha256": "f9cabf13cba6bb41376e4bb448cc888387b284a5253997e51e8ad018ed35d0e3"
+            },
+            {
+              "image_id": "img-000034",
+              "sha256": "07932b13d09137c35cc6ac3cccd96bafa646eaa1c3c5a602cd23f89e00c90779"
+            },
+            {
+              "image_id": "img-000035",
+              "sha256": "9c1f7ff6fa50b6a3089bb4fa816f2c9d198c46cd8385959bbbac36c9b9bdd067"
+            },
+            {
+              "image_id": "img-000036",
+              "sha256": "c092674fc05555265663a01b8ca4e0cb408bee1666535f034a1f07451f65f11f"
+            },
+            {
+              "image_id": "img-000037",
+              "sha256": "05ec20925b8993f07ef4454e62030048583c6f056117a62955c7aae78de8e386"
+            },
+            {
+              "image_id": "img-000038",
+              "sha256": "076ec813050cd52e7a2c95b6ffd625e2717a36f5062efa3ccb18cf91554f15e0"
+            },
+            {
+              "image_id": "img-000039",
+              "sha256": "98f5b1601869b158340b0aad295c119fe6ec754133a95502d5d033c0cfbac019"
+            },
+            {
+              "image_id": "img-000040",
+              "sha256": "58478ee7fc5ecbe82599ebec4bbf53e51e6ca03d51df928731eda29d07bbe847"
+            },
+            {
+              "image_id": "img-000041",
+              "sha256": "8b2fbcacc90eaa556003bd48eeae9358d6893ae2a0822461f22b002cd0e732f1"
+            },
+            {
+              "image_id": "img-000042",
+              "sha256": "943d65a284959980199910e37c38afe1bab2a1348d18375a60455116367b3e7c"
+            },
+            {
+              "image_id": "img-000043",
+              "sha256": "a884a32c6c3e3d03736bca32a3b037f67a72dcfce3f115833304529c258d9161"
+            },
+            {
+              "image_id": "img-000044",
+              "sha256": "d6e7d70a0eb2528c5e5c2c02770906339807e26335a801dea3e5f5af747fae8d"
+            },
+            {
+              "image_id": "img-000045",
+              "sha256": "95338792d49a861e21aeb57d8c9bd6de8b3bed5e424f860008ac71c27399a97f"
+            },
+            {
+              "image_id": "img-000046",
+              "sha256": "21fd44bc2b735dbb7ff00fc8e33d4b632d3ffc5c3079bf172ec7daeb8652f3cf"
+            },
+            {
+              "image_id": "img-000047",
+              "sha256": "cea2ab1b311fd083acdad74c33c570f8c90a531135697c4181b26bb5a2993b6c"
+            },
+            {
+              "image_id": "img-000048",
+              "sha256": "f8268ca3d93c970682d5d0554126d049c89f79daa558e58ffbf63111dca761e0"
+            },
+            {
+              "image_id": "img-000049",
+              "sha256": "b3b8b18045a863f6e8330a7b4b956a633e210e137ed2b2354a46c5f52b0d9fb0"
+            },
+            {
+              "image_id": "img-000050",
+              "sha256": "1265abe8628509bae0786220712b232f4f2363ae2bc04562a7edc8f76915ac87"
+            },
+            {
+              "image_id": "img-000051",
+              "sha256": "647d67e2d06ef5dc41c20bc0528434c0fb49272ad2c502558c5c1b14933bb2be"
+            },
+            {
+              "image_id": "img-000052",
+              "sha256": "21a10d08a85e13a331336f840d07757cd7911829759357a050be585c7a74610b"
+            },
+            {
+              "image_id": "img-000053",
+              "sha256": "ada2142dae667d0456b0e39b81e427fe3c3bdfd2ba9d49cdd03407c310f4823b"
+            },
+            {
+              "image_id": "img-000054",
+              "sha256": "e7093d30a64cf84005382c8025acfc25dd3b5dc5fe4a88b973c879b03b7d67b8"
+            },
+            {
+              "image_id": "img-000055",
+              "sha256": "60d69b88bac3574776d7acacd0b3a4d2e454d5f40920cfdba0fff9ec3bf2b85f"
+            },
+            {
+              "image_id": "img-000056",
+              "sha256": "db024db8429edc7ef50677746f9934182d9d56ddbe86b728a689c111f4390de5"
+            },
+            {
+              "image_id": "img-000057",
+              "sha256": "4f8310a68a7241ec5fb48e922815f807f6a3c73fed991fa7ed7e44cb6d4bc601"
+            },
+            {
+              "image_id": "img-000058",
+              "sha256": "2733bbb3ced62bcec06272bc63ec362fdd73a1874c8b2a2fbeccf15a6b28d653"
+            },
+            {
+              "image_id": "img-000059",
+              "sha256": "cd876a78d748b99286a6415ec93c68784a61826b219ffaeacc08528e7b1eb23e"
+            },
+            {
+              "image_id": "img-000060",
+              "sha256": "dbd96634fcd52e70e196a4856dd603ff038a8e907ae7f52d1ad75218f35d56c5"
+            },
+            {
+              "image_id": "img-000061",
+              "sha256": "0d88125b861328d0ce722adec6aa691e9135d73842041672362710ec7530d48c"
+            },
+            {
+              "image_id": "img-000062",
+              "sha256": "97c79e18f3eca65f7cddef0a508e09aaf607448466cf48027df4d9f6efa7e93f"
+            },
+            {
+              "image_id": "img-000063",
+              "sha256": "809e9b905eec44d2585afc55d7b31f93bb1ca89bce968543ce03f66aec3e9b3d"
+            },
+            {
+              "image_id": "img-000064",
+              "sha256": "5bddaba155be5329c712a3bd3bb7e3c68e7ec370c3c6877d40c0e2e7972c8732"
+            },
+            {
+              "image_id": "img-000065",
+              "sha256": "b2bcb5d42323de1477230dbc8ea6225117fa9dab477fb3e54b24df0418ffe18d"
+            },
+            {
+              "image_id": "img-000066",
+              "sha256": "b2e6b22f44f1176cad1e9dec8a8ac9328201f896b8c770802e10122528b919ea"
+            },
+            {
+              "image_id": "img-000067",
+              "sha256": "f2632298e8bd114a4f66802ef11fa003972f8e0e756501c89ad95538ce502337"
+            },
+            {
+              "image_id": "img-000068",
+              "sha256": "4d24d257fa7b99384116fba1e619a69eaa7591bc4a81a69bae0ac9c4d7f4f41f"
+            },
+            {
+              "image_id": "img-000069",
+              "sha256": "f3e462a06d8360bc5fbd5e85b9b87f850751fb5852ccaad411f4d96a3f787399"
+            },
+            {
+              "image_id": "img-000070",
+              "sha256": "0faa4cec77362508b91c5d4ebe5ffd508e6498fc1c399a01d4af368ba4802d64"
+            },
+            {
+              "image_id": "img-000071",
+              "sha256": "aebcd3fdfebd62d23fd6b60d0be590253140815b142febbebc2a41b407c14952"
+            },
+            {
+              "image_id": "img-000072",
+              "sha256": "d29b0ebbc8e1c92c16a30728dcb0b5379e5c41dbec6003f40e039675deb78a5f"
+            },
+            {
+              "image_id": "img-000073",
+              "sha256": "fb1efeebe0823dd9280f10cc73514daf5a41961b3920d7b9cef40c887889ce04"
+            },
+            {
+              "image_id": "img-000074",
+              "sha256": "756aa5000aa08b6a20fecebdecd3c7b13864e161bbe6be380ab0119e26883599"
+            },
+            {
+              "image_id": "img-000075",
+              "sha256": "089776a21bee8f7e0db8c672fdd27268c972e8f2ecd50a620242ffe0355fcb3a"
+            },
+            {
+              "image_id": "img-000076",
+              "sha256": "99326c5532262894bb716678a596063b6a1b76837c5b0ef2ea620ab34c6827f1"
+            },
+            {
+              "image_id": "img-000077",
+              "sha256": "5ea197cbb4de4b7f533c0801262d41813035deec255250d6c9a321e9ed50d1da"
+            },
+            {
+              "image_id": "img-000078",
+              "sha256": "cbc0316872e8cecd6e6d7e96b04c68ec380018512525146e4d9b9cf71abd06f2"
+            },
+            {
+              "image_id": "img-000079",
+              "sha256": "bcb829eec71bf6204669e04e877552a20c41ff727bd5574423788addbe5540cd"
+            },
+            {
+              "image_id": "img-000080",
+              "sha256": "3b272653bffa78830703fca8b0e649e31e36aa10b0ee4954325f5be87e55d8ac"
+            },
+            {
+              "image_id": "img-000081",
+              "sha256": "16c9c9c18e2416fed695fb257f57b73ae424fe710478a15e0a062116a210ac76"
+            },
+            {
+              "image_id": "img-000082",
+              "sha256": "05d557104f3126867fdf36a9dff960de8b3676a66291c5cd19d84aa52c7bb5e8"
+            },
+            {
+              "image_id": "img-000083",
+              "sha256": "8042c41578985c4094137b00f7976de43e9bdc5bdb4a2a38f0dc208d4e2bb61b"
+            },
+            {
+              "image_id": "img-000084",
+              "sha256": "1c31f3b37ec76fde5300b5aad4dedfc8ad30a1b29eceb927071ecbd871bd530f"
+            },
+            {
+              "image_id": "img-000085",
+              "sha256": "f48e2df4cd5219b3b6c232d97bbb07dfeccd5368bcca91a67eb06e6a186c1a5f"
+            },
+            {
+              "image_id": "img-000086",
+              "sha256": "c587beddb7a38bd05c59aea8630b117ae7e6ab812cfc0ccdb80c00eb455aaa4e"
+            },
+            {
+              "image_id": "img-000087",
+              "sha256": "b1e3449d1ad633a31a43f7a1476e8daecc8c771e7066fb7b8ff9ed77df0d1465"
+            },
+            {
+              "image_id": "img-000088",
+              "sha256": "12a19c255420f302b7e0f42ed80eb55e850ed94b1d6710b5298ab8f7c2fa53e4"
+            },
+            {
+              "image_id": "img-000089",
+              "sha256": "d468220ef944c481455e1288b4043f92c90ddca23c1d85e0d68cc40d319bcbf5"
+            },
+            {
+              "image_id": "img-000090",
+              "sha256": "464e05449c2dd2ccfe6bc29b4633ef17d9fdf5c6ec8f56b6512af571b8eecb42"
+            },
+            {
+              "image_id": "img-000091",
+              "sha256": "50616360f869f8b95099945df652fd6886ab3749fe2efef37527dc57cd3ceb5c"
+            },
+            {
+              "image_id": "img-000092",
+              "sha256": "e08197bd4aeadb2be49bcb83e7b9b864673dab9e3e397cff4f858a291964eb91"
+            },
+            {
+              "image_id": "img-000093",
+              "sha256": "9e739336f1c1705f113ed9cb4548369670c7c0a257678e296dc2d4ab4c071c1a"
+            },
+            {
+              "image_id": "img-000094",
+              "sha256": "0b84e77e93357536b6d8006461619e86186e9d27e484ce68a04ad7e26c3c1747"
+            },
+            {
+              "image_id": "img-000095",
+              "sha256": "d933bee36efb98b275c42b4e653afb3950bba75673dcac73e7abe01f950fa7c0"
+            },
+            {
+              "image_id": "img-000096",
+              "sha256": "5814f0006eec2bc3521b61888d8dad92afb5f1cb2857d8de7327293d364be79a"
+            },
+            {
+              "image_id": "img-000097",
+              "sha256": "1c63540fbf06816070751716a37967ba8e6b25e7607e9c805a8f606a6d28747b"
+            },
+            {
+              "image_id": "img-000098",
+              "sha256": "42891d583297f32a4a04924940ecb8d19d68a896fc4d9729f6049c5774eeeea4"
+            },
+            {
+              "image_id": "img-000099",
+              "sha256": "973488842d74c6bd31dfa20e8936c1ed4f134908babfd772800e310c9d83b7e7"
+            },
+            {
+              "image_id": "img-000100",
+              "sha256": "08f5dcccb868fb5cfce04118773c89df332182d49fd444bf4132e51367ef4415"
+            },
+            {
+              "image_id": "img-000101",
+              "sha256": "a58926440911a02a531474e6e4b9126272ad7afcb73c5ef80bd061dac07599ae"
+            },
+            {
+              "image_id": "img-000102",
+              "sha256": "509a08b7ce83b217afe1ff725d2fc0fae3a5d15836e5384d2f3d460e282eaf70"
+            },
+            {
+              "image_id": "img-000103",
+              "sha256": "f9d3fc280398a8d7638b5b77d8aa3ae51c2b1ac58f4da90d7ee1ed55fd34463e"
+            },
+            {
+              "image_id": "img-000104",
+              "sha256": "07c0921db69b9be2c884b389e7207d5123583337325993cd99f4362996a6d567"
+            },
+            {
+              "image_id": "img-000105",
+              "sha256": "aece2151ee0faa1724b25f6c5b1fc5116af061f448bcfe633747be49d685ca2f"
+            },
+            {
+              "image_id": "img-000106",
+              "sha256": "5b842ec44e02cebe39361d9e76e18ca304188679218b91dcbd0f35ee8b67c4c7"
+            },
+            {
+              "image_id": "img-000107",
+              "sha256": "5f6f919ffb85c00fb2f798919ad85156fcc36b24e0a592dbb49d50708f836829"
+            },
+            {
+              "image_id": "img-000108",
+              "sha256": "147adaff908c8f4dc739033a9f03bc95c0b0574753281025a2b2266a17e6b30b"
+            },
+            {
+              "image_id": "img-000109",
+              "sha256": "874ae040e40d3d5d59d2ec94da405de681cc905c121ed7dd31ed29f11462721b"
+            },
+            {
+              "image_id": "img-000110",
+              "sha256": "8ab7793d6f3e59606e3e601cfde0e81a1b4128e09b4a9f4cdcf40e1dedcc7610"
+            },
+            {
+              "image_id": "img-000111",
+              "sha256": "690667ddaf797121f0cee496c22775978b18095754577354b287ab762b48c53c"
+            },
+            {
+              "image_id": "img-000112",
+              "sha256": "7594f8e8402121e4536217f4f367b072a0f4e8dd475b9ae4b11ddaa78ed955ee"
+            },
+            {
+              "image_id": "img-000113",
+              "sha256": "bfd8a3df4d075783eedb507e8688dd7a6f169e3069a6d7cd7517b223c0665acd"
+            },
+            {
+              "image_id": "img-000114",
+              "sha256": "86fb2b0422634da5fa269c94e77d5531c9ba720f56709fa2cb706fc9c81bc2c6"
+            },
+            {
+              "image_id": "img-000115",
+              "sha256": "640d1076f5dd169b5537e9cb442f4e469f849e34d399d706eabf66e7dd56401d"
+            }
+          ],
+          "max_attempts": 3,
+          "model_id": "gemma-4-26b-a4b-it",
+          "policy": "fixed_categorical_review_uncertain_and_failures",
+          "provider": "gemini",
+          "request_timeout_seconds": 60,
+          "run_id": "eval-gemma-7292d2441bcfd2c1",
+          "state": "complete",
+          "track_id": "fasteners"
+        },
+        "schema_version": 1
+      },
+      "report": {
+        "attempted": 115,
+        "coverage": 1.0,
+        "evidence_sha256": "7854d788e6b526e9c8fecaa695a099a6b27c3d4eb2d09625d3a7ab09ba2c79d3",
+        "evidence_status": "development_only",
+        "expected": 115,
+        "failed": 0,
+        "failure_breakdown": {},
+        "full_set_routing": {
+          "anomalous": 93,
+          "false_positive_rate": 0.22727272727272727,
+          "false_positive_rate_wilson_95": [
+            0.10123039985248516,
+            0.4343995317522171
+          ],
+          "fn": 20,
+          "fp": 5,
+          "normal": 22,
+          "precision": 0.9358974358974359,
+          "recall": 0.7849462365591398,
+          "recall_wilson_95": [
+            0.6910364820218566,
+            0.8562497799305953
+          ],
+          "review_count": 78,
+          "tn": 17,
+          "tp": 73
+        },
+        "images": [
+          {
+            "decision": "needs_review",
+            "image_id": "img-000001",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000002",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000003",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000004",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000005",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000006",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000007",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000008",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000009",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000010",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000011",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000012",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000013",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000014",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000015",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000016",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000017",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000018",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000019",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000020",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000021",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000022",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000023",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000024",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000025",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000026",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000027",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000028",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000029",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000030",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000031",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000032",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000033",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000034",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000035",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000036",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000037",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000038",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000039",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000040",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000041",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000042",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000043",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000044",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000045",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000046",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000047",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000048",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000049",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000050",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000051",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000052",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000053",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000054",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000055",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000056",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000057",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000058",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000059",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000060",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000061",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000062",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000063",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "uncertain",
+            "image_id": "img-000064",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000065",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000066",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000067",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000068",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000069",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000070",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000071",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000072",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000073",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000074",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000075",
+            "label": "normal",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000076",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000077",
+            "label": "normal",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000078",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000079",
+            "label": "normal",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000080",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000081",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000082",
+            "label": "normal",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000083",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000084",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000085",
+            "label": "normal",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000086",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000087",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000088",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000089",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000090",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000091",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000092",
+            "label": "normal",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000093",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000094",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000095",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000096",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000097",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000098",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000099",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000100",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000101",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "looks_acceptable",
+            "image_id": "img-000102",
+            "label": "anomalous",
+            "review": false,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000103",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000104",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000105",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000106",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000107",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000108",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000109",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000110",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000111",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000112",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000113",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000114",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          },
+          {
+            "decision": "needs_review",
+            "image_id": "img-000115",
+            "label": "anomalous",
+            "review": true,
+            "status": "success",
+            "technical_review": false
+          }
+        ],
+        "inputs_sha256": "00bfb7bd04b3f369426e4db8c6d78d69926ef659bf8072d114369c1415d42516",
+        "limitations": [
+          "Fixed categorical policy: uncertain and technical failures route to human review.",
+          "Wilson intervals describe sample uncertainty, not dataset shift or public-benchmark contamination.",
+          "Public fastener images are GIS proxies, not factory validation.",
+          "Development evidence is not publication clearance or an authenticity certificate."
+        ],
+        "manifest_sha256": "5c77a9e478d03ce4b211d655b577b4363cc2853b9900eaef93ebb94f0a1940d5",
+        "membership_sha256": "84661975acfcb5549302fbff086d18463420a874ab7603d0c7dcb4a2a44ebcc5",
+        "model_id": "gemma-4-26b-a4b-it",
+        "policy": "fixed_categorical_review_uncertain_and_failures",
+        "reported_model_versions": [
+          "gemma-4-26b-a4b-it"
+        ],
+        "run_id": "eval-gemma-7292d2441bcfd2c1",
+        "schema_version": 1,
+        "succeeded": 115,
+        "successful_output": {
+          "anomalous": 93,
+          "false_positive_rate": 0.22727272727272727,
+          "false_positive_rate_wilson_95": [
+            0.10123039985248516,
+            0.4343995317522171
+          ],
+          "fn": 20,
+          "fp": 5,
+          "normal": 22,
+          "precision": 0.9358974358974359,
+          "recall": 0.7849462365591398,
+          "recall_wilson_95": [
+            0.6910364820218566,
+            0.8562497799305953
+          ],
+          "review_count": 78,
+          "tn": 17,
+          "tp": 73
         },
         "technical_reviews": {
           "anomalous": 0,

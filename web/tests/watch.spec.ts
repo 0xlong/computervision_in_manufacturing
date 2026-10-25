@@ -157,7 +157,7 @@ test('all five genuine results count once, stop, restart and leave visitor stora
   const before = await page.evaluate(() => localStorage.getItem('ai-inspection-pilot-lab:visitor:v1'));
   const bundle = await page.request.get('/evidence/bundle.json').then(r => r.json()) as Bundle;
   expect(bundle.execution).toBe('recorded_live');
-  expect(bundle.runs).toHaveLength(1);
+  expect(bundle.runs[0].evidence.run.model_id).toBe('gemini-3.5-flash-lite');
   await expect(page.getByRole('navigation', { name: 'Main navigation' }).locator('[aria-current]')).toHaveCount(0);
   const status = watch.getByRole('status').filter({ hasText: 'Picture' });
   const counts = watch.getByRole('region', { name: 'Results for this five-picture playback', exact: true });

@@ -11,6 +11,50 @@ not a fixture. Test examples are separate and visibly labelled. Use the
 
 ## Measured evidence
 
+**Latest 25 October update:** the local bundle is now
+`fasteners-92538e3ac8f7cbfa`, with two genuine completed 115-picture runs. The
+24 October single-model checkpoint below is preserved as history. Gemini baseline:
+12/93 defects missed, 5/22 good parts flagged, 115/115 answers, zero unsure, median
+4.96 s over 116 attempts. Gemma 26B: 20/93 missed, 5/22 good parts flagged,
+115/115 answers, one unsure, median 6.06 s over 115 attempts, zero retries/failures.
+The unsure anomalous part is routed to review; it is not a categorical prediction.
+Complete-set routing totals are 86 versus 78, including unsure and failures.
+
+The two-model table uses actual evidence; the same five teaching IDs/labels/assets,
+baseline report/evidence, notices and original frozen configuration bytes are
+preserved. A prior public copy remains under ignored
+`artifacts/additional-models-oct25/baseline-public/`. Details and independent audit:
+[Gemma record](GEMMA_TRIAL.md). No unfinished model or fixture enters real metrics.
+
+**481 pipeline tests**, **32 web unit tests**, TypeScript/production build pass.
+The genuine browser comparison and all five Gemma playback stages/counts pass in
+the first full run. It found an old test assuming one configuration download;
+the corrected test checks each model's exact file identity and SHA-256. The final
+**22-case production Chromium rerun passes**. This is test repair, not weakened checks.
+Native VS Code browser control remains unavailable; actual checks use production
+Chromium. No new source photographs are visually opened for this milestone.
+The existing evidence-change rule restarts an older saved challenge once; browser
+checks verify model/mode switches preserve answers within this new bundle.
+
+The genuine comparison check verifies every row's class totals, answer coverage,
+unsure count, measured timing and review workload; fixed independent baseline
+assertions remain. The genuine Gemma journey selects its row with the keyboard,
+replays all five references, checks actual saved observations/decisions and
+running counts, then changes models at the final picture: paused, same picture,
+zero new-model totals and unchanged visitor judgments/reveals/selected image.
+No page errors or external browser requests were recorded. Both frozen
+configuration downloads match their model identity and recorded SHA-256.
+
+Responsive table scans at 360/768/1440 px and real multi-model playback at 360 px
+have no page overflow or automated WCAG-tagged violations. The desktop table and
+360 px controls were visually checked as **two UI crops, zero source photographs**;
+this is bounded visual review, not a full accessibility or dataset visual audit.
+Actual browser: Chromium 156.0.8078.4. Hidden-tab behavior remains a synthetic
+document visibility check; native VS Code tab behavior remains unverified.
+[Genuine playback evidence](../artifacts/additional-models-oct25/genuine-playback-browser.json),
+[comparison evidence](../artifacts/model-comparison/verification.json).
+No evaluator or background schedule remains running; nothing was published.
+
 - Bundle schema version: 2; identity: `fasteners-f0b61a212fefce56`.
 - Run: `eval-flash-lite-46e242a298f20b6f`; provider/reported version: Gemini / `gemini-3.5-flash-lite`.
   The reported name is an alias, not an immutable model-weights identifier.

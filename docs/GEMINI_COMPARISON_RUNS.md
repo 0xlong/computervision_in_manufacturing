@@ -1,8 +1,10 @@
 # Free-tier comparison runs — 25 October 2026
 
 This record continues the user's request for a genuine model comparison. The
-[comparison display](MODEL_COMPARISON.md) already works; additional real runs
-must be completed before new website benchmark rows are shown.
+[comparison display](MODEL_COMPARISON.md) now has two complete genuine rows after
+the [separate Gemma 26B evaluation](GEMMA_TRIAL.md). The three Gemini campaigns
+below remain 17/115 each and excluded from the website until complete. Earlier
+single-row statements below describe their historical first-batch checkpoint.
 
 ## Account screenshot received
 

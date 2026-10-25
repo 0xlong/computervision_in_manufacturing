@@ -1,5 +1,13 @@
 # Comparing inspection models
 
+Latest 25 October checkpoint: the local website now compares **two genuine complete
+115-image runs**: the preserved Gemini 3.5 Flash-Lite baseline and Gemma 4 26B.
+Missed defects: **12/93 versus 20/93**; good parts flagged: **5/22 each**; median
+request times: **4.96 s versus 6.06 s**. Both answered 115/115; Gemma has one unsure
+answer, separately labelled. The baseline performs better on misses and time here;
+this does not establish a universal winner. [Full record](GEMMA_TRIAL.md).
+Model selection and playback use each model's actual saved responses.
+
 25 October update: the user's actual free-tier screenshot supports 2.5 Flash,
 2.5 Flash-Lite and 3 Flash preview as new candidates; 3.6 is absent. All three new
 normal-fitting trials qualified. The quota-aware runner and frozen-configuration
@@ -10,13 +18,13 @@ staged-delivery notes below describe the earlier 24 October planning checkpoint.
 
 Later 25 October update: the user's second screenshot also includes Gemma 4 26B
 and 31B (30 RPM / 16K input TPM / 14.4K RPD each). Both passed the two-normal-image
-feasibility trial; neither has a complete defect benchmark yet. The faster 26B is
-the next full evaluation, using an isolated token-aware runner. See the
+feasibility trial; 26B has now completed the full benchmark using the isolated
+token-aware runner, while 31B still has no complete defect benchmark. See the
 [isolated Gemma trial](GEMMA_TRIAL.md). The limits page's numerators are **peaks**,
 not current consumption; the previous interpretation and claimed remaining one
 are corrected in the run record above. The user separately confirmed zero use for
 the other models in reply to the current-usage question. Existing genuine results
-are preserved; no comparison winner can be declared from unfinished runs.
+are preserved; unfinished models are not ranked or displayed as complete.
 
 Updated 24 October 2026. The user now wants several free API models evaluated on
 the same inspection task, with a clear comparison table. This takes priority over

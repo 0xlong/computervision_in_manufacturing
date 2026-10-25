@@ -3,6 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { existsSync, readFileSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { createHash } from 'node:crypto';
 import type { Bundle } from '../src/types';
 
 const bundlePath = resolve('public/evidence/bundle.json');
@@ -27,7 +28,7 @@ test('simple opening page has clear paths and keyboard-accessible background', a
     await expect(page.getByText('A public-image demo', { exact: false })).toBeVisible();
     await expect(page.locator('main button')).toHaveCount(3);
     const about = page.getByText('About this demo', { exact: true });
-    const background = page.getByText('The AI answers are saved Gemini responses', { exact: false });
+    const background = page.getByText('The AI answers are saved responses', { exact: false });
     await expect(background).toBeHidden();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     const closed = (await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations;
@@ -164,11 +165,16 @@ test('authentic fastener inspection to brief, responsive evidence and private st
   await page.getByLabel('Collect more evidence', { exact: true }).check();
   await page.getByLabel('Your reasoning', { exact: false }).fill('Local verification: representative site evidence and review capacity still need agreement.');
   await page.getByText('Where the results come from', { exact: true }).click();
-  const configurationDownload = page.waitForEvent('download');
-  await page.getByRole('link', { name: 'Download frozen instructions, normal reference and image settings', exact: false }).click();
-  const configuration = JSON.parse(await readFile((await (await configurationDownload).path())!, 'utf-8'));
-  expect(configuration.run_id).toBe(b.runs[0].evidence.run.run_id);
-  expect(configuration.frozen_plan.configuration.prompt).toContain('Inspect the candidate metal nut');
+  for (const asset of b.configuration_assets) {
+    const configurationDownload = page.waitForEvent('download');
+    await page.getByRole('link', { name: `Download frozen instructions, normal reference and image settings (${asset.run_id})`, exact: true }).click();
+    const contents = await readFile((await (await configurationDownload).path())!, 'utf-8');
+    expect(createHash('sha256').update(contents).digest('hex')).toBe(asset.sha256);
+    const configuration = JSON.parse(contents);
+    expect(configuration.run_id).toBe(asset.run_id);
+    expect(configuration.frozen_plan.model_id).toBe(b.runs.find(r => r.report.run_id === asset.run_id)!.report.model_id);
+    expect(configuration.frozen_plan.configuration.prompt).toContain('Inspect the candidate metal nut');
+  }
   const contents: string[] = [];
   for (let n = 0; n < 2; n++) {
     const pending = page.waitForEvent('download'); await page.getByRole('button', { name: 'Download pilot brief (.md)' }).click();
