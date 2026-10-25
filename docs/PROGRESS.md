@@ -2,6 +2,92 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Software architecture component diagram (25 October 2026)
+
+Status: verified locally; focused checkpoint. One coordinator on `main`, no
+workers. Parent: explicit correction from visitor workflow to technical software
+architecture; specification section 5, US-06/08/09. Dependencies: actual Python
+pipeline, shared contracts, static evidence and implemented browser modules.
+Allowed: Architecture component/styles/tests and only this progress section.
+All earlier documentation/setup edits are preserved and excluded.
+
+Tasks/completion: replace user-action tasks/decision diamond with real software
+components and labelled data connections; show preparation/external-provider,
+static-delivery and browser-runtime boundaries; retain professional modern
+interaction and one concise component explanation; verify claims against source,
+component tour, state/export integrity, layouts, touch/keyboard/reduced motion;
+review diagram-only rendering, record evidence and save a focused checkpoint.
+
+Implemented: eleven selectable components in three technical zones:
+- Preparation: data preparation (Python/Pillow), resumable API runner, external
+  Gemini API and evaluation/packaging.
+- Static delivery: versioned JSON/image/mask evidence bundle and static web host
+  serving the Vite output over HTTP.
+- Browser runtime: Ajv evidence loader, React/TypeScript app, pure policy/scenario
+  functions, versioned localStorage state and deterministic Markdown brief builder.
+
+Connectors name their payloads/protocols: image inputs, HTTPS/JSON, persisted
+attempts, evaluation-only reference labels, validated artifacts, HTTP files,
+validated data, rates/assumptions, read/write state, projections and brief inputs.
+The brief receives visitor state and the evidence bundle separately; the diagram
+does not imply that localStorage contains the evidence corpus. The external API
+has a dashed component border. Both current saved model runs use the Gemini
+provider (Gemini and Gemma model IDs), verified from the public bundle metadata.
+No browser-to-provider connector, server-side visitor database or live-inference
+backend is invented. OpenAI and unverified VPS deployment remain explicit in
+the relevant component hints; no paid/provider calls were made.
+
+Removed the visitor-action workflow, Answered? diamond and Yes/Not yet controls.
+Next component/Restart navigates the diagram only. Each component shows its
+technology plus a short selected explanation and relevant source-file reference.
+Kept the existing palette, compact line icons, green selection marker and active
+connections. No extra text sections, dependencies, model evidence, calculations,
+visitor-state schemas or export behavior changed.
+
+Review of the first render found compressed technical text at tablet width.
+The final view uses readable fixed-size HTML connection labels and preserves
+component width through internal phone/tablet panning; selection centers the
+component automatically. The page never scrolls horizontally. Desktop displays
+the full diagram. Tablet no longer compresses the entire technical diagram to
+fit. The hint and controls remain outside the horizontal scroll region, with
+fixed zone labels and normal keyboard access. Reduced motion removes transitions.
+
+Verification: TypeScript/build passed. All **7 affected browser cases passed**
+in the initial implementation (48.0 seconds), then all **7 passed in 48.8 seconds**
+after the final connection/readability correction and rebuilt production preview.
+Final checks cover all eleven components/hints, the external API marker, hosting
+and storage limitations, Next component/Restart, Enter/Space/focus, 44 px targets,
+360 x 800 touch, reduced motion and 320/360/768/1440 px. Selected boxes stay inside
+the diagram viewport; no page overflow or automated WCAG-tagged violations.
+The genuine journey verifies Watch pauses, judgments survive switching/refresh,
+workday projections are identical and Markdown briefs remain byte-for-byte
+unchanged. No external requests or browser errors in that journey. Fixture
+notices remain explicit. Unchanged unit/full-catalog playback checks not repeated.
+
+Actual development page http://127.0.0.1:5174/ renders in Chromium 156.0.8078.4
+at all four widths; eleven-component progression and Restart pass. Visually
+reviewed desktop/tablet/phone diagrams, then the final desktop/tablet labels.
+**Zero source photographs visually opened or requested by Architecture-only
+rendering.** This is layout review, not a dataset audit. Local evidence:
+`.cache/software-architecture/dev-*.png`, `.cache/software-architecture/dev-render.json`
+and its repeatable render script.
+
+Fresh single-agent review compared claims/connections with specification section
+5, Python prepare/runner/transport/evaluate/bundle code and web bundle/App/engine/
+state/brief modules. Checked labels stay out of inference, actual provider identity,
+shared-schema validation, separate bundle/state brief inputs, local-only visitor
+runtime, honest hosting status and removal of the old UI-workflow narrative.
+Only three UI/check files and this new progress section enter the checkpoint;
+pre-task progress text is compared with a saved copy and preserved exactly.
+No remote changes, publication or model execution.
+
+Limits: the previously unavailable VS Code browser automation connection is
+reused; actual Chromium is verified. Native devices, Safari/Firefox and a
+screen-reader audit remain unverified. Next: refresh the local website, open
+Architecture and select a component or use Next component. In VS Code use
+**Browser: Open Integrated Browser** (`workbench.action.browser.open`) with
+http://127.0.0.1:5174/.
+
 ## Professional architecture styling (25 October 2026)
 
 Status: verified locally; focused checkpoint. One coordinator on `main`, no

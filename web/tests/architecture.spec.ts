@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { fixturePlayback, openWatch, status, storage } from './playback-helpers';
 
-const titles = ['Pick the pictures', 'Ask the AI', 'Check & save', 'Open the website', 'Try it yourself', 'Answered?', 'Reveal saved answers', 'You decide'];
-const hints = ['public pictures and their reference answers', 'without seeing the reference answers', 'Mistakes and failures stay', 'Your visit never calls an AI model', 'stay in your browser', 'example choices do not change your inspection answers', 'They stay separate from your judgment', 'this demo cannot approve parts'];
+const titles = ['Data preparation', 'API runner', 'Gemini API', 'Evaluation & packaging', 'Evidence bundle', 'Static web host', 'Evidence loader', 'React application', 'Policy & scenario engine', 'Visitor state', 'Brief builder'];
+const hints = ['Model inputs exclude reference labels', 'credentials stay in preparation', 'never during a visitor session', 'full-set coverage and errors', 'not a database', 'not a verified deployment', 'validates its JSON Schema', 'never sends visitor answers', 'not live AI inference', 'no server-side visitor database', 'Identical inputs produce identical content'];
 
 test('Architecture preserves genuine judgments, workday calculations, decision and brief; leaving Watch pauses it', async ({ page }) => {
   const external: string[] = [], errors: string[] = [];
@@ -42,7 +42,7 @@ test('Architecture preserves genuine judgments, workday calculations, decision a
   }
   const originalBrief = await brief();
   await page.getByRole('button', { name: 'Architecture', exact: true }).click();
-  const flow = page.getByRole('group', { name: 'Solution flow' });
+  const flow = page.getByRole('group', { name: 'Software components and data flow' });
   await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button')).toHaveText(['Try it', 'Watch AI Inspect', 'Results', 'Architecture']);
   for (let n = 0; n < titles.length; n++) {
     await flow.getByRole('button', { name: new RegExp(titles[n]) }).click();
@@ -73,9 +73,9 @@ for (const width of [320, 360, 768, 1440]) test(`Architecture keyboard, accessib
   await page.getByRole('button', { name: 'Results', exact: true }).focus();
   await page.keyboard.press('Tab'); await expect(architecture).toBeFocused();
   await page.keyboard.press('Enter'); await expect(page.locator('#main')).toBeFocused();
-  const flow = page.getByRole('group', { name: 'Solution flow' });
+  const flow = page.getByRole('group', { name: 'Software components and data flow' });
   await page.keyboard.press('Tab');
-  await expect(flow.getByRole('button', { name: 'Next step', exact: false })).toBeFocused();
+  await expect(flow.getByRole('button', { name: 'Next component', exact: false })).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(page.locator('.architecture-viewport')).toBeFocused();
   for (let n = 0; n < titles.length; n++) {
@@ -103,10 +103,10 @@ for (const width of [320, 360, 768, 1440]) test(`Architecture keyboard, accessib
   await flow.getByRole('button', { name: titles[0], exact: true }).click();
   await expect(page.locator('#architecture-hint')).toContainText(hints[0]);
   await expect(page.locator('.architecture-detail')).toHaveCount(0);
-  await expect(page.locator('.architecture-task-icon')).toHaveCount(7);
-  await expect(page.locator('.architecture-lanes > span')).toHaveText(['Before your visit', 'The website', 'You']);
-  await expect(page.locator('.architecture-gateway')).toHaveCount(1);
-  if (width >= 768) expect(await page.locator('.architecture-viewport').evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
+  await expect(page.locator('.architecture-task-icon')).toHaveCount(11);
+  await expect(page.locator('.architecture-lanes > span')).toHaveText(['Preparation', 'Static delivery', 'Browser runtime']);
+  await expect(page.locator('.architecture-gateway')).toHaveCount(0);
+  if (width >= 1440) expect(await page.locator('.architecture-viewport').evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
   expect((await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
   expect(images).toEqual([]); // Explaining architecture does not load source pictures.
 });
@@ -116,34 +116,31 @@ test('fixture notice remains explicit when exploring Architecture', async ({ pag
   await page.goto('/'); await page.getByRole('button', { name: 'See the results', exact: false }).click();
   await page.getByRole('button', { name: 'Architecture', exact: true }).click();
   await expect(page.getByText('TEST EXAMPLES ONLY', { exact: false })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'How the solution works' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Software architecture' })).toBeVisible();
 });
 
-test('guided picture journey reaches each stop and replays; reduced motion and touch remain usable', async ({ page, browser }) => {
+test('software component tour reaches every module and restarts; reduced motion and touch remain usable', async ({ page, browser }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/'); await page.getByRole('button', { name: 'See the results', exact: false }).click();
   await page.getByRole('button', { name: 'Architecture', exact: true }).click();
-  const flow = page.getByRole('group', { name: 'Solution flow' });
+  const flow = page.getByRole('group', { name: 'Software components and data flow' });
   for (let n = 0; n < titles.length; n++) {
     await expect(flow.getByRole('button', { name: titles[n], exact: true })).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('#architecture-hint')).toContainText(hints[n]);
-    await expect(page.locator('.architecture-step-count')).toHaveText(`${n + 1} / 8`);
+    await expect(page.locator('.architecture-step-count')).toHaveText(`${n + 1} / 11`);
     expect(await page.locator('.architecture-token').evaluate(el => getComputedStyle(el).transitionDuration)).toBe('0s');
     const action = page.locator('.architecture-next');
-    await expect(action).toHaveText(n === 7 ? 'Restart ↺' : n === 5 ? 'Yes →' : 'Next step →');
+    await expect(action).toHaveText(n === 10 ? 'Restart ↺' : 'Next component →');
     await action.focus(); await page.keyboard.press(n % 2 ? 'Space' : 'Enter');
     await expect(action).toBeFocused();
   }
   await expect(flow.getByRole('button', { name: titles[0], exact: true })).toHaveAttribute('aria-pressed', 'true');
-  const saved = await page.evaluate(key => localStorage.getItem(key), storage);
-  await flow.getByRole('button', { name: 'Answered?', exact: true }).click();
-  await page.getByRole('button', { name: 'Not yet', exact: false }).click();
-  await expect(flow.getByRole('button', { name: 'Try it yourself', exact: true })).toHaveAttribute('aria-pressed', 'true');
-  await page.locator('.architecture-next').click();
-  await expect(flow.getByRole('button', { name: 'Answered?', exact: true })).toHaveAttribute('aria-pressed', 'true');
-  await page.getByRole('button', { name: 'Yes →', exact: true }).click();
-  await expect(flow.getByRole('button', { name: 'Reveal saved answers', exact: true })).toHaveAttribute('aria-pressed', 'true');
-  expect(await page.evaluate(key => localStorage.getItem(key), storage)).toBe(saved);
+  await expect(page.locator('.architecture-external')).toHaveAccessibleName('Gemini API');
+  await expect(page.locator('.architecture-legend')).toContainText('AI runs in preparation');
+  await flow.getByRole('button', { name: 'Static web host', exact: true }).click();
+  await expect(page.locator('#architecture-hint')).toContainText('not a verified deployment');
+  await flow.getByRole('button', { name: 'Visitor state', exact: true }).click();
+  await expect(page.locator('#architecture-hint')).toContainText('no server-side visitor database');
   const context = await browser.newContext({ viewport: { width: 360, height: 800 }, hasTouch: true, isMobile: true, reducedMotion: 'reduce' });
   const touch = await context.newPage();
   try {
