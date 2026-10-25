@@ -136,7 +136,7 @@ test('missing, corrupt and mismatched catalogs offer recovery and never invent a
   await expect(page.locator('.playback-status')).toContainText('Picture 1 of 115 · Paused · Picture');
 });
 
-for (const width of [360, 768, 1440]) test(`three revealed cards, keyboard and minimal layout at ${width}px`, async ({ page }) => {
+for (const width of [320, 360, 768, 1440]) test(`three revealed cards, keyboard and minimal layout at ${width}px`, async ({ page }) => {
   test.setTimeout(60000);
   await page.setViewportSize({ width, height: 1000 }); await page.emulateMedia({ reducedMotion: 'reduce' });
   const watch = await openWatch(page);
@@ -155,7 +155,7 @@ for (const width of [360, 768, 1440]) test(`three revealed cards, keyboard and m
     const card = comparison.getByRole('region', { name: modelNames[n], exact: true });
     await expect(card.locator('.playback-score strong')).toHaveText('1 / 1');
     await expect(card.locator('.comparison-status')).toContainText('Matches reference');
-    await expect(card.locator('.playback-score details')).not.toHaveAttribute('open', '');
+    await expect(card.locator('.playback-score > details')).not.toHaveAttribute('open', '');
     const contained = await card.evaluate(el => {
       const card = el.getBoundingClientRect(), score = el.querySelector('.playback-score')!.getBoundingClientRect();
       const status = el.querySelector('.comparison-status')!.getBoundingClientRect();
@@ -165,16 +165,36 @@ for (const width of [360, 768, 1440]) test(`three revealed cards, keyboard and m
   }
   const boxes = await comparison.locator('.comparison-card').evaluateAll(cards => cards.map(c => { const b = c.getBoundingClientRect(); return { x: b.x, y: b.y, width: b.width, height: b.height }; }));
   expect(Math.abs(boxes[0].width - boxes[1].width)).toBeLessThan(1);
-  expect(Math.abs(boxes[0].height - boxes[2].height)).toBeLessThan(1);
-  if (width > 650) expect(Math.abs(boxes[0].y - boxes[2].y)).toBeLessThan(1);
-  else expect(boxes[1].y).toBeGreaterThan(boxes[0].y);
+  const photograph = (await watch.locator('.image-window').boundingBox())!;
+  if (width >= 650) {
+    for (const box of boxes) {
+      expect(Math.abs(box.height - photograph.height)).toBeLessThan(1);
+      expect(Math.abs(box.width - photograph.width)).toBeLessThan(1);
+    }
+    expect(Math.abs(boxes[0].y - photograph.y)).toBeLessThan(1);
+    if (width >= 1280) for (const box of boxes) expect(Math.abs(box.y - photograph.y)).toBeLessThan(1);
+    else {
+      expect(boxes[1].y).toBeGreaterThan(photograph.y + photograph.height);
+      expect(Math.abs(boxes[1].y - boxes[2].y)).toBeLessThan(1);
+    }
+  } else expect(boxes[1].y).toBeGreaterThan(boxes[0].y);
+  const controls = await watch.locator('.watch-controls button, .watch-controls select').evaluateAll(elements => elements.map(el => {
+    const box = el.getBoundingClientRect(), style = getComputedStyle(el);
+    return { height: box.height, radius: style.borderRadius };
+  }));
+  for (const control of controls) {
+    expect(control.height).toBeGreaterThanOrEqual(44);
+    expect(control.radius).toBe('8px');
+  }
+  expect(Math.abs(controls.at(-1)!.height - controls.at(-2)!.height)).toBeLessThan(1);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.clock.resume();
   expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze()).violations).toEqual([]);
   expect(await watch.evaluate(el => el.getAnimations({ subtree: true }).length)).toBe(0);
-  const artifacts = resolve('../artifacts/card-scores'); await mkdir(artifacts, { recursive: true });
+  const artifacts = resolve('../artifacts/aligned-watch'); await mkdir(artifacts, { recursive: true });
   await comparison.screenshot({ path: resolve(artifacts, `cards-${width}.png`) });
-  await writeFile(resolve(artifacts, `layout-${width}.json`), JSON.stringify({ width, boxes, overflow: false, violations: [], reduced_motion: true }, null, 2));
+  await watch.locator('.watch-controls').screenshot({ path: resolve(artifacts, `controls-${width}.png`) });
+  await writeFile(resolve(artifacts, `layout-${width}.json`), JSON.stringify({ width, boxes, photograph, controls, overflow: false, violations: [], reduced_motion: true }, null, 2));
   const reference = comparison.getByRole('region', { name: 'Dataset reference', exact: true });
   const outline = reference.getByRole('button', { name: 'Show reference outline', exact: true });
   await expect(watch.locator('.picture-panel').getByRole('button', { name: /reference outline/ })).toHaveCount(0);

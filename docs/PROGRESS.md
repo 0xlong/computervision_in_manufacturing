@@ -2,6 +2,85 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Aligned inspection grid and consistent controls (25 October 2026)
+
+Status: Verified locally; focused checkpoint. One
+coordinator on `main`, no workers. Parent: user's minimal UI refinement,
+US-02/03/08/09; FR-REVEAL-001/002, NFR-ACCESS-001, NFR-LAYOUT-001. Dependencies:
+current persistent-score cards and reference-tile outline. Allowed: Watch, shared
+styles, Watch browser checks and only this new progress section.
+
+Tasks/acceptance: (1) align the uncropped photograph and three closed assessment
+cards in a four-column desktop grid and a two-by-two tablet grid; retain compact
+single-column cards on phones; (2) unify button shape, sizing and interaction
+states, align toolbar controls, and move model explanations inside their cards;
+(3) check 320/360/768/1440 px, keyboard, expanding details/outline, all journeys,
+unchanged benchmark/visitor data; (4) bounded visual review and focused checkpoint.
+
+Implemented: one shared grid for the photograph and all three assessment cards,
+with 16 px gaps and aligned edges. At 1440 px, all four cells measure **288 x
+288 px**, with matching top/bottom edges. Tablet layout is two-by-two with equal
+square cells; phones stack the full photograph and compact cards to avoid empty
+space. The image remains uncropped at Fit; zoom and the real reference outline
+remain available. Expanded explanations/counts grow naturally rather than clipping
+or shrinking text; exact square alignment applies to the closed default view.
+
+Moved Why AI said this inside each model card, grouped with its score/footer.
+Footer dividers align with the reference control. Scores stay visible throughout
+playback and still update only when the reference appears. No duplicate text or
+navigation was added. Kept the existing forest green, backgrounds and status
+colors. Shared buttons use an 8 px radius, consistent border/type/hover/focus
+states and a 44 px minimum height. Zoom buttons use a compact 36 px variant.
+Play remains the filled primary action; other actions are quieter outlines.
+The speed control and filter align, including wrapped labels at 320 px.
+
+Design references: W3C's [target-size guidance](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html)
+and [reflow guidance](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html).
+The exact grid, spacing and button appearance are project design choices, not a
+claim of a universal visual standard or complete WCAG conformance.
+
+Checks: production TypeScript/build pass. All **27 browser cases pass across the
+full run and focused rerun** (23 passed in the full 3.9-minute run; four responsive
+cases passed in a 28.5-second rerun). Four initial layout checks used a broad
+selector matching both newly grouped disclosure sections; targeted the direct
+Score details child and reran all four widths. No requirement/threshold weakened.
+The initial four-width visual pass also passed before the footer alignment polish.
+
+New geometry checks verify equal photograph/card dimensions and top edges on
+desktop, two-by-two placement at 768 px, persistent scores, aligned speed/filter
+heights, 8 px control radii, controls at least 44 px high, keyboard outline/details,
+visible focus, no page overflow and no automated WCAG-tagged violations at
+**320/360/768/1440 px**. The complete 115-picture and 26-picture filtered checks
+retain Gemini **98/115** and Gemma **89/115**; visitor answers, refresh, replay,
+reset/export, uncertainty/failure cases and reference-mask recovery pass.
+The shared button changes also passed Try it and Results journeys/layouts.
+
+The previously failed startup check passed this run at **2425.8549 ms** under the
+unchanged 10 Mbps / 100 ms RTT profile, fetching one challenge photograph.
+Earlier slower results remain recorded below; the cause of timing variability
+has not been established, and this UI work is not claimed as a performance fix.
+
+Fresh single-agent review checked semantic grouping/order, natural expansion,
+closed-view image readability/alignment, consistent interaction states, reveal
+gating, unchanged calculations/evidence and preserved visitor state. Public data,
+provider code, dependencies and calculation/playback/state modules are unchanged;
+pipeline/pure-calculation tests were not repeated.
+
+Visual sample: three grid-preview appearances of the same first photograph
+(one distinct source picture), plus two controls-only crops. No other source
+pictures visually opened; all-set checks are automated, not a full visual review.
+[Grid and control screenshots/measurements](../artifacts/aligned-watch/),
+[startup measurement](../artifacts/browser-verification/startup.json).
+
+Remaining limits: native VS Code browser access, native devices, Safari and a
+screen-reader audit remain unverified; actual browser checks use Chromium
+156.0.8078.4. Next: refresh http://127.0.0.1:5174/ in **Browser: Open Integrated
+Browser** (`workbench.action.browser.open`), choose Watch AI Inspect and Play;
+try expanding a model explanation and showing the reference outline.
+No model evaluations, provider calls, deployment or publication work. Checkpoint
+scope: three UI/test files plus only this new progress section. Unrelated earlier
+documentation/setup changes remain preserved and excluded.
+
 ## Cleaner Watch screen and reference-tile outline (25 October 2026)
 
 Status: UI verified locally; startup speed target remains unmet in this session.

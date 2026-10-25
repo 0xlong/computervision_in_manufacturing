@@ -1,8 +1,8 @@
-:root { font-family: "Segoe UI", Arial, sans-serif; color: #1c302e; background: #f6f7f2; line-height: 1.55; --green: #124f43; --muted: #52625b; --line: #ccd4c8; }
+:root { font-family: "Segoe UI", Arial, sans-serif; color: #1c302e; background: #f6f7f2; line-height: 1.55; --green: #124f43; --muted: #52625b; --line: #ccd4c8; --control-border: #7e9486; --control-radius: 8px; --control-height: 44px; }
 * { box-sizing: border-box; } body { margin: 0; }
 button, input, select, textarea { font: inherit; } button, select { cursor: pointer; }
-button { border: 1px solid #a8b6a6; border-radius: 6px; padding: .66rem 1rem; color: #1c302e; background: #fff; font-weight: 600; }
-button:hover:not(:disabled) { background: #e7eecf; border-color: var(--green); } button:disabled { opacity: .58; cursor: default; }
+button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: var(--control-height); border: 1px solid var(--control-border); border-radius: var(--control-radius); padding: 10px 14px; font-size: .875rem; line-height: 1.2; color: var(--green); background: #fff; font-weight: 600; }
+button:hover:not(:disabled) { background: #e8eee7; border-color: var(--green); } button:disabled { opacity: .58; cursor: default; }
 button[aria-pressed="true"], button[aria-current] { background: var(--green); color: white; border-color: var(--green); }
 button[aria-pressed="true"]:hover:not(:disabled), button[aria-current]:hover:not(:disabled) { background: #0b3b31; color: #fff; }
 button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible, [tabindex]:focus-visible { outline: 3px solid #a44f12; outline-offset: 4px; }
@@ -19,7 +19,7 @@ main:has(.inspection-layout), main:has(.result-highlights) { max-width: 800px; }
 .development-notice { color: #4c542f; background: #eef0d7; border-left: 3px solid #809342; padding: 9px 14px; font-size: .79rem; margin-bottom: 0; }
 .hero { max-width: 720px; margin: 0 auto; padding: 48px 0 30px; } .hero h1 { font-size: clamp(2.25rem, 5vw, 4rem); letter-spacing: -.065em; margin-bottom: 24px; } .hero h1 em { color: var(--green); font-style: normal; }
 .hero-copy { color: var(--muted); font-size: 1.1rem; max-width: 550px; margin-bottom: 30px; } .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
-.primary { background: var(--green); color: #fff; border-color: var(--green); padding: .85rem 1.25rem; } .primary:hover:not(:disabled) { background: #0b3b31; color: white; } .text-button { border: 0; background: transparent; }
+.primary { background: var(--green); color: #fff; border-color: var(--green); padding: 10px 18px; } .primary:hover:not(:disabled) { background: #0b3b31; color: white; } .text-button { border: 0; background: transparent; }
 .small { color: var(--muted); font-size: .8rem; line-height: 1.6; }
 .prototype-note { margin: 28px 0 0; font-size: .84rem; color: var(--muted); } .about-demo { color: var(--muted); max-width: 720px; margin: 25px auto 0; } .about-demo summary { color: var(--green); padding: 4px 0; }
 .section-heading { margin: 20px 0; max-width: 760px; } .section-heading h1 { font-size: clamp(1.7rem, 3vw, 2.5rem); margin-bottom: 18px; } .section-heading p:last-child { color: var(--muted); }
@@ -67,8 +67,6 @@ details { border-top: 1px solid var(--line); padding: 18px 0; margin-top: 25px; 
 @media (max-width: 650px) { .answer-comparison { grid-template-columns: 1fr; gap: 10px; } .comparison-card { display: grid; grid-template-columns: minmax(90px, .85fr) minmax(0, 1.3fr); column-gap: 12px; padding: 16px; } .comparison-card h2 { grid-row: 1 / 3; margin: 2px 0 0; } .comparison-value { grid-column: 2; min-height: 0; font-size: 1.35rem; } .comparison-status { grid-column: 2; margin-top: 8px; } }
 
 .playback-controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
-main:has(.watch:not([hidden])) { max-width: 800px; }
-.playback-comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 24px; }
 .playback-controls { align-items: end; }
 .playback-controls select { margin-bottom: 0; }
 .model-comparison { margin: 32px 0; }
@@ -83,12 +81,6 @@ main:has(.model-comparison) { max-width: 1200px; }
 .comparison-table-window tbody th button { overflow-wrap: anywhere; text-align: left; padding: 8px; }
 .comparison-table-window .small { display: block; font-weight: 400; margin-top: 8px; }
 .comparison-guide { margin-top: 0; border-top: 0; }
-@media (min-width: 1000px) {
-  main:has(.watch:not([hidden])) { max-width: 1100px; }
-  .playback-evidence { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 28px; align-items: center; }
-  .playback-comparison { margin-top: 0; }
-}
-@media (max-width: 650px) { .playback-controls > button { padding: .6rem .65rem; } }
 /* Stages change instantly: no motion, animated timer or automatic scrolling. */
 .playback-filter, .dashboard-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
 .playback-filter p { flex-basis: 100%; margin-bottom: 0; }
@@ -113,22 +105,9 @@ main:has(.model-comparison) { max-width: 1200px; }
 }
 .watch-heading { margin: 24px 0 16px; }
 .watch-heading h1 { margin-bottom: 8px; }
-.watch-heading p { margin-bottom: 0; font-size: .85rem; }
-.watch-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 12px 20px; }
-.watch-controls .playback-controls, .watch-controls .playback-filter { margin: 0; gap: 8px; }
-.viewing-time { font-size: .75rem; }
-.viewing-time select { margin: 2px 0 0; padding: 9px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
-.watch-controls { margin-bottom: 16px; }
 .pending-assessment { visibility: hidden; }
-.playback-comparison { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; align-items: start; }
-.playback-comparison > div { min-width: 0; }
-.playback-comparison .comparison-card { padding: 16px 12px; }
-.playback-comparison .comparison-card h2 { overflow-wrap: anywhere; min-height: 2.8em; }
-.playback-comparison .comparison-value { font-size: 1.35rem; }
-.playback-comparison .assessment { border: 0; margin: 8px 0 0; padding: 0 4px; font-size: .75rem; }
 .playback-score, .reference-outline { grid-column: 1 / -1; border-top: 1px solid currentColor; margin-top: 16px; padding-top: 12px; min-height: 74px; }
-.reference-outline button { width: 100%; padding: 9px 8px; font-size: .78rem; }
 .playback-score > p { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 8px; font-size: .75rem; margin: 0; }
 .playback-score strong { font-size: 1.3rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .playback-score details { border: 0; margin-top: 8px; padding: 0; font-size: .75rem; }
@@ -137,17 +116,44 @@ main:has(.model-comparison) { max-width: 1200px; }
 .score-counts > div { gap: 8px; padding: 6px 0; font-size: .75rem; }
 .score-counts dd { color: inherit; font-variant-numeric: tabular-nums; }
 .playback-score .small { margin: 0; }
-@media (min-width: 1000px) {
-  main:has(.watch:not([hidden])) { max-width: 1280px; }
-  .playback-evidence { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 24px; }
-  .playback-evidence .picture-panel { max-width: 380px; }
-}
 @media (max-width: 650px) {
   .site-header nav { gap: 0; flex-wrap: wrap; }
   .site-header nav button { padding: 8px 10px; font-size: .84rem; }
-  .playback-comparison { grid-template-columns: 1fr; }
-  .playback-comparison .comparison-card h2 { min-height: 0; }
-  .watch-controls .playback-controls { align-items: center; }
-  .playback-comparison .comparison-value { font-size: 1.2rem; }
 }
-@media (max-width: 650px) { .playback-comparison { grid-template-columns: 1fr; } }
+
+/* One grid for the photograph and three assessments; details may grow naturally. */
+.watch-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 0; }
+.watch-controls .playback-controls, .watch-controls .playback-filter { margin: 0; gap: 8px; }
+.watch-controls .playback-filter { margin-left: auto; }
+.viewing-time { align-self: stretch; }
+.viewing-time select { min-height: var(--control-height); height: 100%; margin: 0; padding: 10px 12px; border: 1px solid var(--control-border); border-radius: var(--control-radius); font-size: .875rem; }
+.playback-evidence { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 56px; align-items: start; }
+.playback-evidence .picture-panel { position: relative; max-width: none; margin: 0; }
+.playback-evidence .image-toolbar { position: absolute; bottom: calc(100% + 8px); left: 0; right: 0; padding: 0; gap: 6px; }
+.playback-evidence .image-toolbar button { min-height: 36px; min-width: 36px; padding: 6px 10px; font-size: .8rem; }
+.playback-evidence .image-window { max-height: none; border-radius: 10px; }
+.playback-evidence > div { min-width: 0; }
+.playback-comparison .comparison-card { display: flex; flex-direction: column; aspect-ratio: 1; padding: 16px; border-radius: 10px; }
+.playback-comparison .comparison-card h2 { min-height: 2.8em; margin: 0 0 12px; overflow-wrap: anywhere; }
+.playback-comparison .comparison-value { min-height: 2.4em; font-size: 1.3rem; }
+.playback-comparison .comparison-status { margin: 12px 0 16px; }
+.playback-comparison .playback-score, .playback-comparison .reference-outline { margin-top: auto; min-height: 100px; }
+.playback-comparison .assessment { border: 0; margin: 8px 0 0; padding: 0; font-size: .75rem; }
+.reference-outline button { width: 100%; font-size: .8rem; }
+main:has(.watch:not([hidden])) { max-width: 800px; }
+@media (min-width: 1280px) {
+  main:has(.watch:not([hidden])) { max-width: 1280px; }
+  .playback-evidence { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 650px) {
+  .watch-controls { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .watch-controls .playback-controls { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .watch-controls .playback-controls button { padding: 8px 4px; font-size: .8rem; }
+  .viewing-time, .watch-controls .playback-filter { grid-column: span 2; min-width: 0; margin: 0; }
+  .watch-controls .playback-filter button { width: 100%; padding: 8px; font-size: .8rem; }
+  .viewing-time select { width: 100%; font-size: .8rem; }
+  .playback-evidence { grid-template-columns: 1fr; }
+  .playback-comparison .comparison-card { aspect-ratio: auto; }
+  .playback-comparison .comparison-card h2 { min-height: 0; margin-bottom: 12px; }
+  .playback-comparison .comparison-value { min-height: 0; }
+}

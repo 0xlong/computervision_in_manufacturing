@@ -84,21 +84,20 @@ function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: Playback
         <button disabled={state.index === 0} onClick={() => navigate(state.index - 1)}>Previous</button>
         <button disabled={state.index >= indices.length - 1} onClick={() => navigate(state.index + 1)}>Next</button>
         <button onClick={restart}>Restart</button>
-        <div className="viewing-time"><label htmlFor="viewing-time">Viewing time</label><select id="viewing-time" value={seconds} onChange={e => setSeconds(Number(e.target.value))}>
-          <option value={2}>Fast · 2 s</option><option value={4}>Normal · 4 s</option><option value={8}>Slow · 8 s</option>
-        </select></div>
       </div>
+      <div className="viewing-time"><label className="sr-only" htmlFor="viewing-time">Viewing time</label><select id="viewing-time" value={seconds} onChange={e => setSeconds(Number(e.target.value))}>
+        <option value={2}>Fast · 2 s</option><option value={4}>Normal · 4 s</option><option value={8}>Slow · 8 s</option>
+      </select></div>
       <div className="playback-filter" role="group" aria-label="Picture filter">
-        {state.filter === 'all' ? <button disabled={bundle.runs.length < 2} onClick={() => changeFilter('different')}>Different answers only ({different.length})</button> : <button onClick={() => changeFilter('all')}>Show all pictures</button>}
+        {state.filter === 'all' ? <button aria-label={`Different answers only (${different.length})`} disabled={bundle.runs.length < 2} onClick={() => changeFilter('different')}>Different answers ({different.length})</button> : <button onClick={() => changeFilter('all')}>Show all pictures</button>}
       </div>
     </div>
     <p className="playback-status sr-only" role="status">{indices.length ? `Picture ${state.index + 1} of ${indices.length}` : 'No matching pictures'} · {state.finished ? 'Finished' : state.playing ? 'Playing' : 'Paused'}{indices.length > 0 && !state.finished && ` · ${!ready && !failed ? 'Loading picture' : stageLabel}`}{state.filter === 'different' && ' · Different answers'}</p>
     {state.finished ? <ComparisonDashboard bundle={bundle} watched={counts[0].revealed} matching={different.length} filtered={state.filter === 'different'} active={active}
       onReview={() => returnToPlayback(() => changeFilter('all'))} onDifferent={() => returnToPlayback(() => changeFilter('different'))} onAgain={() => returnToPlayback(restart)} /> : <>
       {!image && <p className="notice">No different answers. Choose “Show all pictures” to continue.</p>}
-      {image && <div className="playback-evidence">
+      {image && <div className="playback-evidence playback-comparison" role="group" aria-label="Saved answer comparison">
         <Picture key={pictureKey} image={image} revealed={referenceShown} onReady={onReady} onFailure={onFailure} referenceOutline={outline} />
-        <div className="answer-comparison playback-comparison" role="group" aria-label="Saved answer comparison">
           {bundle.runs.map((saved, index) => {
             const title = modelName(saved.report.model_id);
             const count = counts[index];
@@ -111,12 +110,12 @@ function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: Playback
                   <div><dt>Good parts flagged</dt><dd>{count.falseAlarms}</dd></div>
                 </dl><p className="small">{count.unsure} unsure · {count.unavailable} unavailable</p>
               </details>
-            </div>;
-            return <div key={saved.report.run_id}>
-              <Assessment saved={saved} imageId={image.image_id} reference={referenceShown ? image.label : undefined} title={title} pending={state.stage <= index}>{score}</Assessment>
               <div className={state.stage <= index ? 'pending-assessment' : ''} aria-hidden={state.stage <= index}>
                 <AssessmentDetails key={image.image_id} saved={saved} imageId={image.image_id} fixture={bundle.execution === 'fixture'} />
               </div>
+            </div>;
+            return <div key={saved.report.run_id}>
+              <Assessment saved={saved} imageId={image.image_id} reference={referenceShown ? image.label : undefined} title={title} pending={state.stage <= index}>{score}</Assessment>
             </div>;
           })}
           <div><AnswerCard title="Dataset reference" value={image.label === 'normal' ? 'Looks fine' : 'Needs checking'} detail={image.label === 'normal' ? 'No defect labelled' : 'Defect labelled'} tone="reference" pending={!referenceShown}>
@@ -124,7 +123,6 @@ function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: Playback
               {image.mask && <button aria-pressed={outline} onClick={() => setOutlinedPicture(outline ? '' : pictureKey)}>{outline ? 'Hide reference outline' : 'Show reference outline'}</button>}
             </div>
           </AnswerCard></div>
-        </div>
       </div>}
     </>}
     <p className="sr-only" id="playback-keys">Space to play or pause, arrows for pictures, Home to restart, End for the last picture, Escape to pause. Buttons work with Tab and Enter.</p>
