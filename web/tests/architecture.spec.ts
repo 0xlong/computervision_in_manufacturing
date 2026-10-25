@@ -75,7 +75,7 @@ for (const width of [320, 360, 768, 1440]) test(`Architecture keyboard, accessib
   await page.keyboard.press('Enter'); await expect(page.locator('#main')).toBeFocused();
   const flow = page.getByRole('group', { name: 'Solution flow' });
   await page.keyboard.press('Tab');
-  await expect(flow.getByRole('button', { name: 'Next stop', exact: false })).toBeFocused();
+  await expect(flow.getByRole('button', { name: 'Next step', exact: false })).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(page.locator('.architecture-viewport')).toBeFocused();
   for (let n = 0; n < titles.length; n++) {
@@ -103,7 +103,7 @@ for (const width of [320, 360, 768, 1440]) test(`Architecture keyboard, accessib
   await flow.getByRole('button', { name: titles[0], exact: true }).click();
   await expect(page.locator('#architecture-hint')).toContainText(hints[0]);
   await expect(page.locator('.architecture-detail')).toHaveCount(0);
-  await expect(page.locator('.architecture-toy')).toHaveCount(7);
+  await expect(page.locator('.architecture-task-icon')).toHaveCount(7);
   await expect(page.locator('.architecture-lanes > span')).toHaveText(['Before your visit', 'The website', 'You']);
   await expect(page.locator('.architecture-gateway')).toHaveCount(1);
   if (width >= 768) expect(await page.locator('.architecture-viewport').evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
@@ -116,7 +116,7 @@ test('fixture notice remains explicit when exploring Architecture', async ({ pag
   await page.goto('/'); await page.getByRole('button', { name: 'See the results', exact: false }).click();
   await page.getByRole('button', { name: 'Architecture', exact: true }).click();
   await expect(page.getByText('TEST EXAMPLES ONLY', { exact: false })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'How does it work?' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'How the solution works' })).toBeVisible();
 });
 
 test('guided picture journey reaches each stop and replays; reduced motion and touch remain usable', async ({ page, browser }) => {
@@ -130,7 +130,7 @@ test('guided picture journey reaches each stop and replays; reduced motion and t
     await expect(page.locator('.architecture-step-count')).toHaveText(`${n + 1} / 8`);
     expect(await page.locator('.architecture-token').evaluate(el => getComputedStyle(el).transitionDuration)).toBe('0s');
     const action = page.locator('.architecture-next');
-    await expect(action).toHaveText(n === 7 ? 'Again ↺' : n === 5 ? 'Yes →' : 'Next stop →');
+    await expect(action).toHaveText(n === 7 ? 'Restart ↺' : n === 5 ? 'Yes →' : 'Next step →');
     await action.focus(); await page.keyboard.press(n % 2 ? 'Space' : 'Enter');
     await expect(action).toBeFocused();
   }

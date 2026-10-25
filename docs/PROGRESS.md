@@ -2,6 +2,69 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Professional architecture styling (25 October 2026)
+
+Status: verified locally; focused checkpoint. One coordinator on `main`, no
+workers. Parent: user's request to match the screenshot more closely with a
+professional modern style; specification section 5, US-06/08/09. Depends on the
+working lane diagram. Allowed: Architecture component/styles, affected browser
+expectations and only this progress section. Earlier edits are preserved.
+
+Tasks/completion: replace toy drawings with consistent compact task icons;
+flatten cards/lanes, refine borders/arrows/spacing and selection marker; keep
+flows, example branches, concise hints and saved evidence; check all steps,
+both routes, replay, state/export, responsive layouts, touch/keyboard/reduced
+motion; inspect diagram-only renders, review and save a focused checkpoint.
+
+Implemented: seven 22 px outline process icons replace the large cartoon
+illustrations. Tasks use 112 px high flat boxes, smaller corner radii, lighter
+borders and regular-weight labels; lane headers use a neutral existing color.
+Removed raised shadows, numbered bubbles, hover rotation and the orange picture
+pin. A small green selection dot moves between steps; the selected task and its
+connecting arrow are highlighted. Inactive arrows are thinner and muted. The
+diamond uses an exclusive-choice cross with crisp corners, retaining Answered?
+and the real answer-before-reveal explanation. Connector endpoints align with
+the shorter boxes. All colors come from the existing palette.
+
+The heading is How the solution works; controls say Next step / Restart and the
+footer says Process guide / saved AI results. One short hint and the interactive
+Not yet / Yes example routes remain. No added text sections, dependencies or
+changes to inspection evidence, visitor state, reveal rules, calculations,
+export or provider code. Example branching still changes diagram selection only.
+Phone panning/automatic centering, tablet/desktop fit and reduced motion remain.
+
+Verification: production TypeScript/build passed; all **7 affected browser
+cases passed in 46.9 seconds** against the rebuilt production preview. Checks
+cover eight selectable steps, both branches and return loop, guided progression,
+Restart, Enter/Space, preserved focus, 44 px minimum controls, touch at 360 x 800,
+reduced motion and 320/360/768/1440 px. No page overflow or automated WCAG-tagged
+violations. Selected task boxes remain inside the scroll viewport; tablet and
+desktop show the complete diagram. The genuine journey confirms Watch pauses,
+saved answers survive switching/refresh, projections remain identical and
+Markdown export is byte-for-byte unchanged. Example choices leave storage
+unchanged; fixture notices remain explicit. No browser errors or external
+requests in that journey. Unchanged unit/full-catalog checks were not repeated.
+
+Actual development page http://127.0.0.1:5174/ renders in Chromium 156.0.8078.4
+at all four widths; eight-step progression and Restart pass. Visually reviewed
+1440/768/360 px diagram screenshots. **Zero source photographs visually opened
+or requested by the Architecture-only render path.** This is layout review,
+not a dataset audit. Local evidence: `.cache/professional-architecture/dev-*.png`,
+`.cache/professional-architecture/dev-render.json` and its render script.
+
+Fresh single-agent review checked the screenshot reference, consistent icon/
+line sizes, flat styling, connector alignment, active-arrow selection, crisp
+decision shape, shorter-box hit targets, unchanged flow/meaning, responsive
+scrolling and preserved state/evidence. Three UI/check files and only this new
+progress section enter the checkpoint. Pre-task progress text is compared with
+a saved copy and preserved exactly. No remote changes or publication.
+
+Limits: the previously unavailable VS Code browser automation connection is
+reused; actual Chromium is verified. Native devices, Safari/Firefox and a
+screen-reader audit remain unverified. Next: refresh the local website, open
+Architecture and select a task or use Next step. In VS Code use **Browser:
+Open Integrated Browser** (`workbench.action.browser.open`) with the same URL.
+
 ## Architecture lanes and decision paths (25 October 2026)
 
 Status: verified locally; focused checkpoint. One coordinator on `main`, no
