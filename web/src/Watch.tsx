@@ -82,6 +82,10 @@ function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: Playback
         <button onClick={restart}>Stop</button>
       </div>
     </div>
+    <div className="playback-progress">
+      <progress value={state.finished ? indices.length : state.index} max={indices.length} aria-label="Playback progress" aria-valuetext={`${state.finished ? 'Finished · ' : ''}Picture ${state.index + 1} of ${indices.length}`} />
+      <span>Picture {state.index + 1} of {indices.length}</span>
+    </div>
     <p className="playback-status sr-only" role="status">{`Picture ${state.index + 1} of ${indices.length}`} · {state.finished ? 'Finished' : state.playing ? 'Playing' : 'Paused'}{!state.finished && ` · ${!ready && !failed ? 'Loading picture' : stageLabel}`}</p>
     {state.finished ? <ComparisonDashboard bundle={bundle} watched={counts[0].revealed} active={active}
       onAgain={() => returnToPlayback(restart)} /> : <>

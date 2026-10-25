@@ -8,6 +8,10 @@ test('picture → first model → second model → reference; counts wait for th
   const images: string[] = [];
   page.on('request', r => { if (r.url().includes('/evidence/images/')) images.push(r.url()); });
   const watch = await openWatch(page);
+  const progress = watch.getByRole('progressbar', { name: 'Playback progress', exact: true });
+  await expect(progress).toHaveJSProperty('value', 0);
+  await expect(progress).toHaveJSProperty('max', 115);
+  await expect(progress).toHaveAttribute('aria-valuetext', 'Picture 1 of 115');
   await expect(status(watch)).toContainText('Picture 1 of 115 · Paused · Picture');
   await expect(watch.locator('.watch-heading p')).toHaveCount(0);
   await expect(watch.getByText('About this playback', { exact: true })).toHaveCount(0);
@@ -189,6 +193,16 @@ for (const width of [320, 360, 768, 1440]) test(`three revealed cards, keyboard 
     expect(control.radius).toBe('8px');
   }
   expect(Math.abs(controls.at(-1)!.height - controls.at(-2)!.height)).toBeLessThan(1);
+  const progress = watch.getByRole('progressbar', { name: 'Playback progress', exact: true });
+  const progressBox = (await progress.boundingBox())!;
+  const counterBox = (await watch.locator('.playback-progress span').boundingBox())!;
+  const controlsBox = (await watch.locator('.watch-controls').boundingBox())!;
+  expect(progressBox.height).toBe(4);
+  expect(progressBox.width).toBeGreaterThan(100);
+  expect(progressBox.y).toBeGreaterThan(controlsBox.y + controlsBox.height);
+  expect(progressBox.x + progressBox.width).toBeLessThan(counterBox.x);
+  expect(counterBox.y + counterBox.height).toBeLessThan(photograph.y);
+  await expect(progress).not.toHaveAttribute('tabindex');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.clock.resume();
   expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze()).violations).toEqual([]);
@@ -266,19 +280,28 @@ test('Start, Pause and Stop keep the full catalog and reset only playback', asyn
   const before = await page.evaluate(key => localStorage.getItem(key), storage);
   const start = watch.getByRole('button', { name: 'Start', exact: true });
   const stop = watch.getByRole('button', { name: 'Stop', exact: true });
+  const progress = watch.getByRole('progressbar', { name: 'Playback progress', exact: true });
+  await expect(progress).toHaveJSProperty('value', 0);
   await start.focus(); await page.keyboard.press('Enter');
   await expect(watch.getByRole('button', { name: 'Pause', exact: true })).toBeFocused();
   await page.clock.runFor(999); await expect(status(watch)).toContainText('Playing · Picture');
   for (const stage of [...modelNames, 'Dataset reference']) await tick(page, watch, stage, stage === modelNames[0] ? 1 : 1000);
   await page.clock.runFor(999); await expect(status(watch)).toContainText('Picture 1 of 115');
+  await expect(progress).toHaveJSProperty('value', 0); // Reveals do not finish a picture.
   await tick(page, watch, 'Picture 2 of 115', 1); // Exactly 4,000 ms, excluding loading.
+  await expect(progress).toHaveJSProperty('value', 1);
+  await expect(watch.locator('.playback-progress span')).toHaveText('Picture 2 of 115');
   await page.clock.runFor(250);
   await page.keyboard.press('Enter'); // Pause preserves the stage and remaining time.
   await expect(start).toBeFocused();
+  await page.clock.runFor(10000);
+  await expect(progress).toHaveJSProperty('value', 1);
   await page.keyboard.press('Tab'); await expect(stop).toBeFocused();
   expect(await stop.evaluate(el => getComputedStyle(el).outlineStyle)).toBe('solid');
   await page.keyboard.press('Enter');
   await expect(status(watch)).toContainText('Picture 1 of 115 · Paused · Picture');
+  await expect(progress).toHaveJSProperty('value', 0);
+  await expect(watch.locator('.playback-progress span')).toHaveText('Picture 1 of 115');
   for (let n = 0; n < 2; n++) await expect(totals(watch, n).locator('strong')).toHaveText('0 / 0');
   await page.clock.runFor(10000); await expect(status(watch)).toContainText('Picture 1 of 115 · Paused · Picture');
   await start.click(); await page.clock.runFor(999); await expect(status(watch)).toContainText('Playing · Picture');

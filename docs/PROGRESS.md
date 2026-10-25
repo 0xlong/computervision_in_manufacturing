@@ -2,6 +2,65 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Minimal Watch progress bar (25 October 2026)
+
+Status: Verified locally; focused checkpoint. One coordinator on `main`, no workers. Parent: approved
+user request, US-02/03/09. Dependency: existing fixed-time playback state.
+Allowed files: Watch, styles, affected existing browser checks and only this new
+progress section. Earlier documentation/setup edits stay preserved and excluded.
+
+Tasks/acceptance: (1) add a thin existing-green progress bar below playback
+buttons, with a right-aligned Picture N of total counter; derive total from the
+loaded catalog; (2) update on completed pictures, hold on pause, reset on Stop/
+replay, fill at completion; retain keyboard navigation without implying every
+skipped image was watched; (3) check first/middle/last, loading/failures, saved
+judgments, 320/360/768/1440 px layouts, keyboard and accessible progress semantics;
+(4) bounded visual review, diff review, recorded evidence and focused checkpoint.
+
+Implemented: a 4 px existing-green bar on a pale existing-green track, with a
+small right-aligned Picture N of total counter. It sits between the playback
+buttons and picture grid. No percentage, new controls, animation or dependency.
+The native HTML progress element has the accessible name Playback progress and
+the current picture as its text value; it adds no keyboard stop or live announcement.
+The bar starts empty, advances after each full four-second picture, stays still
+while paused/loading, fills after the final picture and resets on Stop/replay.
+Keyboard navigation follows the selected position. This position indicator does
+not change the separate, honest count of references actually viewed.
+
+Actual development page http://127.0.0.1:5174/ renders correctly in Chromium
+156.0.8078.4. Checked the middle position (Picture 58 of 115, bar 57/115), paused
+hold and Stop reset. Visual sample: **one source-photograph appearance**, on the
+desktop view, plus two bar-only crops at 320/768 px. No other source pictures
+visually opened. The photograph remains decoded and uncropped; the bar and
+counter fit without horizontal overflow. This is layout review, not a visual
+audit of the dataset. Local evidence: `.cache/watch-progress/dev-*.png` and
+`.cache/watch-progress/dev-render.json`.
+
+Verification: production TypeScript/build and **all 16 affected browser cases
+passed** in 2.0 minutes. The complete
+115-picture browser run passed with progress/counter checked at every position,
+full completion and replay reset. Saved scores remain Gemini 98/115 and Gemma
+89/115; visitor judgments, genuine observations and honest partial-view counts
+remain intact. The six-picture fixture also passes with its own dynamic total;
+its generated results remain separate from authentic AI evidence.
+
+Responsive/keyboard checks passed at 320/360/768/1440 px, including 4 px bar
+height, counter to its right, placement below buttons and above the photograph,
+no page overflow or automated WCAG-tagged violations, and no motion. Existing
+timer, hidden-tab pause, picture/catalog/outline recovery and score checks pass.
+No calculation, visitor-state, data or provider code changed; unrelated journeys
+and unit tests were not repeated. Fresh single-agent diff review checked scope,
+dynamic totals, first/final/reset values, accessible semantics, unchanged evidence
+and preserved earlier edits. Only this new progress section is included with the
+five UI/test files. Earlier progress text is compared against a pre-task copy.
+
+Limits: VS Code integrated-browser automation was unavailable in the preceding
+step; verification here uses actual local Chromium rendering. Native devices,
+Safari/Firefox and a screen-reader audit remain unverified. Next: refresh the
+same local URL using VS Code's **Browser: Open Integrated Browser**
+(`workbench.action.browser.open`), choose Watch AI Inspect, and press Start to
+watch the bar advance. No provider calls, deployment or publication.
+
 ## Minimal fixed-time Watch controls (25 October 2026)
 
 Status: Verified locally; focused checkpoint. One coordinator on `main`, no

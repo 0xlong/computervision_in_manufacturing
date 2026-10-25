@@ -61,6 +61,8 @@ export async function finish(page: Page, watch: Locator, ids: string[], modelCou
   await watch.getByRole('button', { name: 'Start', exact: true }).click();
   for (const [index, id] of ids.entries()) {
     await expect(status(watch)).toContainText(`Picture ${index + 1} of ${ids.length} · Playing · Picture`);
+    await expect(watch.getByRole('progressbar', { name: 'Playback progress', exact: true })).toHaveJSProperty('value', index);
+    await expect(watch.locator('.playback-progress span')).toHaveText(`Picture ${index + 1} of ${ids.length}`);
     for (let n = 0; n < modelCount; n++) await expect(totals(watch, n)).toBeVisible();
     await expect(watch.locator('.playback-comparison .comparison-value:visible')).toHaveCount(0);
     for (let n = 0; n < modelCount; n++) {
@@ -93,6 +95,8 @@ export async function finish(page: Page, watch: Locator, ids: string[], modelCou
   }
   const dashboard = watch.getByRole('region', { name: 'The complete comparison', exact: true });
   await expect(dashboard).toBeVisible();
+  await expect(watch.getByRole('progressbar', { name: 'Playback progress', exact: true })).toHaveJSProperty('value', ids.length);
+  await expect(watch.getByRole('progressbar', { name: 'Playback progress', exact: true })).toHaveJSProperty('max', ids.length);
   await expect(dashboard.getByRole('heading', { name: 'The complete comparison', exact: true })).toBeFocused();
   await expect(watch.getByRole('button', { name: 'Start', exact: true })).toBeDisabled();
   return dashboard;

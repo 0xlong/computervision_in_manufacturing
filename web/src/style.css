@@ -121,6 +121,12 @@ main:has(.model-comparison) { max-width: 1200px; }
 /* One grid for the photograph and three assessments; details may grow naturally. */
 .watch-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 0; }
 .watch-controls .playback-controls { margin: 0; gap: 8px; }
+.playback-progress { display: flex; align-items: center; gap: 12px; margin-top: 16px; color: var(--muted); font-size: .75rem; }
+.playback-progress span { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.playback-progress progress { appearance: none; flex: 1; min-width: 0; width: 100%; height: 4px; border: 0; border-radius: 4px; overflow: hidden; background: #e0e9d7; color: var(--green); }
+.playback-progress progress::-webkit-progress-bar { background: #e0e9d7; border-radius: 4px; }
+.playback-progress progress::-webkit-progress-value { background: var(--green); border-radius: 4px; }
+.playback-progress progress::-moz-progress-bar { background: var(--green); border-radius: 4px; }
 .playback-evidence { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 24px; align-items: start; }
 .playback-evidence .picture-panel { position: relative; max-width: none; margin: 0; }
 .playback-evidence .image-window { max-height: none; border-radius: 10px; }

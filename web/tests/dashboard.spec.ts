@@ -37,6 +37,7 @@ test('all 115 pictures reveal both genuine models, count every reference, stop a
   await page.keyboard.press('Enter');
   await expect(watch).toBeFocused();
   await expect(status(watch)).toContainText('Picture 1 of 115 · Paused · Picture');
+  await expect(watch.getByRole('progressbar', { name: 'Playback progress', exact: true })).toHaveJSProperty('value', 0);
   for (let n = 0; n < 2; n++) {
     await expect(totals(watch, n).locator('strong')).toHaveText('0 / 0');
     for (const key of ['Defects flagged', 'Defects missed', 'Good parts flagged']) await expect(metric(totals(watch, n), key)).toHaveText('0');
@@ -55,11 +56,14 @@ test('all 115 pictures reveal both genuine models, count every reference, stop a
 test('skipping to the end keeps partial viewing honest and Stop resets the completed playback', async ({ page }) => {
   const watch = await openWatch(page, true), before = await page.evaluate(key => localStorage.getItem(key), storage);
   await watch.focus(); await page.keyboard.press('End');
+  await expect(watch.getByRole('progressbar', { name: 'Playback progress', exact: true })).toHaveJSProperty('value', 114);
+  await expect(watch.locator('.playback-progress span')).toHaveText('Picture 115 of 115');
   await watch.getByRole('button', { name: 'Start', exact: true }).click();
   for (const stage of [...modelNames, 'Dataset reference']) await tick(page, watch, stage);
   await page.clock.runFor(1000);
   const dashboard = watch.getByRole('region', { name: 'The complete comparison', exact: true });
   await expect(dashboard).toContainText('1 of 115 pictures viewed. Scores below cover all 115 pictures.');
+  await expect(watch.getByRole('progressbar', { name: 'Playback progress', exact: true })).toHaveJSProperty('value', 115);
   for (const [index, value] of ['98 / 115', '89 / 115'].entries()) await expect(dashboard.locator('.benchmark-card').nth(index).locator('.benchmark-bar').first()).toContainText(value);
   await expect(dashboard.getByRole('button')).toHaveText(['Watch again']);
   await watch.getByRole('button', { name: 'Stop', exact: true }).click();
