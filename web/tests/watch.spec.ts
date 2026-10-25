@@ -77,7 +77,7 @@ test('picture → first model → second model → reference; counts wait for th
   await expect(metric(totals(watch, 0), 'Defects flagged')).toHaveText('1');
 });
 
-test('pause keeps remaining four-second viewing time; top tabs and hidden tabs preserve the stage and visitor judgments', async ({ page }) => {
+test('pause keeps remaining three-second viewing time; top tabs and hidden tabs preserve the stage and visitor judgments', async ({ page }) => {
   const watch = await openWatch(page, true);
   const before = await page.evaluate(key => localStorage.getItem(key), storage);
   await watch.getByRole('button', { name: 'Start', exact: true }).click();
@@ -86,7 +86,7 @@ test('pause keeps remaining four-second viewing time; top tabs and hidden tabs p
   await page.clock.runFor(5000);
   await expect(status(watch)).toContainText('Paused · Picture');
   await watch.getByRole('button', { name: 'Start', exact: true }).click();
-  await page.clock.runFor(599); await expect(status(watch)).toContainText('Playing · Picture');
+  await page.clock.runFor(349); await expect(status(watch)).toContainText('Playing · Picture');
   await tick(page, watch, modelNames[0], 1);
   await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button', { name: 'Try it', exact: true }).click();
   await page.clock.runFor(10000);
@@ -118,7 +118,7 @@ test('loading and changed pictures hold the timer; retry recovers without reveal
   for (let n = 0; n < 2; n++) await expect(totals(watch, n)).toBeVisible();
   blocked = false; release();
   await expect(status(watch)).toContainText('Playing · Picture');
-  await page.clock.runFor(999); await expect(status(watch)).toContainText('Playing · Picture');
+  await page.clock.runFor(749); await expect(status(watch)).toContainText('Playing · Picture');
   await tick(page, watch, modelNames[0], 1);
   broken = true; await watch.focus(); await page.keyboard.press('ArrowRight');
   await expect(watch.getByRole('alert')).toContainText('missing or changed');
@@ -251,7 +251,7 @@ test('reference tile lazily loads its outline, recovers a missing mask and reset
   const reference = watch.getByRole('region', { name: 'Dataset reference', exact: true });
   const reveal = async () => {
     await watch.getByRole('button', { name: 'Start', exact: true }).click();
-    for (const stage of [data.runs[0].report.model_id, 'Dataset reference']) await tick(page, watch, stage, 1334);
+    for (const stage of [data.runs[0].report.model_id, 'Dataset reference']) await tick(page, watch, stage, 1000);
     await watch.getByRole('button', { name: 'Pause', exact: true }).click();
   };
   await reveal();
@@ -284,11 +284,11 @@ test('Start, Pause and Stop keep the full catalog and reset only playback', asyn
   await expect(progress).toHaveJSProperty('value', 0);
   await start.focus(); await page.keyboard.press('Enter');
   await expect(watch.getByRole('button', { name: 'Pause', exact: true })).toBeFocused();
-  await page.clock.runFor(999); await expect(status(watch)).toContainText('Playing · Picture');
-  for (const stage of [...modelNames, 'Dataset reference']) await tick(page, watch, stage, stage === modelNames[0] ? 1 : 1000);
-  await page.clock.runFor(999); await expect(status(watch)).toContainText('Picture 1 of 115');
+  await page.clock.runFor(749); await expect(status(watch)).toContainText('Playing · Picture');
+  for (const stage of [...modelNames, 'Dataset reference']) await tick(page, watch, stage, stage === modelNames[0] ? 1 : 750);
+  await page.clock.runFor(749); await expect(status(watch)).toContainText('Picture 1 of 115');
   await expect(progress).toHaveJSProperty('value', 0); // Reveals do not finish a picture.
-  await tick(page, watch, 'Picture 2 of 115', 1); // Exactly 4,000 ms, excluding loading.
+  await tick(page, watch, 'Picture 2 of 115', 1); // Exactly 3,000 ms, excluding loading.
   await expect(progress).toHaveJSProperty('value', 1);
   await expect(watch.locator('.playback-progress span')).toHaveText('Picture 2 of 115');
   await page.clock.runFor(250);
@@ -304,7 +304,7 @@ test('Start, Pause and Stop keep the full catalog and reset only playback', asyn
   await expect(watch.locator('.playback-progress span')).toHaveText('Picture 1 of 115');
   for (let n = 0; n < 2; n++) await expect(totals(watch, n).locator('strong')).toHaveText('0 / 0');
   await page.clock.runFor(10000); await expect(status(watch)).toContainText('Picture 1 of 115 · Paused · Picture');
-  await start.click(); await page.clock.runFor(999); await expect(status(watch)).toContainText('Playing · Picture');
+  await start.click(); await page.clock.runFor(749); await expect(status(watch)).toContainText('Playing · Picture');
   await tick(page, watch, modelNames[0], 1);
   expect(await page.evaluate(key => localStorage.getItem(key), storage)).toBe(before);
 });

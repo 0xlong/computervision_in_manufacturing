@@ -2,6 +2,41 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Three-second Watch playback (25 October 2026)
+
+Status: Verified locally; focused checkpoint. One coordinator on `main`, no workers. Parent: user's speed
+adjustment, US-02/03/09. Dependency: current fixed-time playback and progress bar.
+Allowed: Watch timer, affected existing browser checks and only this new section.
+Tasks/checks: set three seconds total per loaded picture; update existing timing
+checks for 750 ms stages with two models and 1,000 ms with one; verify exact
+advance boundary, pause/resume, Stop/progress, full playback, keyboard/layouts
+and actual development-page rendering; review and save a focused checkpoint.
+Earlier documentation/setup edits remain preserved and excluded.
+
+Implemented: changed the total picture duration from four to three seconds.
+Original/model/reference stages still share the total equally; image-loading
+time is excluded. No layout, controls, evidence, calculations or visitor state
+changed. Updated existing browser timing expectations, including the precise
+2,999/3,000 ms advance boundary and remaining-time pause check.
+
+Actual development-page rendering passed in Chromium 156.0.8078.4 at
+http://127.0.0.1:5174/: decoded visible photograph, ordered genuine model/reference
+reveals at 750 ms intervals, advance at exactly 3,000 ms, progress hold while
+paused and Stop reset. No browser errors. Local record:
+`.cache/watch-speed/dev-render.json`. No source photographs visually opened;
+previous visual findings are reused because the layout is unchanged.
+
+Production TypeScript/build and all **16 affected browser cases passed** in
+2.1 minutes: all 115 genuine pictures, six-picture fixture, unchanged scores,
+saved judgments, loading/error recovery, pause/resume, Stop/replay/progress and
+keyboard/accessibility/layouts at 320/360/768/1440 px. No automated WCAG-tagged
+violations or page overflow. Fresh single-agent diff review checked the timer,
+test expectations, unchanged calculations/evidence and preserved earlier edits.
+No unrelated journeys or unit tests repeated. Native VS Code browser automation
+remains unavailable from the earlier check; actual Chromium rendering is verified.
+Checkpoint scope: four timer/test files plus only this new progress section.
+Next: refresh the local page and press Start. No provider calls or publication.
+
 ## Minimal Watch progress bar (25 October 2026)
 
 Status: Verified locally; focused checkpoint. One coordinator on `main`, no workers. Parent: approved

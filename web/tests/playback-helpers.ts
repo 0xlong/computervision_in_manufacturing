@@ -30,7 +30,7 @@ export async function openWatch(page: Page, judgment = false) {
   return watch;
 }
 
-export async function tick(page: Page, watch: Locator, stage: string, millis = 1000) {
+export async function tick(page: Page, watch: Locator, stage: string, millis = 750) {
   await page.clock.runFor(millis);
   await expect(status(watch)).toContainText(stage);
 }
@@ -56,7 +56,7 @@ export async function fixturePlayback(page: Page, twoModels = false) {
 }
 
 export async function finish(page: Page, watch: Locator, ids: string[], modelCount = 2, evidence: Bundle = bundle) {
-  const duration = Math.ceil(4000 / (modelCount + 2));
+  const duration = Math.ceil(3000 / (modelCount + 2));
   const seenCounts = evidence.runs.map(() => ({ flagged: 0, missed: 0, goodFlags: 0, correct: 0, unsure: 0, unavailable: 0 }));
   await watch.getByRole('button', { name: 'Start', exact: true }).click();
   for (const [index, id] of ids.entries()) {

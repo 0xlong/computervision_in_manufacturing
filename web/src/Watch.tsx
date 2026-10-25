@@ -49,7 +49,7 @@ function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: Playback
     const key = `${state.index}-${state.stage}-${state.epoch}`;
     if (clock.current.key !== key) clock.current = { key, remaining: 1 };
     if (!state.playing || !active || !ready || !indices.length || document.hidden) return;
-    const duration = 4000 / (referenceStage + 1);
+    const duration = 3000 / (referenceStage + 1);
     const started = performance.now();
     const timer = window.setTimeout(() => {
       if (document.hidden) { dispatch({ type: 'pause' }); return; }

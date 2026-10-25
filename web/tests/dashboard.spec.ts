@@ -60,7 +60,7 @@ test('skipping to the end keeps partial viewing honest and Stop resets the compl
   await expect(watch.locator('.playback-progress span')).toHaveText('Picture 115 of 115');
   await watch.getByRole('button', { name: 'Start', exact: true }).click();
   for (const stage of [...modelNames, 'Dataset reference']) await tick(page, watch, stage);
-  await page.clock.runFor(1000);
+  await page.clock.runFor(750);
   const dashboard = watch.getByRole('region', { name: 'The complete comparison', exact: true });
   await expect(dashboard).toContainText('1 of 115 pictures viewed. Scores below cover all 115 pictures.');
   await expect(watch.getByRole('progressbar', { name: 'Playback progress', exact: true })).toHaveJSProperty('value', 115);
@@ -82,7 +82,7 @@ for (const width of [360, 768, 1440]) test(`dashboard layout and keyboard at ${w
   await expect(status(watch)).toContainText('Picture 115 of 115 · Paused · Picture');
   await watch.getByRole('button', { name: 'Start', exact: true }).click();
   for (const stage of [...modelNames, 'Dataset reference']) await tick(page, watch, stage);
-  await page.clock.runFor(1000);
+  await page.clock.runFor(750);
   const dashboard = watch.getByRole('region', { name: 'The complete comparison', exact: true });
   await expect(dashboard).toContainText('1 of 115 pictures viewed');
   const boxes = await dashboard.locator('.benchmark-card').evaluateAll(cards => cards.map(card => { const b = card.getBoundingClientRect(); return { x: b.x, y: b.y, width: b.width, height: b.height }; }));
