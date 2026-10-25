@@ -20,7 +20,7 @@ from pipeline.run_gemini_trial import TRIAL_SCHEMA
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMAS = {name: json.loads((ROOT / "schemas" / name).read_text(encoding="utf-8")) for name in
-    ("api-evidence.v1.schema.json", "evaluation-report.v1.schema.json", "fastener-bundle.v2.schema.json", "visitor-state.v1.schema.json", "model-inputs.v1.schema.json", "frozen-configuration.v1.schema.json", "frozen-configuration.v2.schema.json")}
+    ("api-evidence.v1.schema.json", "evaluation-report.v1.schema.json", "fastener-bundle.v2.schema.json", "visitor-state.v1.schema.json", "model-inputs.v1.schema.json", "frozen-configuration.v1.schema.json", "frozen-configuration.v2.schema.json", "frozen-configuration.v3.schema.json")}
 for schema in SCHEMAS.values(): Draft202012Validator.check_schema(schema)
 REGISTRY = Registry().with_resources((s["$id"], Resource.from_contents(s)) for s in SCHEMAS.values())
 VALIDATOR = Draft202012Validator(SCHEMAS["fastener-bundle.v2.schema.json"], registry=REGISTRY, format_checker=FormatChecker())
@@ -115,19 +115,21 @@ class FrozenConfiguration(RootModel[dict[str, JsonValue]]):
     @classmethod
     def validate_data(cls, data):
         version = data.get("schema_version")
-        if version not in (1, 2): raise ValueError("Unsupported frozen configuration version")
+        if version not in (1, 2, 3): raise ValueError("Unsupported frozen configuration version")
         validator = Draft202012Validator(SCHEMAS[f"frozen-configuration.v{version}.schema.json"], registry=REGISTRY, format_checker=FormatChecker())
         if next(validator.iter_errors(data), None): raise ValueError("Invalid frozen configuration schema")
         plan = data["frozen_plan"]
         identity = fingerprint({k: v for k, v in plan.items() if k not in {"frozen_at", "run_id"}})
-        prefix = "eval-flash-lite-" if version == 1 else "eval-comparison-"
+        prefix = {1: "eval-flash-lite-", 2: "eval-comparison-", 3: "eval-gemma-"}[version]
         if data["run_id"] != plan["run_id"] or plan["run_id"] != prefix + identity[:16]:
             raise ValueError("Frozen configuration identity mismatch")
         config = deepcopy(plan["configuration"])
         if config["max_requests_per_model"] != 345 or config["minimum_interval_seconds"] != 10:
             raise ValueError("Unexpected evaluation bounds")
-        config.update(max_requests_per_model=6, minimum_interval_seconds=65 if version == 1 else 10)
-        schema = TRIAL_SCHEMA if version == 1 else json.loads((ROOT / "schemas/gemini-trial.v2.schema.json").read_text(encoding="utf-8"))
+        config.update(max_requests_per_model=3 if version == 3 else 6,
+                      minimum_interval_seconds={1: 65, 2: 10, 3: 60}[version])
+        schema = (TRIAL_SCHEMA if version == 1 else json.loads((ROOT / "schemas" /
+            ("gemma-trial.v1.schema.json" if version == 3 else "gemini-trial.v2.schema.json")).read_text(encoding="utf-8")))
         if not Draft202012Validator(schema).is_valid(config): raise ValueError("Frozen request settings mismatch")
         ids = [i["image_id"] for i in plan["probes"]]
         if len(set(ids)) != 115 or plan["reference"]["image_id"] in ids:
@@ -136,19 +138,25 @@ class FrozenConfiguration(RootModel[dict[str, JsonValue]]):
 
 
 def public_configuration(plan):
-    version = 2 if plan["configuration"]["schema_version"] == 2 else 1
+    version = 3 if plan["model_id"].startswith("gemma-4-") else 2 if plan["configuration"]["schema_version"] == 2 else 1
     limits = {"submissions_per_batch": 12, "batch_request_wait_seconds": 900,
               "request_timeout_seconds": 60, "minimum_start_interval_seconds": 10,
               "maximum_run_submissions": 345, "attempts_per_image": 3}
     if version == 2:
         limits.update(daily_request_headroom=1, shared_trial_evaluation_allowance=True, automatic_daily_reset=False,
                       quota_start_spacing="max(10 seconds, 120 / verified RPM)")
+    if version == 3:
+        limits.update(daily_request_headroom=1, shared_trial_evaluation_allowance=True, automatic_daily_reset=False,
+                      shared_gemma_allowance=True, input_window_seconds=60, input_reservation=4096,
+                      quota_start_spacing="max(10 seconds, 120 / verified RPM), plus shared rolling input-token reservation")
     data = {"schema_version": version, "run_id": plan["run_id"], "frozen_plan": plan,
             "effective_execution_limits": limits,
             "notes": ["The frozen dictionary retains trial-purpose/probe-count/runtime fields as inherited history; the outer purpose/probes and effective execution limits describe complete evaluation.",
                 "No evaluator labels, masks, visitor data or credentials entered these requests. Input paths are neutral model-input-relative identities."]}
     if version == 2:
         data["notes"].append("Model-specific thinking settings are frozen configurations, not identical reasoning effort. Trials and evaluation share each model's verified daily allowance.")
+    if version == 3:
+        data["notes"].append("Gemma uses minimal thinking. All local Gemma trials/evaluations conservatively share the supplied request/token caps; failed or unknown requests reserve 4096 input tokens. This is a recorded model/configuration combination, not identical reasoning effort.")
     FrozenConfiguration.model_validate(data)
     return data
 

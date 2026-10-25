@@ -4,21 +4,23 @@ Updated: 25 October 2026. This file records project state, not promised implemen
 
 ## Additional free candidates and quota-display correction (25 October 2026)
 
-**Current state: isolated Gemma normal-picture trials prepared and checked;
-actual Gemma feasibility is not yet measured. Existing website/results unchanged.**
+**Current state: both Gemma models passed their genuine normal-picture trials;
+the token-aware full evaluator is verified and ready to run. Website unchanged.**
 
 Owner: one coordinator on `main`, no workers; user requested genuine free-model
 comparison, then supplied additional limits and confirmed all other models unused
 today. Parent EN-03 / US-03/06/09; API-FREE/INPUT/OUTPUT/RUN/QUOTA/RETRY/AUDIT and
 T-CONTRACT/ACCESS. Baseline `075dbcb`. Allowed: new isolated Gemma config/schema/
-probe/tests, comparison guides and this section. Do not edit frozen Gemini runners.
+probe/evaluator/tests, versioned public configuration, comparison guides and this
+section. Do not edit frozen Gemini runners.
 
 | Task | Dependencies / observable completion check | Result |
 | --- | --- | --- |
 | Correct peak/current usage interpretation | User clarification and first-party source; preserve original receipts | Documented; limits numerators are peaks, not today's balance |
-| Prepare small Gemma trials | Exact hosted IDs/image support/free pricing, user zero-use reply, same normal pixels/prompt | Prepared: 26B and 31B; strict JSON support remains unverified |
+| Prepare small Gemma trials | Exact hosted IDs/image support/free pricing, user zero-use reply, same normal pixels/prompt | Frozen request checkpoint `e38a8a4`; both passed strict image/JSON trials |
 | Verify and checkpoint request path | Generated offline checks; 16K TPM protected, no changed frozen campaigns | 465 pipeline tests pass; 12 new tests, no network/key access |
-| Run and inspect real normal trials | Frozen checkpoint/current access; at most 3 submissions/model | Next; need 2 successful versioned answers/model |
+| Run and inspect real normal trials | Frozen checkpoint/current access; at most 3 submissions/model | Done: 2 successes/model, four total submissions, zero retries |
+| Prepare complete 26B evaluation | Same 115 pictures/prompt/reference; rolling shared TPM, quota/error/resume checks, versioned public configuration | Verified; full 480-test regression plus final 16-case evaluator rerun pass |
 
 The earlier multi-model section below interpreted the first limits screenshot's
 numerators as today's usage. That was incorrect. [Google support](https://discuss.ai.google.dev/t/rpd-is-not-being-reset/145704/3)
@@ -51,15 +53,32 @@ required retry window and was corrected; no checks weakened. **465 pipeline test
 pass** (12 new Gemma cases). Code/configuration reviewed again against token,
 retry, deadline, privacy and evidence boundaries. No web code changed, so earlier
 web/browser checks were not repeated. No source photographs visually opened.
-No paid requests, billing changes, dependencies, publication or remote changes.
+The first full-run test was slow because it repeatedly loaded/validated the entire
+ledger. It now reads once under the provider-wide lock and updates each journaled
+attempt in memory; every snapshot is still durable. The diagnostic Windows stack
+dump ended with an access violation; the ordinary suite rerun passed. A generated
+unknown-outcome example was corrected to put interruption last, respecting the
+existing prohibition on continuing after interruption. **480 pipeline tests pass**
+after evaluation/packaging additions. The final 16-case evaluator rerun also passes,
+including a new heavy-token window-expiry case and a minimum timer sleep to prevent
+rounding stalls. It covers a complete fake 115-picture run, repeat/resume, shared
+allowance, unknown/quota/auth/timeout/usage cases and frozen configuration v3.
+No checks weakened. No paid requests, billing changes, dependencies, publication or remote changes.
 Earlier uncommitted files remain preserved and excluded from these checkpoints.
 
 [Trial settings, sources and next step](GEMMA_TRIAL.md),
 [corrected previous run record](GEMINI_COMPARISON_RUNS.md).
-Ignored audit/access files: `artifacts/additional-models-oct25/`; future saved Gemma
-plans/evidence: `artifacts/gemma-probes/`. Four-hour access freshness is internal,
-not provider expiry. Next: checkpoint then measure both tiny genuine normal trials;
-do not claim qualification or defect performance from offline checks.
+Authentic trials: `probe-gemma-4-26b-a4b-it-5fa2077031b1` and
+`probe-gemma-4-31b-it-f11b607b6934`, each 2/2 successful versioned answers,
+`looks_acceptable` on both normal probes. Request seconds 6.471/7.404 versus
+28.726/28.795; each reports 615 input tokens and 31–36 output tokens. Start gaps
+at least 60 seconds. This qualifies request feasibility, not defect accuracy.
+The trial audit verifies old evidence, frozen sources and public bundle unchanged.
+No source photographs opened. Ignored audit/access files:
+`artifacts/additional-models-oct25/`; saved Gemma plans/evidence:
+`artifacts/gemma-probes/` and next `artifacts/gemma-evaluations/`. Four-hour access
+freshness is internal, not provider expiry. Next: save the verified evaluator checkpoint,
+then the genuine full 26B run; 31B is qualified but not fully evaluated.
 
 ## Multi-model free-tier runner and first batches (25 October 2026)
 

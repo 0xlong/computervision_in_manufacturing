@@ -85,12 +85,53 @@ Offline checks cover normal-only pixels/prompt/identity, minimal thinking, stric
 token-budget preflight, pre-send journal, 60-second pacing, usage overshoot stops,
 unknown/quota/retry bounds, no repeated completed successes, fixed-host allowlist,
 sanitized errors and missing-access refusal. They use generated pictures and fake
-responses only. Real execution outcomes will be appended after the frozen request
-checkpoint; no provider requests have been made for this Gemma configuration yet.
+responses only. The request path was frozen at checkpoint `e38a8a4` before the
+following authentic executions.
 
-A full Gemma evaluation needs a separately frozen token-aware evaluator and
-packaging configuration: the existing Gemini evaluator reserves 16,000 tokens per
-request and cannot safely be reused unchanged against a 16,000 TPM limit. Do not
-change frozen campaign files to bypass this check. Only complete genuine 115-image
-runs can produce benchmark rows. The existing website still has its sole complete
-Gemini 3.5 Flash-Lite result.
+| Model | Saved normal-trial ID | Valid answers / submissions | Request seconds |
+| --- | --- | --- | --- |
+| Gemma 26B | `probe-gemma-4-26b-a4b-it-5fa2077031b1` | 2 / 2 | 6.471 / 7.404 |
+| Gemma 31B | `probe-gemma-4-31b-it-f11b607b6934` | 2 / 2 | 28.726 / 28.795 |
+
+Both models returned `looks_acceptable` on both normal-fitting probes, with their
+reported model versions, 615 input tokens/request and 31–36 output tokens. No
+retries, refusals, quota events or unknown outcomes occurred. Start gaps were at
+least 60 seconds. Four total genuine generation submissions. This demonstrates
+image/strict-JSON request feasibility, **not defect accuracy or a winner**.
+[Local execution audit](../artifacts/additional-models-oct25/trial-execution-audit.json)
+also verifies earlier Gemini evidence, frozen source and public bundle byte hashes
+unchanged. No source photograph was visually opened.
+
+## Complete-set evaluation preparation
+
+The [new isolated evaluator](../pipeline/run_gemma_evaluation.py) preserves all 115
+test IDs/pixels, the exact prompt, normal reference, strict JSON contract and minimal
+thinking from the qualifying trial. Source and execution policy are frozen in its
+identity. It does not change the old Gemini evaluator, which reserves 16,000 input
+tokens/request and is incompatible with this 16,000 TPM cap.
+
+Each batch allows 1–12 submissions and 900 seconds including waits; a run allows
+345 submissions and three attempts/picture. All local Gemma trials/evaluations
+conservatively share the supplied 30 RPM / 16K input TPM / 14.4K RPD caps, even if
+the provider's separate allowances would be larger. Count all journaled attempts
+since the user's access confirmation, including failures/unknowns, and leave one
+daily request headroom. Never infer a daily reset. Stop before stale access.
+
+Before each request, reserve 4,096 input tokens in a rolling 60-second window,
+counting known successful input usage and reserving 4,096 for failed/unknown
+attempts. Wait until usage plus the incoming reservation is **below** the verified
+input TPM. Start spacing is at least `max(10 seconds, 120 / RPM)`, including model,
+phase and batch changes. Respect retry deadlines. Missing/excess usage stops;
+unknown outcomes anywhere in the shared Gemma ledger stop for reconciliation.
+Hold the provider-wide lock through each batch, load the saved ledger once, then
+update it for each new journaled submission. Every snapshot is persisted before
+and after sending; completed successes are reused across invocations.
+
+Public frozen configuration version 3 records these limits and Gemma settings;
+versions 1 and 2 remain compatible. Pending evaluations cannot be packaged.
+Only complete genuine runs can produce benchmark rows. The website still has
+its sole complete Gemini 3.5 Flash-Lite result while this evaluation is prepared.
+The faster qualifying 26B model is the first complete-set run; 31B remains qualified
+but has no defect evaluation yet. This priority uses normal-preparation timings,
+not final-test labels or outcomes. No new Gemini requests are authorized by a
+Gemma batch, and no paid fallback or publication occurs.

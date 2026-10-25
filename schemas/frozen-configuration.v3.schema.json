@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-inspection-pilot-lab:frozen-configuration:3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "frozen_plan",
+    "effective_execution_limits",
+    "notes"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 3
+    },
+    "run_id": {
+      "$ref": "urn:ai-inspection-pilot-lab:api-evidence:1#/$defs/id"
+    },
+    "frozen_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purpose",
+        "configuration",
+        "model_id",
+        "reference",
+        "probes",
+        "qualification_sha256",
+        "preparation_sha256",
+        "inputs_sha256",
+        "implementation",
+        "frozen_at",
+        "run_id",
+        "execution_policy"
+      ],
+      "properties": {
+        "purpose": {
+          "const": "complete_fastener_evaluation"
+        },
+        "configuration": {
+          "type": "object",
+          "description": "Validated against the canonical trial schema after restoring only the two explicitly overridden execution bounds."
+        },
+        "model_id": {
+          "enum": [
+            "gemma-4-26b-a4b-it",
+            "gemma-4-31b-it"
+          ]
+        },
+        "reference": {
+          "$ref": "urn:ai-inspection-pilot-lab:model-inputs:1#/properties/images/items"
+        },
+        "probes": {
+          "type": "array",
+          "minItems": 115,
+          "maxItems": 115,
+          "items": {
+            "$ref": "urn:ai-inspection-pilot-lab:model-inputs:1#/properties/images/items"
+          }
+        },
+        "qualification_sha256": {
+          "$ref": "urn:ai-inspection-pilot-lab:api-evidence:1#/$defs/hash"
+        },
+        "preparation_sha256": {
+          "$ref": "urn:ai-inspection-pilot-lab:api-evidence:1#/$defs/hash"
+        },
+        "inputs_sha256": {
+          "$ref": "urn:ai-inspection-pilot-lab:api-evidence:1#/$defs/hash"
+        },
+        "implementation": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "pattern": "^[a-z][a-z_.]*$(?![\\s\\S])"
+          },
+          "additionalProperties": {
+            "$ref": "urn:ai-inspection-pilot-lab:api-evidence:1#/$defs/hash"
+          }
+        },
+        "frozen_at": {
+          "$ref": "urn:ai-inspection-pilot-lab:api-evidence:1#/$defs/utc"
+        },
+        "run_id": {
+          "$ref": "urn:ai-inspection-pilot-lab:api-evidence:1#/$defs/id"
+        },
+        "execution_policy": {
+          "const": {
+            "shared_gemma_allowance": true,
+            "input_window_seconds": 60,
+            "input_reservation": 4096,
+            "minimum_interval_seconds": 10,
+            "daily_request_headroom": 1,
+            "automatic_daily_reset": false,
+            "submissions_per_batch": 12,
+            "batch_request_wait_seconds": 900
+          }
+        }
+      }
+    },
+    "effective_execution_limits": {
+      "const": {
+        "submissions_per_batch": 12,
+        "batch_request_wait_seconds": 900,
+        "request_timeout_seconds": 60,
+        "minimum_start_interval_seconds": 10,
+        "maximum_run_submissions": 345,
+        "attempts_per_image": 3,
+        "daily_request_headroom": 1,
+        "shared_trial_evaluation_allowance": true,
+        "automatic_daily_reset": false,
+        "quota_start_spacing": "max(10 seconds, 120 / verified RPM), plus shared rolling input-token reservation",
+        "shared_gemma_allowance": true,
+        "input_window_seconds": 60,
+        "input_reservation": 4096
+      }
+    },
+    "notes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "maxLength": 2000
+      }
+    }
+  }
+}

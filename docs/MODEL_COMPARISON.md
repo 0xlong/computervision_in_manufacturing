@@ -9,8 +9,9 @@ saved test assessments and is paused at daily headroom; 98/model remain. See the
 staged-delivery notes below describe the earlier 24 October planning checkpoint.
 
 Later 25 October update: the user's second screenshot also includes Gemma 4 26B
-and 31B (30 RPM / 16K input TPM / 14.4K RPD each). They are the next small image/
-answer-format feasibility check, not qualified benchmark rows yet. See the
+and 31B (30 RPM / 16K input TPM / 14.4K RPD each). Both passed the two-normal-image
+feasibility trial; neither has a complete defect benchmark yet. The faster 26B is
+the next full evaluation, using an isolated token-aware runner. See the
 [isolated Gemma trial](GEMMA_TRIAL.md). The limits page's numerators are **peaks**,
 not current consumption; the previous interpretation and claimed remaining one
 are corrected in the run record above. The user separately confirmed zero use for
