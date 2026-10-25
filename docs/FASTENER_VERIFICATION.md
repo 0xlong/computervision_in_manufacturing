@@ -9,6 +9,76 @@ The default page uses [the genuine local bundle](../web/public/evidence/bundle.j
 not a fixture. Test examples are separate and visibly labelled. Use the
 [local guide](FASTENER_LOCAL.md) to run or try it.
 
+## Playback dashboard — 25 October 2026
+
+The five-picture player now counts both genuine models separately after each
+reference reveal, with unique picture counting across revisits. Unsure and
+unavailable answers remain outside categorical flags/misses. The Different answers
+filter finds 2/5 selected pictures using answer categories, not observation text.
+Filter changes pause and clear playback counters. Show all recovers from an empty
+filter; one-model evidence disables comparison filtering.
+
+After the final reference has had its viewing time, playback stops and replaces
+the image with a complete-benchmark dashboard. Equal model cards sit side by side
+at desktop/tablet widths and stack on phones. Three simple bars show correctness,
+misses and good flags, with symbols/text and denominators alongside color.
+Review pictures, Review different answers and Watch again all start paused;
+Watch again retains the filter and clears counters. Focus moves to the dashboard
+heading at completion and returns to the playback area after review/replay.
+
+The dashboard always uses every saved benchmark member; it never uses filtered
+playback totals or review-routing TP/TN as categorical correctness. Independent
+fixed unit expectations and a separately written browser recount check:
+
+| Complete 115-picture evidence | Gemini 3.5 Flash-Lite | Gemma 4 26B |
+| --- | --- | --- |
+| Correct categorical decisions | 98/115 (85.2%) | 89/115 (77.4%) |
+| Categorical defects flagged | 81 | 72 |
+| Defects missed / all defective pictures | 12/93 | 20/93 |
+| Good parts flagged / all good pictures | 5/22 | 5/22 |
+| Unsure / all pictures | 0/115 | 1/115 |
+| Unavailable / all pictures | 0/115 | 0/115 |
+| Median recorded attempt time | 4.9563224 s | 6.0602535 s |
+| Timed attempts, including retries/failures | 116/116 | 115/115 |
+
+Gemma's unsure anomalous answer routes to review and produces routing TP=73;
+only its 72 categorical defect flags plus 17 categorical normal passes count
+as correct. A labelled six-record fixture verifies correctness 0/6, errors 1/3
+in each class, unsure 1/6, unavailable 3/6 and missing request times. This proves
+failure-class denominators use the full set, not only successful answers.
+
+Verification: **36 unit tests**, TypeScript/production build and **28 production
+Chromium browser tests pass**. The browser recount also checks bar proportions,
+full and filtered endings, unchanged full cards, unique reveals across revisits,
+cleared/paused replay, all review actions and exact visitor-storage preservation.
+Keyboard checks cover Tab/Enter actions, visible focus, completion heading focus
+and return to the playback area. Dashboard scans at 360/768/1440 px find no
+page overflow or automated WCAG 2.2-tagged violations; cards have equal dimensions.
+Existing inspection, reveal, refresh, reset, export, timing and error checks pass.
+
+The first restricted unit invocation could not spawn its runner; permitted local
+execution worked. Initial new test assumptions about challenge ordering and
+two-stage fake-clock advancement were corrected against actual IDs and render
+boundaries; no requirements weakened. Fresh single-agent diff review covered
+arithmetic, identity, timers, focus, full versus filtered scope and saved judgments.
+Manual visual review used **two dashboard-only screenshots**, desktop and phone;
+**zero source photographs**. Automation and these bounded visual samples do not
+establish screen-reader, cross-browser or native VS Code browser verification.
+Actual browser: Chromium 156.0.8078.4 on Windows, production preview port 4175.
+The native VS Code integrated browser is unavailable through these tools. To try it,
+use http://127.0.0.1:5174/ and **Browser: Open Integrated Browser**
+(`workbench.action.browser.open`); [start command and expected behavior](FASTENER_LOCAL.md).
+
+Records: [independent evidence/endings audit](../artifacts/comparison-dashboard/evidence-and-endings.json),
+[desktop dashboard](../artifacts/comparison-dashboard/dashboard-1440.png),
+[phone dashboard](../artifacts/comparison-dashboard/dashboard-360.png),
+[tablet dashboard](../artifacts/comparison-dashboard/dashboard-768.png),
+[phone layout/accessibility](../artifacts/comparison-dashboard/layout-360.json).
+Ignored audit images/JSON regenerate with the browser suite. Public evidence,
+images, labels, configuration and bundle identity remain unchanged. No pipeline
+code, dependencies, inference, publication or remote infrastructure changed.
+Older verification sections below record earlier milestones.
+
 ## Measured evidence
 
 **Latest 25 October update:** the local bundle is now

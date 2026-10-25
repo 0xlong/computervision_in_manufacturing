@@ -160,7 +160,7 @@ test('all five genuine results count once, stop, restart and leave visitor stora
   expect(bundle.runs[0].evidence.run.model_id).toBe('gemini-3.5-flash-lite');
   await expect(page.getByRole('navigation', { name: 'Main navigation' }).locator('[aria-current]')).toHaveCount(0);
   const status = watch.getByRole('status').filter({ hasText: 'Picture' });
-  const counts = watch.getByRole('region', { name: 'Results for this five-picture playback', exact: true });
+  const counts = watch.getByRole('region', { name: `${bundle.runs[0].report.model_id} playback totals`, exact: true });
   const count = (name: string) => counts.getByRole('region', { name, exact: true }).locator('strong');
   const observations: { image: string; ai: string; reference: string }[] = [];
   let flagged = 0, missed = 0, falseAlarms = 0;

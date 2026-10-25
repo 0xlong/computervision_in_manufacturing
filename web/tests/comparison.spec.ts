@@ -110,7 +110,7 @@ test('genuine Gemma selection and five-picture playback keep visitor judgments u
   await expect(status).toContainText('Picture 1 of 5 · Paused · Look at the picture');
   await page.clock.install({ time: new Date('2026-10-25T12:00:00Z') });
   await page.clock.pauseAt(new Date('2026-10-25T13:00:00Z'));
-  const results = watch.getByRole('region', { name: 'Results for this five-picture playback', exact: true });
+  const results = watch.getByRole('region', { name: `${gemma.report.model_id} playback totals`, exact: true });
   const count = (name: string) => results.getByRole('region', { name, exact: true }).locator('strong');
   let flagged = 0, missed = 0, falseAlarms = 0, unsure = 0, unavailable = 0;
   await watch.getByRole('button', { name: 'Play', exact: true }).click();
@@ -219,7 +219,7 @@ test('two labelled fixture models can be selected without changing visitor judgm
   await expect(status).toContainText('AI assessment');
   await page.clock.runFor(1000);
   await expect(status).toContainText('Dataset reference');
-  const playbackResults = watch.getByRole('region', { name: 'Results for this five-picture playback', exact: true });
+  const playbackResults = watch.getByRole('region', { name: `${second.report.model_id} playback totals`, exact: true });
   await expect(playbackResults).toContainText('1 of 5 references shown');
   await expect(playbackResults.getByRole('region', { name: 'Defects missed', exact: true }).locator('strong')).toHaveText('1');
   await watch.getByLabel('Saved model', { exact: true }).selectOption(data.runs[0].evidence.run.run_id);

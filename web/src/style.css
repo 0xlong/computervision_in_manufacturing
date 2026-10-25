@@ -93,4 +93,33 @@ main:has(.model-comparison) { max-width: 1200px; }
 }
 @media (max-width: 650px) { .playback-controls > button { padding: .6rem .65rem; } }
 /* Stages change instantly: no motion, animated timer or automatic scrolling. */
+.playback-filter, .dashboard-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+.playback-filter p { flex-basis: 100%; margin-bottom: 0; }
+.running-models, .benchmark-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.running-model { min-width: 0; padding: 18px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.running-model > h3, .benchmark-card > h3 { overflow-wrap: anywhere; line-height: 1.4; letter-spacing: -.02em; }
+.running-model .result-highlights { gap: 8px; margin: 16px 0; }
+.running-model .result-highlights section { padding: 12px; }
+.running-model .result-highlights strong { font-size: 2rem; }
+.running-model h4 { font-size: .8rem; line-height: 1.4; margin: 8px 0 0; }
+.comparison-dashboard { margin: 32px 0; padding: 28px 0; border-block: 1px solid var(--line); }
+.benchmark-cards { margin: 28px 0; }
+.benchmark-card { min-width: 0; padding: 26px; background: #fff; border: 1px solid var(--line); border-radius: 10px; }
+.benchmark-score { display: flex; flex-direction: column; gap: 10px; margin: 28px 0; }
+.benchmark-score strong { font-size: clamp(2.8rem, 5vw, 4rem); line-height: 1; color: var(--green); letter-spacing: -.05em; }
+.benchmark-score > span { font-weight: 650; }
+.benchmark-bar { margin: 24px 0; }
+.benchmark-bar > div:first-child { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: .84rem; }
+.bar-track { height: 8px; background: #e4e9df; border-radius: 5px; margin-top: 10px; overflow: hidden; }
+.bar-track > div { height: 100%; background: var(--green); }
+.caution .bar-track > div { background: #a6531b; }
+.benchmark-card dl > div { flex-wrap: wrap; }
+.benchmark-explanation { max-width: 900px; }
+@media (max-width: 650px) {
+  .running-models, .benchmark-cards { grid-template-columns: 1fr; }
+  .benchmark-card { padding: 20px; }
+  .running-model .result-highlights { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .running-model .result-highlights strong { float: none; margin: 0; }
+  .running-model .result-highlights section { padding: 10px; }
+}
 @media (max-width: 650px) { .playback-comparison { grid-template-columns: 1fr; } }

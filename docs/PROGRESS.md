@@ -2,6 +2,62 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Playback totals, different answers and final dashboard (25 October 2026)
+
+Status: Done locally. Owner: one coordinator on `main`; no workers.
+Parent: user's additional required features; US-03/06/08/09,
+FR-COMPARE-001/002, T-EVIDENCE/ACCESS/JOURNEY. Existing user edits preserved.
+Allowed: playback/dashboard components, pure calculations, styles and web tests;
+local guide/verification and this progress section. Dependencies: existing validated
+two-model bundle, five viewable teaching pictures and complete 115-picture records.
+
+| Task | Dependency / observable completion check | Status |
+| --- | --- | --- |
+| Separate categorical counts | Saved decisions + reference labels; unsure/failures excluded from correct/flag/miss totals, every revealed picture counted once/model | Done |
+| Different-answers playback | Stable challenge IDs; matching count, show-all, empty case and paused filter changes without score/judgment changes | Done; 2 of 5 genuine matches |
+| End comparison dashboard | Full-set categorical calculations; equal cards, class denominators, timing, review/replay actions and distinct watched counts | Done |
+| Verify and checkpoint | Independent evidence recount, full/filtered endings, uncertainty/failures, keyboard, 360/768/1440 layout, visitor preservation, build and diff review | Verified; focused Git checkpoint |
+
+Scope: filtering applies to the five packaged/viewable pictures. Complete benchmark
+scores always cover all 115 saved records, including the one genuine Gemma unsure
+answer; routing metrics are not categorical correctness. No new inference, evidence
+changes, dependencies, publication or remote operations are required.
+
+Correctness independently verified from reference labels and final successful
+responses: Gemini **98/115 (85.2%)**, 81 categorical defect flags, 12/93 misses,
+5/22 good flags, 0 unsure/unavailable; Gemma **89/115 (77.4%)**, 72 categorical defect
+flags, 20/93 misses, 5/22 good flags, 1 unsure and 0 unavailable. Gemma's routing
+TP=73 includes that unsure answer; the dashboard deliberately does not reuse it.
+Recorded median attempt times: 4.9563224 s (116 attempts) and 6.0602535 s (115).
+
+**36 web unit tests**, TypeScript/production build and **28 production Chromium
+checks pass**. Six new browser cases cover full/filtered endings and invariant
+scores, both models' counters, replay reset, review actions, keyboard focus return,
+visitor judgments, equal cards at 360/768/1440 px, and labelled fixture
+uncertain/unavailable/missing-time/empty-filter cases. No automated WCAG-tagged
+violations, page overflow, page errors or external requests in new checks.
+The first test invocation hit Windows sandbox process restrictions; permitted
+local execution passed. An initial new unit assertion guessed the challenge order
+from prediction order; corrected to the actual stable challenge IDs. The first
+new browser helper advanced two fake-clock stages in one call before React could
+render; it now checks each stage separately. No app checks/requirements weakened.
+
+Fresh single-agent review checked categorical versus routing arithmetic, complete
+class denominators (including failures), stable filtered picture identities,
+end timing, focus, timer cleanup, replay and visitor-state separation. Visually
+reviewed **two dashboard-only crops** (desktop and phone), **zero source
+photographs**; no broader visual review claimed. Native VS Code browser remains
+unavailable/unverified; actual checks use Chromium 156.0.8078.4. Saved public
+evidence is byte-unchanged. Backend code did not change, so pipeline tests were
+not repeated. Older uncommitted documentation/setup edits remain excluded.
+
+Try Different answers only → Play → Watch again. The filtered end states 2 watched
+pictures while the cards still show the complete 115-picture scores. Next: user
+tries the local experience; remaining model evaluations, surface track and release
+clearance are separate later tasks. [Guide](FASTENER_LOCAL.md#watch-the-five-saved-results),
+[verification](FASTENER_VERIFICATION.md#playback-dashboard--25-october-2026),
+[independent browser audit](../artifacts/comparison-dashboard/evidence-and-endings.json).
+
 ## Additional free candidates and quota-display correction (25 October 2026)
 
 **Current state: the local website compares two genuine complete 115-image runs:

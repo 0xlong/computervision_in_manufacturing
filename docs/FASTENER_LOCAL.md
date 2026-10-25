@@ -59,14 +59,38 @@ playback counts and returns to picture one, paused. **Viewing time** chooses fas
 (1.5 seconds), normal (3 seconds) or slow (6 seconds) per picture, divided equally
 between the three stages. Picture loading adds time; this is not AI processing
 speed. Pause freezes the stage and its remaining time. Switching modes or leaving
-the browser tab pauses; returning does not automatically resume. The fifth picture
-stays visible at the end. A missing or changed picture offers **Retry picture**.
+the browser tab pauses; returning does not automatically resume. After the final
+reference's viewing time, playback stops and opens the comparison dashboard.
+A missing or changed picture offers **Retry picture**.
 
-The three counts cover only references revealed in this five-picture playback.
-Revisiting a picture does not count it twice. Unsure and unavailable answers need
-human checking and are listed separately from categorical decisions. Complete
-115-image benchmark results remain in **Results**. Choose **Saved model** to watch
-either genuine complete model. No confidence or sensitivity control is invented.
+Each model has its own three running counts: defects flagged, defects missed and
+good parts flagged. They cover only references revealed in this five-picture
+playback. Revisiting a picture does not count it twice. Unsure and unavailable
+answers need human checking and are listed separately from categorical decisions.
+Choose **Saved model** to watch either genuine complete model.
+
+**Different answers only** selects pictures where the saved answer categories
+differ (including unsure and unavailable). Currently 2 of the 5 selected pictures
+match. **Show all pictures** returns to the full five-picture selection. Changing
+the filter pauses at the first matching picture and clears playback counters;
+an empty selection offers Show all. This filters the five packaged pictures,
+not all 115 benchmark pictures. Detailed benchmark records remain available in Results.
+
+The final dashboard always compares the complete 115-picture benchmark, with equal
+model cards showing correct decisions, misses, good parts flagged, unsure and
+unavailable answers, and median recorded request time. It states how many selected
+pictures you actually watched, including after a filtered run. Filtering never
+changes benchmark scores. Correct means a categorical answer matching the reference;
+an unsure answer sent for checking is not a correct prediction. All 115 pictures
+remain in the correctness denominator, with all 93 defective and 22 good pictures
+in the respective error denominators. Current correctness: Gemini 98/115 (85.2%),
+Gemma 89/115 (77.4%). Gemma's one unsure answer stays separate.
+
+Try **Different answers only → Play**, then **Watch again** on the dashboard.
+Watch again keeps the current filter, returns to its first picture paused and
+clears both models' playback counters. **Review pictures** selects all five;
+**Review different answers** selects the matching pictures. Both start paused.
+Your inspection judgments remain saved throughout.
 
 Tab to the playback area to use **Space** for play/pause, **Left/Right arrows** for
 pictures, **Home** for Restart and **Esc** for Pause. Buttons work with Tab and
@@ -77,10 +101,10 @@ refresh. Your challenge answers keep their existing browser storage behavior.
 
 With both complete saved models packaged, **Saved model** appears in playback.
 It starts with your Results selection. Changing it keeps the current
-picture, pauses at the picture-first stage and clears playback counts so different
-models never share totals. Restart keeps the selected model. Your visitor answers
-stay unchanged. Currently the public local bundle still has only the completed
-3.5 Flash-Lite run; new comparison evaluations are in progress.
+picture, pauses at the picture-first stage and clears both models' playback counts.
+The separate model totals never mix. Restart keeps the selected model and filter.
+Your visitor answers stay unchanged. The local bundle includes completed
+Gemini 3.5 Flash-Lite and Gemma 4 26B runs.
 
 ## Evidence preparation
 
