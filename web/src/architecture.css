@@ -4,13 +4,9 @@ main:has(.architecture) { max-width: 1280px; }
 .architecture { padding: 16px 0 0; }
 .architecture > h1 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin: 0 0 22px; }
 .architecture-board { display: flex; flex-direction: column; position: relative; border: 1px solid var(--control-border); border-radius: 8px; background: #fff; isolation: isolate; }
-.architecture-canvas { display: grid; grid-template-columns: 44px minmax(0, 1fr); order: 1; min-width: 0; border-bottom: 1px solid var(--line); border-radius: 8px 8px 0 0; }
-.architecture-lanes { display: grid; grid-template-rows: 300fr 210fr 390fr; border-right: 1px solid var(--control-border); border-radius: 8px 0 0 0; background: #f0f1ed; }
-.architecture-lanes > span { display: flex; align-items: center; justify-content: center; writing-mode: vertical-rl; transform: rotate(180deg); border-top: 1px solid var(--control-border); font-size: .8rem; font-weight: 550; }
-.architecture-lanes > span:last-child { border-top: 0; }
-.architecture-viewport { overflow-x: auto; min-width: 0; border-radius: 0 8px 0 0; overscroll-behavior-x: contain; }
-.architecture-map { height: 720px; min-width: 1000px; position: relative; background: linear-gradient(to bottom, #f6f7f2 0 33.333%, #fff 33.333% 56.666%, #f6f7f2 56.666%); }
-.architecture-map::before { content: ''; position: absolute; top: 33.333%; bottom: 43.334%; left: 0; right: 0; border-block: 1px solid var(--line); pointer-events: none; }
+.architecture-canvas { order: 1; min-width: 0; border-bottom: 1px solid var(--line); border-radius: 8px 8px 0 0; }
+.architecture-viewport { overflow-x: auto; min-width: 0; border-radius: 8px 8px 0 0; overscroll-behavior-x: contain; }
+.architecture-map { height: 720px; min-width: 1000px; position: relative; background: #f6f7f2; }
 .architecture-road { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .architecture-edge { fill: none; stroke: var(--muted); stroke-width: 1.5; marker-end: url(#architecture-arrow); vector-effect: non-scaling-stroke; }
 .architecture-road marker path { fill: var(--muted); }
@@ -45,9 +41,7 @@ main:has(.architecture) { max-width: 1280px; }
   .site-header nav[aria-label="Main navigation"] { display: grid; grid-template-columns: repeat(2, max-content); column-gap: 8px; }
   .architecture-board { border-radius: 8px; }
   .architecture-pan-hint { visibility: visible; }
-  .architecture-canvas, .architecture-viewport, .architecture-lanes { border-radius: 0; }
-  .architecture-canvas { grid-template-columns: 36px minmax(0, 1fr); }
-  .architecture-lanes > span { font-size: .72rem; }
+  .architecture-canvas, .architecture-viewport { border-radius: 0; }
   .architecture-guide { order: 0; position: sticky; top: 8px; margin: 0; padding: 14px; gap: 10px; flex-wrap: wrap; border-bottom: 1px solid var(--line); border-radius: 8px 8px 0 0; }
   .architecture-speech { gap: 10px; flex-basis: 100%; }
   .architecture-speech p { font-size: .8rem; min-height: 3em; }

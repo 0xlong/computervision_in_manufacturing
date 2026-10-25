@@ -1,9 +1,37 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { readFileSync } from 'node:fs';
 import { fixturePlayback, openWatch, status, storage } from './playback-helpers';
 
-const titles = ['Data preparation', 'API runner', 'Gemini API', 'Evaluation & packaging', 'Evidence bundle', 'Static web host', 'Evidence loader', 'React application', 'Policy & scenario engine', 'Visitor state', 'Brief builder'];
-const hints = ['Model inputs exclude reference labels', 'credentials stay in preparation', 'never during a visitor session', 'full-set coverage and errors', 'not a database', 'not a verified deployment', 'validates its JSON Schema', 'never sends visitor answers', 'not live AI inference', 'no server-side visitor database', 'Identical inputs produce identical content'];
+const titles = ['Picture checks', 'Model runner', 'Gemini 3.5 Flash-Lite', 'Gemma 4 26B', 'Check & package', 'Saved evidence', 'Website host', 'Evidence loader', 'Website app', 'Workload calculator', 'Your saved progress', 'Brief download'];
+const hints = ['without the dataset’s answers', 'does not run when you visit', 'One of two models', 'no third model’s results', 'Counts errors and failures', 'no new assessment is requested', 'not a verified deployment', 'Checks the saved files', 'never sent to a model', 'not new AI results', 'no server-side visitor database', 'same inputs give the same file'];
+
+test('diagram model names match complete authentic saved runs and frozen configurations', async ({ page }) => {
+  const bundle = JSON.parse(readFileSync('public/evidence/bundle.json', 'utf8'));
+  expect(bundle.execution).toBe('recorded_live');
+  const ids = bundle.runs.map(({ evidence, report }) => {
+    const run = evidence.run;
+    const config = JSON.parse(readFileSync(`public/evidence/configurations/${run.run_id}.json`, 'utf8'));
+    expect(config.frozen_plan.model_id).toBe(run.model_id);
+    expect(run.state).toBe('complete');
+    expect(run.provider).toBe('gemini');
+    expect(report.expected).toBe(115);
+    expect(evidence.predictions).toHaveLength(report.expected);
+    expect(report.model_id).toBe(run.model_id);
+    return run.model_id;
+  });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'See the results', exact: false }).click();
+  await page.getByRole('button', { name: 'Architecture', exact: true }).click();
+  expect(await page.locator('[data-model-id]').evaluateAll(nodes => nodes.map(n => n.getAttribute('data-model-id')))).toEqual(ids);
+  for (const title of ['Gemini 3.5 Flash-Lite', 'Gemma 4 26B']) {
+    await page.getByRole('button', { name: title, exact: true }).click();
+    // A model highlights both its picture input and its assessment return.
+    await expect(page.locator('.architecture-edge-active')).toHaveCount(2);
+  }
+  await expect(page.locator('.architecture-connection-label', { hasText: 'assessment' })).toHaveText(['Gemini assessment', 'Gemma assessment', 'Saved assessments']);
+  await expect(page.locator('.architecture-legend')).toContainText('diagram clicks never call a model');
+});
 
 test('Architecture preserves genuine judgments, workday calculations, decision and brief; leaving Watch pauses it', async ({ page }) => {
   const external: string[] = [], errors: string[] = [];
@@ -103,8 +131,9 @@ for (const width of [320, 360, 768, 1440]) test(`Architecture keyboard, accessib
   await flow.getByRole('button', { name: titles[0], exact: true }).click();
   await expect(page.locator('#architecture-hint')).toContainText(hints[0]);
   await expect(page.locator('.architecture-detail')).toHaveCount(0);
-  await expect(page.locator('.architecture-task-icon')).toHaveCount(11);
-  await expect(page.locator('.architecture-lanes > span')).toHaveText(['Preparation', 'Static delivery', 'Browser runtime']);
+  await expect(page.locator('.architecture-task-icon')).toHaveCount(titles.length);
+  await expect(page.locator('.architecture-lanes')).toHaveCount(0);
+  for (const heading of ['Preparation', 'Static delivery', 'Browser runtime']) await expect(page.getByText(heading, { exact: true })).toHaveCount(0);
   await expect(page.locator('.architecture-gateway')).toHaveCount(0);
   if (width >= 1440) expect(await page.locator('.architecture-viewport').evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
   expect((await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
@@ -127,19 +156,20 @@ test('software component tour reaches every module and restarts; reduced motion 
   for (let n = 0; n < titles.length; n++) {
     await expect(flow.getByRole('button', { name: titles[n], exact: true })).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('#architecture-hint')).toContainText(hints[n]);
-    await expect(page.locator('.architecture-step-count')).toHaveText(`${n + 1} / 11`);
+    await expect(page.locator('.architecture-step-count')).toHaveText(`${n + 1} / ${titles.length}`);
     expect(await page.locator('.architecture-token').evaluate(el => getComputedStyle(el).transitionDuration)).toBe('0s');
     const action = page.locator('.architecture-next');
-    await expect(action).toHaveText(n === 10 ? 'Restart ↺' : 'Next component →');
+    await expect(action).toHaveText(n === titles.length - 1 ? 'Restart ↺' : 'Next component →');
     await action.focus(); await page.keyboard.press(n % 2 ? 'Space' : 'Enter');
     await expect(action).toBeFocused();
   }
   await expect(flow.getByRole('button', { name: titles[0], exact: true })).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.locator('.architecture-external')).toHaveAccessibleName('Gemini API');
-  await expect(page.locator('.architecture-legend')).toContainText('AI runs in preparation');
-  await flow.getByRole('button', { name: 'Static web host', exact: true }).click();
+  await expect(page.locator('.architecture-external')).toHaveCount(2);
+  await expect(page.locator('.architecture-external')).toHaveText(['Gemini 3.5 Flash-LiteAI model · Google API', 'Gemma 4 26BAI model · Google API']);
+  await expect(page.locator('.architecture-legend')).toContainText('AI calls happen during preparation');
+  await flow.getByRole('button', { name: 'Website host', exact: true }).click();
   await expect(page.locator('#architecture-hint')).toContainText('not a verified deployment');
-  await flow.getByRole('button', { name: 'Visitor state', exact: true }).click();
+  await flow.getByRole('button', { name: 'Your saved progress', exact: true }).click();
   await expect(page.locator('#architecture-hint')).toContainText('no server-side visitor database');
   const context = await browser.newContext({ viewport: { width: 360, height: 800 }, hasTouch: true, isMobile: true, reducedMotion: 'reduce' });
   const touch = await context.newPage();

@@ -2,6 +2,98 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Individual AI models in the architecture (25 October 2026)
+
+Status: verified locally; focused checkpoint. One coordinator on `main`, no
+workers. Parent: show the actual models and picture/assessment round trips in
+the existing modern software architecture; finish the uncommitted open layout.
+Specification section 5, US-06/08/09, NFR-ACCESS-001, NFR-LAYOUT-001 and
+SEC-PRIVACY-001. Dependencies: existing architecture, Python runners, frozen
+configurations and authentic public fastener evidence. Allowed files:
+`web/src/Architecture.tsx`, `web/src/architecture.css`,
+`web/tests/architecture.spec.ts` and only this progress section.
+
+Small tasks and observable checks, completed in order:
+
+- Verify names/count against code, saved runs and frozen configurations; no calls.
+- Finish the open layout, separate models and labelled input/return connections;
+  keep one selected explanation, the existing palette and software components.
+- Check production build, genuine state/export preservation, layouts, keyboard,
+  touch and reduced motion; visually review diagram-only renders, review the
+  diff against requirements, record evidence and save a focused checkpoint.
+
+**Model-count resolution:** public bundle `fasteners-92538e3ac8f7cbfa` contains
+exactly two complete recorded-live runs, each with 115 expected images and
+115 successful saved assessments (zero terminal failures):
+
+- Gemini 3.5 Flash-Lite, `gemini-3.5-flash-lite`,
+  run `eval-flash-lite-46e242a298f20b6f`.
+- Gemma 4 26B, `gemma-4-26b-a4b-it`,
+  run `eval-gemma-7292d2441bcfd2c1`.
+
+Both declare the Gemini provider. Names match `web/src/comparison.ts`; identities
+match each configuration's `frozen_plan.model_id`, Gemini evaluation code and
+`probe_gemma.py` / `run_gemma_evaluation.py`. Candidate/trial lists include other
+models, but those lists do not establish website results. No third model exists
+in this bundle. The reason for the remembered count of three is not established;
+no third model, prediction or confidence percentage was invented. Development-only
+limitations remain intact. Bundle SHA-256:
+`7080eb819016b3972c6c5f41d995c88e21075c8a615e471033727217400f133f`.
+Detailed local identity/hash check: `.cache/model-architecture/model-verification.json`.
+
+Implemented: twelve selectable software components, with separate dashed external
+boxes for the two named models. Pictures branch from the model runner to each;
+separate Gemini/Gemma assessment arrows return to the runner. Saved assessments
+then go through evaluation/packaging into Saved evidence. Dataset answers take a
+separate evaluation-only path. Selecting a model highlights both its input and
+return. Short everyday titles retain smaller technology labels and source hints.
+The earlier Preparation / Static delivery / Browser runtime headings, lane borders
+and background bands remain removed. One short hint is shown at a time; Next
+component/Restart only changes diagram selection. The legend and runner/model
+hints explicitly distinguish preparation calls from exploring saved results.
+
+Verification: production TypeScript/build passed, including the final rebuild
+performed by Playwright. All **8 focused browser cases passed in 54.1 seconds**.
+The new identity check compares the model boxes with actual complete saved runs
+and frozen configurations. The first run had seven passing cases and one new
+check failure: the check looked for model_id at the configuration root instead
+of frozen_plan. Corrected the lookup, with no evidence or requirement changes.
+
+Checks cover 320/360/768/1440 px, twelve components/hints, input/return highlighting,
+Next/Restart, Enter/Space/focus, minimum 44 px controls, 360 x 800 touch emulation,
+reduced motion, selected-box centering and no page overflow. Automated WCAG-tagged
+scans report zero violations at the four widths. Genuine-state checks confirm
+Watch pauses, judgments survive switching/refresh, projections remain identical
+and the Markdown brief is byte-for-byte unchanged. Fixture notices remain explicit;
+that genuine journey reports no external requests or page errors. Unchanged
+calculation/unit/full-catalog checks were not repeated.
+
+Existing dev server at http://127.0.0.1:5174/ verified with Chromium 156.0.8078.4
+at all four widths, all twelve steps and Restart. The requested start command
+found the port already in use; the existing page served the current changes.
+Visually reviewed desktop/tablet/phone initial diagrams and final selected-model
+diagrams at all three sizes. Moved a brief-input label away from a box after
+review. Final local screenshots and render record:
+`.cache/model-architecture/dev-*.png`, `dev-render.json` and `check-dev.mjs`.
+**Zero source photographs visually viewed; Architecture-only rendering requested
+zero source pictures/masks.** This is diagram layout review, not a dataset audit.
+
+Fresh single-agent review re-read the diff against requirements and traced model
+identity, runner round trips, separate reference-label evaluation, packaging,
+static delivery and local browser modules. Confirmed no browser-to-provider edge,
+new dependency, changed evidence/calculation/state/export implementation, provider
+call, publication or remote change. Earlier unrelated edits and prior progress
+text are preserved and excluded from the focused checkpoint. Staged whitespace
+and exact progress-scope checks passed.
+
+Limits: attempted VS Code computer-use connection, but its native pipe is
+unavailable. Verification used the project's Chromium browser tests and diagram
+screenshots; VS Code's integrated browser, native devices, Safari/Firefox and a
+screen-reader audit remain unverified. Next: open Architecture at the local URL,
+select either named model and follow its highlighted picture/assessment arrows.
+In VS Code use **Browser: Open Integrated Browser**
+(`workbench.action.browser.open`) with http://127.0.0.1:5174/.
+
 ## Software architecture component diagram (25 October 2026)
 
 Status: verified locally; focused checkpoint. One coordinator on `main`, no

@@ -2,30 +2,31 @@ import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import './architecture.css';
 
-const zones = ['Preparation', 'Static delivery', 'Browser runtime'];
 const components = [
-  { title: 'Data preparation', tech: 'Python · Pillow', source: 'pipeline/prepare_inputs.py', icon: 0, zone: 0, x: 14, y: 16.667,
-    hint: 'Checks public MVTec images, hashes and fixed manifests. Model inputs exclude reference labels and masks; evaluation reads those references separately.' },
-  { title: 'API runner', tech: 'Python · retry / resume', source: 'pipeline/run_gemini_evaluation.py', icon: 1, zone: 0, x: 38, y: 16.667,
-    hint: 'Sends label-free images and permitted normal references through the provider adapter. Saves attempts, real responses and failures; credentials stay in preparation.' },
-  { title: 'Gemini API', tech: 'External · Gemini / Gemma', source: 'pipeline/gemini_transport.py', icon: 8, zone: 0, x: 62, y: 16.667, external: true,
-    hint: 'External Google service used for the saved Gemini and Gemma runs. HTTPS requests happen only during verified free preparation, never during a visitor session. OpenAI is not enabled.' },
-  { title: 'Evaluation & packaging', tech: 'Python · metrics / validation', source: 'pipeline/evaluate_api.py · pipeline/public_bundle.py', icon: 2, zone: 0, x: 86, y: 16.667,
-    hint: 'Compares saved outputs with references separately, computes full-set coverage and errors, and validates public artifacts. Failures and provenance remain part of the evidence.' },
-  { title: 'Evidence bundle', tech: 'JSON · images · masks', source: 'web/public/evidence/', icon: 2, zone: 1, x: 24, y: 45,
-    hint: 'Versioned static evidence contains authentic predictions, evaluation reports, pictures, reference masks and attribution. Shared JSON Schema contracts define the saved data; this is not a database.' },
-  { title: 'Static web host', tech: 'Vite output · HTTP files', source: 'web/dist/ · scripts/web.ps1', icon: 3, zone: 1, x: 70, y: 45,
-    hint: 'Vite builds HTML, JavaScript and CSS; the host serves them with the evidence files. The local preview works. The Infomaniak VPS is a target, not a verified deployment; no inference backend runs here.' },
-  { title: 'Evidence loader', tech: 'TypeScript · Ajv', source: 'web/src/bundle.ts', icon: 6, zone: 2, x: 14, y: 68.889,
-    hint: 'Fetches the bundle over HTTP and validates its JSON Schema, identities, counts and references before the app uses it. Pictures and playback data load as needed.' },
-  { title: 'React application', tech: 'React · TypeScript', source: 'web/src/App.tsx', icon: 7, zone: 2, x: 42, y: 68.889,
-    hint: 'Renders the inspection screens from validated evidence and local visitor state. It coordinates the calculation and export modules; it never sends visitor answers to a model.' },
-  { title: 'Policy & scenario engine', tech: 'Pure TypeScript functions', source: 'web/src/engine.ts', icon: 9, zone: 2, x: 73, y: 68.889,
-    hint: 'Uses fixed review routing and measured rates with visitor assumptions to calculate workload and cost. These are local calculations, not live AI inference or measured factory savings.' },
-  { title: 'Visitor state', tech: 'Versioned localStorage', source: 'web/src/state.ts', icon: 10, zone: 2, x: 42, y: 90.556,
-    hint: 'Stores judgments, settings and reasoning in this browser, with schema checks and reset support. There is no server-side visitor database; blocked storage falls back to memory.' },
-  { title: 'Brief builder', tech: 'Markdown · local download', source: 'web/src/brief.ts', icon: 5, zone: 2, x: 73, y: 90.556,
-    hint: 'Combines validated evidence, calculations and visitor state into a deterministic Markdown file. Identical inputs produce identical content; no LLM or upload is involved.' },
+  { title: 'Picture checks', tech: 'Python · Pillow', source: 'pipeline/prepare_inputs.py', icon: 0, x: 12, y: 15,
+    hint: 'Checks the public pictures before preparation. The models receive pictures without the dataset’s answers or defect outlines.' },
+  { title: 'Model runner', tech: 'Python · retry / resume', source: 'pipeline/run_gemini_evaluation.py', icon: 1, x: 37, y: 15,
+    hint: 'During preparation, sends pictures to each model and saves the returned assessments, attempts and failures. This does not run when you visit or click the diagram.' },
+  { title: 'Gemini 3.5 Flash-Lite', modelId: 'gemini-3.5-flash-lite', tech: 'AI model · Google API', source: 'web/public/evidence/configurations/eval-flash-lite-46e242a298f20b6f.json', icon: 8, x: 62, y: 15, external: true,
+    hint: 'Receives pictures from the runner and returns its own assessment. One of two models in the current saved fastener results; calls happened during preparation.' },
+  { title: 'Gemma 4 26B', modelId: 'gemma-4-26b-a4b-it', tech: 'AI model · Google API', source: 'web/public/evidence/configurations/eval-gemma-7292d2441bcfd2c1.json', icon: 8, x: 87, y: 15, external: true,
+    hint: 'Receives pictures from the runner and returns a separate assessment. The current saved bundle has these two models; it has no third model’s results.' },
+  { title: 'Check & package', tech: 'Python · evaluation', source: 'pipeline/evaluate_api.py · pipeline/public_bundle.py', icon: 2, x: 37, y: 43,
+    hint: 'Compares saved assessments with dataset answers and checks the files. Counts errors and failures honestly before packaging the evidence.' },
+  { title: 'Saved evidence', tech: 'JSON · pictures · outlines', source: 'web/public/evidence/', icon: 2, x: 62, y: 43,
+    hint: 'Keeps both models’ real assessments, pictures, dataset answers and error counts in checked files. Visitors explore these saved results; no new assessment is requested.' },
+  { title: 'Website host', tech: 'Vite · static files', source: 'web/dist/ · scripts/web.ps1', icon: 3, x: 87, y: 43,
+    hint: 'Serves the website and saved evidence as files. The local website works; the planned VPS is not a verified deployment.' },
+  { title: 'Evidence loader', tech: 'TypeScript · Ajv', source: 'web/src/bundle.ts', icon: 6, x: 87, y: 68,
+    hint: 'Checks the saved files before the website uses them. Pictures load when needed; missing or incorrect evidence produces an error message.' },
+  { title: 'Website app', tech: 'React · TypeScript', source: 'web/src/App.tsx', icon: 7, x: 62, y: 68,
+    hint: 'Shows the inspection game and saved assessments. Your answers stay in your browser and are never sent to a model.' },
+  { title: 'Workload calculator', tech: 'TypeScript functions', source: 'web/src/engine.ts', icon: 9, x: 37, y: 68,
+    hint: 'Combines measured error rates with your assumptions to estimate review work and cost. These are calculations, not new AI results or measured factory savings.' },
+  { title: 'Your saved progress', tech: 'Browser · localStorage', source: 'web/src/state.ts', icon: 10, x: 62, y: 89,
+    hint: 'Keeps your judgments and settings in this browser. There is no server-side visitor database; if saving is blocked, the page still works until you leave.' },
+  { title: 'Brief download', tech: 'Markdown · local file', source: 'web/src/brief.ts', icon: 5, x: 37, y: 89,
+    hint: 'Builds a brief from the saved evidence, calculations and your decisions. The same inputs give the same file; no model call or upload is needed.' },
 ];
 
 // Process symbols describe the architecture; they are not inspection evidence.
@@ -47,20 +48,22 @@ function TaskIcon({ kind }: { kind: number }) {
 }
 
 const edges = [
-  { target: 1, d: 'M220 150H300', label: 'image inputs', x: 260, y: 133 },
-  { target: 2, d: 'M460 137H540', label: 'HTTPS', x: 500, y: 120 },
-  { target: 1, d: 'M540 174H460', label: 'JSON', x: 500, y: 198 },
-  { target: 3, d: 'M140 80V30H860V80', label: 'reference labels · evaluation only', x: 500, y: 20, transfer: true },
-  { target: 3, d: 'M380 220V260H750V150H780', label: 'saved attempts & responses', x: 560, y: 283 },
-  { target: 4, d: 'M860 220V312H240V335', label: 'validated artifacts', x: 540, y: 304 },
-  { target: 5, d: 'M320 405H620', label: 'release files + Vite build', x: 470, y: 388 },
-  { target: 6, d: 'M700 475V523H140V550', label: 'HTTP GET · static files', x: 430, y: 515 },
-  { target: 7, d: 'M220 620H340', label: 'validated data', x: 280, y: 603 },
-  { target: 8, d: 'M500 620H650', label: 'rates + assumptions', x: 575, y: 603 },
-  { target: 9, d: 'M420 690V745', label: 'read / write', x: 480, y: 725, both: true },
-  { target: 10, d: 'M730 690V745', label: 'projections', x: 790, y: 725 },
-  { target: 10, d: 'M500 642H600V815H650', label: 'bundle', x: 622, y: 744 },
-  { target: 10, d: 'M500 815H650', label: 'visitor state', x: 555, y: 798 },
+  { source: 0, target: 1, d: 'M202 135H288', label: 'Pictures', x: 245, y: 118 },
+  { source: 1, target: 2, d: 'M370 65V25H620V65', label: 'Pictures', x: 590, y: 22 },
+  { source: 1, target: 3, d: 'M370 65V25H870V65', label: '', x: 0, y: 0 },
+  { source: 2, target: 1, d: 'M620 205V242H420V205', label: 'Gemini assessment', x: 562, y: 239 },
+  { source: 3, target: 1, d: 'M870 205V279H390V205', label: 'Gemma assessment', x: 746, y: 276 },
+  { source: 0, target: 4, d: 'M120 205V410H288', label: 'Dataset answers', x: 202, y: 436, transfer: true },
+  { source: 1, target: 4, d: 'M288 160H250V360H288', label: 'Saved assessments', x: 238, y: 312 },
+  { source: 4, target: 5, d: 'M452 387H538', label: 'Evidence', x: 495, y: 370 },
+  { source: 5, target: 6, d: 'M702 387H788', label: 'Files', x: 745, y: 370 },
+  { source: 6, target: 7, d: 'M870 457V542', label: 'Files', x: 909, y: 507 },
+  { source: 7, target: 8, d: 'M788 612H702', label: 'Checked data', x: 745, y: 595 },
+  { source: 8, target: 9, d: 'M538 612H452', label: 'Rates + inputs', x: 495, y: 595 },
+  { source: 8, target: 10, d: 'M620 682V731', label: 'Save / restore', x: 687, y: 716, both: true },
+  { source: 9, target: 11, d: 'M370 682V731', label: 'Estimates', x: 419, y: 716 },
+  { source: 8, target: 11, d: 'M538 636H495V779H452', label: 'Evidence', x: 495, y: 749 },
+  { source: 10, target: 11, d: 'M538 824H452', label: 'Your decisions', x: 495, y: 852 },
 ];
 
 function position(component: typeof components[number]): CSSProperties {
@@ -89,7 +92,6 @@ export function Architecture() {
         <button className="architecture-next" onClick={() => setSelected(n => (n + 1) % components.length)}>{selected === components.length - 1 ? 'Restart ↺' : 'Next component →'}</button>
       </div>
       <div className="architecture-canvas">
-        <div className="architecture-lanes" aria-hidden="true">{zones.map(zone => <span key={zone}>{zone}</span>)}</div>
         <div className="architecture-viewport" ref={viewport} tabIndex={0} role="region" aria-label="Software architecture diagram. Scroll horizontally to explore.">
           <div className="architecture-map">
             <svg className="architecture-road" viewBox="0 0 1000 900" preserveAspectRatio="none" aria-hidden="true">
@@ -98,23 +100,22 @@ export function Architecture() {
                 <marker id="architecture-arrow-active" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse"><path d="m0 0 7 3.5L0 7Z" /></marker>
               </defs>
               {edges.map(edge => <g key={edge.d}>
-                <path className={`architecture-edge${edge.transfer ? ' architecture-transfer' : ''}${edge.both ? ' architecture-edge-both' : ''}${edge.target === selected ? ' architecture-edge-active' : ''}`} d={edge.d} />
+                <path className={`architecture-edge${edge.transfer ? ' architecture-transfer' : ''}${edge.both ? ' architecture-edge-both' : ''}${edge.target === selected || edge.source === selected ? ' architecture-edge-active' : ''}`} d={edge.d} />
               </g>)}
             </svg>
-            {edges.map(edge => <span key={edge.d} className="architecture-connection-label" style={{ left: `${edge.x / 10}%`, top: `${edge.y / 9}%` }} aria-hidden="true">{edge.label}</span>)}
+            {edges.filter(edge => edge.label).map(edge => <span key={edge.d} className="architecture-connection-label" style={{ left: `${edge.x / 10}%`, top: `${edge.y / 9}%` }} aria-hidden="true">{edge.label}</span>)}
             <ol className="architecture-stops">{components.map((component, n) => <li key={component.title} style={position(component)}>
-              <button className={`architecture-stop${component.external ? ' architecture-external' : ''}`} aria-label={component.title} aria-pressed={n === selected} aria-controls="architecture-hint" aria-describedby={`architecture-role-${n}`} onClick={() => setSelected(n)}>
+              <button className={`architecture-stop${component.external ? ' architecture-external' : ''}`} data-model-id={component.modelId} aria-label={component.title} aria-pressed={n === selected} aria-controls="architecture-hint" aria-describedby={`architecture-tech-${n}`} onClick={() => setSelected(n)}>
                 <TaskIcon kind={component.icon} />
                 <span className="architecture-stop-title">{component.title}</span>
-                <span className="architecture-tech">{component.tech}</span>
-                <span id={`architecture-role-${n}`} className="sr-only">{zones[component.zone]}{component.external ? ', external service' : ''}</span>
+                <span id={`architecture-tech-${n}`} className="architecture-tech">{component.tech}</span>
               </button>
             </li>)}</ol>
             <span className="architecture-token" style={position(components[selected])} aria-hidden="true" />
           </div>
         </div>
       </div>
-      <p className="architecture-legend"><span className="architecture-pan-hint">Swipe across or use Next component.</span><span>AI runs in preparation · visitor state stays in the browser.</span></p>
+      <p className="architecture-legend"><span className="architecture-pan-hint">Swipe across or use Next component.</span><span>AI calls happen during preparation. You explore saved results; diagram clicks never call a model.</span></p>
     </div>
   </section>;
 }
