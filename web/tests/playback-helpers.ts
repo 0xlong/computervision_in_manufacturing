@@ -12,7 +12,7 @@ export const bundle = genuine as unknown as Bundle, catalog = genuineCatalog as 
 export const storage = 'ai-inspection-pilot-lab:visitor:v1';
 export const status = (watch: Locator) => watch.locator('.playback-status');
 export const modelNames = ['Gemini 3.5 Flash-Lite', 'Gemma 4 26B'];
-export const totals = (watch: Locator, index: number) => watch.getByRole('region', { name: `${bundle.runs[index].report.model_id} playback totals`, exact: true });
+export const totals = (watch: Locator, index: number) => watch.locator('.playback-score').nth(index);
 export const metric = (totals: Locator, name: string) => totals.locator('dl > div').filter({ has: totals.page().getByText(name, { exact: true }) }).locator('dd');
 
 export async function openWatch(page: Page, judgment = false) {
@@ -72,7 +72,6 @@ export async function finish(page: Page, watch: Locator, ids: string[], modelCou
     }
     await tick(page, watch, 'Dataset reference', duration);
     await expect(watch.getByRole('group', { name: 'Saved answer comparison', exact: true }).getByRole('region')).toHaveCount(modelCount + 1);
-    await expect(watch.getByRole('region', { name: 'This playback', exact: false })).toContainText(`${index + 1} / ${ids.length} references viewed`);
     for (const [n, run] of evidence.runs.entries()) {
       const p = run.evidence.predictions.find(p => p.image_id === id)!;
       const decision = p.status === 'success' ? p.attempts.at(-1)!.response?.decision : null;
@@ -82,9 +81,9 @@ export async function finish(page: Page, watch: Locator, ids: string[], modelCou
       else if (label === 'anomalous') { if (decision === 'needs_review') { count.flagged++; count.correct++; } else count.missed++; }
       else if (decision === 'needs_review') count.goodFlags++;
       else count.correct++;
-      const total = watch.getByRole('region', { name: `${run.report.model_id} playback totals`, exact: true });
+      const total = totals(watch, n);
       for (const [name, value] of [['Defects flagged', count.flagged], ['Defects missed', count.missed], ['Good parts flagged', count.goodFlags]] as const) await expect(metric(total, name)).toHaveText(String(value));
-      await expect(total).toContainText(`${count.correct} correct`);
+      await expect(total.locator('strong')).toHaveText(`${count.correct} / ${index + 1}`);
       await expect(total).toContainText(`${count.unsure} unsure · ${count.unavailable} unavailable`);
     }
     await expect(watch.getByRole('region', { name: 'The complete comparison', exact: true })).toHaveCount(0);

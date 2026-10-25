@@ -20,16 +20,24 @@ test('picture → first model → second model → reference; counts wait for th
   await tick(page, watch, modelNames[0]);
   await expect(comparison.getByRole('region')).toHaveCount(1);
   await expect(comparison.getByRole('region', { name: modelNames[0], exact: true })).toContainText('Needs checking');
+  await expect(comparison.getByRole('group', { name: `${modelNames[0]} playback score`, exact: true })).toBeVisible();
+  await expect(totals(watch, 0).locator('strong')).toHaveText('0 / 0');
   await tick(page, watch, modelNames[1]);
   await expect(comparison.getByRole('region')).toHaveCount(2);
   await expect(comparison.getByRole('region', { name: 'Dataset reference', exact: true })).toHaveCount(0);
   for (let n = 0; n < 2; n++) await expect(metric(totals(watch, n), 'Defects flagged')).toHaveText('0');
+  const scoreDetails = totals(watch, 0).getByText('Score details', { exact: true });
+  await scoreDetails.focus(); await page.keyboard.press('Enter');
+  await expect(metric(totals(watch, 0), 'Defects flagged')).toBeVisible();
   await tick(page, watch, 'Dataset reference');
+  await expect(scoreDetails).toBeFocused(); // Reference reveal preserves this open control.
+  await expect(metric(totals(watch, 0), 'Defects flagged')).toBeVisible();
   await expect(comparison.getByRole('region')).toHaveCount(3);
   for (let n = 0; n < 2; n++) {
     await expect(metric(totals(watch, n), 'Defects flagged')).toHaveText('1');
-    await expect(totals(watch, n)).toContainText('1 correct');
+    await expect(totals(watch, n).locator('strong')).toHaveText('1 / 1');
   }
+  await expect(watch.locator('.playback-results')).toHaveCount(0);
   // Revisit the same reference; neither model gains a second count.
   await watch.focus(); await page.keyboard.press('Home');
   await expect(metric(totals(watch, 0), 'Defects flagged')).toHaveText('0');
@@ -116,6 +124,18 @@ for (const width of [360, 768, 1440]) test(`three revealed cards, keyboard and m
   await page.keyboard.press('Escape');
   const comparison = watch.getByRole('group', { name: 'Saved answer comparison', exact: true });
   await expect(comparison.getByRole('region')).toHaveCount(3);
+  for (let n = 0; n < 2; n++) {
+    const card = comparison.getByRole('region', { name: modelNames[n], exact: true });
+    await expect(card.locator('.playback-score strong')).toHaveText('1 / 1');
+    await expect(card.locator('.comparison-status')).toContainText('Matches reference');
+    await expect(card.locator('.playback-score details')).not.toHaveAttribute('open', '');
+    const contained = await card.evaluate(el => {
+      const card = el.getBoundingClientRect(), score = el.querySelector('.playback-score')!.getBoundingClientRect();
+      const status = el.querySelector('.comparison-status')!.getBoundingClientRect();
+      return score.top >= status.bottom && score.bottom <= card.bottom && score.left >= card.left && score.right <= card.right;
+    });
+    expect(contained).toBe(true);
+  }
   const boxes = await comparison.locator('.comparison-card').evaluateAll(cards => cards.map(c => { const b = c.getBoundingClientRect(); return { x: b.x, y: b.y, width: b.width, height: b.height }; }));
   expect(Math.abs(boxes[0].width - boxes[1].width)).toBeLessThan(1);
   if (width > 650) expect(Math.abs(boxes[0].y - boxes[2].y)).toBeLessThan(1);
@@ -124,9 +144,17 @@ for (const width of [360, 768, 1440]) test(`three revealed cards, keyboard and m
   await page.clock.resume();
   expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze()).violations).toEqual([]);
   expect(await watch.evaluate(el => el.getAnimations({ subtree: true }).length)).toBe(0);
-  const artifacts = resolve('../artifacts/sequential-playback'); await mkdir(artifacts, { recursive: true });
-  await watch.screenshot({ path: resolve(artifacts, `playback-${width}.png`) });
+  const artifacts = resolve('../artifacts/card-scores'); await mkdir(artifacts, { recursive: true });
+  await comparison.screenshot({ path: resolve(artifacts, `cards-${width}.png`) });
   await writeFile(resolve(artifacts, `layout-${width}.json`), JSON.stringify({ width, boxes, overflow: false, violations: [], reduced_motion: true }, null, 2));
+  for (let n = 0; n < 2; n++) {
+    const summary = totals(watch, n).getByText('Score details', { exact: true });
+    await summary.focus(); await page.keyboard.press('Enter');
+    await expect(summary).toBeFocused();
+    await expect(metric(totals(watch, n), 'Defects flagged')).toBeVisible();
+    expect(await summary.evaluate(el => getComputedStyle(el).outlineStyle)).toBe('solid');
+  }
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await watch.focus(); await page.keyboard.press('ArrowRight');
   await expect(status(watch)).toContainText('Picture 2 of 115 · Paused');
   await page.keyboard.press('ArrowLeft'); await expect(status(watch)).toContainText('Picture 1 of 115 · Paused');

@@ -46,7 +46,7 @@ test('all 115 pictures reveal both genuine models, count every reference, stop a
   await expect(watch).toBeFocused();
   await expect(status(watch)).toContainText('Picture 1 of 115 · Paused · Picture');
   for (let n = 0; n < 2; n++) {
-    await expect(totals(watch, n)).toContainText('0 correct');
+    await expect(totals(watch, n).locator('strong')).toHaveText('0 / 0');
     for (const key of ['Defects flagged', 'Defects missed', 'Good parts flagged']) await expect(metric(totals(watch, n), key)).toHaveText('0');
   }
   expect(await page.evaluate(key => localStorage.getItem(key), storage)).toBe(before);
@@ -74,7 +74,7 @@ test('26 different answers play in full with unchanged scores, paused filter cha
   const scores = await dashboard.locator('.benchmark-cards').innerText();
   await dashboard.getByRole('button', { name: 'Review different answers', exact: true }).click();
   await expect(watch).toBeFocused(); await expect(status(watch)).toContainText('Picture 1 of 26 · Paused');
-  await expect(watch.getByRole('region', { name: 'This playback', exact: false })).toContainText('0 / 26 references viewed');
+  for (let n = 0; n < 2; n++) await expect(totals(watch, n).locator('strong')).toHaveText('0 / 0');
   // Skipping ahead remains honest about the number of references actually viewed.
   await watch.focus(); await page.keyboard.press('End');
   await expect(status(watch)).toContainText('Picture 26 of 26 · Paused · Picture');

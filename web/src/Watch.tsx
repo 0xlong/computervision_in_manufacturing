@@ -2,9 +2,9 @@ import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import type { Bundle, PlaybackCatalog } from './types';
 import { loadPlaybackCatalog } from './bundle';
 import { Picture } from './Picture';
-import { AnswerCard, Assessment, AssessmentDetails, answerLabel } from './Assessment';
+import { AnswerCard, Assessment, AssessmentDetails } from './Assessment';
 import { initialPlayback, playbackCounts, playbackReducer } from './playback';
-import { differentAnswerIndices, modelName, savedDecision } from './comparison';
+import { differentAnswerIndices, modelName } from './comparison';
 import { ComparisonDashboard } from './ComparisonDashboard';
 
 export function Watch({ bundle, active }: { bundle: Bundle; active: boolean }) {
@@ -97,24 +97,26 @@ function Player({ bundle, catalog, active }: { bundle: Bundle; catalog: Playback
         <Picture key={`${image.image_id}-${state.epoch}`} image={image} revealed={referenceShown} onReady={onReady} onFailure={onFailure} />
         <div className="answer-comparison playback-comparison" role="group" aria-label="Saved answer comparison">
           {bundle.runs.map((saved, index) => {
-            const title = modelName(saved.report.model_id), decision = savedDecision(saved, image.image_id);
+            const title = modelName(saved.report.model_id);
+            const count = counts[index];
+            const score = <div className="playback-score" role="group" aria-label={`${title} playback score`}>
+              <p><span>Correct so far</span><strong>{count.correct} / {count.revealed}</strong></p>
+              <details><summary>Score details</summary>
+                <dl className="score-counts">
+                  <div><dt>Defects flagged</dt><dd>{count.flagged}</dd></div>
+                  <div><dt>Defects missed</dt><dd>{count.missed}</dd></div>
+                  <div><dt>Good parts flagged</dt><dd>{count.falseAlarms}</dd></div>
+                </dl><p className="small">{count.unsure} unsure · {count.unavailable} unavailable</p>
+              </details>
+            </div>;
             return <div key={saved.report.run_id} className={state.stage <= index ? 'pending-assessment' : ''} aria-hidden={state.stage <= index}>
-              {referenceShown ? <Assessment saved={saved} imageId={image.image_id} reference={image.label} title={title} /> : <AnswerCard title={title} value={decision === 'unavailable' ? 'No answer' : decision === 'uncertain' ? 'Unsure' : answerLabel(decision)} detail="Saved assessment" tone="neutral" />}
+              <Assessment saved={saved} imageId={image.image_id} reference={referenceShown ? image.label : undefined} title={title}>{score}</Assessment>
               {state.stage > index && <AssessmentDetails key={image.image_id} saved={saved} imageId={image.image_id} fixture={bundle.execution === 'fixture'} />}
             </div>;
           })}
           <div className={referenceShown ? '' : 'pending-assessment'} aria-hidden={!referenceShown}><AnswerCard title="Dataset reference" value={image.label === 'normal' ? 'Looks fine' : 'Needs checking'} detail={image.label === 'normal' ? 'No defect labelled' : 'Defect labelled'} tone="reference" /></div>
         </div>
       </div>}
-      <section className="playback-results" aria-labelledby="playback-results-title">
-        <h2 id="playback-results-title">This playback <span className="small">{counts[0].revealed} / {indices.length} references viewed</span></h2>
-        <div className="running-models">{bundle.runs.map((saved, index) => <section className="running-model" key={saved.report.run_id} aria-label={`${saved.report.model_id} playback totals`}>
-          <h3>{modelName(saved.report.model_id)} <span className="running-correct">{counts[index].correct} correct</span></h3>
-          <dl className="running-counts">
-            <div><dt>Defects flagged</dt><dd>{counts[index].flagged}</dd></div><div><dt>Defects missed</dt><dd>{counts[index].missed}</dd></div><div><dt>Good parts flagged</dt><dd>{counts[index].falseAlarms}</dd></div>
-          </dl><p className="small">{counts[index].unsure} unsure · {counts[index].unavailable} unavailable</p>
-        </section>)}</div>
-      </section>
     </>}
     <details className="playback-help"><summary>About this playback</summary>
       <p>Picture → each model → dataset reference. Totals update once when the reference appears. Unsure and unavailable answers stay separate. Viewing time is per picture, not AI request time.</p>

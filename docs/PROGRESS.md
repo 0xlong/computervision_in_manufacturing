@@ -2,6 +2,70 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Running scores inside model cards (25 October 2026)
+
+Status: Done locally. One coordinator on `main`, no workers. User-requested UI
+refinement; US-02/03/08/09, FR-REVEAL-001/002, FR-COMPARE-001/002,
+NFR-ACCESS-001, NFR-LAYOUT-001. Dependencies: existing complete saved evaluations
+and sequential playback. No model evaluations or deployment work resumed.
+
+| Task | Allowed files / dependency | Acceptance check | Result |
+| --- | --- | --- | --- |
+| Fit running scores inside model cards | Watch, shared assessment component and styles; existing counts | Correct-so-far count directly beneath assessment, equal treatment, no duplicate bottom panel; extra counts collapsed | Verified |
+| Verify affected journeys and layouts | Existing web checks/helpers; implementation complete | Reference-gated updates counted once, full/filtered scores, visitor persistence, keyboard, 360/768/1440 px | Verified |
+| Review and focused checkpoint | This new progress section + six named UI/test files only | Authentic evidence/calculations unchanged; unrelated documentation/setup edits excluded | Reviewed; focused checkpoint |
+
+Each model now has a small **Correct so far** count (correct / references viewed)
+inside its assessment card, visible as that model is revealed. Counts still update
+once when the dataset reference appears. The separate bottom totals panel is
+removed. Defects flagged/missed, good parts flagged and unsure/unavailable counts
+remain under each card's **Score details**. Before reference reveal, assessments
+stay neutral; opening score details retains focus/open state when the reference
+appears. The visitor challenge retains its existing cards and answers.
+
+Checks run: `scripts/web.ps1 test` - **49 unit tests pass**;
+`scripts/web.ps1 test:browser` - **25 production Chromium checks pass (3.9 min)**,
+including a new production build/TypeScript check. The first restricted unit run
+could not start a helper (`spawn EPERM`); permitted local process access passed.
+No test or requirement was weakened.
+
+The complete playback check verifies 230 genuine saved decisions and both models'
+counters/denominators across all 115 references. The 26-picture filtered ending
+retains complete-set scores: Gemini **98/115**, Gemma **89/115**. Single-model
+fixtures separately verify unsure/unavailable answers stay outside correct counts.
+Visitor judgments survive watching, replay and refresh; the five-answer challenge,
+Results/export/reset and failure recovery pass. No external request/page error in
+the genuine full run. No automated WCAG-tagged violation or page overflow in the
+responsive checks. New checks confirm scores fit inside their cards below the
+assessment, equal model widths, keyboard expansion/focus and reference gating.
+
+Fresh single-agent diff review checked default visitor-card behavior, stable card
+identity/focus at reveal, hidden unrevealed cards, retained categorical arithmetic,
+full/filtered denominators, and removal of unused totals styles. Public evidence,
+playback/calculation/state modules, datasets, dependencies and provider code are
+unchanged. Backend tests were not repeated because no backend code changed.
+
+Visually inspected **two card-only screenshots** (360 and 1440 px), **zero source
+photographs**; tablet layout checked automatically. This is not a dataset visual
+review. Native VS Code browser control failed because its native pipe is
+unavailable; it remains unverified. Chromium **156.0.8078.4** exercised production
+preview port 4175. No native-device, Safari or screen-reader audit is claimed.
+Local dev URL http://127.0.0.1:5174/ returned HTTP 200. To view in VS Code use
+**Browser: Open Integrated Browser** (`workbench.action.browser.open`).
+
+The first final progress update failed on Windows' default text encoding and
+temporarily emptied this file. Restored the complete pre-task file from the
+existing workspace snapshot, verified exact normalized bytes against its saved
+blob, and used a focused patch for this section. No prior progress was lost.
+
+Next: refresh the local site, choose Watch AI Inspect, then Play. Look beneath
+each model's assessment for its score; expand Score details if wanted.
+[Card-only screenshots and layout records](../artifacts/card-scores/),
+[full-run evidence](../artifacts/sequential-playback/full-run.json),
+[filtered-run evidence](../artifacts/sequential-playback/filtered-run.json).
+Existing unrelated documentation/setup changes remain preserved and excluded;
+only this new section is included from this mixed progress file.
+
 ## Complete sequential playback and simpler navigation (25 October 2026)
 
 Status: Done locally. One coordinator on `main`, no workers. User's clarified
