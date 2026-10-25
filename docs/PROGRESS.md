@@ -2,6 +2,74 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Playful architecture diagram (25 October 2026)
+
+Status: verified locally; focused checkpoint. One coordinator on `main`, no
+workers. Parent: user's educational/game-style refinement; specification
+section 5, US-06/08/09. Dependency: working Architecture navigation and genuine
+saved evidence. Allowed: Architecture component/styles, affected Architecture
+browser checks and only this progress entry. Earlier edits are preserved.
+
+Tasks/completion: replace the separate text sections/cards with one illustrated
+path and a picture token; provide selectable toy-like stations, one short hint
+and Next stop/Again; explain preparation versus saved-result browsing honestly;
+check all steps, replay, touch/pointer/keyboard, reduced motion and responsive
+layouts; preserve visitor judgments/calculations/brief; review and checkpoint.
+
+Implemented: one board-game-style diagram on a dotted background. Six drawn
+symbols show a stack of pictures, a friendly robot, a box of checked answers,
+a laptop, the visitor and a decision flag/brief. A winding dotted path connects
+them in numbered order. A small drawn fastener-picture token slides to the
+selected stop. Clicking/tapping a stop or pressing Next stop updates one short
+hint inside the diagram; Again returns to the start. There is no automatic
+playback, score or invented model outcome. All symbols are code-drawn teaching
+illustrations, not dataset pictures or authentic inference evidence.
+
+Removed the separate detail headings, technical paragraphs and output/boundary
+sections. Kept the existing colors, one short page title and an explicit
+Illustrated guide / saved AI results label. Hints still explain public proxies,
+label-free preparation before the visit, retained mistakes/failures, saved
+website results, local visitor answers and human decision/brief. The desktop/
+tablet path runs across two rows; phones use a two-column winding path. The
+phone hint stays visible while scrolling. Motion happens only after interaction;
+reduced-motion preference removes token and illustration transitions. No
+provider calls, dependencies, data/state/engine/export or navigation changes.
+
+Verification: production TypeScript/build passed, followed by all **7 affected
+browser cases** in 37.1 seconds against the rebuilt production preview. These
+cover each stop and its single active state, Next stop through all six stops,
+Again, Enter/Space and focus order, visible focus, 44 px minimum targets, and
+320/360/768/1440 px. Automated WCAG-tagged scans report no violations; no
+horizontal overflow. A 360 x 800 touch-enabled mobile Chromium context tapped
+every stop and checked that the picture token reaches the selected stop.
+Reduced-motion transitions are disabled. Fixture notices remain explicit.
+The genuine journey verifies Watch pauses, saved judgments survive switching
+and refresh, workday projections are identical and exported Markdown is
+byte-for-byte unchanged before/after using the diagram. No browser errors or
+external requests in that journey. Unchanged calculation unit tests and the
+full 115-picture playback were not rerun for this diagram-only refinement.
+
+Actual http://127.0.0.1:5174/ renders in Chromium 156.0.8078.4 at all four widths;
+guided progression and replay pass. Visually reviewed the diagram at 1440, 768
+and 360 px. **Zero source photographs visually opened or requested by the
+Architecture-only render path.** This is layout review, not a dataset visual
+audit. Local evidence: `.cache/playful-architecture/dev-*.png`,
+`.cache/playful-architecture/dev-render.json` and its repeatable render script.
+
+Fresh single-agent review checked the simplified story against specification
+section 5, kept preparation separate from visiting, and checked local-only
+interaction, stable selection/replay, reduced motion, focus, responsive layout,
+unchanged evidence/state/calculations and text treated as an illustration.
+Only three UI/check files and this new progress section enter the checkpoint;
+pre-task progress text is compared with a saved copy and preserved exactly.
+
+Limits: VS Code's browser automation connection was unavailable in the preceding
+step; that finding is reused. Actual local Chromium is verified. Native devices,
+Safari/Firefox and a screen-reader audit remain unverified. No publication.
+Next: refresh http://127.0.0.1:5174/, choose Architecture and press Next stop.
+In VS Code use **Browser: Open Integrated Browser**
+(`workbench.action.browser.open`) with that URL.
+
 ## Interactive Architecture view (25 October 2026)
 
 Status: verified locally; focused checkpoint. One coordinator on `main`, no

@@ -1,54 +1,68 @@
 .site-header:has(nav) { flex-wrap: wrap; }
 .site-header nav { flex-wrap: wrap; max-width: 100%; }
-main:has(.architecture) { max-width: 1280px; }
-.architecture { padding: 25px 0 12px; }
-.architecture-heading { margin-bottom: 48px; }
-.architecture-heading .eyebrow { margin-bottom: 16px; }
-.architecture-heading h1 { font-size: clamp(2.3rem, 4.5vw, 3.8rem); margin-bottom: 18px; }
-.architecture-heading > p:last-child { color: var(--muted); margin: 0; }
-.architecture-flow { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-.architecture-lane { min-width: 0; }
-.architecture-lane-heading { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; padding-bottom: 15px; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
-.architecture-lane-heading h2 { font-size: .9rem; letter-spacing: 0; margin: 0; }
-.architecture-lane-heading > span { color: var(--muted); font-size: .75rem; }
-.architecture-lane ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0; gap: 18px; }
-.architecture-lane li { min-width: 0; position: relative; }
-.architecture-lane li:not(:last-child)::after, .architecture-lane:first-child li:last-child::after { content: '→'; position: absolute; top: 50%; left: 100%; width: 18px; transform: translateY(-50%); text-align: center; color: var(--muted); font-size: .85rem; }
-.architecture-lane:first-child li:last-child::after { width: 40px; }
-.architecture-lane button { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0; width: 100%; height: 100%; min-height: 176px; padding: 18px 14px; text-align: left; border-color: var(--line); border-radius: 12px; font-weight: 400; }
-.architecture-lane button[aria-pressed="true"] { border-color: var(--green); }
-.architecture-node-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 30px; }
-.architecture-number { font-size: .7rem; font-variant-numeric: tabular-nums; }
-.architecture-node-top svg { width: 25px; height: 25px; flex-shrink: 0; }
-.architecture-node-title { font-size: .95rem; line-height: 1.4; font-weight: 650; }
-.architecture-caption { color: var(--muted); font-size: .72rem; line-height: 1.5; margin-top: 7px; }
-.architecture-lane button[aria-pressed="true"] .architecture-caption { color: #e1eddf; }
-.architecture-hint { margin: 20px 0 32px; color: var(--muted); font-size: .78rem; }
-.architecture-detail { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; border-top: 1px solid var(--line); padding-top: 32px; }
-.architecture-detail .eyebrow { margin-bottom: 14px; }
-.architecture-detail h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); max-width: 350px; }
-.architecture-detail-copy > p:first-child { font-size: .95rem; }
-.architecture-output { display: flex; flex-direction: column; gap: 5px; font-size: .85rem; margin: 24px 0; }
-.architecture-output strong { font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--green); }
-.architecture-detail-copy > p:last-child { margin-bottom: 0; }
-@media (max-width: 1050px) {
-  .architecture-flow { grid-template-columns: 1fr; gap: 32px; }
-  .architecture-lane button { min-height: 155px; }
-  .architecture-lane:first-child li:last-child::after { display: none; }
-  .architecture-detail { gap: 32px; }
+main:has(.architecture) { max-width: 1200px; }
+.architecture { padding: 16px 0 0; }
+.architecture > h1 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin: 0 0 22px; }
+.architecture-board { position: relative; border: 1px solid var(--line); border-radius: 28px; background: #fff; isolation: isolate; }
+.architecture-map { height: 600px; position: relative; background-image: radial-gradient(#ccd4c8 1px, transparent 1px); background-size: 24px 24px; border-radius: 28px; }
+.architecture-road { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.architecture-road path { fill: none; stroke: #7e9486; stroke-width: 3; stroke-dasharray: 2 9; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.architecture-road-small { display: none; }
+.architecture-stops { list-style: none; padding: 0; margin: 0; }
+.architecture-stops > li { position: absolute; left: var(--stop-x); top: var(--stop-y); transform: translate(-50%, -50%); width: 190px; }
+.architecture-stop { position: relative; flex-direction: column; width: 100%; padding: 8px 6px 12px; gap: 0; border: 2px solid transparent; border-radius: 24px; background: #fff; color: var(--green); }
+.architecture-stop:hover:not(:disabled) { background: #f6f7f2; border-color: var(--line); }
+.architecture-stop[aria-pressed="true"], .architecture-stop[aria-pressed="true"]:hover:not(:disabled) { background: #edf4e9; color: var(--green); border-color: var(--green); }
+.architecture-toy { display: block; width: 160px; height: 125px; flex-shrink: 0; transition: transform 180ms ease; }
+.architecture-stop:hover .architecture-toy { transform: translateY(-4px) rotate(-2deg); }
+.architecture-stop-title { font-size: .9rem; line-height: 1.4; font-weight: 650; text-align: center; }
+.architecture-stop-number { position: absolute; top: 8px; left: 8px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: #e0e9d7; font-size: .7rem; font-weight: 750; }
+.architecture-stop[aria-pressed="true"] .architecture-stop-number { background: var(--green); color: #fff; }
+.architecture-guide { position: absolute; z-index: 3; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(550px, 63%); display: flex; align-items: center; gap: 16px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 18px; background: #f6f7f2; box-shadow: 0 4px 0 #e0e9d7; }
+.architecture-speech { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.architecture-step-count { color: var(--green); font-size: .75rem; font-weight: 750; white-space: nowrap; }
+.architecture-speech p { margin: 0; font-size: .85rem; line-height: 1.5; }
+.architecture-next { flex-shrink: 0; font-size: .78rem; min-height: 44px; padding: 10px 12px; background: var(--green); color: #fff; border-color: var(--green); border-radius: 12px; }
+.architecture-next:hover:not(:disabled) { background: #0b3b31; color: #fff; }
+.architecture-token { pointer-events: none; position: absolute; z-index: 2; left: var(--stop-x); top: var(--stop-y); width: 36px; height: 42px; margin: -94px 0 0 56px; transition: left 350ms ease, top 350ms ease; }
+.architecture-token svg { width: 100%; height: 100%; filter: drop-shadow(0 3px 0 #e0e9d7); }
+.architecture-phase { position: absolute; left: 7%; font-size: .72rem; font-weight: 650; color: var(--muted); background: #fff; padding: 3px 8px; border-radius: 20px; }
+.architecture-phase-before { top: 18px; }
+.architecture-phase-you { top: 60%; }
+.architecture-scenery { position: absolute; font-size: 36px; color: #7e9486; pointer-events: none; }
+.architecture-scenery-one { left: 33%; top: 3%; transform: rotate(20deg); }
+.architecture-scenery-two { right: 4%; bottom: 4%; transform: rotate(-15deg); }
+.architecture-legend { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px; padding: 0 24px 18px; margin: 0; font-size: .73rem; color: var(--muted); }
+@media (min-width: 651px) and (max-width: 900px) {
+  .architecture-stops > li { width: 160px; }
+  .architecture-toy { width: 140px; height: 115px; }
+  .architecture-stop-title { font-size: .82rem; }
+  .architecture-guide { width: 76%; }
+  .architecture-token { margin-left: 43px; margin-top: -90px; }
 }
 @media (max-width: 650px) {
   .site-header nav[aria-label="Main navigation"] { display: grid; grid-template-columns: repeat(2, max-content); column-gap: 8px; }
-  .architecture { padding-top: 15px; }
-  .architecture-heading { margin-bottom: 32px; }
-  .architecture-flow { gap: 24px; }
-  .architecture-lane-heading { margin-bottom: 16px; }
-  .architecture-lane ol { grid-template-columns: 1fr; gap: 20px; }
-  .architecture-lane button { display: grid; grid-template-columns: 56px 1fr; gap: 3px 16px; min-height: 84px; padding: 14px 18px; align-items: center; }
-  .architecture-node-top { grid-row: 1 / 3; flex-direction: column-reverse; gap: 7px; margin: 0; }
-  .architecture-node-title { align-self: end; }
-  .architecture-caption { margin-top: 0; align-self: start; }
-  .architecture-lane li:not(:last-child)::after { content: '↓'; top: 100%; left: 46px; width: 18px; height: 20px; transform: none; line-height: 20px; }
-  .architecture-detail { grid-template-columns: 1fr; gap: 4px; padding-top: 24px; }
-  .architecture-detail h2 { max-width: none; }
+  .architecture-board { border-radius: 20px; }
+  .architecture-guide { position: sticky; top: 8px; left: auto; transform: none; width: auto; margin: 12px 10px 0; padding: 12px; gap: 8px; flex-wrap: wrap; border-radius: 14px; }
+  .architecture-speech { gap: 10px; width: 100%; }
+  .architecture-speech p { font-size: .8rem; min-height: 3em; }
+  .architecture-next { margin-left: auto; }
+  .architecture-map { height: 570px; }
+  .architecture-road-wide { display: none; }
+  .architecture-road-small { display: block; }
+  .architecture-stops > li { left: var(--mobile-x); top: var(--mobile-y); width: 46%; }
+  .architecture-stop { padding: 8px 4px 12px; border-radius: 18px; }
+  .architecture-toy { width: 112px; max-width: 100%; height: 100px; }
+  .architecture-stop-title { font-size: .78rem; }
+  .architecture-stop-number { top: 5px; left: 5px; width: 20px; height: 20px; font-size: .65rem; }
+  .architecture-token { left: var(--mobile-x); top: var(--mobile-y); margin: -81px 0 0 23px; width: 29px; height: 34px; }
+  .architecture-phase { display: none; }
+  .architecture-scenery { font-size: 24px; }
+  .architecture-scenery-one { left: 7%; top: 32%; }
+  .architecture-scenery-two { right: 8%; bottom: 32%; }
+  .architecture-legend { padding: 4px 14px 16px; font-size: .7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .architecture-token, .architecture-toy { transition: none; }
+  .architecture-stop:hover .architecture-toy { transform: none; }
 }
