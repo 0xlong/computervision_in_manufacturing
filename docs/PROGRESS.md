@@ -2,6 +2,23 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Remove two display labels (25 October 2026)
+
+User-requested text cleanup; one coordinator on `main`, no workers. Parent:
+US-06/09 presentation. Allowed: App/Architecture components, affected browser
+expectations and this progress section. Dependency: verified model diagram.
+Small task/check: remove the preparation sentence from the diagram footer and
+Public-data demo from both the shared page label and loading/error screen;
+confirm absence and retain interactive model explanations and navigation.
+Status: verified. Production TypeScript/build and all eight existing Architecture
+browser cases passed (52.5 seconds): text absence, model tour, saved state/export,
+320/360/768/1440 px, keyboard, touch and automated accessibility. Reviewed the
+small diff and whitespace; no new tests/dependencies or manual picture review.
+VS Code integrated browser remains unavailable as recorded above. Next: refresh
+the local page. Focused checkpoint excludes all unrelated edits and older progress.
+No evidence, calculations, visitor judgments, model calls or source-picture views
+changed. Existing prototype/fixture disclosures and preparation hints remain.
+
 ## Individual AI models in the architecture (25 October 2026)
 
 Status: verified locally; focused checkpoint. One coordinator on `main`, no

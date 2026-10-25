@@ -30,7 +30,8 @@ test('diagram model names match complete authentic saved runs and frozen configu
     await expect(page.locator('.architecture-edge-active')).toHaveCount(2);
   }
   await expect(page.locator('.architecture-connection-label', { hasText: 'assessment' })).toHaveText(['Gemini assessment', 'Gemma assessment', 'Saved assessments']);
-  await expect(page.locator('.architecture-legend')).toContainText('diagram clicks never call a model');
+  await expect(page.getByText('Public-data demo', { exact: true })).toHaveCount(0);
+  await expect(page.getByText('AI calls happen during preparation. You explore saved results; diagram clicks never call a model.', { exact: true })).toHaveCount(0);
 });
 
 test('Architecture preserves genuine judgments, workday calculations, decision and brief; leaving Watch pauses it', async ({ page }) => {
@@ -166,7 +167,8 @@ test('software component tour reaches every module and restarts; reduced motion 
   await expect(flow.getByRole('button', { name: titles[0], exact: true })).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('.architecture-external')).toHaveCount(2);
   await expect(page.locator('.architecture-external')).toHaveText(['Gemini 3.5 Flash-LiteAI model · Google API', 'Gemma 4 26BAI model · Google API']);
-  await expect(page.locator('.architecture-legend')).toContainText('AI calls happen during preparation');
+  await flow.getByRole('button', { name: 'Model runner', exact: true }).click();
+  await expect(page.locator('#architecture-hint')).toContainText('During preparation');
   await flow.getByRole('button', { name: 'Website host', exact: true }).click();
   await expect(page.locator('#architecture-hint')).toContainText('not a verified deployment');
   await flow.getByRole('button', { name: 'Your saved progress', exact: true }).click();

@@ -115,7 +115,7 @@ export function Architecture() {
           </div>
         </div>
       </div>
-      <p className="architecture-legend"><span className="architecture-pan-hint">Swipe across or use Next component.</span><span>AI calls happen during preparation. You explore saved results; diagram clicks never call a model.</span></p>
+      <p className="architecture-legend"><span className="architecture-pan-hint">Swipe across or use Next component.</span></p>
     </div>
   </section>;
 }

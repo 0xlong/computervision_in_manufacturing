@@ -51,7 +51,6 @@ function Experience({ bundle }: { bundle: Bundle }) {
     <header className="site-header"><a href="#main" className="brand" onClick={() => goScreen('start')}><span aria-hidden="true" className="brand-mark">◈</span><span>Manufacturing<span className="brand-light"> / AI Inspection</span></span></a>
       {(state.screen !== 'start' || view !== 'experience') && <nav aria-label="Main navigation"><button aria-current={view === 'experience' && state.screen === 'inspect' ? 'page' : undefined} onClick={() => goScreen('inspect')}>Try it</button><button aria-current={watch ? 'page' : undefined} onClick={openWatch}>Watch AI Inspect</button><button aria-current={view === 'experience' && state.screen === 'lab' ? 'page' : undefined} onClick={() => goScreen('lab')}>Results</button><button aria-current={architecture ? 'page' : undefined} onClick={() => openView('architecture')}>Architecture</button></nav>}</header>
     <main id="main" tabIndex={-1}>
-      {!watch && <div className="context-bar"><span>Public-data demo</span></div>}
       {bundle.execution === 'fixture' && <p className="development-notice">TEST EXAMPLES ONLY — invented model answers; not real AI evidence.</p>}
       {notice && <p className="notice" role="status">{notice}</p>}
       {!watch && !architecture && state.screen === 'start' && <section className="hero"><h1>AI Visual Inspection<br /><em>for Manufacturing</em></h1><p className="hero-copy">Computer vision for quality control. Try five parts.</p>
@@ -101,5 +100,5 @@ export function App() {
     return () => controller.abort();
   }, [retry]);
   if (bundle) return <Experience key={bundle.bundle_id} bundle={bundle} />;
-  return <main className="loading-page"><p className="eyebrow">Public-data demo</p><h1>AI Visual Inspection for Manufacturing</h1>{error ? <div role="alert"><p>{error}</p><button onClick={() => setRetry(n => n + 1)}>Retry evidence</button></div> : <p role="status">Loading…</p>}</main>;
+  return <main className="loading-page"><h1>AI Visual Inspection for Manufacturing</h1>{error ? <div role="alert"><p>{error}</p><button onClick={() => setRetry(n => n + 1)}>Retry evidence</button></div> : <p role="status">Loading…</p>}</main>;
 }
