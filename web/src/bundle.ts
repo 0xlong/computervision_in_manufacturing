@@ -3,13 +3,15 @@ import addFormats from 'ajv-formats';
 import apiSchema from '../../schemas/api-evidence.v1.schema.json';
 import reportSchema from '../../schemas/evaluation-report.v1.schema.json';
 import bundleSchema from '../../schemas/fastener-bundle.v2.schema.json';
-import type { Bundle, Metrics } from './types';
+import type { Asset, Bundle, ChallengeImage, Metrics, PlaybackCatalog } from './types';
+import catalogSchema from '../../schemas/playback-catalog.v1.schema.json';
 
 // Canonical Draft 2020-12 contracts are shared with Python; no permissive fallback.
 const ajv = new Ajv2020({ strict: false, strictNumbers: true, allErrors: false });
 addFormats(ajv);
 ajv.addSchema(apiSchema).addSchema(reportSchema);
 const validate = ajv.compile<Bundle>(bundleSchema);
+const validateCatalog = ajv.compile<PlaybackCatalog>(catalogSchema);
 const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
 const ratio = (a: number, b: number) => b ? a / b : null;
 function checkCounts(m: Metrics, counts: { tp: number; fn: number; fp: number; tn: number }) {
@@ -90,4 +92,30 @@ export async function loadBundle(signal?: AbortSignal): Promise<Bundle> {
   const text = await response.text();
   if (text.length > 4_000_000) throw Error('The evidence bundle exceeds its supported size.');
   return parseBundle(JSON.parse(text));
+}
+
+export function parsePlaybackCatalog(value: unknown, bundle: Bundle): PlaybackCatalog {
+  if (!validateCatalog(value)) throw Error('Unsupported or corrupt playback catalog.');
+  if (value.bundle_id !== bundle.bundle_id || value.manifest_sha256 !== bundle.manifest_sha256) throw Error('Playback belongs to another evidence bundle.');
+  const images = new Map(value.images.map(i => [i.image_id, i]));
+  if (images.size !== value.images.length) throw Error('Duplicate playback picture.');
+  for (const saved of bundle.runs) {
+    if (images.size !== saved.report.expected || saved.report.images.some(i => images.get(i.image_id)?.label !== i.label)) throw Error('Playback must include every evaluated picture.');
+  }
+  for (const image of images.values()) {
+    if (image.display.path !== `images/${image.image_id}.png` || (image.mask === null) !== (image.label === 'normal') ||
+      (image.mask && (image.mask.path !== `masks/${image.image_id}.png` || image.mask.dimensions.width_px !== image.display.dimensions.width_px || image.mask.dimensions.height_px !== image.display.dimensions.height_px))) throw Error('Playback asset identity mismatch.');
+  }
+  const assetFields = (asset: Asset | null) => asset && [asset.path, asset.sha256, asset.dimensions.width_px, asset.dimensions.height_px];
+  const imageFields = (image: ChallengeImage) => [image.image_id, image.label, assetFields(image.display), assetFields(image.mask)];
+  if (bundle.images.some(i => !same(imageFields(images.get(i.image_id)!), imageFields(i)))) throw Error('Playback changed a challenge picture.');
+  return value;
+}
+
+export async function loadPlaybackCatalog(bundle: Bundle, signal: AbortSignal): Promise<PlaybackCatalog> {
+  const response = await fetch('/evidence/playback.v1.json', { signal, cache: 'no-cache' });
+  if (!response.ok) throw Error('Playback pictures are unavailable.');
+  const content = await response.text();
+  if (content.length > 500_000) throw Error('Playback catalog is too large.');
+  return parsePlaybackCatalog(JSON.parse(content), bundle);
 }

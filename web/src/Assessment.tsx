@@ -7,14 +7,14 @@ export function AnswerCard({ title, value, detail, tone }: { title: string; valu
     <p className="comparison-status"><span aria-hidden="true">{tone === 'match' ? '✓' : tone === 'mismatch' ? '!' : tone === 'reference' ? '◆' : '?'}</span>{detail}</p></section>;
 }
 
-export function Assessment({ saved, imageId, reference }: { saved: SavedRun; imageId: string; reference: 'normal' | 'anomalous' }) {
+export function Assessment({ saved, imageId, reference, title = 'AI assessment' }: { saved: SavedRun; imageId: string; reference: 'normal' | 'anomalous'; title?: string }) {
   const prediction = saved.evidence.predictions.find(p => p.image_id === imageId)!;
   const attempt = prediction.attempts.at(-1)!;
   const response = prediction.status === 'success' ? attempt.response : null;
   const matches = response && ((response.decision === 'needs_review') === (reference === 'anomalous'));
   const tone = !response || response.decision === 'uncertain' ? 'neutral' : matches ? 'match' : 'mismatch';
   const detail = !response ? 'Human check needed' : response.decision === 'uncertain' ? 'Sent for checking' : matches ? 'Matches reference' : reference === 'anomalous' ? 'Missed defect' : 'False alarm';
-  return <AnswerCard title="AI assessment" value={!response ? 'No answer' : response.decision === 'uncertain' ? 'Unsure' : answerLabel(response.decision)} detail={detail} tone={tone} />;
+  return <AnswerCard title={title} value={!response ? 'No answer' : response.decision === 'uncertain' ? 'Unsure' : answerLabel(response.decision)} detail={detail} tone={tone} />;
 }
 
 export function AssessmentDetails({ saved, imageId, fixture }: { saved: SavedRun; imageId: string; fixture: boolean }) {

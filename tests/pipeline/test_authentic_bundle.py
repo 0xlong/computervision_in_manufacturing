@@ -46,7 +46,10 @@ def test_committed_images_masks_and_original_notices_match_saved_hashes():
         assert sha256(content).hexdigest() == config["sha256"]
         data = json.loads(content)
         assert FrozenConfiguration.model_validate(data).root == data
-        assert data["schema_version"] == 1 and data["run_id"] == config["run_id"]
+        expected_version = next(version for prefix, version in (
+            ("eval-flash-lite-", 1), ("eval-comparison-", 2), ("eval-gemma-", 3))
+            if config["run_id"].startswith(prefix))
+        assert data["schema_version"] == expected_version and data["run_id"] == config["run_id"]
         run = next(r["evidence"]["run"] for r in bundle["runs"] if r["evidence"]["run"]["run_id"] == config["run_id"])
         plan = data["frozen_plan"]
         assert fingerprint({k: v for k, v in plan.items() if k not in {"frozen_at", "run_id"}}) == run["hashes"]["configuration"]

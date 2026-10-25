@@ -34,7 +34,7 @@ describe('categorical comparison against saved evidence', () => {
     let state = playbackReducer(initialPlayback, { type: 'filter', filter: 'different' });
     state = playbackReducer(state, { type: 'play' });
     const indices = differentAnswerIndices(bundle);
-    for (let n = 0; n < 6; n++) state = playbackReducer(state, { type: 'advance', total: 2, referenceIndex: indices[state.index] });
+    for (let n = 0; n < 8; n++) state = playbackReducer(state, { type: 'advance', total: 2, referenceStage: 3, referenceIndex: indices[state.index] });
     expect(state).toMatchObject({ finished: true, playing: false, seen: [0, 2] });
     expect(playbackCounts(bundle, state.seen, bundle.runs[0].report.run_id)).toMatchObject({ flagged: 0, missed: 0, falseAlarms: 2, revealed: 2 });
     expect(playbackCounts(bundle, state.seen, bundle.runs[1].report.run_id)).toMatchObject({ flagged: 0, missed: 0, falseAlarms: 0, revealed: 2 });

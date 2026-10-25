@@ -6,6 +6,7 @@ export type PilotDecision = 'Pilot with human review' | 'Collect more evidence' 
 export const pilotDecisions: PilotDecision[] = ['Pilot with human review', 'Collect more evidence', 'Revise the approach'];
 export interface Asset { path: string; sha256: string; dimensions: { width_px: number; height_px: number } }
 export interface ChallengeImage { image_id: string; label: 'normal' | 'anomalous'; display: Asset; mask: Asset | null }
+export interface PlaybackCatalog { schema_version: 1; bundle_id: string; manifest_sha256: string; images: ChallengeImage[] }
 export interface Attempt {
   number: number; status: string; reason: string; latency_ms: number | null;
   reported_model_version: string | null;

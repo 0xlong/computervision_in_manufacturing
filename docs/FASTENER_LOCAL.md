@@ -47,64 +47,67 @@ The evidence update has a new version, so an older saved challenge restarts once
 under the app's existing evidence-change rule. Model switches keep answers within
 the current version.
 
-## Watch the five saved results
+<a id="watch-the-five-saved-results"></a>
 
-Choose **Watch AI Inspect** on the opening or beside **Try it yourself**. It starts
-paused. Press **Play** to see each picture, then its saved AI assessment, then the
-dataset reference. The two cards use the same decision wording. No visitor answer
-is shown or changed in this mode.
+## Watch all 115 saved results
 
-**Previous** and **Next** move to a picture and pause. **Restart** clears only the
-playback counts and returns to picture one, paused. **Viewing time** chooses fast
-(1.5 seconds), normal (3 seconds) or slow (6 seconds) per picture, divided equally
-between the three stages. Picture loading adds time; this is not AI processing
-speed. Pause freezes the stage and its remaining time. Switching modes or leaving
-the browser tab pauses; returning does not automatically resume. After the final
-reference's viewing time, playback stops and opens the comparison dashboard.
-A missing or changed picture offers **Retry picture**.
+Choose **Watch AI Inspect** on the opening page or in the top navigation. It starts
+paused. For every picture, playback reveals:
 
-Each model has its own three running counts: defects flagged, defects missed and
-good parts flagged. They cover only references revealed in this five-picture
-playback. Revisiting a picture does not count it twice. Unsure and unavailable
-answers need human checking and are listed separately from categorical decisions.
-Choose **Saved model** to watch either genuine complete model.
+1. The picture alone.
+2. Gemini 3.5 Flash-Lite's saved assessment.
+3. Gemma 4 26B's saved assessment, keeping the first visible.
+4. The dataset reference, with all three cards visible together.
 
-**Different answers only** selects pictures where the saved answer categories
-differ (including unsure and unavailable). Currently 2 of the 5 selected pictures
-match. **Show all pictures** returns to the full five-picture selection. Changing
-the filter pauses at the first matching picture and clears playback counters;
-an empty selection offers Show all. This filters the five packaged pictures,
-not all 115 benchmark pictures. Detailed benchmark records remain available in Results.
+The reference reveal updates each model's totals once. Both models always appear;
+there is no playback model selector. Your own five-picture challenge and its saved
+judgments stay separate. The underlying genuine evidence bundle is unchanged, so
+this update does not reset saved visitor judgments.
 
-The final dashboard always compares the complete 115-picture benchmark, with equal
-model cards showing correct decisions, misses, good parts flagged, unsure and
-unavailable answers, and median recorded request time. It states how many selected
-pictures you actually watched, including after a filtered run. Filtering never
-changes benchmark scores. Correct means a categorical answer matching the reference;
-an unsure answer sent for checking is not a correct prediction. All 115 pictures
-remain in the correctness denominator, with all 93 defective and 22 good pictures
-in the respective error denominators. Current correctness: Gemini 98/115 (85.2%),
-Gemma 89/115 (77.4%). Gemma's one unsure answer stays separate.
+Use **Play/Pause**, **Previous**, **Next**, **Restart**, and **Viewing time**.
+Fast, Normal and Slow show each picture for 2, 4 or 8 seconds, split equally across
+its four stages. This is viewing time, not measured AI processing time. Image
+loading adds time. Pause retains the remaining fraction of the current stage.
+Moving between top tabs or hiding the browser tab pauses playback; it never
+resumes by itself. Pictures load one at a time, not all 115 at startup.
 
-Try **Different answers only → Play**, then **Watch again** on the dashboard.
-Watch again keeps the current filter, returns to its first picture paused and
-clears both models' playback counters. **Review pictures** selects all five;
-**Review different answers** selects the matching pictures. Both start paused.
-Your inspection judgments remain saved throughout.
+**Different answers only (26)** plays all 26 pictures where the saved answer
+categories differ. This includes unsure and unavailable categories. **Show all
+pictures** returns to the complete 115. Changing the filter pauses at its first
+picture and clears only playback counters. Empty selections have a Show all path.
 
-Tab to the playback area to use **Space** for play/pause, **Left/Right arrows** for
-pictures, **Home** for Restart and **Esc** for Pause. Buttons work with Tab and
-Enter; arrow keys within a zoomed picture still scroll the picture. Reveals have
-no animation or automatic scrolling, including with reduced motion enabled.
-Playback stays in memory during mode switches and restarts paused after a page
-refresh. Your challenge answers keep their existing browser storage behavior.
+After the last reference's viewing time, playback stops and opens the comparison
+dashboard. It always scores the complete 115-picture benchmark, with all 93 defective
+and 22 good pictures in the respective error denominators. It states how many
+references you actually viewed, including when filtered or when pictures were
+skipped. Correct decisions are categorical matches; unsure/unavailable answers do
+not count as correct. Genuine correctness remains Gemini 98/115 (85.2%) versus
+Gemma 89/115 (77.4%), with Gemma's one unsure answer separate.
 
-With both complete saved models packaged, **Saved model** appears in playback.
-It starts with your Results selection. Changing it keeps the current
-picture, pauses at the picture-first stage and clears both models' playback counts.
-The separate model totals never mix. Restart keeps the selected model and filter.
-Your visitor answers stay unchanged. The local bundle includes completed
-Gemini 3.5 Flash-Lite and Gemma 4 26B runs.
+**Watch again** starts the current selection paused with cleared playback counters.
+**Review pictures** starts all 115; **Review different answers** starts the 26
+matches. Each model has separate running counts for correct decisions, defects
+flagged, defects missed, good parts flagged, unsure and unavailable answers.
+Filtering never changes the benchmark scores or your challenge judgments.
+
+Try **Watch AI Inspect → Play** and watch both model cards appear before the
+reference. For a shorter run, choose **Different answers only (26)** first.
+
+The top navigation is the single place to switch between **Try it**, **Watch AI
+Inspect**, and **Results**. Extra explanations live under **About this playback**;
+score definitions live under **How scores are counted** on the dashboard.
+
+Keyboard: focus the playback area, then Space to play/pause, arrows to change
+pictures, Home to restart, End to jump to the last picture, Esc to pause. Buttons
+work with Tab and Enter. Zoomed-picture arrows scroll the picture. No animated
+reveals or automatic scrolling. Completion focuses the dashboard heading;
+review/replay returns focus to the playback area.
+
+Missing/changed images offer **Retry picture**. A missing, corrupt or mismatched
+playback catalog offers **Retry playback**, without inventing a shorter run.
+Playback is held in memory during tab changes and restarts paused on refresh;
+your challenge keeps its normal browser storage behavior. No visitor action calls
+an AI provider or sends visitor judgments off the browser.
 
 ## Evidence preparation
 

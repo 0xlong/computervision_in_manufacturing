@@ -46,7 +46,7 @@ function Experience({ bundle }: { bundle: Bundle }) {
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
     <header className="site-header"><a href="#main" className="brand" onClick={() => goScreen('start')}><span aria-hidden="true" className="brand-mark">◈</span><span>Manufacturing<span className="brand-light"> / AI Inspection</span></span></a>
-      {(state.screen !== 'start' || watch) && <nav aria-label="Main navigation"><button aria-current={!watch && state.screen === 'inspect' ? 'page' : undefined} onClick={() => goScreen('inspect')}>Try it</button><button aria-current={!watch && state.screen === 'lab' ? 'page' : undefined} onClick={() => goScreen('lab')}>Results</button></nav>}</header>
+      {(state.screen !== 'start' || watch) && <nav aria-label="Main navigation"><button aria-current={!watch && state.screen === 'inspect' ? 'page' : undefined} onClick={() => goScreen('inspect')}>Try it</button><button aria-current={watch ? 'page' : undefined} onClick={openWatch}>Watch AI Inspect</button><button aria-current={!watch && state.screen === 'lab' ? 'page' : undefined} onClick={() => goScreen('lab')}>Results</button></nav>}</header>
     <main id="main" tabIndex={-1}>
       <div className="context-bar"><span>Public-data demo</span></div>
       {bundle.execution === 'fixture' && <p className="development-notice">TEST EXAMPLES ONLY — invented model answers; not real AI evidence.</p>}
@@ -54,8 +54,7 @@ function Experience({ bundle }: { bundle: Bundle }) {
       {!watch && state.screen === 'start' && <section className="hero"><h1>AI Visual Inspection<br /><em>for Manufacturing</em></h1><p className="hero-copy">Computer vision for quality control. Try five parts.</p>
         <div className="hero-actions"><button className="primary" onClick={() => goScreen('inspect')}>Try it →</button><button onClick={openWatch}>Watch AI Inspect</button><button className="text-button" onClick={() => goScreen('lab')}>See the results →</button></div>
         <p className="prototype-note">A public-image demo, not factory validation.</p></section>}
-      {(watch || state.screen === 'inspect') && <div className="mode-switch" role="group" aria-label="Inspection mode"><button aria-pressed={!watch} onClick={() => goScreen('inspect')}>Try it yourself</button><button aria-pressed={watch} onClick={openWatch}>Watch AI Inspect</button></div>}
-      {watchOpened && <Watch bundle={bundle} active={watch} selectedRun={state.selectedRun} onSelectRun={id => update({ selectedRun: id, comparisonRun: '' })} />}
+      {watchOpened && <Watch bundle={bundle} active={watch} />}
       {!watch && state.screen === 'inspect' && <>
         <section className="section-heading"><h1 id="inspection-title" tabIndex={-1}>Does this part need checking?</h1></section>
         <div className="challenge-progress"><strong>Image {index + 1} of 5</strong><span>{count} of 5 answered</span><progress max={5} value={count} aria-label="Challenge answers completed" /></div>

@@ -29,9 +29,11 @@ export function benchmarkCounts(saved: SavedRun) {
   return categoricalCounts(saved, saved.report.images.map(i => i.image_id));
 }
 
-export function differentAnswerIndices(bundle: Bundle) {
-  return bundle.challenge.image_ids.flatMap((id, index) =>
+export function differentAnswerIndices(bundle: Bundle, ids = bundle.challenge.image_ids) {
+  return ids.flatMap((id, index) =>
     new Set(bundle.runs.map(saved => savedDecision(saved, id))).size > 1 ? [index] : []);
 }
 
 export const percentage = (count: number, total: number) => total ? `${(100 * count / total).toFixed(1)}%` : 'N/A';
+
+export const modelName = (id: string) => ({ 'gemini-3.5-flash-lite': 'Gemini 3.5 Flash-Lite', 'gemma-4-26b-a4b-it': 'Gemma 4 26B' })[id] ?? id;

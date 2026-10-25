@@ -2,6 +2,76 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Complete sequential playback and simpler navigation (25 October 2026)
+
+Status: Done locally. One coordinator on `main`, no workers. User's clarified
+request supersedes the five-picture Watch scope below; the visitor challenge
+remains five pictures. Parent US-02/03/06/08/09; T-EVIDENCE/JOURNEY/ACCESS/CONTRACT.
+
+| Task | Dependencies and acceptance check | Allowed files | Status |
+| --- | --- | --- | --- |
+| Package all 115 viewable references | Existing neutral prepared assets + complete unchanged saved bundle; exact IDs/labels/hashes/dimensions and aligned masks; no inference | New playback catalog/schema/builder and checks, public catalog/assets | Done |
+| Sequential model reveals | Catalog contract; picture → first model → second model → reference, all cards together; count once only after reference | Watch, playback, assessment/comparison helpers and checks | Done |
+| Minimal navigation and text | Top navigation exposes Try it / Watch / Results; no duplicate mode switch or single-model playback selector, concise controls | App, styles, dashboard and browser checks | Done |
+| Verify complete journey and checkpoint | Full 115 and filtered ends, score invariance, visitor preservation, keyboard, loading/errors, phone/desktop, bounded visual review | Web/pipeline tests, local guide/verification, this section | Verified; focused Git checkpoint |
+
+Preserved bundle identity, both saved evaluations, challenge IDs, visitor judgments
+and unrelated uncommitted user edits. Added a separate versioned playback catalog
+so existing saved judgments do not reset just to make all evaluated images viewable.
+All 115 image and 93 mask hashes/dimensions pass automated checks; no exhaustive
+visual inspection. Images load individually, with no full-corpus startup request.
+No paid requests, dependencies, publication or remote changes.
+
+The complete player shows 115 pictures, both models in fixed order and all three
+cards together after the reference. Running correct/flag/miss/good-flag counts are
+categorical, with unsure/unavailable separate. The filter covers all **26** genuine
+different answers, including Gemma's unsure result. Final scores remain Gemini
+98/115 (85.2%) and Gemma 89/115 (77.4%); model evidence/report bytes are unchanged.
+Top tabs replace the duplicate mode row; the single-model playback selector is
+removed. Further text is collapsed under About this playback / How scores are counted.
+
+**49 web unit tests** and TypeScript/production build pass. All **25 browser cases**
+pass across the full run and the isolated timing rerun. The full-run case checks
+230 saved decisions, every reference/counter update across 115 pictures, stopping,
+replay reset and visitor-state preservation/refresh. The filtered case checks all
+26, score invariance, review/replay and honest watched counts when skipping ahead.
+Single-model/no-match fixtures, unsure/unavailable/missing timing, catalog/image
+failures, exact pause/speed behavior, top-tab/visibility pauses, keyboard, reduced
+motion and 360/768/1440 px layouts pass. No automated WCAG-tagged violations or
+page overflow in the responsive scans, and no external requests/page errors in
+the full run. The visibility check is synthetic, not a native VS Code tab audit.
+
+**496 offline pipeline cases** pass across the regression and focused rerun:
+495 passed in the full suite; one fake-run setup hit Windows WinError 5 while
+replacing a temporary evidence file, then passed unchanged in a fresh test folder.
+The file-check suite contended with browser timing: the page-load check measured
+3.095 s against the unchanged <3 s target. Repeating it alone passed at **2.074 s**,
+10 Mbps / 100 ms RTT, fetching one challenge image. No thresholds or checks weakened.
+The new packaging tests include changed-input preflight and preservation of public
+files; the full asset audit verifies all catalog images/masks without inference.
+
+Earlier corrections: imported the generated fixture dependency explicitly; copied
+the sixth test image's metadata before changing its ID (avoiding alias duplicates);
+made Viewing time an explicit label/control pair. Updated the old genuine-bundle
+test from a v1-only assumption to the exact configuration version for each run
+family, retaining hash/frozen-plan validation. Replaced obsolete five-picture/
+single-model player tests with complete sequential journeys; the visitor challenge
+retains its existing checks. Fresh single-agent review checked reveal order and
+reference gating, neutral pre-reference cards, timer cleanup, stable full/filter
+IDs, categorical versus routing totals, catalog validation and saved visitor state.
+
+Viewed **two player screenshots**, desktop and phone, showing the same first image
+(two displayed examples / one distinct source picture). No additional source
+photographs viewed. Native VS Code browser remains unavailable/unverified; actual
+browser Chromium 156.0.8078.4, production preview 4175. Existing user edits remain
+excluded. Next: user refreshes the local site and tries Watch AI Inspect → Play;
+remaining model evaluations/surfaces/publication clearance stay separate work.
+
+[Guide](FASTENER_LOCAL.md#watch-all-115-saved-results),
+[verification and packaging command](FASTENER_VERIFICATION.md#complete-sequential-playback--25-october-2026),
+[full run](../artifacts/sequential-playback/full-run.json),
+[filtered run](../artifacts/sequential-playback/filtered-run.json).
+
 ## Playback totals, different answers and final dashboard (25 October 2026)
 
 Status: Done locally. Owner: one coordinator on `main`; no workers.

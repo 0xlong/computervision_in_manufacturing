@@ -9,6 +9,104 @@ The default page uses [the genuine local bundle](../web/public/evidence/bundle.j
 not a fixture. Test examples are separate and visibly labelled. Use the
 [local guide](FASTENER_LOCAL.md) to run or try it.
 
+## Complete sequential playback — 25 October 2026
+
+This update supersedes the five-picture Watch behavior described in earlier
+sections. Watch now covers every one of the 115 saved evaluation pictures in stable
+ID order. The five-picture visitor challenge and its judgments remain independent.
+The original `bundle.json`, run records, reference labels, challenge assets,
+configuration and evidence identities are unchanged.
+
+Each picture has four stages: picture only; Gemini; Gemma; dataset reference. Earlier
+model assessments stay visible as later cards appear. Before the reference, model
+cards are neutral and reveal no match/error coloring. After the reference, all three
+cards remain visible together, with labelled correctness/error status. Each model's
+running totals update exactly once at reference reveal, including correct categorical
+decisions, defect flags/misses, good flags and separate unsure/unavailable answers.
+Playback stops after the final reference's viewing time and opens the existing full
+benchmark comparison. It never silently adds 35 invented pictures to reach 150.
+
+The top navigation is the single mode switch: Try it / Watch AI Inspect / Results.
+The duplicate button row and single-model player selector are removed. Viewing time
+has a short explicit label. Main-page explanations are reduced to a compact subtitle,
+picture/stage status and counters; further explanation is under About this playback.
+The dashboard's definition/timing/replay notes are under How scores are counted.
+Human-readable model names preserve exact evidence identifiers in the records.
+
+All **26** genuine different-answer pictures are available, including Gemma's unsure
+case. Filter changes pause and clear only playback counts. Show all returns to all
+115. The dashboard shows actual unique references viewed against selection size;
+filtered and skipped-picture endings always retain complete 115-picture scores.
+Watch again retains the filter and restarts paused with cleared counters. Review
+actions start the selected review paused. Visitor judgments survive all of these
+actions, top-tab changes and refresh. Space/Escape, arrows, Home and End work in the
+playback area without overriding native controls or photograph scrolling.
+
+A separate [playback catalog](../web/public/evidence/playback.v1.json) adds every
+image/mask without changing the bundle identity or resetting saved visitor state.
+Its shared [JSON schema](../schemas/playback-catalog.v1.schema.json) reuses the
+bundle's image contract. Python/Pydantic and browser/Ajv checks require exact complete
+membership and labels for every model, compatible bundle/manifest identity,
+unchanged challenge assets, safe paths, unique IDs and aligned mask dimensions.
+The builder preflights source/public files before copying, rejects conflicting
+existing files/catalogs, checks hashes and decoded dimensions, and is repeatable.
+The public images total about 53.8 MiB; they load individually as playback advances.
+Startup does not fetch the corpus. No new inference, dependencies or publication.
+
+Reproduce packaging from the project root, after the existing local bundle exists:
+
+```powershell
+.\.venv\Scripts\python.exe -m pipeline.playback_catalog --package data/metal_nut.inputs.v2 --public web/public/evidence
+```
+
+Expected: `PASS playback catalog: 115 pictures; saved bundle unchanged`.
+This command was executed locally. All 115 display images and 93 masks were checked
+automatically for saved hashes and decoded dimensions; masks were checked for binary
+values. This is data validation, not an exhaustive visual review.
+
+Verification details and final check counts are recorded in
+[the current progress section](PROGRESS.md#complete-sequential-playback-and-simpler-navigation-25-october-2026).
+**49 web unit tests**, TypeScript/production build, **25 browser cases** and
+**496 offline pipeline cases** pass across full runs and focused environmental
+reruns. The full pipeline run had 495 passes and one Windows temporary-file replace
+permission error; that unchanged case passed in a fresh folder. Concurrent pipeline
+work pushed the unchanged <3 s browser startup target to 3.095 s; the isolated
+rerun passed at **2.074 s**, under the same 10 Mbps / 100 ms RTT profile, requesting
+one challenge image. All browser functionality/layout cases passed in the full run.
+No target or requirement was relaxed. These are local checks, not deployed-host
+performance or universal model superiority.
+The full browser run checks **230 saved model answers** in reveal order, every
+running count at all 115 reference reveals, final stop, cleared/paused replay,
+saved judgments and refresh. A second run checks all 26 filtered pictures, unchanged
+scores, filter changes and review actions. Other browser checks cover no-match and
+single-model labelled fixtures, unsure/failures/missing timing, missing/corrupt/
+cross-bundle catalogs, slow/missing/changed pictures, exact pause/speed behavior,
+top-tab and simulated tab-visibility pauses, keyboard and 360/768/1440 px layouts.
+
+Initial checks found a generated test-catalog alias creating a duplicate ID, a
+missing imported fixture, and the viewing-time label wrapping the select's option
+text. Those were corrected; the label now explicitly targets its select. A preexisting
+Python genuine-bundle test assumed all configurations were v1; it now checks the
+exact v1/v2/v3 version implied by each run family, while keeping the content hash
+and frozen-configuration validation. No evidence or requirements were weakened.
+
+Visually reviewed two player screenshots (desktop and phone), each showing the
+same first source picture: **two displayed image examples / one distinct picture**.
+This bounded review checks card layout, labels and counters, not dataset quality.
+Automated accessibility scans supplement keyboard/layout checks; they do not certify
+screen-reader or cross-browser behavior. Native VS Code browser control remains
+unavailable/unverified. Actual browser: Chromium 156.0.8078.4, production port 4175.
+To try the current site, use http://127.0.0.1:5174/ with **Browser: Open Integrated
+Browser** (`workbench.action.browser.open`); [start guide](FASTENER_LOCAL.md).
+
+Audit outputs (ignored, regenerated by browser checks):
+[full 115-picture run](../artifacts/sequential-playback/full-run.json),
+[all 26 disagreements](../artifacts/sequential-playback/filtered-run.json),
+[desktop player](../artifacts/sequential-playback/playback-1440.png),
+[phone player](../artifacts/sequential-playback/playback-360.png),
+[desktop dashboard](../artifacts/sequential-playback/dashboard-1440.png),
+[phone dashboard](../artifacts/sequential-playback/dashboard-360.png).
+
 ## Playback dashboard — 25 October 2026
 
 The five-picture player now counts both genuine models separately after each
