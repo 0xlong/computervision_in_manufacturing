@@ -2,6 +2,19 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Local page connection restored (25 October 2026)
+
+User reported page error -102. Reproduced a refused connection to
+http://127.0.0.1:5174/. Restarted
+the existing `scripts/web.ps1 dev` command as a hidden background process; no
+application code, data or dependencies changed. The page, `/src/main.tsx`, saved
+bundle and playback catalog now return HTTP 200 from a separate command. Windows
+denied the socket-inventory query; the HTTP checks establish service recovery.
+The reason the earlier process stopped is unknown; no browser rendering was
+rechecked for this runtime-only recovery. Next: refresh the same local URL in
+VS Code's **Browser: Open Integrated Browser** (`workbench.action.browser.open`).
+Startup logs stay ignored under `.cache/web-dev/`; unrelated edits are preserved.
+
 ## Aligned inspection grid and consistent controls (25 October 2026)
 
 Status: Verified locally; focused checkpoint. One
