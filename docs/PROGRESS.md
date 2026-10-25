@@ -2,6 +2,79 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## Architecture lanes and decision paths (25 October 2026)
+
+Status: verified locally; focused checkpoint. One coordinator on `main`, no
+workers. Parent: user-supplied flowchart screenshot, retaining playful style;
+specification section 5, FR-INSPECT-002, US-06/08/09. Depends on the existing
+illustrated Architecture tab. Allowed: Architecture component/styles/tests and
+only this progress section. Earlier edits are preserved and excluded.
+
+Tasks/completion: add role lanes, task boxes, arrowheads and an answer-before-
+reveal diamond; retain playful drawings/token, one short hint and local-only
+branch choices; verify both routes, guided progression/replay, state/export
+integrity, 320/360/768/1440 px, touch/keyboard/reduced motion and readable internal
+panning; visually review without source photographs; review and checkpoint.
+
+Implemented: one diagram with three labelled lanes (Before your visit, The
+website, You), start/end circles, rounded task boxes, directional connectors,
+a dashed saved-evidence transfer and an Answered? decision diamond. Seven
+friendly teaching illustrations and the moving picture token remain. A new
+saved-answer/reference illustration explains reveal. Eight selectable stops
+now distinguish preparation, loading saved results, visitor judgment, the reveal
+gate, revealing separate answers and a human decision/brief.
+
+At the diamond, Not yet returns to Try it yourself; Yes continues to Reveal saved
+answers. The hint explicitly labels these as example choices that do not change
+inspection answers. They are local diagram navigation, not new visitor judgments,
+provider results or actions in the real challenge. The actual answer-before-
+reveal gate is preserved. Next stop/Again, one short hint, the original palette,
+reduced-motion handling and the illustrated-guide/saved-results label remain.
+No separate text sections, new dependencies or inference calls.
+
+Desktop/tablet display the complete lane diagram. Phone layouts keep task boxes
+readable in an internally scrollable diagram, with fixed lane labels and the
+hint/actions outside that horizontal scroll area. Selecting a stop or using
+Next stop centers it; the page itself has no horizontal overflow. The diagram
+is keyboard-scrollable and every stop exposes its lane as a description for
+assistive technology. Resize observation is cleaned up on navigation. Start/end
+circles retain their shape across widths.
+
+Verification: TypeScript/build passed. All **7 affected browser cases passed**
+in the first run (41.3 seconds), then all **7 passed** after the final tablet/
+circle refinement (45.3 seconds) against a rebuilt production preview. The final
+checks cover eight stops, both diamond branches, the return loop, guided Next/
+Yes/Again, touch at 360 x 800, Enter/Space, preserved focus, 44 px minimum
+controls, reduced motion and 320/360/768/1440 px. Focused task boxes remain fully
+inside the diagram viewport; tablet/desktop fit without internal scrolling.
+No page overflow or automated WCAG-tagged violations. Genuine-state checks
+confirm Watch pauses, judgments survive navigation/refresh, workday projections
+remain identical and the exported Markdown is byte-for-byte unchanged. Example
+branch choices leave browser storage unchanged. Fixture notices stay explicit.
+No browser errors or external requests in the genuine journey. Unchanged
+calculation unit tests and full-catalog playback were not repeated.
+
+Actual development page http://127.0.0.1:5174/ renders in Chromium 156.0.8078.4
+at all four widths; eight-stop progression and replay pass. Visually reviewed
+the diagram at 1440/768/360 px and rechecked the final complete tablet layout.
+**Zero source photographs visually opened or requested by Architecture-only
+rendering.** This is layout review, not a dataset audit. Local evidence:
+`.cache/lane-architecture/dev-*.png`, `.cache/lane-architecture/dev-render.json`
+and the repeatable render script in that folder.
+
+Fresh single-agent review checked the screenshot-inspired visual structure,
+correct preparation/visitor roles, authentic saved-evidence explanation, honest
+example branching, unchanged real reveal/privacy rules, phone scrolling/focus,
+responsive circles, reduced motion and cleanup. Only three UI/check files and
+this new progress section enter the checkpoint. Pre-task progress is compared
+with a saved copy and preserved exactly. No remote changes or publication.
+
+Limits: the earlier unavailable VS Code browser automation connection is reused;
+actual Chromium is verified. Native devices, Safari/Firefox and a screen-reader
+audit remain unverified. Next: refresh the local website, open Architecture,
+follow Next stop and try both choices at Answered?. In VS Code use **Browser:
+Open Integrated Browser** (`workbench.action.browser.open`) with the same URL.
+
 ## Playful architecture diagram (25 October 2026)
 
 Status: verified locally; focused checkpoint. One coordinator on `main`, no

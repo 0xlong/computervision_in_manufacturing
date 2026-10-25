@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import './architecture.css';
 
 const stops = [
-  { title: 'Pick the pictures', hint: 'We start with public pictures and their reference answers. These stand in for factory parts.', x: 17, y: 25, mx: 25, my: 16 },
-  { title: 'Ask the AI', hint: 'Before your visit, AI inspects the pictures without seeing the reference answers.', x: 50, y: 25, mx: 75, my: 16 },
-  { title: 'Check & save', hint: 'We compare all AI answers with the references. Mistakes and failures stay in the saved evidence.', x: 83, y: 25, mx: 75, my: 50 },
-  { title: 'Open the website', hint: 'The website opens those saved results. Your visit never calls an AI model.', x: 83, y: 77, mx: 25, my: 50 },
-  { title: 'Try it yourself', hint: 'Judge the pictures and explore a workday. Your answers and assumptions stay in your browser.', x: 50, y: 77, mx: 25, my: 84 },
-  { title: 'You decide', hint: 'Choose a next step and download your brief. A person decides; this demo cannot approve parts.', x: 17, y: 77, mx: 75, my: 84 },
+  { title: 'Pick the pictures', hint: 'We start with public pictures and their reference answers. These stand in for factory parts.', x: 20, y: 15, toy: 0 },
+  { title: 'Ask the AI', hint: 'Before your visit, AI inspects the pictures without seeing the reference answers.', x: 47, y: 15, toy: 1 },
+  { title: 'Check & save', hint: 'We compare all AI answers with the references. Mistakes and failures stay in the saved evidence.', x: 78, y: 15, toy: 2 },
+  { title: 'Open the website', hint: 'The website opens those saved results. Your visit never calls an AI model.', x: 20, y: 48, toy: 3 },
+  { title: 'Try it yourself', hint: 'First, judge a picture yourself. Your answers and workday assumptions stay in your browser.', x: 47, y: 82, toy: 4 },
+  { title: 'Answered?', hint: 'Your answer unlocks the reveal. Try either path here—these example choices do not change your inspection answers.', x: 47, y: 48, toy: -1 },
+  { title: 'Reveal saved answers', hint: 'After you answer, reveal the saved AI answer and the dataset reference. They stay separate from your judgment.', x: 78, y: 48, toy: 6 },
+  { title: 'You decide', hint: 'Explore a workday, choose a next step and download your brief. A person decides; this demo cannot approve parts.', x: 78, y: 82, toy: 5 },
 ];
 
 // Drawn teaching symbols, never dataset pictures or fabricated model evidence.
@@ -54,15 +56,29 @@ function Toy({ stop }: { stop: number }) {
       <rect x="106" y="83" width="38" height="40" rx="5" fill="white" /><path d="M115 94h19m-19 9h19m-19 9h12" />
       <path d="m146 44 6-8m-7 22 11-1M29 30l-7-6" stroke="#a6531b" />
     </>}
+    {stop === 6 && <>
+      <rect x="25" y="35" width="57" height="77" rx="9" fill="#e6eddc" /><rect x="98" y="35" width="57" height="77" rx="9" fill="white" />
+      <path d="M38 55h31m-31 12h24m-24 12h28m44-24h31m-31 12h24m-24 12h28" />
+      <path d="M57 22q33-21 66 0m-6-9 7 10-12 2" /><circle cx="53" cy="95" r="4" fill="#124f43" /><circle cx="126" cy="95" r="4" fill="#124f43" />
+    </>}
   </svg>;
 }
 
 function position(stop: typeof stops[number]): CSSProperties {
-  return { '--stop-x': `${stop.x}%`, '--stop-y': `${stop.y}%`, '--mobile-x': `${stop.mx}%`, '--mobile-y': `${stop.my}%` } as CSSProperties;
+  return { '--stop-x': `${stop.x}%`, '--stop-y': `${stop.y}%` } as CSSProperties;
 }
 
 export function Architecture() {
   const [selected, setSelected] = useState(0);
+  const viewport = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const area = viewport.current!;
+    const center = () => { area.scrollLeft = stops[selected].x / 100 * area.scrollWidth - area.clientWidth / 2; };
+    center();
+    const observer = new ResizeObserver(center);
+    observer.observe(area);
+    return () => observer.disconnect();
+  }, [selected]);
   return <section className="architecture" aria-labelledby="architecture-title">
     <h1 id="architecture-title">How does it work?</h1>
     <div className="architecture-board" role="group" aria-label="Solution flow">
@@ -71,24 +87,37 @@ export function Architecture() {
           <span className="architecture-step-count">{selected + 1} / {stops.length}</span>
           <p>{stops[selected].hint}</p>
         </div>
-        <button className="architecture-next" onClick={() => setSelected(n => (n + 1) % stops.length)}>{selected === stops.length - 1 ? 'Again ↺' : 'Next stop →'}</button>
+        <div className="architecture-actions">
+          {selected === 5 && <button key="back" className="architecture-back" onClick={() => setSelected(4)}>Not yet ↩</button>}
+          <button key="forward" className="architecture-next" onClick={() => setSelected(n => (n + 1) % stops.length)}>{selected === stops.length - 1 ? 'Again ↺' : selected === 5 ? 'Yes →' : 'Next stop →'}</button>
+        </div>
       </div>
-      <div className="architecture-map">
-        <span className="architecture-phase architecture-phase-before">Before you arrive</span>
-        <span className="architecture-phase architecture-phase-you">Now it’s your turn</span>
-        <svg className="architecture-road architecture-road-wide" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true"><path d="M170 150H830Q950 150 950 270V342Q950 462 830 462H170" /></svg>
-        <svg className="architecture-road architecture-road-small" viewBox="0 0 400 600" preserveAspectRatio="none" aria-hidden="true"><path d="M100 96H300V300H100V504H300" /></svg>
-        <span className="architecture-scenery architecture-scenery-one" aria-hidden="true">✳</span>
-        <span className="architecture-scenery architecture-scenery-two" aria-hidden="true">✳</span>
+      <div className="architecture-canvas">
+        <div className="architecture-lanes" aria-hidden="true"><span>Before your visit</span><span>The website</span><span>You</span></div>
+        <div className="architecture-viewport" ref={viewport} tabIndex={0} role="region" aria-label="Architecture diagram. Scroll horizontally to explore.">
+        <div className="architecture-map">
+        <svg className="architecture-road" viewBox="0 0 1000 660" preserveAspectRatio="none" aria-hidden="true">
+          <defs><marker id="architecture-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="m0 0 7 3.5L0 7Z" /></marker></defs>
+          <path className="architecture-edge" d="M106 99H118" /><path className="architecture-edge" d="M282 99H388" /><path className="architecture-edge" d="M552 99H698" />
+          <path className="architecture-transfer architecture-edge" d="M780 174V213H200V242" />
+          <path className="architecture-edge" d="M200 392V541H388" /><path className="architecture-edge" d="M470 466V374" />
+          <path className="architecture-edge architecture-return" d="M410 317H338V541H388" />
+          <path className="architecture-edge" d="M530 317H698" /><path className="architecture-edge" d="M780 392V466" />
+          <path className="architecture-edge" d="M862 541H914" />
+          <text x="88" y="66">Start</text><text x="933" y="581">Your brief</text><text className="architecture-branch-label" x="601" y="303">Yes</text><text className="architecture-branch-label" x="374" y="302">Not yet</text>
+        </svg>
+        <span className="architecture-event architecture-start" aria-hidden="true" /><span className="architecture-event architecture-end" aria-hidden="true" />
         <ol className="architecture-stops">{stops.map((stop, n) => <li key={stop.title} style={position(stop)}>
-          <button className="architecture-stop" aria-pressed={n === selected} aria-controls="architecture-hint" onClick={() => setSelected(n)}>
+          <button className={`architecture-stop${stop.toy === -1 ? ' architecture-gateway' : ''}`} aria-label={stop.title} aria-pressed={n === selected} aria-controls="architecture-hint" aria-describedby={`architecture-role-${n}`} onClick={() => setSelected(n)}>
             <span className="architecture-stop-number" aria-hidden="true">{n + 1}</span>
-            <Toy stop={n} /><span className="architecture-stop-title">{stop.title}</span>
+            {stop.toy === -1 ? <span className="architecture-question" aria-hidden="true">?</span> : <Toy stop={stop.toy} />}<span className="architecture-stop-title">{stop.title}</span>
+            <span id={`architecture-role-${n}`} className="sr-only">{n < 3 ? 'Before your visit' : n === 4 || n === 7 ? 'You' : 'The website'}</span>
           </button>
         </li>)}</ol>
-        <span className="architecture-token" style={position(stops[selected])} aria-hidden="true"><svg viewBox="0 0 36 42" fill="none"><path d="M18 40 6 28h24Z" fill="#a6531b" /><rect x="2" y="2" width="32" height="31" rx="7" fill="white" stroke="#a6531b" strokeWidth="2.5" /><path d="m18 8 9 5v10l-9 5-9-5V13Z" fill="#e6eddc" stroke="#124f43" strokeWidth="2" /><circle cx="18" cy="18" r="4" fill="white" stroke="#124f43" strokeWidth="2" /></svg></span>
+        <span className={`architecture-token${selected === 5 ? ' architecture-token-gateway' : ''}`} style={position(stops[selected])} aria-hidden="true"><svg viewBox="0 0 36 42" fill="none"><path d="M18 40 6 28h24Z" fill="#a6531b" /><rect x="2" y="2" width="32" height="31" rx="7" fill="white" stroke="#a6531b" strokeWidth="2.5" /><path d="m18 8 9 5v10l-9 5-9-5V13Z" fill="#e6eddc" stroke="#124f43" strokeWidth="2" /><circle cx="18" cy="18" r="4" fill="white" stroke="#124f43" strokeWidth="2" /></svg></span>
+        </div></div>
       </div>
-      <p className="architecture-legend">Tap a stop or follow the picture. <span>Illustrated guide · saved AI results.</span></p>
+      <p className="architecture-legend"><span className="architecture-pan-hint">Swipe across or use Next stop.</span><span>Illustrated guide · saved AI results.</span></p>
     </div>
   </section>;
 }

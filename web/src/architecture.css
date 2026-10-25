@@ -1,66 +1,75 @@
 .site-header:has(nav) { flex-wrap: wrap; }
 .site-header nav { flex-wrap: wrap; max-width: 100%; }
-main:has(.architecture) { max-width: 1200px; }
+main:has(.architecture) { max-width: 1280px; }
 .architecture { padding: 16px 0 0; }
 .architecture > h1 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin: 0 0 22px; }
-.architecture-board { position: relative; border: 1px solid var(--line); border-radius: 28px; background: #fff; isolation: isolate; }
-.architecture-map { height: 600px; position: relative; background-image: radial-gradient(#ccd4c8 1px, transparent 1px); background-size: 24px 24px; border-radius: 28px; }
-.architecture-road { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-.architecture-road path { fill: none; stroke: #7e9486; stroke-width: 3; stroke-dasharray: 2 9; stroke-linecap: round; vector-effect: non-scaling-stroke; }
-.architecture-road-small { display: none; }
+.architecture-board { display: flex; flex-direction: column; position: relative; border: 1px solid var(--control-border); border-radius: 22px; background: #fff; isolation: isolate; }
+.architecture-canvas { display: grid; grid-template-columns: 44px minmax(0, 1fr); order: 1; min-width: 0; border-bottom: 1px solid var(--line); border-radius: 22px 22px 0 0; }
+.architecture-lanes { display: grid; grid-template-rows: repeat(3, 1fr); border-right: 1px solid var(--control-border); border-radius: 22px 0 0 0; background: #e6eddc; }
+.architecture-lanes > span { display: flex; align-items: center; justify-content: center; writing-mode: vertical-rl; transform: rotate(180deg); border-top: 1px solid var(--control-border); font-size: .8rem; font-weight: 650; }
+.architecture-lanes > span:last-child { border-top: 0; }
+.architecture-viewport { overflow-x: auto; min-width: 0; border-radius: 0 22px 0 0; overscroll-behavior-x: contain; }
+.architecture-map { height: 570px; min-width: 900px; position: relative; background: linear-gradient(to bottom, #f6f7f2 0 33.333%, #fff 33.333% 66.666%, #f6f7f2 66.666%); }
+.architecture-map::before { content: ''; position: absolute; inset: 33.333% 0; border-block: 1px solid var(--line); pointer-events: none; }
+.architecture-road { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.architecture-edge { fill: none; stroke: var(--green); stroke-width: 2; marker-end: url(#architecture-arrow); vector-effect: non-scaling-stroke; }
+.architecture-road marker path { fill: var(--green); }
+.architecture-transfer { stroke-dasharray: 6 5; }
+.architecture-return { stroke: var(--muted); }
+.architecture-event { position: absolute; pointer-events: none; width: 32px; height: 32px; border: 2.5px solid var(--green); border-radius: 50%; background: #fff; transform: translate(-50%, -50%); }
+.architecture-start { left: 8.8%; top: 15%; }
+.architecture-end { left: 93.3%; top: 82%; border-width: 4px; }
+.architecture-road text { fill: var(--muted); text-anchor: middle; font-size: 13px; font-weight: 600; }
+.architecture-road .architecture-branch-label { fill: var(--green); font-size: 14px; }
 .architecture-stops { list-style: none; padding: 0; margin: 0; }
-.architecture-stops > li { position: absolute; left: var(--stop-x); top: var(--stop-y); transform: translate(-50%, -50%); width: 190px; }
-.architecture-stop { position: relative; flex-direction: column; width: 100%; padding: 8px 6px 12px; gap: 0; border: 2px solid transparent; border-radius: 24px; background: #fff; color: var(--green); }
-.architecture-stop:hover:not(:disabled) { background: #f6f7f2; border-color: var(--line); }
-.architecture-stop[aria-pressed="true"], .architecture-stop[aria-pressed="true"]:hover:not(:disabled) { background: #edf4e9; color: var(--green); border-color: var(--green); }
-.architecture-toy { display: block; width: 160px; height: 125px; flex-shrink: 0; transition: transform 180ms ease; }
-.architecture-stop:hover .architecture-toy { transform: translateY(-4px) rotate(-2deg); }
-.architecture-stop-title { font-size: .9rem; line-height: 1.4; font-weight: 650; text-align: center; }
-.architecture-stop-number { position: absolute; top: 8px; left: 8px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: #e0e9d7; font-size: .7rem; font-weight: 750; }
+.architecture-stops > li { position: absolute; left: var(--stop-x); top: var(--stop-y); transform: translate(-50%, -50%); width: 16.4%; }
+.architecture-stop { position: relative; flex-direction: column; width: 100%; height: 130px; padding: 9px 6px; gap: 0; border: 2px solid #7e9486; border-radius: 16px; background: #fff; color: var(--green); box-shadow: 0 4px 0 #e0e9d7; }
+.architecture-stop:hover:not(:disabled) { background: #f6f7f2; border-color: var(--green); }
+.architecture-stop[aria-pressed="true"], .architecture-stop[aria-pressed="true"]:hover:not(:disabled) { background: #edf4e9; color: var(--green); border-color: var(--green); box-shadow: 0 0 0 3px #e0e9d7, 0 5px 0 #e0e9d7; }
+.architecture-toy { display: block; width: 112px; height: 84px; flex-shrink: 0; transition: transform 180ms ease; }
+.architecture-stop:hover .architecture-toy { transform: translateY(-3px) rotate(-2deg); }
+.architecture-stop-title { font-size: .84rem; line-height: 1.4; font-weight: 650; text-align: center; }
+.architecture-stop-number { position: absolute; top: 6px; left: 6px; width: 21px; height: 21px; border-radius: 50%; display: grid; place-items: center; background: #e0e9d7; font-size: .66rem; font-weight: 750; }
 .architecture-stop[aria-pressed="true"] .architecture-stop-number { background: var(--green); color: #fff; }
-.architecture-guide { position: absolute; z-index: 3; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(550px, 63%); display: flex; align-items: center; gap: 16px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 18px; background: #f6f7f2; box-shadow: 0 4px 0 #e0e9d7; }
-.architecture-speech { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.architecture-stops > li:has(.architecture-gateway) { width: 110px; }
+.architecture-gateway, .architecture-gateway:hover:not(:disabled), .architecture-gateway[aria-pressed="true"], .architecture-gateway[aria-pressed="true"]:hover:not(:disabled) { height: 110px; border: 0; box-shadow: none; background: transparent; }
+.architecture-gateway::before { content: ''; position: absolute; width: 78px; height: 78px; border: 2px solid var(--control-border); border-radius: 12px; background: #fff; transform: rotate(45deg); box-shadow: 3px 3px 0 #e0e9d7; z-index: -1; }
+.architecture-gateway[aria-pressed="true"]::before { background: #edf4e9; border-color: var(--green); box-shadow: 0 0 0 3px #e0e9d7, 3px 3px 0 #e0e9d7; }
+.architecture-gateway .architecture-stop-number { top: -7px; left: -2px; }
+.architecture-gateway .architecture-stop-title { font-size: .76rem; }
+.architecture-question { font-size: 1.6rem; line-height: 1; margin-bottom: 7px; }
+.architecture-guide { order: 2; z-index: 3; display: flex; align-items: center; gap: 18px; margin: 16px; padding: 14px 18px; border: 1px solid var(--line); border-radius: 16px; background: #f6f7f2; box-shadow: 0 3px 0 #e0e9d7; }
+.architecture-speech { display: flex; align-items: center; gap: 14px; min-width: 0; flex: 1; }
 .architecture-step-count { color: var(--green); font-size: .75rem; font-weight: 750; white-space: nowrap; }
 .architecture-speech p { margin: 0; font-size: .85rem; line-height: 1.5; }
-.architecture-next { flex-shrink: 0; font-size: .78rem; min-height: 44px; padding: 10px 12px; background: var(--green); color: #fff; border-color: var(--green); border-radius: 12px; }
+.architecture-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.architecture-next, .architecture-back { font-size: .78rem; min-height: 44px; padding: 10px 12px; border-radius: 12px; }
+.architecture-next { background: var(--green); color: #fff; border-color: var(--green); }
 .architecture-next:hover:not(:disabled) { background: #0b3b31; color: #fff; }
-.architecture-token { pointer-events: none; position: absolute; z-index: 2; left: var(--stop-x); top: var(--stop-y); width: 36px; height: 42px; margin: -94px 0 0 56px; transition: left 350ms ease, top 350ms ease; }
+.architecture-token { pointer-events: none; position: absolute; z-index: 2; left: var(--stop-x); top: var(--stop-y); width: 30px; height: 35px; margin: -79px 0 0 42px; transition: left 350ms ease, top 350ms ease; }
 .architecture-token svg { width: 100%; height: 100%; filter: drop-shadow(0 3px 0 #e0e9d7); }
-.architecture-phase { position: absolute; left: 7%; font-size: .72rem; font-weight: 650; color: var(--muted); background: #fff; padding: 3px 8px; border-radius: 20px; }
-.architecture-phase-before { top: 18px; }
-.architecture-phase-you { top: 60%; }
-.architecture-scenery { position: absolute; font-size: 36px; color: #7e9486; pointer-events: none; }
-.architecture-scenery-one { left: 33%; top: 3%; transform: rotate(20deg); }
-.architecture-scenery-two { right: 4%; bottom: 4%; transform: rotate(-15deg); }
-.architecture-legend { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px; padding: 0 24px 18px; margin: 0; font-size: .73rem; color: var(--muted); }
-@media (min-width: 651px) and (max-width: 900px) {
-  .architecture-stops > li { width: 160px; }
-  .architecture-toy { width: 140px; height: 115px; }
-  .architecture-stop-title { font-size: .82rem; }
-  .architecture-guide { width: 76%; }
-  .architecture-token { margin-left: 43px; margin-top: -90px; }
+.architecture-token-gateway { margin-left: 20px; }
+.architecture-legend { order: 3; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px; padding: 0 20px 16px; margin: 0; font-size: .73rem; color: var(--muted); }
+.architecture-pan-hint { visibility: hidden; }
+@media (min-width: 651px) and (max-width: 1050px) {
+  .architecture-map { min-width: 0; }
+  .architecture-toy { width: 90px; height: 74px; }
+  .architecture-stop-title { font-size: .75rem; }
+  .architecture-road text, .architecture-road .architecture-branch-label { font-size: 19px; }
+  .architecture-token { margin-left: 15px; }
 }
 @media (max-width: 650px) {
   .site-header nav[aria-label="Main navigation"] { display: grid; grid-template-columns: repeat(2, max-content); column-gap: 8px; }
-  .architecture-board { border-radius: 20px; }
-  .architecture-guide { position: sticky; top: 8px; left: auto; transform: none; width: auto; margin: 12px 10px 0; padding: 12px; gap: 8px; flex-wrap: wrap; border-radius: 14px; }
-  .architecture-speech { gap: 10px; width: 100%; }
+  .architecture-board { border-radius: 18px; }
+  .architecture-pan-hint { visibility: visible; }
+  .architecture-canvas, .architecture-viewport, .architecture-lanes { border-radius: 0; }
+  .architecture-canvas { grid-template-columns: 36px minmax(0, 1fr); }
+  .architecture-lanes > span { font-size: .72rem; }
+  .architecture-guide { order: 0; position: sticky; top: 8px; margin: 10px; padding: 12px; gap: 10px; flex-wrap: wrap; border-radius: 12px; }
+  .architecture-speech { gap: 10px; flex-basis: 100%; }
   .architecture-speech p { font-size: .8rem; min-height: 3em; }
-  .architecture-next { margin-left: auto; }
-  .architecture-map { height: 570px; }
-  .architecture-road-wide { display: none; }
-  .architecture-road-small { display: block; }
-  .architecture-stops > li { left: var(--mobile-x); top: var(--mobile-y); width: 46%; }
-  .architecture-stop { padding: 8px 4px 12px; border-radius: 18px; }
-  .architecture-toy { width: 112px; max-width: 100%; height: 100px; }
-  .architecture-stop-title { font-size: .78rem; }
-  .architecture-stop-number { top: 5px; left: 5px; width: 20px; height: 20px; font-size: .65rem; }
-  .architecture-token { left: var(--mobile-x); top: var(--mobile-y); margin: -81px 0 0 23px; width: 29px; height: 34px; }
-  .architecture-phase { display: none; }
-  .architecture-scenery { font-size: 24px; }
-  .architecture-scenery-one { left: 7%; top: 32%; }
-  .architecture-scenery-two { right: 8%; bottom: 32%; }
-  .architecture-legend { padding: 4px 14px 16px; font-size: .7rem; }
+  .architecture-actions { margin-left: auto; }
+  .architecture-legend { padding: 12px 14px; font-size: .7rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .architecture-token, .architecture-toy { transition: none; }

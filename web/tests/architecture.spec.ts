@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { fixturePlayback, openWatch, status, storage } from './playback-helpers';
 
-const titles = ['Pick the pictures', 'Ask the AI', 'Check & save', 'Open the website', 'Try it yourself', 'You decide'];
-const hints = ['public pictures and their reference answers', 'without seeing the reference answers', 'Mistakes and failures stay', 'Your visit never calls an AI model', 'stay in your browser', 'this demo cannot approve parts'];
+const titles = ['Pick the pictures', 'Ask the AI', 'Check & save', 'Open the website', 'Try it yourself', 'Answered?', 'Reveal saved answers', 'You decide'];
+const hints = ['public pictures and their reference answers', 'without seeing the reference answers', 'Mistakes and failures stay', 'Your visit never calls an AI model', 'stay in your browser', 'example choices do not change your inspection answers', 'They stay separate from your judgment', 'this demo cannot approve parts'];
 
 test('Architecture preserves genuine judgments, workday calculations, decision and brief; leaving Watch pauses it', async ({ page }) => {
   const external: string[] = [], errors: string[] = [];
@@ -76,6 +76,8 @@ for (const width of [320, 360, 768, 1440]) test(`Architecture keyboard, accessib
   const flow = page.getByRole('group', { name: 'Solution flow' });
   await page.keyboard.press('Tab');
   await expect(flow.getByRole('button', { name: 'Next stop', exact: false })).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(page.locator('.architecture-viewport')).toBeFocused();
   for (let n = 0; n < titles.length; n++) {
     await page.keyboard.press('Tab');
     const node = flow.getByRole('button', { name: new RegExp(titles[n]) });
@@ -86,6 +88,9 @@ for (const width of [320, 360, 768, 1440]) test(`Architecture keyboard, accessib
     const box = (await node.boundingBox())!;
     expect(box.width).toBeGreaterThanOrEqual(44); expect(box.height).toBeGreaterThanOrEqual(44);
     expect(await node.evaluate(el => getComputedStyle(el).outlineStyle)).toBe('solid');
+    const window = (await page.locator('.architecture-viewport').boundingBox())!;
+    expect(box.x).toBeGreaterThanOrEqual(window.x);
+    expect(box.x + box.width).toBeLessThanOrEqual(window.x + window.width);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
   await expect(page.locator('nav [aria-current="page"]')).toHaveText('Architecture');
@@ -98,7 +103,10 @@ for (const width of [320, 360, 768, 1440]) test(`Architecture keyboard, accessib
   await flow.getByRole('button', { name: titles[0], exact: true }).click();
   await expect(page.locator('#architecture-hint')).toContainText(hints[0]);
   await expect(page.locator('.architecture-detail')).toHaveCount(0);
-  await expect(page.locator('.architecture-toy')).toHaveCount(6);
+  await expect(page.locator('.architecture-toy')).toHaveCount(7);
+  await expect(page.locator('.architecture-lanes > span')).toHaveText(['Before your visit', 'The website', 'You']);
+  await expect(page.locator('.architecture-gateway')).toHaveCount(1);
+  if (width >= 768) expect(await page.locator('.architecture-viewport').evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
   expect((await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
   expect(images).toEqual([]); // Explaining architecture does not load source pictures.
 });
@@ -119,14 +127,23 @@ test('guided picture journey reaches each stop and replays; reduced motion and t
   for (let n = 0; n < titles.length; n++) {
     await expect(flow.getByRole('button', { name: titles[n], exact: true })).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('#architecture-hint')).toContainText(hints[n]);
-    await expect(page.locator('.architecture-step-count')).toHaveText(`${n + 1} / 6`);
+    await expect(page.locator('.architecture-step-count')).toHaveText(`${n + 1} / 8`);
     expect(await page.locator('.architecture-token').evaluate(el => getComputedStyle(el).transitionDuration)).toBe('0s');
     const action = page.locator('.architecture-next');
-    await expect(action).toHaveText(n === 5 ? 'Again ↺' : 'Next stop →');
+    await expect(action).toHaveText(n === 7 ? 'Again ↺' : n === 5 ? 'Yes →' : 'Next stop →');
     await action.focus(); await page.keyboard.press(n % 2 ? 'Space' : 'Enter');
     await expect(action).toBeFocused();
   }
   await expect(flow.getByRole('button', { name: titles[0], exact: true })).toHaveAttribute('aria-pressed', 'true');
+  const saved = await page.evaluate(key => localStorage.getItem(key), storage);
+  await flow.getByRole('button', { name: 'Answered?', exact: true }).click();
+  await page.getByRole('button', { name: 'Not yet', exact: false }).click();
+  await expect(flow.getByRole('button', { name: 'Try it yourself', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await page.locator('.architecture-next').click();
+  await expect(flow.getByRole('button', { name: 'Answered?', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: 'Yes →', exact: true }).click();
+  await expect(flow.getByRole('button', { name: 'Reveal saved answers', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  expect(await page.evaluate(key => localStorage.getItem(key), storage)).toBe(saved);
   const context = await browser.newContext({ viewport: { width: 360, height: 800 }, hasTouch: true, isMobile: true, reducedMotion: 'reduce' });
   const touch = await context.newPage();
   try {
