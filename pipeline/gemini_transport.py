@@ -15,7 +15,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import ProxyHandler, Request, build_opener
 
 from pipeline.api_contracts import sanitized_result, strict_json
-from pipeline.check_gemini_metadata import HOST, MODELS, ROOT, _NoRedirect, load_key
+from pipeline.check_gemini_metadata import HOST, MODELS, COMPARISON_MODELS, ROOT, _NoRedirect, load_key
 
 
 MAX_RESPONSE_BYTES = 64 * 1024
@@ -107,7 +107,7 @@ def retry_time(raw, header, now, *, quota):
 
 
 def send_once(model, payload, key, opener=None):
-    if model not in MODELS:
+    if model not in MODELS + COMPARISON_MODELS:
         raise ValueError("Unsupported trial model")
     opener = opener or build_opener(ProxyHandler({}), _NoRedirect())
     request = Request(HOST + model + ":generateContent", data=payload,

@@ -83,8 +83,8 @@ def run_lock(directory):
                 fcntl.flock(stream.fileno(), fcntl.LOCK_UN)
 
 
-def prepare(package: Path, configuration: dict, model: str, *, now=None):
-    if not Draft202012Validator(TRIAL_SCHEMA).is_valid(configuration):
+def prepare(package: Path, configuration: dict, model: str, *, now=None, schema=TRIAL_SCHEMA):
+    if not Draft202012Validator(schema).is_valid(configuration):
         raise ValueError("Invalid bounded trial configuration")
     if model not in configuration["model_ids"]:
         raise ValueError("Unsupported trial model")
@@ -143,7 +143,8 @@ def build_payload(plan, probe, root):
         image_part(root, plan["reference"]), {"text": "Candidate " + probe["image_id"] + ":"},
         image_part(root, probe)]}], "generationConfig": {
             "candidateCount": 1, "maxOutputTokens": configuration["max_output_tokens"],
-            "thinkingConfig": {"thinkingLevel": configuration["thinking_level"]},
+            "thinkingConfig": (configuration["thinking_configs"][plan["model_id"]] if configuration["schema_version"] == 2
+                               else {"thinkingLevel": configuration["thinking_level"]}),
             "responseMimeType": "application/json", "responseJsonSchema": SCHEMA["$defs"]["response"]}}
 
 

@@ -16,6 +16,7 @@ from pipeline.api_contracts import strict_json
 
 ROOT = Path(__file__).resolve().parents[1]
 MODELS = ("gemini-3.8-flash", "gemini-3.5-flash-lite")
+COMPARISON_MODELS = ("gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-3-flash-preview")
 HOST = "https://generativelanguage.googleapis.com/v1beta/models/"
 MAX_BYTES = 64 * 1024
 
@@ -57,8 +58,8 @@ class _NoRedirect(HTTPRedirectHandler):
 
 
 def inspect_model(key: str, model: str, opener=None) -> dict:
-    if model not in MODELS:
-        raise ValueError("Only the two declared trial candidates may be inspected")
+    if model not in MODELS + COMPARISON_MODELS:
+        raise ValueError("Only declared inspection candidates may be inspected")
     result = {"model_id": model, "status": "unavailable", "http_status": None,
               "supports_generate_content": None}
     # Explicit TLS defaults; no inherited proxy or alternate provider endpoint.

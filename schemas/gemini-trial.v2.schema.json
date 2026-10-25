@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-inspection-pilot-lab:gemini-trial:2",
+  "title": "Bounded multi-model normal-preparation Gemini trial",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "purpose",
+    "model_ids",
+    "reference_count",
+    "probe_count",
+    "max_requests_per_model",
+    "reserved_input_tokens_per_request",
+    "max_output_tokens",
+    "max_runtime_seconds",
+    "minimum_interval_seconds",
+    "prompt",
+    "thinking_configs"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 2
+    },
+    "purpose": {
+      "const": "normal_preparation_trial_not_defect_evaluation"
+    },
+    "model_ids": {
+      "const": [
+        "gemini-2.5-flash",
+        "gemini-2.5-flash-lite",
+        "gemini-3-flash-preview"
+      ]
+    },
+    "reference_count": {
+      "type": "integer",
+      "const": 1
+    },
+    "probe_count": {
+      "type": "integer",
+      "const": 2
+    },
+    "max_requests_per_model": {
+      "type": "integer",
+      "const": 6
+    },
+    "reserved_input_tokens_per_request": {
+      "type": "integer",
+      "const": 16000
+    },
+    "max_output_tokens": {
+      "type": "integer",
+      "const": 2048
+    },
+    "max_runtime_seconds": {
+      "type": "integer",
+      "const": 600
+    },
+    "minimum_interval_seconds": {
+      "type": "integer",
+      "const": 10
+    },
+    "prompt": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "thinking_configs": {
+      "const": {
+        "gemini-2.5-flash": {
+          "thinkingBudget": 0
+        },
+        "gemini-2.5-flash-lite": {
+          "thinkingBudget": 0
+        },
+        "gemini-3-flash-preview": {
+          "thinkingLevel": "low"
+        }
+      }
+    }
+  }
+}

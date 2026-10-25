@@ -1,6 +1,61 @@
 # Progress and next action
 
-Updated: 24 October 2026. This file records project state, not promised implementation success.
+Updated: 25 October 2026. This file records project state, not promised implementation success.
+
+## Multi-model free-tier runner and first batches (25 October 2026)
+
+Owner: one coordinator on `main`; no workers. Parent EN-03 / US-03/06 and the
+user's free-model comparison request; API-FREE/INPUT/OUTPUT/RUN/QUOTA/RETRY/AUDIT,
+DATA-FREEZE/TEST and T-CONTRACT. Baseline `acf2288`. Preserve all earlier uncommitted
+work. Allowed: comparison runner/config/schema, shared request/metadata/evaluation
+extensions and offline tests, comparison/evaluation guides and this new section.
+
+| Task | Dependency and observable completion check | Status |
+| --- | --- | --- |
+| Record screenshot limits and add a versioned runner | Exact visible model limits/usage, no invented quota; unchanged baseline; all-model request settings, daily ledger and cross-phase pacing tests | Done: 448 offline pipeline tests pass |
+| Qualify three eligible new candidates | Current screenshot/access/use record, metadata access, two successful normal-fitting probes with saved versions/usage, bounded submissions/deadline | Ready for authentic execution |
+| Start fixed full-set runs | Qualifying frozen configuration; all 115 IDs retained; serial resumable batches stop at current allowance headroom | Pending qualification |
+| Finish complete model comparison | All new full runs complete; new configuration packaging, same five teaching IDs, model-aware playback and browser verification | Pending multi-day evaluation |
+
+The supplied Free-tier screenshot records 3.5 Lite 15 RPM / 250K input TPM / 500 RPD
+(118 used), 3.8 Flash 5 / 250K / 20 (4 used), 2.5 Flash 5 / 250K / 20, 2.5 Lite
+10 / 250K / 20 and 3 Flash 5 / 250K / 20 (the last three zero used). Capture time and
+project ID are unknown. 3.6 is absent; zero-quota, agent, image-generation and TTS
+entries are not used. Reuse the complete 3.5 Lite baseline and preserve the failed
+3.8 trial. New cohort: 2.5 Flash, 2.5 Flash-Lite, 3 Flash preview. All three sanitized
+metadata GETs returned HTTP 200/generateContent; no prompt/image was sent by that check.
+
+Versioned v2 request configuration/schema retains the original prompt, normal
+reference/probes, original clean RGB pixels and JSON response format. Model-specific
+REST thinking: budget 0 on 2.5, low level on 3 Flash. No result-based tuning. Separate
+comparison identities/directories preserve old evidence. Daily allowance counts
+preparation plus evaluation, including failures/retries/unknowns, across phases/runs;
+keep one request headroom. Cross-phase start spacing is max(10s, 120/RPM), with provider
+retry deadlines respected. No automatically inferred daily reset. Access snapshots
+have a four-hour internal freshness limit, not a claimed provider expiry. Existing
+Swiss/UK private noncommercial local-use conclusion retained after current terms check.
+
+Checks: **448 offline pipeline tests pass**, including 11 new comparison cases.
+Generated cases cover new endpoints/settings, all-115 freezing, tampered qualification,
+no repeated success, shared quotas, stale access, unknown/retry accounting, cross-phase
+pacing, offline/no-access behavior. Initial failures were inconsistent generated test
+fingerprints/timestamps; corrected the generated records, preserving strict checks.
+Fresh single-agent source/diff review additionally tightened cross-phase pacing and
+linked output-folder rejection before writes; full suite reran successfully. Real
+inputs passed offline preparation; earlier zero-submission plans stay preserved after
+source identity changed during review. Zero dataset pictures visually opened.
+
+The website still shows one genuine complete model. No web/dependency change; the
+prior 31 web unit / 21 Chromium pass is historical and not rerun for this offline step.
+Saved public evidence, original v1 config/schema and baseline predictions remain
+unchanged. No paid access, billing change, publication or remote infrastructure change.
+[Run guide / limits / sources](GEMINI_COMPARISON_RUNS.md) owns reproducible commands,
+quota meaning, scoped use and remaining packaging work. Nonsecret receipt/access and
+metadata records remain ignored under `artifacts/model-comparison-oct25/`.
+
+Checkpoint: Prepare quota-safe multi-model Gemini comparison runs. Next: execute
+bounded real qualification, then eligible first full-set batches without fabricating
+unfinished metrics. At 20 requests/day, this cannot finish every 115-image run today.
 
 ## Model comparison — display ready; additional evaluations pending (24 October 2026)
 

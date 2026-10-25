@@ -18,12 +18,12 @@ CONFIG = {"max_requests_per_model": 345, "reserved_input_tokens_per_request": 16
           "max_output_tokens": 2048, "minimum_interval_seconds": 10, "thinking_level": "low"}
 
 
-def prepare(package: Path, trial: dict, trial_plan: dict, *, now=utc_now):
+def prepare(package: Path, trial: dict, trial_plan: dict, *, now=utc_now, models=("gemini-3.5-flash-lite",)):
     """Qualification reads successful normal-fitting probes, never test labels."""
     trial = ApiEvidence.model_validate(trial).root
     tr = trial["run"]
-    if tr["model_id"] != "gemini-3.5-flash-lite" or tr["state"] != "complete" or len(trial["predictions"]) != 2:
-        raise ValueError("Requires the qualifying Flash-Lite normal-only trial")
+    if tr["model_id"] not in models or tr["state"] != "complete" or len(trial["predictions"]) != 2:
+        raise ValueError("Requires a qualifying declared-model normal-only trial")
     if any(p["status"] != "success" or p["attempts"][-1]["reported_model_version"] is None
            for p in trial["predictions"]):
         raise ValueError("Qualification requires structured sample responses and versions")
@@ -46,6 +46,8 @@ def prepare(package: Path, trial: dict, trial_plan: dict, *, now=utc_now):
     if fingerprint(trial_plan) != tr["hashes"]["configuration"] or trial_plan["model_id"] != tr["model_id"] or trial_plan["reference"]["image_id"] in {i["image_id"] for i in tr["inputs"]}:
         raise ValueError("Trial plan identity mismatch")
     config = {**trial_plan["configuration"], **CONFIG}
+    if config["schema_version"] == 2:
+        config.pop("thinking_level")  # v2 freezes model-specific REST thinking settings.
     reference = trial_plan["reference"]
     if fitting_ids.get(reference["image_id"]) != reference["sha256"]:
         raise ValueError("Reference must remain in normal fitting inputs")
@@ -56,7 +58,8 @@ def prepare(package: Path, trial: dict, trial_plan: dict, *, now=utc_now):
                 "preparation_sha256": digest(package / "preparation.json"),
                 "inputs_sha256": digest(evaluation_path), "implementation": implementation}
     identity_hash = fingerprint(identity)
-    plan = {**identity, "frozen_at": stamp(now()), "run_id": f"eval-flash-lite-{identity_hash[:16]}"}
+    prefix = "eval-flash-lite" if models == ("gemini-3.5-flash-lite",) else "eval-comparison"
+    plan = {**identity, "frozen_at": stamp(now()), "run_id": f"{prefix}-{identity_hash[:16]}"}
     run = {**deepcopy(tr), "run_id": plan["run_id"], "created_at": plan["frozen_at"], "state": "in_progress",
            "hashes": {**tr["hashes"], "inputs": digest(evaluation_path), "configuration": identity_hash,
                       "references": fingerprint([reference]), "preparation": identity["preparation_sha256"]},
@@ -70,7 +73,8 @@ def prepare(package: Path, trial: dict, trial_plan: dict, *, now=utc_now):
 
 
 def execute_batch(plan, evidence, root, output, access, *, budget=12, send=supervised_request,
-                  now=utc_now, monotonic=time.monotonic, sleep=time.sleep):
+                  now=utc_now, monotonic=time.monotonic, sleep=time.sleep, current_access=None, runtime=900,
+                  earliest_start=None):
     """At most 12 submissions per invocation; attempts persist across batches."""
     if type(budget) is not int or not 1 <= budget <= 12:
         raise ValueError("Batch budget must be 1–12 requests")
@@ -80,6 +84,9 @@ def execute_batch(plan, evidence, root, output, access, *, budget=12, send=super
     config = plan["configuration"]
     count, started = 0, monotonic()
     def preflight():
+        if current_access is not None:
+            return check_access(current_access(), model_id=run["model_id"], now=now(),
+                                request_budget=1, input_token_budget=16000)
         current = deepcopy(access)
         # Count all submissions after this snapshot, without assuming a reset.
         verified = datetime.fromisoformat(access["verified_at"].replace("Z", "+00:00"))
@@ -87,7 +94,7 @@ def execute_batch(plan, evidence, root, output, access, *, budget=12, send=super
             for p in evidence["predictions"] for a in p["attempts"])
         return check_access(current, model_id=run["model_id"], now=now(),
                             request_budget=budget, input_token_budget=budget * 16000)
-    interval = max(10, preflight()["minimum_interval_seconds"])
+    interval = max(config["minimum_interval_seconds"], preflight()["minimum_interval_seconds"])
     for prediction, probe in zip(evidence["predictions"], plan["probes"], strict=True):
         while True:
             attempts = prediction["attempts"]
@@ -95,9 +102,11 @@ def execute_batch(plan, evidence, root, output, access, *, budget=12, send=super
                 run["state"] = "stopped"; save(output, evidence); return evidence
             if attempts and next_action(attempts[-1]) in {"terminal", "stop_provider"}: break
             all_attempts = [a for p in evidence["predictions"] for a in p["attempts"]]
-            if count >= budget or len(all_attempts) >= config["max_requests_per_model"] or monotonic() - started > 900:
+            if count >= budget or len(all_attempts) >= config["max_requests_per_model"] or monotonic() - started > runtime:
                 run["state"] = "paused"; save(output, evidence); return evidence
             earliest = now().timestamp()
+            if earliest_start is not None:
+                earliest = max(earliest, earliest_start())
             if all_attempts:
                 last = max(all_attempts, key=lambda a: a["started_at"])
                 earliest = max(earliest, datetime.fromisoformat(last["started_at"].replace("Z", "+00:00")).timestamp() + interval)
@@ -105,7 +114,7 @@ def execute_batch(plan, evidence, root, output, access, *, budget=12, send=super
                     earliest = max(earliest, datetime.fromisoformat(last["retry_not_before"].replace("Z", "+00:00")).timestamp())
             if attempts:
                 earliest = max(earliest, datetime.fromisoformat(attempts[-1]["finished_at"].replace("Z", "+00:00")).timestamp() + 2 ** (len(attempts) - 1))
-            if earliest - now().timestamp() > 60 or monotonic() - started + max(0, earliest - now().timestamp()) + 60 > 900:
+            if earliest - now().timestamp() > 60 or monotonic() - started + max(0, earliest - now().timestamp()) + 60 > runtime:
                 run["state"] = "paused"; save(output, evidence); return evidence
             while earliest > now().timestamp(): sleep(min(1, earliest - now().timestamp()))
             preflight()
