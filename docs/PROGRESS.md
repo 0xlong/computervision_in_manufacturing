@@ -4,98 +4,75 @@ Updated: 25 October 2026. This file records project state, not promised implemen
 
 ## Multi-model free-tier runner and first batches (25 October 2026)
 
-Owner: one coordinator on `main`; no workers. Parent EN-03 / US-03/06 and the
+**Current state: three new models qualified; each has 17/115 saved test assessments
+and is paused at daily allowance headroom. Full comparison remains unfinished.**
+
+Owner: one coordinator on `main`; no workers. Parent EN-03 / US-03/06/09 and the
 user's free-model comparison request; API-FREE/INPUT/OUTPUT/RUN/QUOTA/RETRY/AUDIT,
-DATA-FREEZE/TEST and T-CONTRACT. Baseline `acf2288`. Preserve all earlier uncommitted
-work. Allowed: comparison runner/config/schema, shared request/metadata/evaluation
-extensions and offline tests, comparison/evaluation guides and this new section.
+DATA-FREEZE/TEST and T-CONTRACT/ACCESS. Baseline `acf2288`. Allowed: versioned
+comparison configs/schemas, request/evaluation/package tools and tests, model-aware
+player/checks, run/verification guides and this section. Preserve earlier user edits.
 
-| Task | Dependency and observable completion check | Status |
+| Task | Dependency / observable completion check | Result |
 | --- | --- | --- |
-| Record screenshot limits and add a versioned runner | Exact visible model limits/usage, no invented quota; unchanged baseline; all-model request settings, daily ledger and cross-phase pacing tests | Done; 453 offline pipeline tests now pass after packaging checks |
-| Qualify three eligible new candidates | Current screenshot/access/use record, metadata access, two successful normal-fitting probes with saved versions/usage, bounded submissions/deadline | Done: two real successful probes each, no retries |
-| Start fixed full-set runs | Qualifying frozen configuration; all 115 IDs retained; serial resumable batches stop at current allowance headroom | Both 2.5 models at 17/115 successes, paused at daily headroom; 3 Flash first batch started |
-| Finish complete model comparison | All new full runs complete; new configuration packaging, same five teaching IDs, model-aware playback and browser verification | v2 packaging and model-aware playback verified; full real evaluations / combined bundle pending |
+| Record access and add runner | Actual screenshot caps/usage; bounded label-free requests, shared daily ledger and cross-phase spacing | Done; request checkpoint `dc432fb` |
+| Qualify new candidates | Two successful normal-fitting probes/model with real metadata, versions, usage and observed-appearance text | Done: 2.5 Flash, 2.5 Flash-Lite, 3 Flash preview; six generation submissions, no retries |
+| Start frozen complete-set evaluation | Same 115 IDs/pixels/prompt/reference; persist before send, reuse success, pause before allowance cap | Each at 17/115, 98 pending; later quota windows needed |
+| Prepare packaging and playback | v1 output unchanged; v2 settings, same five IDs; selected-model cards/counters, same picture, paused reset and unchanged visitor answers | Verified; checkpoints `ae355fd`, `59f1eb0`; genuine combined bundle awaits complete runs |
 
-The supplied Free-tier screenshot records 3.5 Lite 15 RPM / 250K input TPM / 500 RPD
-(118 used), 3.8 Flash 5 / 250K / 20 (4 used), 2.5 Flash 5 / 250K / 20, 2.5 Lite
-10 / 250K / 20 and 3 Flash 5 / 250K / 20 (the last three zero used). Capture time and
-project ID are unknown. 3.6 is absent; zero-quota, agent, image-generation and TTS
-entries are not used. Reuse the complete 3.5 Lite baseline and preserve the failed
-3.8 trial. New cohort: 2.5 Flash, 2.5 Flash-Lite, 3 Flash preview. All three sanitized
-metadata GETs returned HTTP 200/generateContent; no prompt/image was sent by that check.
+The user's headed Free-tier screenshot records 3.5 Lite 15 RPM / 250K input TPM /
+500 RPD (118 used), 3.8 Flash 5 / 250K / 20 (4 used), 2.5 Flash 5 / 250K / 20,
+2.5 Lite 10 / 250K / 20 and 3 Flash 5 / 250K / 20 (last three zero used). Capture
+time/project ID are unknown. This is user-supplied account evidence, not an independent
+billing audit. 3.6 is absent; zero-quota, agent/image/TTS entries are excluded. All
+three new metadata GETs returned HTTP 200/generateContent. Reuse the completed 3.5
+Lite evaluation; preserve the old unsuccessful 3.8 trial. No repeated Free-tier
+confirmation was requested. Current official capability/terms sources were checked.
 
-Versioned v2 request configuration/schema retains the original prompt, normal
-reference/probes, original clean RGB pixels and JSON response format. Model-specific
-REST thinking: budget 0 on 2.5, low level on 3 Flash. No result-based tuning. Separate
-comparison identities/directories preserve old evidence. Daily allowance counts
-preparation plus evaluation, including failures/retries/unknowns, across phases/runs;
-keep one request headroom. Cross-phase start spacing is max(10s, 120/RPM), with provider
-retry deadlines respected. No automatically inferred daily reset. Access snapshots
-have a four-hour internal freshness limit, not a claimed provider expiry. Existing
-Swiss/UK private noncommercial local-use conclusion retained after current terms check.
+The v2 configuration keeps the original clean RGB pixels, prompt and normal-fitting
+reference/probes. REST thinking is budget 0 on 2.5 and low level on 3 Flash; these
+are explicit model/configuration combinations, not identical reasoning effort.
+No test-result tuning. Trial times: 2.925/3.712 s, 3.038/2.259 s and 20.854/14.439 s,
+respectively. Both normal probes were acceptable for each model. This demonstrates
+request feasibility, not defect recall or superiority. Existing Swiss/UK private
+noncommercial local-use conclusion remains scoped to preparation, not publication.
 
-Checks: **448 offline pipeline tests pass**, including 11 new comparison cases.
-Generated cases cover new endpoints/settings, all-115 freezing, tampered qualification,
-no repeated success, shared quotas, stale access, unknown/retry accounting, cross-phase
-pacing, offline/no-access behavior. Initial failures were inconsistent generated test
-fingerprints/timestamps; corrected the generated records, preserving strict checks.
-Fresh single-agent source/diff review additionally tightened cross-phase pacing and
-linked output-folder rejection before writes; full suite reran successfully. Real
-inputs passed offline preparation; earlier zero-submission plans stay preserved after
-source identity changed during review. Zero dataset pictures visually opened.
+Final first-day audit: **17/115 successful responses, 98 pending and zero terminal
+failures/retries per new model**. Each used 2 trial + 17 evaluation requests, **19/model
+and 57 total generation submissions** (three metadata GETs are separate), then paused
+with one snapshot request as headroom. No unknown outcome remains. Observed minimum
+start gaps across phases: 24.066 / 12.047 / 24.069 seconds, meeting 24/12/24 minimums.
+All 115 input identities, prompt and normal reference match the baseline; its saved
+evidence fingerprint and public bytes are unchanged. A real partial run was rejected
+by the bundle builder before output creation. No partial defect benchmark was computed.
+The genuine website still has only the complete 3.5 Lite row; fixtures are not a second
+real model. Model-aware controls appear only when multiple completed runs are packaged.
 
-The website still shows one genuine complete model. No web/dependency change; the
-prior 31 web unit / 21 Chromium pass is historical and not rerun for this offline step.
-Saved public evidence, original v1 config/schema and baseline predictions remain
-unchanged. No paid access, billing change, publication or remote infrastructure change.
-[Run guide / limits / sources](GEMINI_COMPARISON_RUNS.md) owns reproducible commands,
-quota meaning, scoped use and remaining packaging work. Nonsecret receipt/access and
-metadata records remain ignored under `artifacts/model-comparison-oct25/`.
+Checks: **453 offline pipeline tests**, **32 web unit tests**, TypeScript/build and
+**21 production Chromium checks pass**. Two focused comparison cases also pass after
+adding the 360 px multi-model control scan. Cases cover new settings/endpoints,
+quota/retry/unknown accounting, stale access, phase pacing, input/plan tampering,
+no repeated successes, v1 compatibility, preserved teaching IDs and selected-model
+counter/judgment separation. Initial generated fixture fingerprints/timestamps and
+one fixture import were corrected without weakening checks. Fresh single-agent
+reviews tightened phase pacing/output-link handling and checked packaging/player
+state. Viewed only one labelled fixture-controls crop: **zero source photographs**.
+No page overflow or automated WCAG-tagged violations in the mobile control scan.
+VS Code integrated-browser UI remains unverified; actual browser is Chromium
+156.0.8078.4. The prior dev server was not running when checked; the local guide has
+the start command. No paid access, billing change, new dependency or publication.
 
-Checkpoint: Prepare quota-safe multi-model Gemini comparison runs. Next: execute
-bounded real qualification, then eligible first full-set batches without fabricating
-unfinished metrics. At 20 requests/day, this cannot finish every 115-image run today.
-
-Authentic qualification completed after request-supervisor checkpoint `dc432fb`.
-2.5 Flash: two successes, 2.925/3.712 s; 2.5 Lite: two successes, 3.038/2.259 s;
-3 Flash preview: two successes, 20.854/14.439 s. Exactly six generation submissions,
-no retries, both normal probes acceptable; real observations/versions/usage saved.
-This is normal-only request feasibility, not defect-quality evidence. New trial IDs
-and full settings are in GEMINI_COMPARISON_RUNS.md. A first bounded 12-submission
-2.5 Flash evaluation batch was started on all 115 fixed members; results remain
-partial and are not packaged or presented as benchmark metrics.
-
-Packaging preparation is also verified: frozen public config v2 supports the new
-model settings/limits; existing v1 public config regenerates identically. The
-bundle builder accepts --challenge-from to preserve existing five IDs, labels and
-asset bytes, and still rejects pending runs. Five new generated packaging checks
-bring the full offline suite to **453 passing cases**. An initial packaging test
-needed the shared generated-image fixture import; corrected it and reran focused
-and complete suites. Fresh review checked old version behavior, tampering and
-teaching-set preservation. New packaging code does not alter the frozen request
-supervisor or live run identities. No public evidence or web files changed.
-The prior dev server is no longer running; no fresh UI verification is claimed.
-
-Both 2.5 candidates now have **17/115 saved full-set successes each**, using two
-normal-trial plus 17 evaluation submissions/model. Each paused with one of the
-screenshot's 20 daily requests left as headroom; no retries or terminal failures
-in those new runs so far. 3 Flash's first bounded evaluation batch is now running.
-No partial defect-quality metrics or new website benchmark rows are claimed.
-
-Model-aware playback is implemented and verified ahead of completed runs. It follows
-Results selection; a Saved model selector appears only when multiple completed
-runs are packaged. Changing model keeps the playback picture, pauses stage zero
-and clears counters; Restart keeps that model. Cards/counters use the selected
-saved response. Visitor judgments/reveals and selected challenge picture stay fixed.
-Checks: **32 web unit tests**, build and **21 production Chromium checks pass**;
-two comparison checks reran with the new mobile control scan and pass. Fixtures
-verify model selection/reset and do not constitute real second-model evidence.
-360 px multi-model controls have no overflow or automated WCAG-tagged violations.
-Viewed only the labelled fixture control crop: zero source photographs. Fresh
-single-agent review checked selection/state/timer reset and counter separation.
-Genuine public evidence is unchanged. VS Code integrated browser remains unverified;
-no dev server was running at 5174 when checked. Local/browser guides are updated.
+[Run guide, limits, sources and resume syntax](GEMINI_COMPARISON_RUNS.md),
+[execution audit](../artifacts/model-comparison-oct25/execution-audit.json),
+[player verification](FASTENER_VERIFICATION.md#model-aware-playback-readiness--25-october-2026).
+Ignored plans/evidence: `artifacts/gemini-comparisons/`; nonsecret receipt/access/audit:
+`artifacts/model-comparison-oct25/`. Four-hour access freshness is an internal limit,
+not a provider expiry. Do not fabricate refreshed access or infer current balances.
+Next: resume the remaining 98/model in later quota windows with actual current
+remaining usage and a new nonsecret access record; no background schedule exists.
+Then regenerate full metrics, package the same five pictures and verify the combined
+genuine comparison. Earlier uncommitted work remains preserved and excluded from
+these commits; only this section/update date is staged from mixed PROGRESS.md.
 
 ## Model comparison — display ready; additional evaluations pending (24 October 2026)
 

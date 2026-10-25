@@ -3,7 +3,8 @@
 25 October update: the user's actual free-tier screenshot supports 2.5 Flash,
 2.5 Flash-Lite and 3 Flash preview as new candidates; 3.6 is absent. All three new
 normal-fitting trials qualified. The quota-aware runner and frozen-configuration
-packaging are implemented; initial full-set batches are in progress. See the
+packaging and model-aware playback are implemented. Each new model has 17/115
+saved test assessments and is paused at daily headroom; 98/model remain. See the
 [current run/allowance record](GEMINI_COMPARISON_RUNS.md). The initial shortlist and
 staged-delivery notes below describe the earlier 24 October planning checkpoint.
 

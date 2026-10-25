@@ -164,6 +164,54 @@ opened. New full evaluations use these frozen qualifications. Existing baseline
 evidence and the earlier 3.8 failure remain unchanged. Request-supervisor checkpoint:
 `dc432fb`.
 
+### First daily evaluation batches — paused at headroom
+
+All three candidates saved **17/115 successful structured test assessments**,
+with **98 pending each** and no terminal failures or retries so far. These are
+successful responses, not claims that 17 predictions were correct. Each model
+used two normal-fitting trial submissions plus 17 evaluation submissions: **19
+generation requests/model**, leaving one request of the screenshot allowance as
+headroom. Total new generation submissions: **57**, separately from three model
+metadata GETs. No saved success was resubmitted.
+
+| Model | Frozen full evaluation ID | Successful / declared | Pending | State |
+| --- | --- | ---: | ---: | --- |
+| 2.5 Flash | `eval-comparison-82a8b1faf7b7cb4b` | 17 / 115 | 98 | Paused: daily headroom |
+| 2.5 Flash-Lite | `eval-comparison-b9b674b1a5d7ff5a` | 17 / 115 | 98 | Paused: daily headroom |
+| 3 Flash preview | `eval-comparison-cd377c2fba179405` | 17 / 115 | 98 | Paused: daily headroom |
+
+Each run first executed a 12-submission batch, then resumed the same identity for
+five more submissions before the daily ledger paused it. Original 115 input IDs,
+pixel/input hashes, prompt and normal reference match the saved Lite baseline.
+Observed minimum start spacing across trial and evaluation: **24.066 s / 12.047 s /
+24.069 s**, respectively, above the recorded 24/12/24-second minimums. No unknown
+submission remained at the stopping point. The original complete Lite evidence
+fingerprint and public bundle are unchanged. A real partial run was passed to the
+bundle builder as a rejection check: it refused before creating output. No partial
+defect benchmark or new website model row was produced.
+
+[Execution audit](../artifacts/model-comparison-oct25/execution-audit.json) records
+the verified states, request totals, frozen input identities and pacing. Evidence,
+plans and latest access records are under ignored `artifacts/gemini-comparisons/`.
+The receipt is user-supplied, so other project usage is not independently audited;
+the remaining one is a deduction from that snapshot, not an authenticated balance.
+
+Resume only in a later usable quota window with a current model-specific account
+snapshot and a new nonsecret access record; do not fabricate refreshed timestamps
+on the old screenshot. Example syntax from the project root, **not executed with
+the illustrative future access path below**:
+
+```powershell
+.\.venv\Scripts\python.exe -m pipeline.run_gemini_comparison --package data/metal_nut.inputs.v2 --model gemini-2.5-flash --phase evaluation --trial artifacts/gemini-comparisons/trial-comparison-gemini-2.5-flash-3fd37536f00f/evidence.json --execute --access artifacts/access/your-current-model-access.json --budget 12
+```
+
+Use the corresponding saved qualifying trial for each model. Code/configuration
+must still match the frozen checkpoint. Remaining 98 pictures/model need multiple
+daily windows under 20 RPD and one-request headroom. No background schedule was
+created; continued execution requires an active session and usable current access.
+Only after all 115 members are terminal may the offline evaluator calculate full
+benchmark metrics and packaging integrate genuine comparison rows.
+
 ### Packaging preparation
 
 Frozen public configuration **version 2** now represents the new model-specific
