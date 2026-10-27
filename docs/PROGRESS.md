@@ -2,6 +2,89 @@
 
 Updated: 25 October 2026. This file records project state, not promised implementation success.
 
+## GitHub upload and visitor README (28 October 2026)
+
+Owner: one coordinator; user authorized push to 0xlong/computervision_in_manufacturing.
+Rewrote README for recruiters/nontechnical managers, with actual features,
+independently recounted model results, Windows startup and limits. Added repository
+contents guide and archive/test-temp ignores. Reviewed existing documentation and
+specification relocation for inclusion in the remote snapshot; no raw data, local
+credentials, dependencies, caches, logs or generated build output are added.
+History audit: 696 blob versions, 482 text versions; no forbidden paths, largest
+blob 515,804 bytes. Only recognizable-credential-pattern hit is the deliberate
+credential-URL rejection fixture in test_inventory_mvtec_ad.py. README relative
+links and genuine benchmark recount pass. No app code changed in this step.
+GitHub reports PUBLIC, empty repository. User was informed and then explicitly
+instructed to push immediately; no visibility or deployment setting changed.
+The repository's development/publication limitations remain documented; uploading
+source does not establish industrial validation or approve a hosted deployment.
+
+## Remove About this demo and reset controls (27 October 2026)
+
+Status: verified locally; focused code checkpoint. One coordinator,
+no workers. Explicit user request overrides the earlier UI reset requirement.
+Parent US-08/09 presentation; dependency: existing local visitor persistence.
+Allowed: App, attribution in Lab, affected genuine/fixture browser expectations,
+and only this progress entry. Remove the shared About disclosure and its reset
+controls from all screens; remove the now-unused reset state/handler/remount keys
+and stale answer hint. Preserve stored answers without clearing visitor storage.
+Keep source attribution/licence links under existing Results provenance details.
+
+Production TypeScript/build and all three focused browser cases pass (43.7 s).
+Checks: absence on opening and
+Results screens, unchanged five-answer/reveal/refresh/export journey, existing
+responsive/accessibility checks at 360/768/1440 px. No new dependencies, inference,
+publication or source-picture review. Earlier Results changes remain staged from
+the interrupted checkpoint; the focused code checkpoint includes those accepted,
+previously verified changes. Mixed pre-existing documentation edits remain in the
+working tree and are excluded from the code checkpoint. Fresh single-agent diff
+review confirms only the requested UI removal, source-link relocation and matching
+browser expectations. Whitespace checks pass; no visitor data is cleared.
+VS Code integrated browser remains unverified; checks used production Chromium.
+Next: refresh the local page; the section is gone on every screen.
+
+## Minimal Results table and chart (27 October 2026)
+
+Status: verified locally; focused checkpoint. One coordinator on `main`, no workers.
+User scope: simplify Results to a minimal, intuitive comparison table and graph.
+Parent: US-03/04/05/06/09; specification comparison/evidence, scenario/export and
+accessibility requirements. Dependencies: existing genuine complete two-model
+bundle, comparison counts, saved visitor state and export. Allowed: Lab,
+ModelComparison, shared styles, affected comparison/journey/authentic browser
+checks and only this new progress section. Preserve earlier unrelated edits.
+
+Small tasks/checks: remove repeated Results cards and visible prose; keep the
+table's denominators, coverage, uncertainty/failure and timing evidence; add
+categorical comparison bars on a common 0–100% scale; retain collapsed evidence,
+workday and export tools. Verify genuine and fixture counts, keyboard selection,
+refresh persistence, responsive layouts/accessibility and brief behavior. Review
+table/chart-only screenshots without opening source pictures. No provider calls,
+new dependencies or publication. Production TypeScript/build passes. Browser
+checks initially hit Windows sandbox `spawn EPERM`; the approved unrestricted
+local rerun passed all 19 affected cases in 3.3 minutes. Genuine table/chart
+counts, Gemma keyboard selection/refresh, fixture failure/unsure cases, preserved
+judgments, workday calculations, deterministic brief export and no external
+visitor requests all pass. Responsive Results checks cover 360/768/1440 px,
+keyboard table scrolling, no page overflow and zero automated WCAG-tagged
+violations. Architecture regression includes 320 px and touch/reduced motion.
+
+Fresh single-agent review traced table routing versus categorical chart counts,
+full denominators, saved timings and untouched evidence/state/export code.
+Visually reviewed two table/chart-only screenshots (desktop and phone); zero
+source photographs viewed. Model names remain visible while the table scrolls;
+chart series have direct names/counts/percentages, independent of color. Detailed
+results, provenance and workday/export tools stay collapsed by default. Genuine
+benchmark remains 98/115 correct versus 89/115; Gemma's unsure is not correct.
+No evidence identities, calculations, model outputs or visitor schemas changed.
+Screenshot/scan records: `artifacts/model-comparison/`. Whitespace review passes.
+Earlier progress and unrelated working-tree changes are preserved/excluded.
+
+Limits: VS Code integrated browser remains unavailable/unverified; verification
+used local production Chromium and screenshots, not native-device/cross-browser
+or screen-reader certification. No full pipeline rerun: Python/evidence unchanged.
+Next: refresh http://127.0.0.1:5174/ and choose Results; select a model for its
+collapsed detailed results/workday tools. No additional inference is needed.
+
 ## Remove two display labels (25 October 2026)
 
 User-requested text cleanup; one coordinator on `main`, no workers. Parent:
@@ -1688,6 +1771,7 @@ remain preserved with no attempts; current plans include implementation hashes.
 
 Checkpoint scope includes the previously pending metadata checker and its tests,
 unchanged, because the new transport reuses that fixed-host/key-loader module.
+Saved local checkpoint: `7713cf2` on `main`; the index is empty after committing.
 Other earlier mixed documentation/specification/workspace edits remain excluded.
 This checkout is not a clean release snapshot; existing spec relocation remains
 pending and the website has not been browser-tested in this backend-only task.
@@ -1698,6 +1782,65 @@ manufacture `terms_and_data_use_verified` or a live access record. Once recorded
 run the fixed trial, then qualify/freeze inputs/models, evaluate complete test
 membership and connect the five-picture challenge. All app stories/Gate 1 remain
 incomplete. Older next-action sections below are historical where they conflict.
+
+## User-provided Gemini configuration — 24 October 2026
+
+Owner: one agent on `main`; parent EN-03, supports US-06 and API-FREE/AUDIT controls.
+The user explicitly identified `gemini_api_key` in the root `.env` for local use.
+This permits that configured key's programmatic use, not disclosure, unrelated
+credential discovery, paid execution or an inference call without prerequisites.
+The file exists, is ignored by Git and is not tracked; its contents were not
+displayed. Earlier working edits are preserved.
+
+| Task | Dependencies / allowed files | Completion check | Status |
+| --- | --- | --- | --- |
+| Connect the user-named local key to a read-only metadata probe | Current official REST/auth docs; new pipeline checker and generated tests, pipeline/API guide and this section; only the named root credential for runtime consumption | Safe lowercase-key loading; fixed-host GET only, no redirects/body/key URL, bounded requests, generic failures and no credential output; metadata results distinguished from entitlement | Done; two successful real metadata GETs, no generation |
+| Verify free project quota/use | Nonsecret actual project tier/limits and applicable-use evidence | Recorded free execution and exact model allowance before inference | Still pending; metadata/key presence cannot prove this |
+
+No new dependency, image viewing/upload, generation, model substitution, billing,
+publication or remote configuration change is part of this task.
+
+Built `pipeline/check_gemini_metadata.py`. The default checks the local assignment
+without network. `--metadata` performs at most two sequential fixed-host GETs,
+without images/prompt/body, redirects, inherited proxy, retries or paid fallback.
+The key is a literal runtime header value; it is never echoed, hashed, copied,
+included in a URL or written to an artifact. Unrelated variable values are not
+evaluated or exposed. Errors/output are allowlisted; TLS checking stays enabled.
+Each GET has a 15-second socket timeout and a 64 KiB response cap, not a strict
+overall inference deadline. This is not a provider-generation runner.
+
+Authentic read-only result: `gemini-3.8-flash` and `gemini-3.5-flash-lite` each
+returned HTTP 200, matched the requested model identity and advertised
+`generateContent`. This establishes metadata access using the configured key.
+It does not establish free execution, remaining allowance, terms suitability,
+inference success, latency or defect quality. Exactly two metadata requests were
+made; no inference, image viewing/upload or billing/account change occurred.
+
+Verification: **27 new offline tests passed; all 335 pipeline tests passed**.
+Tests use fake keys and mocked responses only, including stop-on-access/quota
+errors, malformed/oversized metadata, no credential echo, fixed GET/header/body
+rules, opaque-key parsing and redirect refusal. Initial checks exposed oversized
+test naming, an overly specific guessed key alphabet and a malformed-response
+handling mistake; these were corrected before the successful metadata check.
+Workspace checks (setup only), 24 scoped local links/anchors/code fences and
+diff whitespace passed. Fresh single-agent review checked key handling, fixed
+host/method, redirect/TLS behavior, request/byte limits, output allowlisting and
+the distinction between metadata access and free inference entitlement.
+No dependency/frontend changed; the website still shows the starter page.
+
+Handoff: focused checkpoint includes the new checker/tests, pipeline/API guide
+updates and only this new progress section. Earlier mixed documentation/spec/
+workspace edits are preserved and excluded; `.env` stays ignored and untracked.
+Commands and limits: [checker guide](../pipeline/README.md#check-the-locally-configured-gemini-key).
+Sources/results: [access findings](API_FEASIBILITY.md#configured-key-and-read-only-metadata-check).
+
+Next: user supplies nonsecret actual project tier and model RPM/input TPM/RPD,
+remaining allowance/expiry from the approved AI Studio interface. No authenticated
+VS Code browser session was available through the provided tools. Applicable
+terms/data-use conclusions also remain open. Keep inference disabled until these
+prerequisites are verified, then build the durable adapter and fixed bounded
+preparation-only trial. Gate 1 and all application stories remain incomplete.
+Earlier no-credential statements below describe prior stages, not this check.
 
 ## Saved API answer contract — 24 October 2026
 
@@ -1915,7 +2058,7 @@ No frontend changed; website remains the starter page and browser checks were
 not repeated. Commands, exact measurements, hashes and limits:
 [MODEL_RESOURCES.md](MODEL_RESOURCES.md).
 
-Handoff: focused checkpoint contains
+Handoff: saved focused checkpoint `d78e781` on `main` contains
 the runner, scoped smoke-report changes, new tests, model/pipeline guides and
 only this new progress section. Earlier mixed documentation/spec/workspace edits
 remain preserved and excluded. Generated artifacts/data stay ignored; no provider
@@ -1928,7 +2071,150 @@ do not repeat the completed 256px full-fitting check without new cause. Gate 1
 and all user stories remain incomplete. Earlier continuation sections below
 retain their historical next-step statements.
 
-## Current milestone: learning workspace
+## Active continuation — 24 October 2026
+
+One agent on `main`, as requested; no workers or worktrees. Parent EN-02/EN-03,
+supporting US-06, Gate 1 and DATA-TRANSFORM-001. Earlier working-tree edits are
+preserved. Preparation-group risk remains unresolved; independent resize checks
+can proceed without freezing membership or running final-test inference.
+
+| Task | Dependency / allowed files | Acceptance check | Status |
+| --- | --- | --- | --- |
+| Reproducible resolution review | Existing audited dataset, preparation plan and specialist resize configuration; `pipeline/review_resolution.py`, `tests/pipeline/test_review_resolution.py`, resolution findings and learner/progress docs | Reject changed inputs/unsafe outputs; measure all masks; generate at most two source/resized comparisons with the exact candidate filter and coordinate mapping; distinguish visual observations from model quality | Verified aid and bounded sample; final resolution unapproved |
+
+Visual budget: two previously reviewed images, each shown as original plus one
+256px derivative (four displayed examples total). No exhaustive image viewing,
+provider call, fitting, threshold tuning, split change, publication or new dependency.
+All 93 complete reference masks retain pixels at 256/384/512; this does not prove
+RGB visibility or survival of each small disconnected region. Exactly two sheets
+were viewed (four displayed examples): the small dark spot remains clear at 256px;
+fine scratches become less distinct. No other real images were visually opened.
+256px remains an unapproved development candidate. Findings, fingerprints,
+executed commands and sample limits: [RESOLUTION_REVIEW.md](RESOLUTION_REVIEW.md).
+
+Verification: **194 pipeline tests passed**, including 20 new generated-image
+cases; the workspace check passed. The first restricted pytest run could not
+access its temporary directory; the unchanged targeted and full suites passed
+with normal local file access. Independently rechecked generated PNG hashes and
+both 256px arrays against source BILINEAR resizing. Fresh single-agent review
+checked the final code/tests/findings against DATA-TRANSFORM-001, preservation,
+coordinate mappings, viewing limits and evidence claims. No frontend changes;
+web/browser checks were not repeated.
+
+Saved focused checkpoint `14b679f`: new checker, its tests and
+`docs/RESOLUTION_REVIEW.md` only. Earlier edits remain preserved; README/workflow/
+progress updates remain unstaged alongside the pre-existing documentation/spec
+changes. Generated data and observations stay ignored. Local documentation paths,
+code fences and staged/working-tree whitespace checks passed. Separate visual
+observation record SHA-256:
+`899604343b863850ee224206f3774511c0e89b6a2bda43784c6e21608cc1f78a`.
+
+Parallel-work assessment: continue with one agent for the current connected
+foundation tasks. Worktrees become useful when independent tasks have agreed
+input/output formats, separate file ownership and a committed shared starting
+point. The working folder still contains earlier uncommitted documentation/spec
+edits; preserve them. No worktrees or other agents were started.
+
+Next ready task: plan and measure full-normal-fitting memory/time with bounded
+resources on provisional preparation data, without final-test inference. Then
+combine resource findings with the recorded fine-detail risk before approving a
+resolution. Related-object/split risk still needs an explicit decision before
+freeze; this task does not resolve it or complete Gate 1.
+
+## In plain language
+
+The image records now honestly describe the unpacked download: missing archive
+details stay unknown. All 335 model-input pictures use neutral names and clean
+pixels, with answers and defect outlines kept separately. The original 176/44/115
+groups and all original test pictures are preserved.
+
+Automated comparisons followed up all 12 recorded similar-picture risks without
+viewing new images. They did not establish physical-part identity, so the groups
+remain provisional. Both planned AI models completed real CPU practice runs on
+eight normal pictures and produced scores and heatmaps for a separate normal
+picture. This proves the small setup runs; defect quality and full-data resources
+remain unverified. The website still shows the starter page.
+
+The picture-size checker measures all 93 outlines. In its earlier two-image
+visual sample, the small spot stays clear at 256px and fine scratches become less
+distinct. Both models now fit all 176 normal pictures within checked resource
+limits at that candidate size. This proves local execution, not defect quality.
+All **215 pipeline checks passed**. You do not need another download or move.
+Next: assess a larger size for the fine-detail risk, then settle group risk and
+final picture size before freezing. See [resource findings](MODEL_RESOURCES.md).
+See [resizing findings](RESOLUTION_REVIEW.md).
+See [model findings](MODEL_FEASIBILITY.md), [comparison findings](DATA_REVIEW.md#automated-follow-up-of-the-12-recorded-risks)
+and [current preparation](DATA_PREPARATION.md#current-continuation).
+
+Communication preference recorded on 23 October 2026: the user wants this level of
+everyday language in all explanations. Updated [agent instructions](../AGENTS.md#teach-while-delivering),
+[learner guide](../README.md) and [workflow](WORKFLOW.md); detailed engineering
+records remain below. This documentation change does not alter application code
+or the next development task.
+
+Checked the document links, section links, code blocks and whitespace. Saved only
+the new agent/workflow instructions in checkpoint `63e549a`; earlier edits remain
+preserved. The simpler README and this progress update remain in the working
+folder with the earlier uncommitted documentation changes. No app tests were
+rerun because this change only updates explanations.
+
+## Current milestone: Gate 1 foundation feasibility
+
+### Current single-agent assignment — 23 October 2026
+
+User-requested sequence; one coordinator on `main`, no workers. Existing user
+documentation edits are preserved. Parent enablers EN-02/EN-03; supports US-06.
+
+| Task | Dependency / allowed files | Acceptance check | Status |
+| --- | --- | --- | --- |
+| Honest unpacked provenance | Existing contracts; `schemas/`, `pipeline/`, `tests/pipeline/`, preparation docs | Version 1 unchanged; version 2 distinguishes unknown archive/download details from checked content; actual files validate | Verified format; official acquisition still unverified |
+| Automated similarity follow-up | Saved preparation/review; comparison code/tests and review docs | Recheck inputs; measure all 12 recorded boundary risks with registration/detail controls; retain unresolved identity honestly | Measured all 12; no confirmed groups; freeze on hold |
+| Answer-free input preparation | Validated manifest; exporter/schema/tests and guides | Neutral image names and clean pixels; separate evaluator labels/masks; complete 335-member mapping and hashes | Verified, development-only |
+| Local specialist feasibility | Separate reproducible CPU environment and answer-free preparation inputs; model code/config/lock/docs | Attempt both ResNet-18 PaDiM/PatchCore on permitted preparation data; save actual outputs/resources or precise blocker; no final-test tuning | Both authentic small CPU runs succeeded |
+
+No source images changed. No repeated dataset download, provider request, paid call,
+upload or publication occurred. Preparation stays development-only. A fresh
+single-agent review checked requirements, immutable v1 behavior, separate evaluator/
+inference access, test-membership preservation and authentic output claims. No
+delegated reviewer was used.
+
+Latest evidence: **174 tests passed**; real exporter checked all 335 clean RGB
+images and the manifest CLI verified all 428 original image/mask assets. Automated
+similarity evidence preserves source/plan fingerprints and all 12 shifted-photo
+controls recover correlation 1.0. Model dependency checks/imports passed; separate
+PaDiM/PatchCore runs used the same eight fitting IDs and one calibration ID,
+with no final-test inference. Exact commands, timings, peak memory, report/map
+hashes, source/weight licences and limitations are in [MODEL_FEASIBILITY.md](MODEL_FEASIBILITY.md).
+
+Corrections: a generated test fixture initially lacked an anomalous example/mask;
+the fixture was fixed without weakening the audit. The usual Windows sandbox
+temporary-directory restrictions required normal local file access for unchanged
+file tests. FrEIA's source-only dependency required a pinned local source build.
+The first PaDiM attempt stopped before fitting because the strict guard treated
+legacy batch counters as learned features; only standard counter migration was
+allowed, and regression checks still reject missing learned weights. The failed
+run remains saved separately. No simulated output was used.
+
+Data implementation checkpoint: `b7f7bbf`. Model tooling, regression checks and
+measured findings checkpoint: `9ed2f3c`. Documentation links/fences, JSON and
+PowerShell syntax passed; saved map hashes, finite values, shapes and permitted
+preparation IDs were independently rechecked without repeating inference.
+Earlier uncommitted documentation/spec relocation
+changes are preserved; generated data, environments, checkpoints and run outputs
+remain ignored. No frontend changes; web/browser checks were not repeated.
+
+Web setup, the first image-manifest validator and local archive-inventory tool are
+verified with synthetic tests. The supplied directory also passes real local file
+checks and the official paper's category-summary comparison. EN-02-T04 official
+acquisition/provenance is **partly recorded**: the replacement was supplied after
+the official-download request, but original archive/URL/time are unavailable.
+Draft preparation, a scoped historical visual review, automated follow-up and
+authentic normal-only specialist samples are verified. Related-object risk,
+model-resolution/full-fitting checks, complete licence/source evidence and free
+provider feasibility remain open. Gate 1 is incomplete; no inspection journey or
+final benchmark evidence exists yet. Earlier milestone entries below are historical.
+
+### Completed learning workspace
 
 - [x] Write the application development specification.
 - [x] Initialize local Git on `main`.
@@ -1936,15 +2222,379 @@ retain their historical next-step statements.
 - [x] Add a repeatable environment check and VS Code tasks.
 - [x] Verify the workspace check, VS Code JSON, and documentation links/code fences.
 
-Verification: `python scripts/check_environment.py` passed. Both VS Code JSON files parse, local documentation links resolve, and code fences are balanced. App/model execution and interactive Codex sign-in remain unverified. The setup is ready to save as the first local Git checkpoint; Git history is authoritative for whether that commit exists.
+Verification: the initial workspace checks passed and setup was saved as Git checkpoint `6411802`. App/model execution and interactive Codex sign-in remain unverified.
 
-## Observed tools
+## Story backlog added
+
+- [x] Define nine user stories with observable acceptance criteria, specification/check mappings, and dependencies in [USER_STORIES.md](USER_STORIES.md).
+- [x] Identify engineering enablers separately from end-user stories.
+- [x] Explain story-to-task decomposition with a worked US-01 example in [WORKFLOW.md](WORKFLOW.md#turning-a-story-into-tasks).
+
+All application stories remain `Backlog`. Example tasks have not been assigned or executed. The spec now lives in `docs/AI_Inspection_Pilot_Lab_SPEC.md`; pointers and the workspace check use that location. The next development task remains foundation feasibility (EN-01/EN-02 and specification Gate 1), not UI implementation.
+
+Backlog verification: environment check passed; nine unique story IDs and 38 explicit specification requirement references validated; every story has acceptance criteria and verification guidance; local links/anchors/code fences and whitespace checks passed. Changes remain uncommitted so this documentation task does not bundle the pre-existing spec relocation and AGENTS edit into a commit.
+
+## EN-01 — smallest working development setup
+
+Minimal setup increment: **verified**. Overall EN-01 remains **In progress** until the Python contracts/model dependencies and relevant behavior-test commands are locked with their implementations.
+
+Owner: single coordinator on `main`; no workers. Requirements: specification sections 5/11 and Gate 1; parent enabler EN-01. Dependencies: existing specification/workspace only.
+
+| Task | Allowed files | Completion check | Status |
+| --- | --- | --- | --- |
+| EN-01-T01: Inspect tools and runtime compatibility | `docs/DEVELOPMENT.md`, this progress file | Exact versions/hardware and dated official compatibility sources recorded | Done |
+| EN-01-T02: Add isolated minimal setup | `.gitignore`, `.node-version`, `scripts/setup.ps1`, `scripts/web.ps1`, `web/`, `pipeline/README.md` | Verified Node archive; project-local Python; locked web install | Done |
+| EN-01-T03: Check and explain handoff | `README.md`, `.vscode/tasks.json`, `docs/DEVELOPMENT.md`, this file | Clean install, type check/build, local HTTP smoke, workspace check, reviewed diff | Done |
+
+Created: checksum-verified local Node 24.22.1 / npm 11.19.1, isolated Python 3.13.2 with pip 24.3.1, six pinned direct web dependencies and npm lockfile, a development-only React page, setup/server scripts, VS Code tasks, and [reproduction instructions](DEVELOPMENT.md). System Node 20.17.0 is too old for selected Vite and remains untouched. ML candidate metadata supports Python 3.13, but the full ML environment is not installed or verified.
+
+Checks: setup/locked `npm ci` succeeded (23 packages installed, audit: 0 vulnerabilities); TypeScript check and static build passed (15 transformed modules; JS 220.00 kB / 68.83 kB gzip); isolated Python/pip verified; learning-workspace check passed; development HTML/transformed React module and production HTML/JS/CSS returned HTTP 200; JSON, lock agreement/integrity records, PowerShell syntax, edited documentation links/fences, and whitespace checks passed. Single-agent review checked the setup against specification sections 5/11 and evidence boundaries.
+
+Corrections during verification: pip's first bootstrap lacked temporary-directory access; setup now uses project `.cache/tmp` and repairs missing pip. TypeScript caught the CSS import declaration; Vite client types resolved it. Port 5173 was occupied, so the dev server uses `http://127.0.0.1:5174/`. The existing service was left alone.
+
+Limitations: browser visual/interactive checks, Python ML dependency resolution/imports, model memory/performance, datasets, contracts, API entitlement, and model output remain unverified. No application behavior tests exist yet; pytest/Vitest/Playwright will be introduced with the code they test. Gate 1 and all user stories remain incomplete. No paid/provider calls, publication, remote infrastructure, or workers were used.
+
+Your next try: from the project root run `powershell -NoProfile -File scripts/web.ps1 dev`, then open the printed URL with VS Code's **Browser: Open Integrated Browser** (`workbench.action.browser.open`). Expect the lab title and the development-page message; Ctrl+C stops the server. Agent's next small task: EN-02 artifact contracts and official data/licence discovery; add only the Python validation/test dependencies needed then.
+
+Handoff: branch `main`, checkpoint `bdbe84b` (`Establish minimal EN-01 development setup`). Its 15 files cover setup/configuration, the locked web starter, and development/pipeline instructions. Existing documentation/spec relocation changes are preserved. The checkpoint excludes README/progress files because they contain earlier uncommitted work; their updates remain in the working tree. Both temporary verification servers were stopped after their checks.
+
+## EN-02 — first image-manifest contract
+
+First manifest increment: **verified**. Overall EN-02 remains **In progress**.
+One coordinator on `main`; no workers. Gate 1 and all user stories remain incomplete.
+
+Requirements: specification sections 5/6/8, `DATA-SOURCE-001`, `DATA-SPLIT-001`,
+`DATA-TRANSFORM-001`, `DATA-LICENCE-001`, and applicable `T-CONTRACT` cases.
+Dependencies: verified EN-01 setup and the existing specification.
+
+| Task | Allowed files | Completion check | Status |
+| --- | --- | --- | --- |
+| EN-02-T01: Record official data/licence discovery | `docs/DATA_SOURCES.md` | Dated official sources, acquisition route and remaining unknowns; no invented counts | Done |
+| EN-02-T02: Implement first manifest contract and validator | `schemas/`, `pipeline/`, `tests/` | Valid labelled fixture accepted; invalid identities, splits, paths, hashes and alignment rejected; Pydantic delegates to canonical schema | Done |
+| EN-02-T03: Lock/check/explain the increment | `scripts/pipeline.ps1`, `.vscode/tasks.json`, `README.md`, `docs/DEVELOPMENT.md`, this file | Hashed Python lock installs; behavior tests/CLI and existing checks pass; reviewed focused checkpoint | Done |
+
+Scope: identity-transform image manifests and local validation. Frontend agreement,
+other artifact/state contracts, official archive acquisition, split construction,
+duplicate/related-image discovery and authentic model evidence remain subsequent
+tasks. Schema acceptance alone will not certify provenance or benchmark completeness.
+
+Created: [Draft 2020-12 image manifest](../schemas/image-manifest.v1.schema.json),
+[schema-backed Pydantic validator](../pipeline/contracts.py), local CLI, explicit
+synthetic metadata fixture and [behavior tests](../tests/pipeline/test_manifest.py).
+The validator checks category/track/split consistency, unique identities, safe
+relative paths, hash syntax, identity-transform dimensions/hashes, mask dimensions,
+nonempty preparation/evaluation sets, and identical-byte fitting/calibration
+overlap. Known exact-byte evaluation overlap is reported without deleting members.
+Optional asset checking verifies existence, resolved-root containment and SHA-256.
+Other related-image discovery and actual decoded alignment remain unimplemented.
+
+Tooling: four direct Python pins (Pydantic 2.14.1, jsonschema 4.26.0,
+rfc3339-validator 0.1.4, pytest 9.1.1), 18 resolved packages with wheel SHA-256s,
+Windows x64 / Python 3.13 contract-only lock, `scripts/pipeline.ps1` install/test,
+and **Pipeline: test contracts** VS Code task. No ML/provider packages were added.
+
+Checks: fresh isolated environment installed all 18 wheels offline with
+`--require-hashes`; `pip check` passed; **59 behavior tests passed**. The CLI accepted
+the labelled fixture and exposed its limitations; tested invalid inputs exit 1.
+Web type check/build and workspace check passed. Edited documentation links/fences,
+JSON, direct-pin/lock agreement, PowerShell syntax and whitespace checks passed.
+Single-agent review re-read the implementation against the scoped data/contract
+requirements and checked fixture separation, failure messages and evidence claims.
+Frontend/Python agreement remains unverified because no frontend loader exists yet.
+
+Corrections: the first test run exposed missing date-time format support; the lock
+now includes its small helper and startup fails if the checker is unavailable.
+The restricted Windows environment denied pytest temporary-directory access;
+normal file permissions allowed the unchanged file tests to run. Tests use ignored
+project `.cache` directories. Initial pip cleanup warnings did not prevent install;
+the fresh environment install completed without those warnings.
+
+Data discovery: official MVTec pages confirm the published noncommercial licence
+and AD2 public/private test distinction. Exact category archives/counts and
+publication suitability remain unverified. The retrieved download sections show a
+form; no form, contact details, external message or dataset download was submitted.
+See [DATA_SOURCES.md](DATA_SOURCES.md) for the acquisition handoff.
+
+Your next try: from the project root run
+`powershell -NoProfile -File scripts/pipeline.ps1 test`; expect **59 passed**.
+Then run `.\.venv\Scripts\python.exe -m pipeline.validate_manifest tests/fixtures/image-manifest.fixture.json`;
+expect `PASS manifest contract` labelled `fixture`, with asset/authenticity limits.
+Your role is to try these outputs and read the [short pipeline guide](../pipeline/README.md).
+
+Next task **EN-02-T04** (subsequently started below, same coordinator): inspect official acquisition
+routes and acquire/inventory `metal_nut` into ignored `data/`. Dependencies: T01–T03.
+Allowed files: acquisition code/tests in `pipeline/` and `tests/pipeline/`,
+`docs/DATA_SOURCES.md`, this file; add an image-decoding dependency only if needed
+for measured dimensions. Done when the official archive URL/time/hash, exact
+image/mask membership and decoded dimensions are reproducible. If a form requires
+personal details or an external message, obtain that specific missing input then.
+Follow with seeded split construction/duplicate audit, real alignment checks,
+label-free inference inputs and specialist feasibility; do not jump to showcase UI.
+
+Handoff: branch `main`, checkpoint `ca8251d` (`Validate versioned image manifests
+with reproducible contract tests`), 13 focused implementation/tooling/documentation
+files. Existing AGENTS/workflow/workspace-check edits and spec relocation are
+preserved. README/progress updates remain uncommitted because those files already
+contained earlier work; the focused checkpoint does not bundle it. The current
+working tree includes the relocated specification and stories; this is not a claim
+of a clean-checkout release package. No workers, model/provider calls, publication
+or remote infrastructure changes were used.
+
+## EN-02-T04 — archive checker ready; personal download step pending
+
+Owner: one agent on `main`, no workers. Parent EN-02; prerequisites T01–T03.
+Requirements: `DATA-SOURCE-001`, `DATA-TRANSFORM-001`, `DATA-LICENCE-001`, partial
+`T-DATA`/`T-CONTRACT`. This is a scoped acquisition aid, not a completed enabler.
+
+| Small task | Allowed files | Observable completion check | Result |
+| --- | --- | --- | --- |
+| T04a: Inspect the official access route | `docs/DATA_SOURCES.md`, this file | Required fields and exact user action recorded; no personal information submitted | Done |
+| T04b: Prepare offline archive inventory | `pipeline/inventory_mvtec_ad.py`, `tests/pipeline/test_inventory_mvtec_ad.py`, `pipeline/requirements-contracts.in`, `pipeline/requirements-contracts.lock`, `pipeline/README.md`, `README.md`, `docs/DEVELOPMENT.md`, `docs/DATA_SOURCES.md`, this file | Synthetic archives decoded; hashes/membership/mask pairing checked; unsafe/incomplete inputs rejected | Verified |
+| T04c: Acquire and inventory official `metal_nut` | Ignored `data/`, acquisition documentation, this file | Actual download URL/time/archive hash and exact decoded image/mask inventory recorded | Blocked: user's form/download step |
+
+Access finding (23 October 2026): the official AD page embeds a blank form from
+`software.mvtec.com`. Required: first name, last name, email and noncommercial-use
+acknowledgment. Position/Function and newsletter are optional. Read-only public
+page/form inspection used the normal MVTec Origin/Referer, with no user values,
+form submission, newsletter selection, external message or dataset download.
+The post-submit destination is unverified. Exact learner instructions and the
+privacy/licence boundaries are in [DATA_SOURCES.md](DATA_SOURCES.md#your-download-step--mvtec-ad).
+Created ignored `data/downloads/` for the unchanged original archive.
+
+Built `pipeline.inventory_mvtec_ad`: local streaming TAR/TAR.GZ/TAR.XZ inventory,
+without extraction or network requests. Retains archive size/hash, operator-supplied
+source/time, published licence, exact selected membership, per-file hashes, fully
+decoded PNG dimensions/modes, mask correspondence and hashes of other selected/root
+files retained in the archive. Rejects unsafe/colliding paths, links/special/sparse
+members, excessive sizes, corrupt PNGs, ambiguous layouts and incomplete/misaligned
+mask membership. Existing reports are not overwritten. Category-only and root-level
+`metal_nut/` archives are supported; unfamiliar layouts require review. No fitting
+split is assigned and no official test image is dropped.
+
+Added only Pillow 13.0.0, pinned with the official CPython 3.13 Windows x64 wheel
+SHA-256; the lock now has five direct pins/19 resolved packages. Official PyPI
+metadata: Python >=3.11, no mandatory dependencies, MIT-CMU licence. Hashed install
+and `pip check` passed. Current Pillow/Python TAR documentation was checked; the
+existing web dependency tree is unchanged.
+
+Verification: **116 pipeline behavior tests passed** (59 existing + 57 archive
+cases). Generated PNGs/TARs are explicitly labelled fixtures. Checks cover three
+compression formats, two layouts and leading `./`, unchanged archive bytes/no
+extraction, exact hashes/counts/dimensions, mask failures, corrupt images, path/type
+safety, limits, sanitized CLI failures, output preservation, damaged PNG checksums,
+and unsupported orientation/animation. The first test run
+hit the already documented Windows temporary-directory restriction; unchanged tests
+ran with normal permissions. Tests then exposed that EXIF inspection can load PNGs
+before `verify()`; integrity verification now precedes all pixel/EXIF access, with
+a separate reopen/load. TAR normalizes a root `/` directory name to empty; empty
+member names now fail too. Neither issue was hidden by weakening tests.
+
+Workspace check and CLI help passed. A single-agent review re-read the final code,
+tests and documentation against acquisition/provenance/transform requirements.
+Edited documentation links/anchors/code fences, direct-pin/lock agreement and
+whitespace checks passed.
+Web checks were not rerun because no frontend or web-tooling files changed.
+
+Evidence limits: no official archive has been acquired, no authentic category count
+or measured dimensions are claimed, and official origin/completeness, notice contents,
+visual alignment, duplicate/related-image audit, seeded preparation split and model
+feasibility remain unverified. URL/time are supplied by the operator. `acquired`
+does not certify authenticity. Inventory JSON is a local acquisition record, not
+the versioned release manifest. The website remains the starter page; no browser
+visual check or AI/provider call occurred.
+
+Next: the user completes the official form and downloads the archive (or supplies
+its public link). The agent then records verified acquisition provenance, runs this
+checker on the official archive, reviews notices/layout and continues T04c. Follow
+with extraction to isolated ignored data, duplicate/related-image audit, seeded
+preparation splits, real mask alignment and label-free inference inputs. Do not
+substitute an unofficial mirror or invent counts while waiting.
+
+Handoff: checkpoint `51ddfdd` on `main` saves seven focused implementation,
+test, dependency and acquisition/development-guide files. README/progress updates
+remain in the working tree with their earlier edits; existing AGENTS/workflow/
+workspace-check edits and the specification relocation/story file are preserved.
+No workers, model/provider calls, publication, billing or remote changes were used.
+
+## EN-02-T04d — supplied unpacked fastener completeness check
+
+Owner: same single agent on `main`; no workers. Parent EN-02, dependent on the
+local PNG/mask checker from T04b. Requirements: partial `DATA-SOURCE-001`,
+`DATA-TRANSFORM-001`, `DATA-LICENCE-001`, `T-DATA`. Allowed files:
+`pipeline/audit_mvtec_ad_directory.py`, its tests, `pipeline/README.md`,
+`docs/DATA_COMPLETENESS.md`, `docs/DATA_SOURCES.md`, `README.md`, this file; ignored
+`data/` only for the new audit report. Observable check: decode/hash every supplied
+category image/mask, verify matching masks and compare measured counts/dimensions
+with a primary source, retaining all provenance unknowns. **Verified locally**;
+T04c official acquisition remains blocked, rather than inferred from these checks.
+
+The user reported a dataset downloaded as a Git repository. Inspection found only
+unpacked `metal_nut/train`, `test`, `ground_truth` and `license.txt` under
+`data/downloads/mvtec-ad-metal-nut/metal_nut/`, with no `.git` at either download
+level. A Git query there resolves to this application repository; its HEAD/remote
+cannot identify the dataset origin. No dataset repository/commit was invented.
+The user was asked for the public repository/download URL while independent file
+checks continued.
+
+Real local result: 220 normal train images; 22 normal and 93 anomalous test images;
+93 matching masks; one notice — **429 files / 165,862,034 bytes**. All 428 PNGs passed
+integrity/full pixel decoding; all 335 photographs are 700 × 700. Anomalies: bent 25,
+color 22, flip 23, scratch 23. No missing/orphan/empty/nonbinary/unequal-dimension
+masks or exact-byte duplicate photographs were found. The included notice identifies
+CC BY-NC-SA 4.0. The source dataset was not modified.
+
+Compared counts/dimensions/four defect groups against Table 1 in MVTec's original
+paper, linked from its official dataset page; paper text and page-4 table rendering
+were retrieved. This is an official summary comparison, not official per-file
+identity verification. Detailed source links, hashes, executed command and output
+are in [DATA_COMPLETENESS.md](DATA_COMPLETENESS.md).
+
+Built a small separate directory CLI reusing existing PNG/mask/path checks; no new
+dependencies. It checks all category files, gives a stable membership fingerprint,
+reports exact-byte image duplicates, rejects links/junctions, and excludes private
+paths without reading them. Missing URL/time/archive fields remain `null`, with
+`local_source_unverified` evidence status. Diagnostic summary mismatches exit 1;
+existing reports are preserved. The actual run exited 0 and wrote ignored
+`data/metal_nut.local-audit.v1.json`, fingerprint
+`388343e5141dbe3b0a36defd2f478ca9bce20e8deba38c231a35c74a4c2826b5`.
+
+Checks: **123 pipeline tests passed** (116 prior + seven generated directory cases).
+These tests are separate from the real local dataset check. A single-agent review
+checked source honesty, exact membership hashing, read-only input handling, mask
+pairing, failure/overwrite behavior and private-path exclusion. Frontend checks
+were not repeated because no web code/tooling changed. No model/provider calls,
+workers, publication or remote infrastructure changes occurred.
+Documentation links/anchors/fences and staged whitespace checks passed. Checkpoint
+`9ec6b02` saves the five focused checker/test/evidence-guide files on `main`.
+README/progress updates remain with their earlier uncommitted edits; all unrelated
+working-tree changes are preserved. The ignored dataset/audit JSON was not committed.
+
+Remaining: public download source/official provenance, acquisition time/original
+archive hash, visual annotation alignment, related-image audit, fixed preparation
+splits and authentic model evidence. Count agreement cannot certify unchanged
+official bytes. The separate AD2 surface category has not been acquired. Next:
+verify the user-supplied source; if it is a mirror, acquire/compare an official copy
+under the existing project rule before accepting benchmark evidence.
+
+## EN-02-T04e — supplied Hugging Face source verified as a mirror
+
+Owner: same single agent on `main`; no workers. Parent EN-02, after T04d local
+audit. Scope: source investigation and documentation only; allowed
+`docs/DATA_COMPLETENESS.md`, `docs/DATA_SOURCES.md`, `README.md`, this file and new
+ignored source-check/notices under `data/`. Completion check: identify supplied
+source, compare pinned file identities, record differences and official-source
+status without inventing acquisition evidence. **Done for the mirror comparison**;
+T04c official acquisition remains blocked.
+
+User-supplied URL: `https://huggingface.co/datasets/MSherbinii/mvtec-ad-metal-nut`.
+Public page/card and API tree inspected on 23 October 2026; revision compared:
+`8db7371c35a94709cbb3e69ac69f80d2716e2f8a`. All **428 PNG SHA-256s/sizes match**
+the saved local audit. The tree had 430 category files (local 429), with no next
+page. One missing local file is `readme.txt`, carrying attribution/citation and
+CC BY-NC-SA 4.0 text. The local licence initially failed byte/size/Git-blob matching;
+the fetched pinned licence is identical after CRLF-to-LF normalization. Original
+download files were not modified. The two small pinned mirror notices were saved
+separately under ignored `data/source-notices/`; raw comparison and its explanation
+remain in `data/metal_nut.source-check.v1.json` and `.v2.json`.
+
+The mirror's card says MIT; its included notice and the official MVTec page say
+CC BY-NC-SA 4.0. Recorded this inconsistency and retained the original dataset terms.
+No official affiliation, acquisition, original download revision/time/archive hash,
+publication clearance or model-performance claim was inferred from the mirror.
+Specification `DATA-SOURCE-001` still requires official acquisition, so prepared
+the concrete user step: complete MVTec's first-name/last-name/email/noncommercial
+form, download the category archive and save it unchanged in the created ignored
+`data/downloads/official/`. The agent can then inventory/compare it without deleting
+the supplied copy. Full fields, optional choices and privacy handling remain in
+[DATA_SOURCES.md](DATA_SOURCES.md#your-download-step--mvtec-ad).
+
+Evidence and methods: [source comparison](DATA_COMPLETENESS.md#source-identified--third-party-mirror).
+No application code/dependencies changed, so the earlier 123 passing pipeline
+tests were not rerun; verification here is the real pinned remote-metadata/notice
+comparison, documentation review and link/whitespace checks. The website still
+shows the starter page. No form submission, personal details, image upload,
+model/provider calls, publication or remote changes occurred.
+
+Handoff: checkpoint `a3734b0` on `main` saves the two updated source/evidence records.
+README/progress updates remain with their earlier uncommitted edits; unrelated
+changes are preserved. Mirror notices, source-check reports and the user's dataset
+remain ignored local files. Documentation links/anchors/fences and staged whitespace
+checks passed.
+
+## EN-02-T04f / T05 — replacement checked and draft preparation split
+
+Owner: same single agent on `main`; no workers. Parent EN-02. Requirements:
+`DATA-SOURCE-001`, `DATA-SPLIT-001–003`, partial `DATA-TRANSFORM-001`, `T-DATA`,
+`T-CONTRACT`. Prerequisites: verified local inventory/contract tools and user-supplied
+replacement data. This is draft membership, not a frozen benchmark or completed enabler.
+
+| Task | Allowed files | Observable completion check | Status |
+| --- | --- | --- | --- |
+| T04f: Check replacement directory | ignored `data/`, acquisition/preparation docs, README, this file | Every category file checked; pinned-reference differences recorded; source context/unknowns explicit | Verified locally |
+| T05a: Build deterministic preparation proposal | `schemas/preparation-plan.v1.schema.json`, `pipeline/plan_preparation.py`, `tests/pipeline/test_plan_preparation.py`, `pipeline/README.md`, `docs/DATA_PREPARATION.md`, acquisition docs, README, this file | Canonical schema/relationships; seed-42 membership; nonempty groups; no exact-pixel preparation leakage; all test members retained | Verified, development-only |
+| T05b: Review related pictures and real masks | data-review tools/tests/docs and ignored outputs | Candidate and mask sheets inspected; uncertainty and next checks recorded | First pass verified; relationship follow-up remains |
+| T05c: Represent acquisition and produce real manifest | schemas/contracts/tests/docs, scope to be detailed next | True URL/time/archive availability represented without invented values; assets/real manifest validate | Pending T05b and metadata/contract resolution |
+
+New actual layout: only `data/downloads/metal_nut/` remains, with 430 files and both
+original notices. The prior ignored input layouts/source-notice folders/reports
+are no longer present; no agent deletion/move was performed. Earlier history is
+retained, while [current preparation](DATA_PREPARATION.md) owns actual paths.
+
+Real verification: **430 files / 165,862,477 bytes**, 220 normal train, 22 normal test,
+93 anomalous test and 93 masks, plus licence/readme. Every PNG fully decodes; all
+335 photographs are RGB 700 × 700. Mask pairing/dimensions/binary/nonempty checks
+passed, with no exact-byte duplicate photographs. All 430 paths/sizes/identities
+match the previously pinned Hugging Face revision (428 LFS SHA-256s, two notice
+Git blobs); no differences. This remains a mirror comparison, not independent
+proof of official download. User supplied the new folder in response to official
+instructions; exact URL/download time/original archive hash remain null. The optional
+archive-location question was answered by confirming the folder in `data/downloads`;
+no archive location was supplied, and no further move/download is requested.
+
+Created a separate Draft 2020-12 preparation-plan schema and builder/validator. Stable
+neutral IDs follow sorted source names; seed 42 shuffles sorted normal training IDs;
+`ceil(n/5)` uses integer `(n+4)//5`. Actual result: **176 fitting, 44 calibration,
+115 evaluation**, all original test images retained. Decoded RGB pixel hashes catch
+identical content even with different PNG encoding. Crossing fitting/calibration
+duplicates fail explicitly for group-aware review; evaluation overlap is reported,
+never deleted. Real exact-pixel overlap is zero. Related-image review stays pending.
+
+Local evidence: `data/metal_nut.current-folder-audit.v1.json`,
+`data/metal_nut.current-source-record.v1.json`, `data/metal_nut.preparation-plan.v1.json`.
+Current membership SHA-256 `e0c75a7d552ed53999cba5cf385470976149e8339134771a3097290da3083aa1`;
+plan SHA-256 `1be285daf202cf1ff0c8bfd977e2a786c24f96e2395822532f9acb7a45803e2e`.
+Commands, split hashes and limitations are in [DATA_PREPARATION.md](DATA_PREPARATION.md).
+
+Checks: **137 pipeline tests passed**, including 14 new split cases for deterministic
+membership/rounding, re-encoded duplicate detection, complete test retention,
+visible overlap, plan/schema/identity tampering, changed files, safe paths and CLI
+output preservation. The initial run detected an accidental identical pixel image
+in the generated test example; changed that example, not the duplicate rule. No
+new dependency was added. Single-agent review re-read the schema, implementation,
+tests and real output against membership, leakage, source honesty and evidence limits.
+Web checks were not repeated because no frontend/tooling files changed.
+
+Limitations: `development_only` plan is not the release image manifest or inference
+input; source paths still carry labels. Original image-manifest v1 requires an exact
+archive hash/acquisition timestamp, which cannot be invented for unpacked files.
+Recover those details or version the contract before producing that artifact.
+Related-image/visual alignment, small-defect visibility, model compatibility and
+authentic outputs remain open. No source data changed, training/provider call,
+publication, billing, remote modification or worker was used.
+
+Handoff: checkpoint `715307b` on `main` saves seven focused schema/code/test and
+data-guide files. Saved real plan passed schema/relationship validation; edited
+documentation links/anchors/fences and staged whitespace checks passed. README/
+progress updates remain with earlier uncommitted edits; unrelated working changes
+are preserved. Dataset/audit/plan files stay ignored and were not committed.
+
+## Observed tools (initial workspace)
 
 Git 2.51.2; Node 20.17.0; npm 10.8.3; Python 3.13.2; VS Code 1.142.0; Codex CLI 0.161.0. The VS Code extension `openai.chatgpt` is installed. These are setup-time observations, not pinned application requirements.
 
 The restricted setup environment reported access warnings from Codex's temporary-directory handling and VS Code's log directory while printing versions. Installation was detected; interactive authentication, extension operation, and browser UI have not been verified by this setup.
 
-## Next small task: foundation feasibility
+## Remaining Gate 1 work: foundation feasibility
 
 **Goal:** prove the selected tools/data can support one authentic inspection flow before building many screens.
 
@@ -1961,11 +2611,12 @@ The restricted setup environment reported access warnings from Codex's temporary
 - [ ] Gate 3: complete evaluated comparison and surface track.
 - [ ] Gate 4: verified release package and deployment instructions.
 
-No workers, paid calls, public repository, remote deployment, app dependencies, or model runs have been started by the workspace setup. Parallel tasks begin after stable contracts and a shared committed foundation exist.
+The initial workspace setup started no workers, paid calls, publication, deployment, app dependencies, or model runs. EN-01 now adds only the web setup documented above. Parallel tasks begin after stable contracts and a shared committed foundation exist, if requested.
 
 ## Handoff convention
 
 After each completed task, record its outcome, relevant checks/results, known limitations, and next action here. Keep this file short; Git records the detailed file history. A blocked check stays visible rather than being marked complete.
+
 
 ## EN-02-T05b — related-picture and outline review (23 October 2026)
 
@@ -2023,6 +2674,29 @@ guides and this new progress section. Earlier user/agent edits, specification mo
 README/workflow/workspace-check changes and earlier progress text remain preserved
 in the working tree; only this new progress section is staged from that mixed file.
 No workers, provider calls, publication, paid service or remote changes occurred.
+
+
+### T05b native-size follow-up — also completed
+
+All 12 fitting/calibration candidates were then inspected as original 700 × 700
+pairs. No reliable shared distinctive fine mark established a repeated physical
+object. Differences in grooves/texture/highlights are recorded per pair; they do
+not prove separate physical objects or sessions. No groups or memberships changed.
+See the [native-size observations](DATA_REVIEW.md#native-size-follow-up-of-all-12-preparation-boundary-candidates).
+The new ignored `native-pair-decisions.v1.json` fingerprints all 12 additional sheets
+and references the unchanged earlier decision file. The earlier seven mask-detail
+checks and 42 overview sheets remain intact.
+
+The native-size follow-up proposed above is complete. Related-object independence
+remains unverified and must remain an explicit freeze limitation; do not invent
+session IDs or call a pose-only match a confirmed group. Next independent ready
+implementation: version the manifest to represent unpacked acquisition honestly,
+then build label-free inputs and measure RGB/model-resolution feasibility. No new
+download is required. This follow-up changes observations/docs only; the verified
+149-test code is unchanged. Rechecked documentation links/fences and whitespace.
+The implementation checkpoint is `31f2a82`; a focused documentation checkpoint
+saves these additional findings while preserving the earlier working-tree edits.
+
 
 ## Image-viewing preference — 23 October 2026
 

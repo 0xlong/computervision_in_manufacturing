@@ -63,6 +63,54 @@ An eventual provider integration must classify real provider envelopes/refusals
 and supply actual metadata. The frontend does not consume these records yet.
 No full T-API/T-CONTRACT or release gate is claimed from these offline checks.
 
+## Check the locally configured Gemini key
+
+The user configured `gemini_api_key` in the root `.env`. Keep the value private;
+the offline checker consumes only that assignment (or `GEMINI_API_KEY`) without
+printing it or evaluating the file as shell code. It accepts an unquoted value or
+one pair of ordinary quotes. It rejects empty/repeated assignments, multiline
+values and shell expressions. No dotenv dependency or global setup is required.
+Do not rename the key for this project or put it in frontend code.
+
+In the project-root VS Code PowerShell terminal:
+
+```powershell
+.\.venv\Scripts\python.exe -m pipeline.check_gemini_metadata
+```
+
+Purpose: check that the one configured value can be loaded. Expect
+`PASS local Gemini key configuration; value hidden.` This default makes no network
+request and does not establish authentication, free access or model quality.
+
+The following **read-only check was run successfully on 24 October 2026**:
+
+```powershell
+.\.venv\Scripts\python.exe -m pipeline.check_gemini_metadata --metadata
+```
+
+It makes at most two sequential GETs for the declared trial candidates, with a
+15-second socket timeout and a 64 KiB response limit. It uses the fixed Google
+HTTPS endpoint with the key in a header, no request body, no redirects, inherited
+proxy, retry, alternate provider or generation request. Only allowlisted
+model/status/capability fields reach output. Authentication/permission/quota or
+connection errors stop the probe; raw responses, error messages and headers are
+never printed or saved. TLS verification stays enabled. This timeout is not a
+strict overall trial deadline; no inference runner is implemented by this tool.
+
+Both `gemini-3.8-flash` and `gemini-3.5-flash-lite` returned HTTP 200 and advertised
+`generateContent`. This confirms metadata access with the configured key,
+**not** remaining free quota, inspection quality, a successful inspection,
+or clearance of applicable usage conditions. No images/prompts were submitted.
+Do not use a generation request to discover whether the project is billed.
+
+Actual model quotas and project tier still need the approved AI Studio interface.
+Open [active rate limits](https://aistudio.google.com/rate-limit) with VS Code's
+**Browser: Open Integrated Browser** (`workbench.action.browser.open`). Select the
+project linked to this key and record only nonsecret tier, RPM, input TPM, RPD,
+remaining allowance and expiry where shown. An authenticated VS Code browser
+was unavailable to the agent during this check. See the
+[access/use findings](../docs/API_FEASIBILITY.md#configured-key-and-read-only-metadata-check).
+
 ## Try the validator
 
 Run these commands in a VS Code PowerShell terminal, working folder

@@ -28,12 +28,47 @@ earlier discovery stage; no generation or defect-quality result exists yet.
 
 Published Gemini documentation supports a short list of image-capable candidates.
 Actual project entitlement, quotas, response speed and inspection usefulness are
-**not verified**. No model request or image upload was made. The website still
+**not verified**. No inference request or image upload was made. The website still
 shows the starter page. The user reconfirmed free API tiers only in this session.
 
 One agent on `main`; parent EN-03, supporting US-02/03/06 and Gate 1.
 Requirements: API-FREE-001/002, API-INPUT-001, API-OUTPUT-001 and SEC-SECRET-001.
 This is discovery evidence, not a completed provider adapter or release gate.
+
+## Configured key and read-only metadata check
+
+24 October 2026: the user explicitly identified the root `.env` variable
+`gemini_api_key` for local programmatic use. The file was confirmed ignored by
+Git and untracked. Only the named Gemini assignment was consumed locally; its
+value, other configuration values and raw provider responses were not displayed,
+copied into records or committed. Earlier no-key statements below describe the
+earlier discovery stage.
+
+After fake-key safety checks, the new narrow metadata checker made exactly two
+sequential authenticated `models.get` requests to Google's fixed HTTPS endpoint.
+Both `gemini-3.8-flash` and `gemini-3.5-flash-lite` returned HTTP 200, matching
+model names and advertised `generateContent` support. This is authentic metadata
+access evidence, not an authentic model-generated answer. No image, prompt,
+`generateContent`, fitting, quota-exhaustion experiment, billing activation or
+account change occurred. The key was sent only in the authentication header.
+
+The official [Models REST reference](https://ai.google.dev/api/models) documents
+GET metadata separately from generation. The [API reference](https://ai.google.dev/api)
+documents `x-goog-api-key` authentication; the
+[key guide](https://ai.google.dev/gemini-api/docs/api-key) documents environment
+configuration and project association. Current official docs were checked through
+Context7 and the provider site. No SDK/dependency was added. Code, command and
+limits: [metadata checker guide](../pipeline/README.md#check-the-locally-configured-gemini-key).
+
+**Still unverified:** project Free tier, paid-execution disablement, actual
+RPM/input TPM/RPD, remaining allowance/expiry and the recorded terms/data-use
+questions below. A metadata response has no project quota/tier fields and does
+not establish free inference entitlement. An API key is not authenticated access
+to the user's AI Studio account page. No approved authenticated VS Code browser
+was available. The user was asked for nonsecret project-limit evidence from the
+[active-limits interface](https://aistudio.google.com/rate-limit); do not request a
+key in chat. Inference remains blocked until the specification's prerequisites
+are met. The website still shows the starter page.
 
 ## Trial recommendation after the user's follow-up
 

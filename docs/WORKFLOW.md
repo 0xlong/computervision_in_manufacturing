@@ -27,7 +27,53 @@ Handoff: branch, commit, changed files, checks, known gaps
 
 Choose tasks by outcomes, not vague instructions such as “do the frontend.” Shared setup and contracts must exist before dependent work runs in parallel.
 
+## Turning a story into tasks
+
+Read [USER_STORIES.md](USER_STORIES.md) for user outcomes and acceptance criteria. Technical enablers can be separate tasks. We use Markdown first, so no tracker account is needed.
+
+Example: **US-01 — Start and complete an inspection challenge**. After the shared data/state contracts are ready, the coordinator inspects the code and can propose this breakdown. These tasks are examples, not started assignments:
+
+| Example task | Work and completion check | Dependency |
+| --- | --- | --- |
+| US-01-T01: Build image/answer controls | Render the agreed image input, zoom, two answer buttons, and keyboard labels; verify component behavior. | Shared contract and web setup |
+| US-01-T02: Build answer/progress logic | Record answers by track/image and preserve them during navigation; test known state transitions. | Shared contract and web setup |
+| US-01-T03: Connect the challenge | Wire controls to state, load the five declared image IDs, implement answer-before-reveal, and check the complete flow. | T01 and T02 |
+| US-01-T04: Verify story acceptance | Run browser checks, review actual imagery and failure behavior, and record which US-01 criteria pass. | T03 and authentic evidence |
+
+T01 and T02 can run in separate worktrees if their file ownership is distinct. T03 joins them; T04 checks the integrated result. Each builder includes its own tests, and story verification is additional evidence. Persistence/reset belong to US-08 and need integration checks with this story.
+
+```text
+Shared contracts + working tool setup
+           /                 \
+      T01: controls      T02: answer logic
+           \                 /
+             T03: connect
+                   |
+             T04: verify
+                   |
+       US-01 done only if every criterion passes
+```
+
+For each real task, the agent records the parent story, goal, dependency, allowed files, completion check, owner, and status in the current progress file. The final handoff adds branch/commit, actual checks/results, and known gaps. Create detailed tasks just before their story is ready; later implementation choices can depend on what the earlier work teaches us.
+
+Your role is to judge whether the story describes something useful and try its working journey. The agent chooses ordinary implementation steps, checks dependencies, and proposes parallel tasks with clear boundaries. You do not need to invent every technical ticket.
+
 ## First parallel round (later, not running now)
+
+**Readiness check — 24 October 2026:** use one agent for the current API-access
+and efficient-model selection sequence. Basic tools and image contracts exist, but final
+preparation groups, input resolution and the run/result/state formats needed by
+the app are not settled. These connected steps do not currently justify several
+builders. Independent reading or review could run separately, but the current
+instruction is one agent. No workers or worktrees have been started.
+
+The first useful pair can be challenge controls and answer-state logic once their
+shared state format exists, as in the example above. Before assigning them, save
+the shared starting point, preserve/resolve existing uncommitted work, give each
+worker separate files and a check, and confirm how their changes will join. A
+worktree supplies a separate folder; the coordinator still checks that the pieces
+work together. This advice is based on the project's current dependencies, not a
+requirement to finish every foundation task before any independent work.
 
 ```text
                      Coordinator

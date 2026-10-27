@@ -1,106 +1,104 @@
 # AI Inspection Pilot Lab
 
-## Current local fastener experience
+**An interactive demo of how AI could support visual quality checks in manufacturing.**
 
-The fastener journey now works locally: inspect five pictures, reveal genuine
-saved Gemini results, explore review workload, keep or reset progress, and
-download a pilot brief. Saved results cover all 115 public fastener test images.
-No visitor action calls a model provider. Nothing has been published.
+Inspect five metal parts yourself, compare your decisions with two AI models, and
+explore what missed defects and extra checks could mean for a working day.
 
-Start with the [local fastener guide](docs/FASTENER_LOCAL.md) and
-[recorded verification](docs/FASTENER_VERIFICATION.md). The local website uses
-http://127.0.0.1:5174/; in VS Code choose **Browser: Open Integrated Browser**
-(`workbench.action.browser.open`). The guide includes the start command and what
-to try. Dataset source limitations remain visible; this is not factory validation.
+This is a working local portfolio prototype using public images and genuine saved
+AI responses. It demonstrates an evaluation approach; it does not establish
+factory readiness or measured business savings.
 
-Earlier status notes below describe earlier development stages and are retained
-for context. This section and the linked verification record own the current
-fastener status.
+## What you can try
 
-A public-data inspection game and model-comparison lab. We are building it with coding agents while learning practical software engineering.
-
-**Current direction:** use fast, efficient models, with API models preferred.
-Further local PaDiM/PatchCore experiments are deferred. We will first check free
-access and measure short API samples before choosing models. No API model has
-been selected or verified yet, and paid calls remain disabled.
-
-**What works now:** the starter website, checked fastener pictures and answer-free
-model inputs. Earlier local model runs remain saved as development evidence;
-they do not establish defect-detection quality. The website still shows the
-starter page. You don't need another download or move now.
-
-See [the next step](docs/PROGRESS.md), [the model-selection plan](docs/MODEL_SELECTION.md)
-and [the saved local experiment](docs/LARGER_RESOLUTION.md).
-
-## Start here in VS Code
-
-1. Open this project folder in VS Code: **File → Open Folder**.
-2. Open this README and select **Open Preview** to read it comfortably.
-3. Open the Codex sidebar. If hidden, open the Command Palette (`Ctrl+Shift+P`) and search **Codex: Open Codex Sidebar**. Sign in yourself if prompted; never paste credentials into chat.
-4. Open **Terminal → New Terminal**. This is a PowerShell terminal: a place to run commands and see their results.
-5. In the project root, run:
-
-   ```powershell
-   python scripts/check_environment.py
-   ```
-
-   It checks installed tools and required workspace files without installing anything, inspecting credentials, or making model calls. Expect `PASS` for the workspace checks. Version notes are information, not proof that future application packages are compatible.
-
-6. In Codex, use this starting message:
-
-   > Read AGENTS.md and docs/PROGRESS.md. Continue the next small task. Explain it simply: what you will do, why, my role, how we will check it, and what happens next. Do routine work autonomously and keep the progress file current. Before installing app dependencies, verify the runtime versions and show the smallest setup needed.
-
-**Your role:** understand the next outcome, try working milestones, and make product choices. **Agent's role:** inspect, implement, test, diagnose, document, and explain routine engineering work. You do not need to approve each file edit.
-
-## Everyday controls
-
-| What you want | What to do |
+| View | What it shows |
 | --- | --- |
-| See the current task | Open `docs/PROGRESS.md`. |
-| Check the workspace | Run `python scripts/check_environment.py`, or **Terminal → Run Task → Learning: check environment**. |
-| See files changed since the last checkpoint | Open VS Code **Source Control**, or run `git status --short`. |
-| Understand a change | Click a changed file in Source Control; ask Codex to explain the diff in plain English. |
-| Inspect recent saved checkpoints | Run `git log --oneline -5`. |
-| Slow down the teaching | Tell Codex: “Give me one action at a time and wait for my result.” |
-| Continue with fewer interruptions | Tell Codex: “Continue routine work; explain each milestone and ask only for consequential decisions or missing access.” |
+| **Try it** | Judge five parts, then reveal the AI assessments and dataset answers. |
+| **Watch AI Inspect** | Watch both models' saved answers across all 115 test pictures. |
+| **Results** | Compare missed defects, unnecessary flags, answer coverage and recorded request times in a table and charts. |
+| **Workday & brief** | Change volume, review capacity and cost assumptions, then download a short pilot brief. Available under Results. |
+| **Architecture** | Follow an interactive diagram showing how the software and saved evidence fit together. |
 
-Do not run `npm install` yet: there is no package manifest. Web/ML dependencies and their checks will be added during the next foundation steps.
+Your challenge answers stay in your browser. Exploring the website makes no AI
+requests and requires no API key, account or image upload. The demo displays
+previously recorded results; it does not inspect new production pictures.
 
-## Extension or terminal?
+## What the evaluation found
 
-Use the **Codex extension** by default: code, changes, explanations, and terminals stay visible in one place. The **Codex CLI** is an alternative interface, not a required second system.
+Both models were evaluated on the same **115 public test pictures**: 93 defective
+parts and 22 good parts. All 115 pictures have a saved assessment from each model.
 
-To try the CLI, open a new terminal **in the project folder** and run `codex` (or `codex.cmd` if PowerShell blocks the `.ps1` launcher). Give it the same starting message above. Choose the directory/permission scope deliberately; do not disable safeguards to bypass a setup problem.
+| Model | Correct decisions | Defects missed / 93 | Good parts flagged / 22 | Unsure answers |
+| --- | --- | --- | --- | --- |
+| Gemini 3.5 Flash-Lite | 98 / 115 (85.2%) | 12 | 5 | 0 |
+| Gemma 4 26B | 89 / 115 (77.4%) | 20 | 5 | 1 |
 
-Use one editing agent in a checkout at a time. If the extension is editing the project, do not start another editor-agent in that same folder. Read-only review can be separate.
+An unsure answer is sent for human checking and is not counted as correct. These
+figures describe this test set only. The five-picture challenge is a curated
+teaching example, not a separate measure of human or AI performance.
 
-**No tmux is needed.** Use named VS Code terminals such as `checks`, `web-server` (later), and `worker-ui` (later). A terminal keeps a command session visible; a Git worktree isolates a worker's files. They solve different problems. Closing a terminal may stop its process; this setup is not an unattended job scheduler.
+[Evaluation and verification records](docs/FASTENER_VERIFICATION.md) explain the
+counts, recorded timings and limitations.
 
-## How we will build
+## Why this matters for a manufacturing team
 
-```text
-Specification → one small task → build → check → fix
-                                      ↑         |
-                                      +---------+
-                    → review → save checkpoint → next task
+A useful inspection pilot needs more than an accuracy score. This demo connects
+model errors with review workload and makes the assumptions visible. It helps a
+team discuss what to test, where a person should check a result, and what evidence
+is still needed before using a system at a real site.
+
+For technical reviewers, the project includes reproducible calculations, saved
+model settings, evidence checks and automated browser tests. The website uses
+React and TypeScript; Python prepares and checks the saved evidence. AI coding
+agents assisted development, with checks and limitations recorded in the project.
+
+## Run locally in VS Code
+
+Open the project folder in VS Code and choose **Terminal → New Terminal**.
+Run these commands from the project root on Windows:
+
+```powershell
+# First run only: install the project's local tools and web packages.
+powershell -NoProfile -File scripts/setup.ps1
+
+# Start the website.
+powershell -NoProfile -File scripts/web.ps1 dev
 ```
 
-Parallel agents come after shared setup and data contracts are ready. Read the short [workflow and worktree guide](docs/WORKFLOW.md) when we reach that point.
+Setup requires Python 3.13 on PATH and internet access. Expect `Setup complete`,
+then a local server at **http://127.0.0.1:5174/**. The repository includes the saved
+results and display pictures, so trying the website needs no new model calls.
 
-## Project map
+In VS Code, press **Ctrl+Shift+P**, select **Browser: Open Integrated Browser**,
+and enter that address. Keep the terminal running; press **Ctrl+C** to stop.
 
-| File | Purpose |
-| --- | --- |
-| `AI_Inspection_Pilot_Lab_SPEC.md` | What the application must do and how completion is verified. |
-| `AGENTS.md` | How agents should work and teach in this repository. |
-| `docs/PROGRESS.md` | Current step, evidence, next task, and blockers. |
-| `docs/WORKFLOW.md` | Simple task loop, parallel work example, and handoff procedure. |
-| `scripts/check_environment.py` | Repeatable, read-only workspace check. |
+[Development setup](docs/DEVELOPMENT.md) covers installation details and check
+commands. [The local guide](docs/FASTENER_LOCAL.md) provides a longer walkthrough;
+older dated UI descriptions may show controls that have since changed.
 
-## Official Codex references
+## Scope and limitations
 
-- [VS Code / IDE extension](https://learn.chatgpt.com/docs/codex/ide)
-- [Codex CLI](https://learn.chatgpt.com/docs/cli)
-- [Project instructions with AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
+- Current working track: fasteners, using MVTec AD's `metal_nut` pictures. The
+  metal-surface track and further model evaluations remain future work.
+- These are public benchmark pictures, not private factory or customer data.
+  Original acquisition records and independence of related physical parts remain
+  incomplete; public models may also have encountered the benchmark before.
+- Workday and cost projections use editable assumptions. They are not measured
+  savings, staffing recommendations or production approval.
+- Local Chromium checks cover inspection, saved progress, comparison, export,
+  responsive layouts and automated accessibility. Native devices, other browsers
+  and screen-reader behavior have not received a full audit.
+- No hosted demo or production deployment is provided by this repository.
 
-Codex account usage and the application's Gemini/OpenAI API entitlement are separate concerns. Having Codex installed does not verify free application API access.
+Dataset pictures and outlines retain their supplied **CC BY-NC-SA 4.0** notices.
+See the [dataset source](https://www.mvtec.com/research-teaching/datasets/mvtec-ad),
+[included licence](web/public/evidence/notices/license.txt), and
+[source/provenance record](docs/DATA_SOURCES.md). No affiliation with a manufacturer
+or dataset provider is implied.
+
+## Further reading
+
+- [Project requirements](docs/AI_Inspection_Pilot_Lab_SPEC.md)
+- [Current progress and recorded checks](docs/PROGRESS.md)
+- [What belongs in this repository](docs/REPOSITORY_CONTENTS.md)
+- [Data preparation and evaluation tools](pipeline/README.md)

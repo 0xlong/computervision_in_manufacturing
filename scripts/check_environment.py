@@ -13,8 +13,8 @@ def main() -> int:
     print("This checks the workspace, not app/model readiness or Codex sign-in.\n")
 
     required_files = (
-        "AGENTS.md", "README.md", "AI_Inspection_Pilot_Lab_SPEC.md",
-        "docs/PROGRESS.md", "docs/WORKFLOW.md", ".gitignore",
+        "AGENTS.md", "README.md", "docs/AI_Inspection_Pilot_Lab_SPEC.md",
+        "docs/PROGRESS.md", "docs/WORKFLOW.md", "docs/USER_STORIES.md", ".gitignore",
         ".vscode/tasks.json", ".vscode/extensions.json",
     )
     for name in required_files:

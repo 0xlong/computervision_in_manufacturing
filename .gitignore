@@ -45,3 +45,11 @@ checkpoints/
 *.code-workspace
 .DS_Store
 Thumbs.db
+
+# Interrupted test temporary folders and downloaded archives
+pytest-cache-files-*/
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z

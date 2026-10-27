@@ -3,7 +3,8 @@
 ## Read first
 
 - This project is both real software development and an educational journey for a junior developer using AI coding agents for the first time.
-- Read `AI_Inspection_Pilot_Lab_SPEC.md` before implementation; it owns product requirements. Read `docs/PROGRESS.md` to find the current step and `README.md` for the learner's entry point.
+- Read `docs/AI_Inspection_Pilot_Lab_SPEC.md` before implementation; it owns product requirements. Read `docs/PROGRESS.md` to find the current step and `README.md` for the learner's entry point.
+- When planning implementation, read `docs/USER_STORIES.md`; break the next ready story/enabler into small tasks with acceptance checks and dependencies using `docs/WORKFLOW.md`. Keep assignments/results in `docs/PROGRESS.md`; user stories do not replace the specification.
 - Use VS Code with the Codex extension as the default. CLI sessions in ordinary PowerShell terminals are optional. Keep tooling small; introduce a tool only when a current task needs it.
 
 ## Teach while delivering
@@ -16,7 +17,6 @@
 - Keep explanations short and concrete. Use a few short paragraphs or simple bullets; include a table or long technical breakdown only when it helps the user understand or act. Keep precise engineering detail in the project records without making it the main explanation.
 - For a command the user should run, give the working folder, the command, its purpose, and the expected result. Never present an example command as already executed.
 - Use a short ASCII/Mermaid diagram when architecture, dependencies, or parallel tasks are hard to follow in prose. Explain every box in familiar language. Skip diagrams for trivial changes.
-- Invite small learning actions at useful milestones: inspect a diff, run a check, try a button, or explain a trade-off. These are optional learning opportunities, not approval gates for ordinary work.
 - Continue routine authorized work autonomously. Ask only for consequential product choices, missing access, or actions outside existing authority. If the user explicitly requests one-step-at-a-time guidance, give one action and wait for their result.
 - When a check fails, explain the symptom and next diagnostic action simply. Fix and rerun relevant checks; do not weaken checks or requirements to appear finished.
 

@@ -5,6 +5,62 @@ deferred. Prioritize fast, efficient API models with verified free access;
 see [model-selection plan](MODEL_SELECTION.md). Earlier local preparation and
 measurement records below are preserved, not current assignments.
 
+## Current continuation
+
+The unpacked acquisition is now representable in image-manifest **version 2**.
+Version 1 remains unchanged and strict. The new acquisition object distinguishes
+an archive from an unpacked directory, user-supplied/unverified context from
+operator-declared details, and the checked content fingerprint from an archive hash.
+Unknown direct URL, download time and original archive hash stay `null`.
+`checked_at` is explicitly a checking time, never a substituted download time.
+This records provenance limitations; it does not complete official-source verification.
+
+Automated follow-up measured all 12 recorded preparation-boundary risks, with
+same-photo controls and zero new visual examples. It did not establish physical-part
+identity. **The original 176/44/115 groups remain provisional and are not frozen.**
+See [comparison measurements and limitations](DATA_REVIEW.md#automated-follow-up-of-the-12-recorded-risks).
+
+The real, development-only package is in ignored `data/metal_nut.inputs.v2/`:
+
+- `evaluator/`: v2 labelled image manifest, unchanged original photos/masks and
+  retained notices. This is evaluator metadata, never inference input.
+- `model-inputs/`: 335 neutral-named RGB PNGs and separate fitting/calibration/
+  evaluation indexes. The PNGs preserve source pixels but remove embedded metadata;
+  the indexes allow only neutral IDs, neutral paths, dimensions and content hashes.
+- `preparation.json`: membership, manifest/index fingerprints and explicit limitations.
+
+Export verified all 335 model images for unchanged RGB pixels, empty metadata,
+dimensions, hashes and complete membership. The manifest CLI separately verified
+all 428 evaluator image/mask asset hashes. No source image or split changed.
+The three indexes contain 176 fitting, 44 calibration and all 115 evaluation images.
+Model feasibility reads fitting/calibration only; final-test inference remains pending.
+
+| Current artifact | SHA-256 |
+| --- | --- |
+| Evaluator v2 image manifest | `5c77a9e478d03ce4b211d655b577b4363cc2853b9900eaef93ebb94f0a1940d5` |
+| Fitting input index | `32e34327319987c986f14e7f59d06441f16c115e3a7738620f490b0cb3b793d2` |
+| Calibration input index | `fe2732cc3b7f333941335b61b4a672af1694a48d56c06964d66634b9aed7cfad` |
+| Evaluation input index | `00bfb7bd04b3f369426e4db8c6d78d69926ef659bf8072d114369c1415d42516` |
+
+Executed in the project root:
+
+```powershell
+.\.venv\Scripts\python.exe -m pipeline.prepare_inputs data/downloads/metal_nut --plan data/metal_nut.preparation-plan.v1.json --acquisition data/metal_nut.acquisition.v2.json --output-dir data/metal_nut.inputs.v2
+.\.venv\Scripts\python.exe -m pipeline.validate_manifest data/metal_nut.inputs.v2/evaluator/image-manifest.v2.json --asset-root data/metal_nut.inputs.v2/evaluator
+```
+
+The acquisition input was explicitly transcribed from the existing user-supplied
+source record, retaining its checking timestamp and the three unknown values.
+It contains no newly inferred acquisition facts. Choose a new output directory
+for a repeat; outputs are not replaced. An interrupted export can leave partial
+files and must not be treated as a successful package without `preparation.json`.
+
+The earlier sections below describe the previous draft and the format limitation
+that motivated v2. The website remains the starter page; this package is not a
+public evidence bundle, final benchmark or model-performance result.
+Both specialists have now completed authentic normal-only CPU practice runs using
+these preparation inputs. See [measurements and limits](MODEL_FEASIBILITY.md).
+
 The new download in `data/downloads/metal_nut/` passes the file checks. A draft
 separates pictures for model practice, threshold setting and final testing.
 The website still shows the starter page. No model has been trained.
@@ -137,3 +193,11 @@ Current checks: **149 pipeline tests passed** and the workspace check passed.
 These prove the tool's tested behavior and input consistency; they do not prove
 physical-object independence, exact annotation boundaries or model performance.
 The website is unchanged and there are no AI results yet.
+
+
+Native-size follow-up: all 12 fitting/calibration candidates were also compared
+at 700 × 700. No reliable repeated physical-object identity was established;
+independence remains unverified. The [supplemental record](DATA_REVIEW.md#native-size-follow-up-of-all-12-preparation-boundary-candidates)
+contains the observations and hashes. Next independent implementation: represent
+unpacked acquisition honestly, keeping preparation development-only and related-object
+risk visible.

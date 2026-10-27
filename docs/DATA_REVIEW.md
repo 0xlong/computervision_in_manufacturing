@@ -1,5 +1,10 @@
 # Fastener picture and outline review — 23 October 2026
 
+Current follow-up: automated registration/detail comparisons now cover all 12
+recorded fitting/calibration risks; **zero new images were visually viewed**.
+The groups remain provisional. See the automated follow-up below; the larger
+visual review described in the historical sections predates the current viewing limit.
+
 I checked 69 similar-picture candidates and all 93 real defect outlines. The
 outlines sit on the expected picture regions; no obvious wrong-image, rotation or
 translation problem was seen. Some scratch boundaries are faint or only partly
@@ -174,3 +179,96 @@ Next: strengthen the 12 preparation-boundary candidate reviews before any split
 freeze; represent the unpacked acquisition honestly in a versioned manifest
 contract; then prepare label-free model inputs and test candidate RGB resolutions.
 These follow-ups need no repeated download. Gate 1 and all app stories remain open.
+
+
+## Native-size follow-up of all 12 preparation-boundary candidates
+
+After the first checkpoint, all 12 fitting/calibration candidate pairs above were
+also viewed as unchanged 700 × 700 originals side by side, without resizing, crop
+or registration. Each 1405 × 730 sheet uses the same 30-pixel caption layout as the
+mask details. No reliable shared distinctive fine mark established a repeated
+physical object. Visible differences in grooves, highlights, texture or outline
+are listed below; they do not prove independent physical objects or sessions.
+No group assignment or preparation membership changed.
+
+| Pair | Native-size observation |
+| --- | --- |
+| P008 | Top-face shading and lower stepped-ring details differ; common pose alone is inconclusive. |
+| P009 | Upper-face brightness, focus and lower-ring appearance differ; no reliable common fine mark identified. |
+| P019 | Lower-tab outline/position and central-ring highlights differ; no reliable common fine mark identified. |
+| P039 | Left-edge ring spacing/contrast and face highlights differ; no reliable common fine mark identified. |
+| P045 | Lower-tab face and ring appearance differ; matching orientation is inconclusive. |
+| P049 | Upper-tab grooves and left-edge appearance differ; no reliable common fine mark identified. |
+| P051 | Upper-tab proportions/brightness differ; right image is the same fitting member also reviewed in P049. |
+| P054 | Upper-tab boundary and lower-ring appearance differ; no reliable common fine mark identified. |
+| P055 | Upper-left groove appearance and central highlights differ; no reliable common fine mark identified. |
+| P056 | Upper-tab edge/highlights and face texture differ; no reliable common fine mark identified. |
+| P058 | Left stepped rings and broad face texture differ; matching outline is inconclusive. |
+| P059 | Broad upper-face ring/texture appearance differs; no reliable common fine mark identified. |
+
+Local supplemental evidence: `data/metal_nut.review.v3/native-P*.png` and
+`native-pair-decisions.v1.json`. The latter records all 12 sheet hashes, references
+the unchanged earlier visual decision record, and has SHA-256 `0afad0f91c15b0dee1bf4f53c05930fac062439694054ce56a3b6ee4abeab3aa`.
+The first-pass JSON and its fingerprint were preserved.
+
+This completes the native-size follow-up proposed in the first pass. It still
+cannot certify related-object independence. Registration-aware texture comparison
+may add evidence, but source/session IDs cannot be reconstructed as facts from
+pose similarity. Keep the split development-only and the overlap risk disclosed;
+any subsequently confirmed groups require a versioned group-aware preparation plan.
+The next independent implementation task is the honest unpacked-acquisition
+manifest contract, followed by label-free inputs and RGB-resolution feasibility.
+No additional app tests were run for this observation-only follow-up; documentation
+and whitespace checks were repeated. No source images or model settings changed.
+
+## Automated follow-up of the 12 recorded risks
+
+Executed in the project root:
+
+```powershell
+.\.venv\Scripts\python.exe -m pipeline.compare_related data/downloads/metal_nut --plan data/metal_nut.preparation-plan.v1.json --review data/metal_nut.review.v3/review.json --output data/metal_nut.similarity-follow-up.v1.json
+```
+
+The tool re-audits all source files, rebuilds the plan and reconstructs the whole
+69-pair shortlist before selecting the 12 recorded preparation-boundary risks.
+It searches grayscale correlation at 128px over rotations -4/-2/0/2/4 degrees and
+x/y shifts -4..4 pixels. It then measures grayscale and edge correlation in a
+common, central native-resolution crop. No labels, masks or model outputs choose
+the transform. Pixels introduced by rotation/translation stay outside this crop.
+Each pair also has a known same-photo control shifted by one coarse pixel.
+
+| Pair | Native grayscale correlation | Native edge correlation |
+| --- | ---: | ---: |
+| P008 | 0.9048 | 0.0791 |
+| P009 | 0.9065 | 0.0960 |
+| P019 | 0.8763 | 0.1345 |
+| P039 | 0.8505 | 0.0751 |
+| P045 | 0.8223 | 0.0913 |
+| P049 | 0.7714 | 0.0676 |
+| P051 | 0.8223 | 0.0650 |
+| P054 | 0.7764 | 0.0538 |
+| P055 | 0.8217 | 0.0728 |
+| P056 | 0.8391 | 0.1002 |
+| P058 | 0.7719 | 0.0497 |
+| P059 | 0.8320 | 0.0640 |
+
+All shifted-photo controls recover edge correlation 1.0. None of the candidate
+searches hits its search boundary. These numbers support the earlier observation
+that broad pose similarity does not extend to the same fine-detail match recovered
+for shifted copies of one photograph. They do **not** prove different physical
+parts: the bounded rigid search omits scale, perspective, subpixel refinement,
+larger rotation, deformation and changing reflections. The negative synthetic
+control checks unrelated generated texture; it is not a labelled real-object pair.
+There is no defensible physical-object grouping or identity threshold from this evidence.
+
+Decision: retain all original 176/44/115 members for development; do not freeze
+the split or mark DATA-SPLIT-003 complete. Unknown object/session identity and the
+previously disclosed test/preparation similarities remain limitations. A final
+freeze needs a defensible grouping method or an explicit project decision about
+the remaining risk and the seed-42 holdout requirement. No member is silently moved
+or removed. Development-only model feasibility can continue on preparation data.
+
+Ignored evidence file SHA-256:
+`10d8b5fb2c93364d672ef604b73092aa7246eb30521a4482ad186f46b05ee9ad`.
+The source membership and canonical plan fingerprints match the earlier review.
+No new visual examples, sheets, source modifications or model-based filtering.

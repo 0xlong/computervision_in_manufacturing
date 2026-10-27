@@ -1,6 +1,6 @@
 # AI Inspection Pilot Lab — Software Development Specification
 
-> Version: 2.0 · Updated: 23 October 2026 (Europe/Warsaw)
+> Version: 2.1 · Updated: 24 October 2026 (Europe/Warsaw)
 > Status: development baseline; implementation and evaluation are not yet verified.
 > Audience: implementing engineers, coding agents, and reviewers.
 
@@ -36,7 +36,7 @@ The main story should fit an approximately two-minute demonstration. Detailed ev
 ### 2.3 First-release scope
 
 - A default five-image fastener challenge and an optional five-image metal-surface track.
-- Authentic saved results from two specialist models and a Gemini vision model, subject to feasibility gates.
+- Authentic saved results from fast, resource-efficient models selected through feasibility checks; API models are the preferred direction. Two local specialists are no longer required.
 - Optional OpenAI results when sufficient zero-cost API entitlement is verified.
 - Model/reference reveal, category-specific comparison, supported sensitivity controls, workload/cost scenarios, and deterministic Markdown pilot-brief export.
 - Browser-only progress, reset, responsive and accessible presentation, reproducible evidence, and a deployment package for the existing VPS.
@@ -54,7 +54,7 @@ Accounts, uploads, cameras, hardware integration, visitor-triggered inference/tr
 | Fastener track | `fasteners`: MVTec AD `metal_nut`; default entry point. |
 | Surface track | `metal_surfaces`: MVTec AD2 `sheet_metal`; publicly annotated test subset only. |
 | Dataset purpose | Personal noncommercial showcase; preserve dataset-specific CC BY-NC-SA 4.0 obligations and verify publication suitability. |
-| Specialists | Initial configurations: PaDiM and PatchCore with ResNet-18 features; fit separately per category and measure resource feasibility. |
+| Model selection | API-first; include only models that meet recorded preparation-time, response-time and resource budgets while providing useful authentic inspection evidence. PaDiM/PatchCore experiments are deferred, optional historical work. |
 | Providers | Gemini baseline; OpenAI conditional on verified zero-cost entitlement. No other hosted provider. |
 | Spending | Zero paid API spend. Preparation may span multiple days within free quotas. |
 | Evaluation | Complete selected public test sets, not a small showcase-only benchmark. |
@@ -86,12 +86,12 @@ Select teaching examples after evaluation without changing benchmark membership.
 | ID | Requirement |
 | --- | --- |
 | FR-REVEAL-001 | Reveal MUST distinguish visitor judgment, model assessment, and dataset reference using labels as well as visual styling. |
-| FR-REVEAL-002 | Visitors MUST be able to view one model or compare two models on the same image. Original imagery MUST remain readable. |
-| FR-REVEAL-003 | Specialist evidence MUST use that run's score/map. API evidence MUST show its real structured decision and concise observations. Unsupported heatmaps or sensitivity MUST be explicitly unavailable. |
+| FR-REVEAL-002 | Visitors MUST be able to view one selected model and compare two on the same image when two qualifying runs exist. Original imagery MUST remain readable. If fewer than two qualify, explain that model comparison is unavailable; never invent a second result. |
+| FR-REVEAL-003 | If a specialist is included, its evidence MUST use that run's score/map. API evidence MUST show its real structured decision and concise observations. Unsupported heatmaps or sensitivity MUST be explicitly unavailable. |
 | FR-SUMMARY-001 | Challenge results MUST show raw correct/incorrect counts against reference labels without claiming that five examples establish human or model superiority. |
 | FR-COMPARE-001 | The lab MUST compare the complete declared evaluation set within one category, showing misses, false alarms, review count, denominators, coverage, and failures. |
 | FR-COMPARE-002 | Model/policy changes MUST preserve track and image identity without restarting the challenge. |
-| FR-POLICY-001 | Specialist sensitivity MUST map a normal-calibration false-alarm target to a separate threshold per run. The selected target and achieved evaluation rates MUST be labelled separately. |
+| FR-POLICY-001 | If a specialist is included, its sensitivity MUST map a normal-calibration false-alarm target to a separate threshold per run. The selected target and achieved evaluation rates MUST be labelled separately. |
 | FR-POLICY-002 | APIs MUST initially use a fixed categorical policy. `uncertain` routes to review. A sensitivity control MUST NOT imply calibrated API confidence or change the prompt. |
 
 Anomaly scores indicate unusual appearance relative to normal preparation examples, not defect probability, severity, or root cause. Heatmap scales are model-specific. Fixed benchmark results and visitor exploration must remain distinguishable.
@@ -113,7 +113,7 @@ The pilot prerequisite checklist includes representative site images, a quality 
 ```text
 Official datasets
   -> acquisition, checksums, and fixed manifests
-  -> specialist fitting/calibration and free-tier API execution
+  -> free-tier API execution (optional specialist fitting/calibration only if selected)
   -> prediction records, evaluation, and provenance
   -> validated versioned public bundle
   -> static React website
@@ -125,7 +125,7 @@ Offline ML dependencies and provider credentials do not belong in the visitor-se
 | Module | Responsibility and boundary |
 | --- | --- |
 | Data preparation | Acquires and validates images, splits, transformations, and challenge membership; produces manifests. |
-| Specialist runner | Fits/loads one declared configuration and emits authentic outputs; consumes permitted preparation data. |
+| Optional specialist runner | Deferred unless a fast, efficient local candidate is selected; fits/loads one declared configuration and emits authentic outputs from permitted preparation data. |
 | Provider adapter | Builds label-free requests, validates responses, enforces entitlement/quota policy; never consumes test labels/masks. |
 | Evaluation | Reads labels separately, calibrates thresholds, computes metrics, coverage, uncertainty, and failure routing. |
 | Bundle builder | Packages approved public evidence and attribution; rejects inconsistent artifacts. |
@@ -153,7 +153,7 @@ Use JSON Schema Draft 2020-12 as the artifact contract source. Validate contract
 
 Use a shared base image representation where practical. Disclose necessary model-specific transformations and differences in normal-reference access. Inspect small-defect visibility during feasibility and freeze resolution before final evaluation; source-image resolution alone does not establish model visibility after downsampling.
 
-Run configuration must identify checkpoint hash, feature selection, PatchCore collection size/selection seed, PaDiM parameters, input resolution, and image-score reduction rule. These are measured feasibility outputs, not assumed performance guarantees.
+For any selected specialist, run configuration must identify checkpoint hash, feature selection, applicable model parameters, input resolution, and image-score reduction rule. API configurations instead identify the provider/model/version, prompt, permitted references and image preprocessing. These are measured feasibility outputs, not assumed performance guarantees. Deferred PaDiM/PatchCore settings are not requirements for an API run.
 
 ## 7. API execution and zero-spend controls
 
@@ -304,9 +304,9 @@ Artifact validation rejects duplicate IDs, missing assets, invalid values, incon
 
 ### Gate 1 — Feasibility and contracts
 
-Inventory local compute/runtimes; verify official data/licences, free provider eligibility/terms, compatible dependencies, small-defect visibility, and model memory. Establish validated contracts, exact manifests, initial configurations, and real sample outputs from both specialists.
+Prioritize free-provider eligibility/terms and short, bounded API feasibility checks. Verify official data/licences, compatible dependencies, model-specific small-defect visibility, validated contracts and exact manifests. Record concrete response-time, total-preparation-time and resource budgets before model trials; select only candidates that meet them and provide useful authentic outputs. Do not assume API access is faster or free without evidence. Local fitting experiments are deferred and are not a prerequisite.
 
-**Complete when:** sample records pass contract/alignment checks; preparation splits are fixed; free API feasibility or a precise blocker is recorded; resource findings and exact configuration candidates exist. If an intended specialist cannot fit or perform its required function, document measurements and propose an appropriate open-source replacement before final evaluation. Spending/provider constraints remain fixed.
+**Complete when:** selected-model sample records pass applicable contract/alignment checks; preparation splits are fixed; free API feasibility or a precise blocker is recorded; measured latency/resource findings and exact configuration candidates exist. Final model IDs and count are settled from this evidence, rather than requiring two local specialists. A provider blocker does not authorize paid execution or another provider. Spending/provider constraints remain fixed.
 
 ### Gate 2 — Complete fastener vertical slice
 
@@ -316,7 +316,7 @@ Deliver inspect-to-export with authentic fastener evidence, pure calculations, s
 
 ### Gate 3 — Complete evidence and both tracks
 
-Freeze final configurations, fit both specialists per category, execute Gemini within verified free quotas, finish the public test membership, and deliver comparison in both tracks. Add OpenAI only with verified zero-cost access and complete recorded evaluation.
+Freeze the selected efficient model configurations, execute Gemini within verified free quotas, finish the public test membership for every selected run, and deliver both tracks. Include comparison wherever at least two qualifying models have authentic results; otherwise disclose its unavailability. Add OpenAI only with verified zero-cost access and complete recorded evaluation. Local specialists are optional and deferred, not a gate requirement.
 
 **Complete when:** every required run accounts for every declared image as success or terminal failure; no items remain pending; metrics/coverage/failures regenerate; both tracks work; complete provenance exists. OpenAI absence does not block the gate; Gemini absence does. Failures must remain visible and cannot be described as successful inspections.
 
@@ -349,7 +349,7 @@ Restore the previous release for an invalid bundle or broken deployment and reco
 | Licence purpose | Personal noncommercial showcase; retain restrictions and verify distribution suitability. |
 | Visitor experience | Default fastener challenge; optional separate surface track. |
 | Evaluation | Complete selected public test sets, even across multiple days. |
-| Specialists | Two suitable open-source approaches; PaDiM/PatchCore are initial choices subject to measured feasibility. |
+| Model speed and efficiency — revised 24 October 2026 | Prefer API models and retain only candidates that pass bounded speed/resource and evidence checks. The earlier mandatory two-specialist plan is superseded; local PaDiM/PatchCore work is deferred. Exact API IDs and model count remain feasibility outputs. |
 
 ### 15.2 Discovery tasks, not unanswered product questions
 
