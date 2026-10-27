@@ -35,15 +35,7 @@ export function Lab({ bundle, state, update }: { bundle: Bundle; state: VisitorS
     } catch { setExportError('The brief needs valid evidence, assumptions and a selected decision.'); }
   }
   return <>
-    <section className="section-heading"><h1>What did AI find?</h1>
-      <p>Saved AI results on {report.expected} public test pictures. Not factory validation.</p></section>
-    <p className="result-coverage">{report.succeeded} assessed · {report.failed} unavailable</p>
-    <div className="result-highlights" aria-label="Successful AI assessment results">
-      <section><strong>{report.successful_output.tp}</strong><h2>Defective parts flagged</h2><p>of {report.successful_output.anomalous} defective parts assessed</p></section>
-      <section><strong>{report.successful_output.fn}</strong><h2>Defective parts missed</h2><p>of {report.successful_output.anomalous} defective parts assessed</p></section>
-      <section><strong>{report.successful_output.fp}</strong><h2>Good parts flagged</h2><p>of {report.successful_output.normal} normal parts assessed</p></section>
-    </div>
-    <p>{report.full_set_routing.review_count} of {report.expected} parts sent for checking{report.failed ? `, including ${report.failed} unavailable AI assessments` : ''}.</p>
+    <section className="section-heading"><h1>Results</h1></section>
     <ModelComparison bundle={bundle} selectedRun={state.selectedRun} onSelect={id => update({ selectedRun: id, comparisonRun: '' })} />
     <details className="detailed-results"><summary>Detailed results</summary>
     <label className="model-select">Saved model <select value={state.selectedRun} onChange={e => update({ selectedRun: e.target.value, comparisonRun: '' })}>
@@ -93,6 +85,7 @@ export function Lab({ bundle, state, update }: { bundle: Bundle; state: VisitorS
     </section>
     </details>
     <details className="provenance"><summary>Where the results come from</summary>
+      <p>{bundle.dataset.attribution} <a href={bundle.dataset.licence_url}>{bundle.dataset.licence}</a>. <a href={bundle.dataset.source_url}>Dataset source</a>.</p>
       <p>Dataset: {bundle.dataset.dataset_id} / {bundle.dataset.category}. {bundle.dataset.modification_notice}</p>
       <p>Run: <code>{evidence.run.run_id}</code>; provider: {evidence.run.provider}; model: {evidence.run.model_id}; created {evidence.run.created_at}.</p>
       <p>Reported versions: {[...new Set(evidence.predictions.flatMap(p => p.attempts.map(a => a.reported_model_version).filter(Boolean)))].join(', ')}. Provider aliases can change.</p>

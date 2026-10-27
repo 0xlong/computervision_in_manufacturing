@@ -20,7 +20,7 @@ async function start(page: Page) {
   await expect(page.getByRole('button', { name: 'Looks fine', exact: true })).toBeEnabled();
 }
 
-test('five answers, gated reveal, zoom, locked answers, refresh, export and reset', async ({ page }) => {
+test('five answers, gated reveal, zoom, locked answers, refresh and export', async ({ page }) => {
   await fixtures(page);
   const outgoing: string[] = [];
   page.on('request', request => { if (!request.url().startsWith('http://127.0.0.1:4175') && !request.url().startsWith('blob:')) outgoing.push(request.url()); });
@@ -70,11 +70,14 @@ test('five answers, gated reveal, zoom, locked answers, refresh, export and rese
   await page.getByRole('button', { name: 'Go to image 1, answered' }).click();
   await expect(page.locator('.answer-buttons')).toHaveCount(0);
   await page.getByRole('button', { name: 'Results', exact: true }).click();
-  await expect(page.getByText('3 assessed · 3 unavailable', { exact: true })).toBeVisible();
-  await expect(page.locator('.result-highlights section').nth(0).locator('strong')).toHaveText('1');
-  await expect(page.locator('.result-highlights section').nth(1).locator('strong')).toHaveText('1');
-  await expect(page.locator('.result-highlights section').nth(2).locator('strong')).toHaveText('1');
-  await expect(page.getByText('5 of 6 parts sent for checking, including 3 unavailable AI assessments.', { exact: true })).toBeVisible();
+  const resultCells = page.getByRole('table').getByRole('row').nth(1).getByRole('cell');
+  await expect(resultCells.nth(0)).toHaveText('1 / 2');
+  await expect(resultCells.nth(1)).toHaveText('1 / 1');
+  await expect(resultCells.nth(2)).toHaveText('3 / 6');
+  await expect(resultCells.nth(3)).toHaveText('3 / 6');
+  await expect(resultCells.nth(6)).toHaveText('5 / 6');
+  // Invented fixture includes unsure and technical failures; neither is correct.
+  await expect(page.locator('.results-chart-metric').nth(0).locator('strong')).toHaveText('0 / 6 (0.0%)');
   await page.getByText('Explore a workday & download a brief', { exact: true }).click();
   await page.getByLabel('Available review minutes per day').fill('0');
   await expect(page.getByText('Review demand exceeds the entered capacity.', { exact: false })).toBeVisible();
@@ -86,14 +89,9 @@ test('five answers, gated reveal, zoom, locked answers, refresh, export and rese
   const text = await readFile((await download.path())!, 'utf-8');
   expect(text).toContain('coverage: 0.5'); expect(text).toContain('Collect more evidence');
   expect(text).not.toContain('<script>'); expect(outgoing).toEqual([]);
-  await page.getByText('About this demo & reset progress', { exact: true }).click();
-  await page.getByRole('button', { name: 'Reset current track' }).click();
-  await page.getByRole('button', { name: 'Keep progress' }).click();
+  await expect(page.locator('.about-demo')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /Reset/ })).toHaveCount(0);
   await expect(page.getByLabel('Collect more evidence', { exact: true })).toBeChecked();
-  await page.getByRole('button', { name: 'Reset all progress' }).click();
-  await page.getByRole('button', { name: 'Confirm reset' }).click();
-  await page.getByRole('button', { name: 'Try it' }).click();
-  await expect(page.getByText('0 of 5 answered', { exact: true })).toBeVisible();
 });
 
 test('invalid assumptions suspend projections and export; untrusted rationale stays text', async ({ page }) => {

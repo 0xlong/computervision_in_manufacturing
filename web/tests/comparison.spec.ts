@@ -19,9 +19,9 @@ test('genuine complete-set comparison row shows real counts and measured request
   const bundle = await page.request.get('/evidence/bundle.json').then(r => r.json()) as Bundle;
   if (bundle.runs.length === 1) await expect(section).toContainText('One completed model so far.');
   else await expect(section.getByText('One completed model so far.', { exact: false })).toHaveCount(0);
-  await expect(table).toHaveAccessibleName('Complete 115-picture test set · Saved AI results');
+  await expect(table).toHaveAccessibleName('Complete 115-picture test set · Saved AI results Public benchmark · Not factory validation');
   await expect(table.getByRole('row')).toHaveCount(bundle.runs.length + 1);
-  await expect(row.getByRole('button', { name: 'gemini-3.5-flash-lite', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(row.getByRole('button', { name: 'Gemini 3.5 Flash-Lite', exact: true })).toHaveAttribute('aria-pressed', 'true');
   const cells = row.getByRole('cell');
   await expect(cells.nth(0)).toHaveText('12 / 93');
   await expect(cells.nth(1)).toHaveText('5 / 22');
@@ -52,6 +52,20 @@ test('genuine complete-set comparison row shows real counts and measured request
     await expect(values.nth(6)).toHaveText(`${saved.report.full_set_routing.review_count} / 115`);
   }
   await expect(section.getByText('gemini-3.8-flash', { exact: true })).toHaveCount(0);
+  const chart = section.getByRole('region', { name: 'Model comparison chart', exact: true });
+  await expect(chart).toBeVisible();
+  // Independent genuine categorical counts: Gemma's unsure answer is not correct.
+  await expect(chart.locator('.results-chart-metric').nth(0).locator('strong')).toHaveText(['98 / 115 (85.2%)', '89 / 115 (77.4%)']);
+  await expect(chart.locator('.results-chart-metric').nth(1).locator('strong')).toHaveText(['12 / 93 (12.9%)', '20 / 93 (21.5%)']);
+  await expect(chart.locator('.results-chart-metric').nth(2).locator('strong')).toHaveText(['5 / 22 (22.7%)', '5 / 22 (22.7%)']);
+  await expect(page.locator('.result-highlights')).toHaveCount(0);
+  await expect(section.getByText('Select a model to explore its results.', { exact: false })).toHaveCount(0);
+  const gemma = row.locator('xpath=following-sibling::tr').getByRole('button', { name: 'Gemma 4 26B', exact: true });
+  await gemma.focus(); await page.keyboard.press('Enter');
+  await expect(gemma).toHaveAttribute('aria-pressed', 'true');
+  await page.reload();
+  await expect(page.getByRole('button', { name: 'Gemma 4 26B', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(chart.locator('.results-chart-metric').nth(0).locator('strong')).toHaveText(['98 / 115 (85.2%)', '89 / 115 (77.4%)']);
   await section.getByText('How to read the table', { exact: true }).click();
   await expect(section.getByText('No answer is a technical failure', { exact: false })).toBeVisible();
   await mkdir(artifacts, { recursive: true });
@@ -70,12 +84,13 @@ test('genuine complete-set comparison row shows real counts and measured request
       await scroll.evaluate(el => { el.scrollLeft = 0; });
     }
     if (width === 1440) expect(await scroll.evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
+    await section.getByText('How to read the table', { exact: true }).evaluate(el => { (el.parentElement as HTMLDetailsElement).open = false; });
     await section.screenshot({ path: resolve(artifacts, `comparison-${width}.png`) });
     scans.push({ width, violations: violations.length, page_overflow: false });
   }
   expect(errors).toEqual([]); expect(external).toEqual([]);
   await writeFile(resolve(artifacts, 'verification.json'), JSON.stringify({ bundle_id: bundle.bundle_id, browser: browser.version(),
     genuine_models: bundle.runs.length, models: bundle.runs.map(r => ({ model: r.report.model_id, report: r.report })), images: 115, median_attempt_ms: median, attempts: times.length, scans,
-    external_requests: external, page_errors: errors, visual_subject: 'Table only; no source photographs',
+    external_requests: external, page_errors: errors, visual_subject: 'Table and chart only; no source photographs',
     note: 'All genuine complete rows checked against saved reports; baseline values also independently fixed above. Labelled fixtures retain failure edge cases.' }, null, 2));
 });

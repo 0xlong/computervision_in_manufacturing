@@ -10,12 +10,12 @@ const bundlePath = resolve('public/evidence/bundle.json');
 const bundle = existsSync(bundlePath) ? JSON.parse(readFileSync(bundlePath, 'utf-8')) as Bundle : null;
 const artifacts = resolve('../artifacts/browser-verification');
 
-test('simple opening page has clear paths and keyboard-accessible background', async ({ page }) => {
+test('simple opening page has clear paths without the removed demo section', async ({ page }) => {
   test.setTimeout(90000); // Multiple responsive accessibility scans share this test.
   test.skip(!bundle, 'Authentic saved evidence is required.');
   const directory = resolve('../artifacts/ui-simplification');
   await mkdir(directory, { recursive: true });
-  const scans: { width: number; closed: number; expanded: number }[] = [];
+  const scans: { width: number; violations: number }[] = [];
   const imageRequests: string[] = [];
   page.on('request', r => { if (r.url().includes('/evidence/images/')) imageRequests.push(r.url()); });
   for (const width of [360, 768, 1440]) {
@@ -27,35 +27,18 @@ test('simple opening page has clear paths and keyboard-accessible background', a
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('AI Visual Inspectionfor Manufacturing');
     await expect(page.getByText('A public-image demo', { exact: false })).toBeVisible();
     await expect(page.locator('main button')).toHaveCount(3);
-    const about = page.getByText('About this demo', { exact: true });
-    const background = page.getByText('The AI answers are saved responses', { exact: false });
-    await expect(background).toBeHidden();
+    await expect(page.locator('.about-demo')).toHaveCount(0);
+    await expect(page.getByRole('button', { name: /Reset/ })).toHaveCount(0);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    const closed = (await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations;
-    expect(closed).toEqual([]);
-    // Reach the disclosure in the natural tab order, starting from the skip link.
-    await page.keyboard.press('Tab');
-    await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
-    for (let i = 0; i < 5; i++) await page.keyboard.press('Tab');
-    await expect(about).toBeFocused();
-    await page.screenshot({ path: resolve(directory, `opening-${width}.png`), fullPage: true });
-    await page.keyboard.press('Enter');
-    await expect(background).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Dataset source', exact: true })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'CC-BY-NC-SA-4.0', exact: true })).toBeVisible();
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    const expanded = (await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations;
-    expect(expanded).toEqual([]);
-    scans.push({ width, closed: closed.length, expanded: expanded.length });
-    if (width === 1440) await page.screenshot({ path: resolve(directory, 'opening-about-expanded.png'), fullPage: true });
-    await page.keyboard.press('Space');
-    await expect(background).toBeHidden();
+    const violations = (await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations;
+    expect(violations).toEqual([]);
+    scans.push({ width, violations: violations.length });
   }
   expect(imageRequests).toEqual([]);
   await page.getByRole('button', { name: 'See the results' }).focus();
   await page.keyboard.press('Enter');
   await expect(page.locator('#main')).toBeFocused();
-  await expect(page.getByText('115 assessed · 0 unavailable', { exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Results', exact: true })).toBeVisible();
   await page.getByRole('link', { name: 'Manufacturing / AI Inspection' }).click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('AI Visual Inspectionfor Manufacturing');
   await page.getByRole('button', { name: 'Try it' }).focus();
@@ -64,7 +47,7 @@ test('simple opening page has clear paths and keyboard-accessible background', a
   await expect(page.getByRole('button', { name: 'Looks fine', exact: true })).toBeEnabled();
   await writeFile(resolve(directory, 'opening-checks.json'), JSON.stringify({
     bundle_id: bundle!.bundle_id, accessibility: scans, entry_paths: ['challenge', 'results'],
-    keyboard_disclosure: true, content_focus: true, opening_image_requests: 0,
+    removed_demo_section: true, content_focus: true, opening_image_requests: 0,
   }, null, 2));
 });
 
@@ -145,12 +128,12 @@ test('authentic fastener inspection to brief, responsive evidence and private st
   await page.getByRole('button', { name: 'Go to image 1, answered' }).click();
   await expect(page.locator('.answer-buttons')).toHaveCount(0);
   await page.getByRole('button', { name: 'Results', exact: true }).click();
-  await expect(page.getByText(`${report.succeeded} assessed · ${report.failed} unavailable`, { exact: true })).toBeVisible();
-  const highlights = page.locator('.result-highlights section');
-  await expect(highlights.nth(0).locator('strong')).toHaveText('81');
-  await expect(highlights.nth(1).locator('strong')).toHaveText('12');
-  await expect(highlights.nth(2).locator('strong')).toHaveText('5');
-  await expect(page.getByText('86 of 115 parts sent for checking.', { exact: true })).toBeVisible();
+  const resultCells = page.getByRole('table').getByRole('row').nth(1).getByRole('cell');
+  await expect(resultCells.nth(0)).toHaveText('12 / 93');
+  await expect(resultCells.nth(1)).toHaveText('5 / 22');
+  await expect(resultCells.nth(2)).toHaveText('115 / 115');
+  await expect(resultCells.nth(3)).toHaveText('0 / 115');
+  await expect(resultCells.nth(6)).toHaveText('86 / 115');
   await expect(page.getByLabel('Components per day', { exact: true })).toBeHidden();
   await expect(page.getByRole('heading', { name: 'Successful AI assessments', exact: true })).toBeHidden();
   await mkdir(resolve('../artifacts/ui-iteration-two'), { recursive: true });
@@ -208,8 +191,6 @@ test('authentic fastener inspection to brief, responsive evidence and private st
   });
   const p95 = [...updates].sort((a, b) => a - b)[94]; expect(p95).toBeLessThan(100);
   await page.evaluate(() => localStorage.setItem('unrelated-verification-key', 'keep'));
-  await page.getByText('About this demo & reset progress', { exact: true }).click();
-  await page.getByRole('button', { name: 'Reset all progress' }).click(); await page.getByRole('button', { name: 'Confirm reset' }).click();
   expect(await page.evaluate(() => localStorage.getItem('unrelated-verification-key'))).toBe('keep');
   expect(external).toEqual([]); expect(methods.every(m => m === 'GET')).toBe(true); expect(errors).toEqual([]);
   await writeFile(resolve(artifacts, 'journey.json'), JSON.stringify({ bundle_id: b.bundle_id, browser: browser.version(),
